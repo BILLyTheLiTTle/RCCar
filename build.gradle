@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		kotlin_version = '1.2.31'
+		kotlinVersion = '1.2.31'
 		springBootVersion = '2.0.0.RELEASE'
 	}
 	repositories {
@@ -11,12 +11,13 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
 	}
 }
 
-apply plugin: 'java'
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
@@ -24,6 +25,18 @@ apply plugin: 'io.spring.dependency-management'
 group = 'car'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+compileKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = "1.8"
+	}
+}
+compileTestKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = "1.8"
+	}
+}
 
 repositories {
 	mavenCentral()
@@ -33,16 +46,8 @@ repositories {
 dependencies {
 	compile fileTree(dir: 'lib', include: '*.jar')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	compile("org.jetbrains.kotlin:kotlin-reflect")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-}
-compileKotlin {
-	kotlinOptions {
-		jvmTarget = "1.8"
-	}
-}
-compileTestKotlin {
-	kotlinOptions {
-		jvmTarget = "1.8"
-	}
 }
