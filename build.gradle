@@ -1,10 +1,13 @@
 buildscript {
-	ext.kotlin_version = '1.2.31'
 	ext {
+		kotlin_version = '1.2.31'
 		springBootVersion = '2.0.0.RELEASE'
 	}
 	repositories {
 		mavenCentral()
+		flatDir {
+			dirs 'lib'
+		}
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -28,6 +31,7 @@ repositories {
 
 
 dependencies {
+	compile fileTree(dir: 'lib', include: '*.jar')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
