@@ -28,8 +28,9 @@ class ElectricSystem{
     /*
         All possible combinations and their meaning:
         value = 0 -> All vision lights (front/back) are off
-        value = 0.5 -> Position scale vision lights (front/back)
-        direction = 1 -> Driving scale vision lights (front/back)
+        value = 0.5 front & 0.5 back -> Position scale vision lights (front/back) *1
+        direction = 1 front & 0.5 back -> Driving scale vision lights (front/back) *1
+        *1: Back vision light is 1 when braking
      */
     @GetMapping("/vision_light")
     fun setVisionLightAction(@RequestParam(value = "value", defaultValue = "0") value: Int): String {
