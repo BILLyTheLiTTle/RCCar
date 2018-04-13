@@ -3,9 +3,13 @@ package car.server
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.util.*
+import javax.annotation.PostConstruct
 
 @RestController
 class DriveBrakeSystem{
+
+    var lastRequestId = -1
 
     /*
         All possible combinations and their meaning:
@@ -16,17 +20,24 @@ class DriveBrakeSystem{
         direction = 0 & value = 1 -> Stay still with handbrake
      */
     @GetMapping("/drive_brake_system")
-    fun setDriveBrakeAction(@RequestParam(value = "direction", defaultValue = "$DIRECTION_STILL") direction: Int,
+    fun setDriveBrakeAction(@RequestParam(value = "id", defaultValue = "-1") id: Int,
+                            @RequestParam(value = "direction", defaultValue = "$DIRECTION_STILL") direction: Int,
                             @RequestParam(value = "value", defaultValue =  "0") value: Int): String
     {
 
+        lastRequestId = if(id > lastRequestId) id else lastRequestId
+
+
         //TODO add function for the hardware
+        var state = "Not Executed"
         synchronized(this){
-            Thread.sleep(1000)
-            println("Moving at $direction with $value acceleration")
+            if(id == lastRequestId) {
+                Thread.sleep(1000)
+                state = "Moving at $direction with $value acceleration"
+            }
         }
 
-        return "Moving at $direction with $value acceleration"
+        return state
     }
 
     companion object {

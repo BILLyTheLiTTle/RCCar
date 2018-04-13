@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class SteeringSystem{
 
+    var lastRequestId = -1
+
     /*
         All possible combinations and their meaning:
         direction = 1 & value = x (x>0) -> Turn right with x tension
@@ -14,17 +16,21 @@ class SteeringSystem{
         direction = 0 & value = 0 -> Set steering to straight
      */
     @GetMapping("/steering_system")
-    fun setSteeringAction(@RequestParam(value = "direction", defaultValue = "$DIRECTION_STRAIGHT") direction: Int,
+    fun setSteeringAction(@RequestParam(value = "id", defaultValue = "-1") id: Int,
+                          @RequestParam(value = "direction", defaultValue = "$DIRECTION_STRAIGHT") direction: Int,
                           @RequestParam(value = "value", defaultValue =  "0") value: Int): String
     {
 
+        lastRequestId = if(id > lastRequestId) id else lastRequestId
+
         //TODO add function for the hardware
+        var state = "Not Executed"
         synchronized(this){
             Thread.sleep(1000)
-            println("Steering $direction with $value tension")
+            state = "Steering $direction with $value tension"
         }
 
-        return "Steering $direction with $value tension"
+        return state
     }
 
     companion object {
