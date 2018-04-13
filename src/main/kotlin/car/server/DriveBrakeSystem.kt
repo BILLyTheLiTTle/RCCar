@@ -3,8 +3,6 @@ package car.server
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.util.*
-import javax.annotation.PostConstruct
 
 @RestController
 class DriveBrakeSystem{
@@ -19,7 +17,7 @@ class DriveBrakeSystem{
         direction = 0 & value = 0 -> Stay in neutral
         direction = 0 & value = 1 -> Stay still with handbrake
      */
-    @GetMapping("/drive_brake_system")
+    @GetMapping("/set_drive_brake_system")
     fun setDriveBrakeAction(@RequestParam(value = "id", defaultValue = "-1") id: Int,
                             @RequestParam(value = "direction", defaultValue = "$DIRECTION_STILL") direction: Int,
                             @RequestParam(value = "value", defaultValue =  "0") value: Int): String
@@ -38,6 +36,11 @@ class DriveBrakeSystem{
         }
 
         return state
+    }
+
+    @GetMapping("/get_drive_brake_system")
+    fun getDriveBrakeAction(): String {
+        return "Read the hardware an show me what is going on"
     }
 
     companion object {

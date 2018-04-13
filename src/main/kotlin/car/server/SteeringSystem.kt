@@ -15,7 +15,7 @@ class SteeringSystem{
         direction = -1 & value = x (x>0) -> Turn left with x tension
         direction = 0 & value = 0 -> Set steering to straight
      */
-    @GetMapping("/steering_system")
+    @GetMapping("/set_steering_system")
     fun setSteeringAction(@RequestParam(value = "id", defaultValue = "-1") id: Int,
                           @RequestParam(value = "direction", defaultValue = "$DIRECTION_STRAIGHT") direction: Int,
                           @RequestParam(value = "value", defaultValue =  "0") value: Int): String
@@ -31,6 +31,11 @@ class SteeringSystem{
         }
 
         return state
+    }
+
+    @GetMapping("/get_steering_system")
+    fun setSteeringAction(): String {
+        return "Read the hardware an show me what is going on"
     }
 
     companion object {

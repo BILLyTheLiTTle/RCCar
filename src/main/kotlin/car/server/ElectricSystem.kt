@@ -13,7 +13,7 @@ class ElectricSystem{
         direction = -1 -> Light for left turn
         direction = 0 -> All turn lights are off
      */
-    @GetMapping("/turn_light")
+    @GetMapping("/set_turn_light")
     fun setTurnLightAction(
         @RequestParam(value = "direction", defaultValue = "$DIRECTION_LIGHT_STRAIGHT") direction: Int)
             : String {
@@ -27,6 +27,11 @@ class ElectricSystem{
         return "Light for $direction turn"
     }
 
+    @GetMapping("/get_turn_light")
+    fun getTurnLightAction(): String {
+        return "Read the hardware an show me what is going on"
+    }
+
     /*
         All possible combinations and their meaning:
         value = 0 -> All vision lights (front/back) are off
@@ -34,7 +39,7 @@ class ElectricSystem{
         direction = 1 front & 0.5 back -> Driving scale vision lights (front/back) *1
         *1: Back vision light is 1 when braking
      */
-    @GetMapping("/vision_light")
+    @GetMapping("/set_vision_light")
     fun setVisionLightAction(@RequestParam(value = "value", defaultValue = "$VISION_LIGHTS_OFF") value: Int): String {
 
         //TODO add function for the hardware
@@ -44,6 +49,11 @@ class ElectricSystem{
         }
 
         return "Vision lights scale is $value"
+    }
+
+    @GetMapping("/get_vision_light")
+    fun setVisionLightAction(): String {
+        return "Read the hardware an show me what is going on"
     }
 
     companion object {

@@ -16,7 +16,7 @@ class TelemetrySystem{
         wheel = 4 -> Back co-driver wheel speed
 
      */
-    @GetMapping("/wheel_speed")
+    @GetMapping("/get_wheel_speed")
     fun getWheelSpeed(@RequestParam(value = "wheel", defaultValue = "$DO_NOTHING") wheel: Int): String
     {
 
@@ -30,7 +30,7 @@ class TelemetrySystem{
         return "The $wheel is moving with speed"
     }
 
-    @GetMapping("/vehicle_speed")
+    @GetMapping("/get_vehicle_speed")
     fun getVehicleSpeed(): String
     {
 
@@ -57,7 +57,7 @@ class TelemetrySystem{
         item = 8 -> Raspberry Pi temperature
 
      */
-    @GetMapping("/item_temperature")
+    @GetMapping("/get_item_temperature")
     fun getItemTemperature(@RequestParam(value = "item", defaultValue = "$DO_NOTHING") item: Int): String
     {
 
