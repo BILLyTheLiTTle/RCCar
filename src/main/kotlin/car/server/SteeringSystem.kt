@@ -14,7 +14,7 @@ class SteeringSystem{
         direction = 0 & value = 0 -> Set steering to straight
      */
     @GetMapping("/steering_system")
-    fun setThrottle(@RequestParam(value = "direction", defaultValue = "DIRECTION_STRAIGHT") direction: Int,
+    fun setSteeringAction(@RequestParam(value = "direction", defaultValue = "DIRECTION_STRAIGHT") direction: Int,
                     @RequestParam(value = "value", defaultValue =  "0") value: Int): String
     {
 
