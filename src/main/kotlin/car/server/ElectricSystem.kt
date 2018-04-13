@@ -14,7 +14,9 @@ class ElectricSystem{
         direction = 0 -> All turn lights are off
      */
     @GetMapping("/turn_light")
-    fun setTurnLightAction(@RequestParam(value = "direction", defaultValue = "0") direction: Int): String {
+    fun setTurnLightAction(
+        @RequestParam(value = "direction", defaultValue = "$DIRECTION_LIGHT_STRAIGHT") direction: Int)
+            : String {
 
         //TODO add function for the hardware
         synchronized(this){
@@ -33,7 +35,7 @@ class ElectricSystem{
         *1: Back vision light is 1 when braking
      */
     @GetMapping("/vision_light")
-    fun setVisionLightAction(@RequestParam(value = "value", defaultValue = "0") value: Int): String {
+    fun setVisionLightAction(@RequestParam(value = "value", defaultValue = "$VISION_LIGHTS_OFF") value: Int): String {
 
         //TODO add function for the hardware
         synchronized(this){
@@ -49,9 +51,9 @@ class ElectricSystem{
         const val DIRECTION_LIGHT_LEFT = -1
         const val DIRECTION_LIGHT_STRAIGHT = 0
 
-        const val LIGHTS_OFF = 0
-        const val POSITION_SCALE = 0.5
-        const val DRIVING_SCALE = 1
+        const val VISION_LIGHTS_OFF = 0
+        const val VISION_LIGHTS_POSITION_SCALE = 0.5
+        const val VISION_LIGHTS_DRIVING_SCALE = 1
     }
 
 }

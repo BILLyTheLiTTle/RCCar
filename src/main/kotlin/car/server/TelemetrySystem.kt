@@ -9,6 +9,7 @@ class TelemetrySystem{
 
     /*
         All possible combinations and their meaning:
+        wheel = 0 -> do nothing
         wheel = 1 -> Front driver wheel speed
         wheel = 2 -> Front co-driver wheel speed
         wheel = 3 -> Back driver wheel speed
@@ -16,7 +17,7 @@ class TelemetrySystem{
 
      */
     @GetMapping("/wheel_speed")
-    fun getWheelSpeed(@RequestParam(value = "wheel", defaultValue = "0") wheel: Int): String
+    fun getWheelSpeed(@RequestParam(value = "wheel", defaultValue = "$DO_NOTHING") wheel: Int): String
     {
 
         //TODO add function for the hardware
@@ -45,14 +46,19 @@ class TelemetrySystem{
 
     /*
         All possible combinations and their meaning:
-        wheel = 1 -> Front driver wheel speed
-        wheel = 2 -> Front co-driver wheel speed
-        wheel = 3 -> Back driver wheel speed
-        wheel = 4 -> Back co-driver wheel speed
+        item = 0 -> do nothing
+        item = 1 -> Front driver wheel temperature
+        item = 2 -> Front co-driver wheel temperature
+        item = 3 -> Back driver wheel temperature
+        item = 4 -> Back co-driver wheel temperature
+        item = 5 -> Front H-bridge temperature
+        item = 6 -> Back H-bridge temperature
+        item = 7 -> Battery cables temperature
+        item = 8 -> Raspberry Pi temperature
 
      */
     @GetMapping("/item_temperature")
-    fun getItemTemperature(@RequestParam(value = "item", defaultValue = "0") item: Int): String
+    fun getItemTemperature(@RequestParam(value = "item", defaultValue = "$DO_NOTHING") item: Int): String
     {
 
         //TODO add function for the hardware
@@ -66,9 +72,17 @@ class TelemetrySystem{
     }
 
     companion object {
-        const val DIRECTION_FORWARD = 1
-        const val DIRECTION_BACKWARD = -1
-        const val DIRECTION_STILL = 0
+        const val DO_NOTHING = 0
+
+        const val FRONT_DRIVER_WHEEL = 1
+        const val FRONT_CO_DRIVER_WHEEL = 2
+        const val BACK_DRIVER_WHEEL = 3
+        const val BACK_CO_DRIVER_WHEEL = 4
+
+        const val FRONT_H_BRIDGE = 5
+        const val BACK_H_BRIDGE = 6
+        const val BATTERY_CABLES = 7
+        const val RASPBERRY_PI = 8
     }
 
 }

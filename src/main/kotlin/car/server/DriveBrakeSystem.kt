@@ -16,8 +16,8 @@ class DriveBrakeSystem{
         direction = 0 & value = 1 -> Stay still with handbrake
      */
     @GetMapping("/drive_brake_system")
-    fun setDriveBrakeAction(@RequestParam(value = "direction", defaultValue = "0") direction: Int,
-                 @RequestParam(value = "value", defaultValue =  "0") value: Int): String
+    fun setDriveBrakeAction(@RequestParam(value = "direction", defaultValue = "$DIRECTION_STILL") direction: Int,
+                            @RequestParam(value = "value", defaultValue =  "0") value: Int): String
     {
 
         //TODO add function for the hardware
