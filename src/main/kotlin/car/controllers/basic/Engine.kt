@@ -1,6 +1,7 @@
 package car.controllers.basic
 
 interface Engine {
-    fun start(): Pair<String,Boolean>
-    fun stop(): Pair<String,Boolean>
+    var engineState: Boolean
+    fun start(): String
+    fun stop(): String
 }

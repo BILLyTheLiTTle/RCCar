@@ -2,19 +2,19 @@ package car.controllers.basic
 
 object EngineImpl:Engine {
 
-    const val SUCCESS = "OK"
+    private const val SUCCESS = "OK"
 
-    var engineState = false
+    override var engineState = false
 
-    override fun start(): Pair<String, Boolean> {
+    override fun start(): String {
         //TODO("mode=input/output & and pin = false for GPIOs, PWM, etc")
         engineState = true
-        return Pair(SUCCESS, engineState)
+        return SUCCESS
     }
 
-    override fun stop(): Pair<String, Boolean> {
+    override fun stop(): String {
         //TODO("Shutdown & unprovision GPIOs, PWM, etc")
         engineState = false
-        return Pair(SUCCESS, engineState)
+        return SUCCESS
     }
 }

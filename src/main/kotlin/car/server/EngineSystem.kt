@@ -7,15 +7,21 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class EngineSystem {
-    @GetMapping("/handshake")
-    fun handshake(@RequestParam(value = "nanohttp_client_ip", defaultValue = "$EMPTY_STRING") nanohttpClientIp: String,
+    @GetMapping("/start_engine")
+    fun startEngine(@RequestParam(value = "nanohttp_client_ip", defaultValue = "$EMPTY_STRING") nanohttpClientIp: String,
                   @RequestParam(value = "nanohttp_client_port", defaultValue = "$EMPTY_INT") nanohttpClientPort: Int)
     : String {
         EngineSystem.nanohttpClientIp = nanohttpClientIp
         EngineSystem.nanohttpClientPort = nanohttpClientPort
 
-        return EngineImpl.start().first
+        return EngineImpl.start()
     }
+
+    @GetMapping("/get_engine_state")
+    fun getEngineState() = EngineImpl.engineState
+
+    @GetMapping("/stop_engine")
+    fun stopEngine(): String = EngineImpl.stop()
 
     companion object {
         const val EMPTY_STRING = "NULL"
