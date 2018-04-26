@@ -1,7 +1,6 @@
 package car.server
 
 import car.controllers.basic.EngineImpl
-import kotlinx.coroutines.experimental.runBlocking
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -15,12 +14,7 @@ class EngineSystem {
         EngineSystem.nanohttpClientIp = nanohttpClientIp
         EngineSystem.nanohttpClientPort = nanohttpClientPort
 
-        var returnMsg = EMPTY_STRING
-        runBlocking<Unit> {
-            returnMsg = EngineImpl.start().first
-            }
-
-        return returnMsg
+        return EngineImpl.start().first
     }
 
     companion object {
