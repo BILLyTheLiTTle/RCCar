@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class DriveBrakeSystem{
+class ThrottleBrakeSystem{
 
     var lastRequestId = -1
 

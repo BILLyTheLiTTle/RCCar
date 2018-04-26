@@ -6,7 +6,7 @@ object EngineImpl:Engine {
 
     var engineState = false
 
-    override suspend fun start(): Pair<String, Boolean> {
+    override fun start(): Pair<String, Boolean> {
         //TODO("mode=input/output & and pin = false for GPIOs, PWM, etc")
         engineState = true
         return Pair(SUCCESS, engineState)
