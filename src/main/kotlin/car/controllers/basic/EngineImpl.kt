@@ -1,8 +1,10 @@
 package car.controllers.basic
 
+import car.server.ThrottleBrakeSystem
+
 object EngineImpl:Engine {
 
-    private const val SUCCESS = "OK"
+    const val SUCCESS = "OK"
 
     override var engineState = false
 
@@ -14,7 +16,14 @@ object EngineImpl:Engine {
 
     override fun stop(): String {
         //TODO("Shutdown & unprovision GPIOs, PWM, etc")
-        engineState = false
+
+        // TODO reset every significant variable
+        // ThrottleBrake
+        ThrottleBrakeImpl.reset()
+
+        // Engine
+        reset()
+
         return SUCCESS
     }
 }

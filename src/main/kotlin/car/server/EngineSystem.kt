@@ -21,7 +21,11 @@ class EngineSystem {
     fun getEngineState() = EngineImpl.engineState
 
     @GetMapping("/stop_engine")
-    fun stopEngine(): String = EngineImpl.stop()
+    fun stopEngine(): String {
+        //reset and get ready for new requests
+        ThrottleBrakeSystem.lastRequestId = -1
+        return EngineImpl.stop()
+    }
 
     companion object {
         const val EMPTY_STRING = "NULL"
