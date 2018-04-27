@@ -48,7 +48,7 @@ class ThrottleBrakeSystem{
         const val ACTION_MOVE_FORWARD = "forward"
         const val ACTION_MOVE_BACKWARD = "backwards"
         const val ACTION_STILL = "still"
-        const val ACTION_PARKING_BRAKE = "parking brake"
+        const val ACTION_PARKING_BRAKE = "parking_brake"
         const val ACTION_HANDBRAKE = "handbrake"
     }
 
