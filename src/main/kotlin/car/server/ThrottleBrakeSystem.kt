@@ -14,8 +14,9 @@ class ThrottleBrakeSystem{
                                @RequestParam(value = "value", defaultValue =  "0") value: Int): String
     {
 
-        lastRequestId = if(id > lastRequestId) id else lastRequestId
+        lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
+        println("ID request: $id\nID last request: $lastRequestId")
 
         //TODO add function for the hardware
         var state = "Unknown"

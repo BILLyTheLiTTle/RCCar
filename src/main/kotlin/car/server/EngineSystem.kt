@@ -11,6 +11,9 @@ class EngineSystem {
     fun startEngine(@RequestParam(value = "nanohttp_client_ip", defaultValue = "$EMPTY_STRING") nanohttpClientIp: String,
                   @RequestParam(value = "nanohttp_client_port", defaultValue = "$EMPTY_INT") nanohttpClientPort: Int)
     : String {
+        //reset and get ready for new requests
+        ThrottleBrakeSystem.lastRequestId = -1
+
         EngineSystem.nanohttpClientIp = nanohttpClientIp
         EngineSystem.nanohttpClientPort = nanohttpClientPort
 
@@ -21,11 +24,7 @@ class EngineSystem {
     fun getEngineState() = EngineImpl.engineState
 
     @GetMapping("/stop_engine")
-    fun stopEngine(): String {
-        //reset and get ready for new requests
-        ThrottleBrakeSystem.lastRequestId = -1
-        return EngineImpl.stop()
-    }
+    fun stopEngine() = EngineImpl.stop()
 
     companion object {
         const val EMPTY_STRING = "NULL"
