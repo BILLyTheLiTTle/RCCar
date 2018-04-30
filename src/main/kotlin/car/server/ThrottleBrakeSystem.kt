@@ -16,7 +16,10 @@ class ThrottleBrakeSystem{
 
         lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
-        println("ID request: $id\nID last request: $lastRequestId")
+        println("Action: $action\n" +
+                "Value: $value\n" +
+                "ID request: $id\n" +
+                "ID last request: $lastRequestId\n")
 
         //TODO add function for the hardware
         var state = "Unknown"
@@ -42,6 +45,9 @@ class ThrottleBrakeSystem{
 
     @GetMapping("/get_parking_brake_state")
     fun getParkingBrakeState() = ThrottleBrakeImpl.action == ACTION_PARKING_BRAKE && ThrottleBrakeImpl.value == 100
+
+    @GetMapping("/get_handbrake_state")
+    fun getHandbrakeState() = ThrottleBrakeImpl.action == ACTION_HANDBRAKE && ThrottleBrakeImpl.value == 100
 
     companion object {
         var lastRequestId = -1

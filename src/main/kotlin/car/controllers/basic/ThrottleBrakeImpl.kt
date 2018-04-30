@@ -20,7 +20,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         //TODO set value to pins
 
-	ThrottleBrakeImpl.value = value
+	    ThrottleBrakeImpl.value = value
         return EngineImpl.SUCCESS // or error message from pins
     }
 
@@ -28,7 +28,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //TODO set value to pins
 
         action = ThrottleBrakeSystem.ACTION_STILL
-	ThrottleBrakeImpl.value = value
+	    ThrottleBrakeImpl.value = value
         return EngineImpl.SUCCESS // or error message from pins
     }
 
@@ -44,7 +44,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //TODO set value to pins
 
         action = ThrottleBrakeSystem.ACTION_HANDBRAKE
-	ThrottleBrakeImpl.value = value
+	    ThrottleBrakeImpl.value = value
         return EngineImpl.SUCCESS // or error message from pins
     }
 }
