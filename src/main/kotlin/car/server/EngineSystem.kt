@@ -13,6 +13,7 @@ class EngineSystem {
     : String {
         //reset and get ready for new requests
         ThrottleBrakeSystem.lastRequestId = -1
+        SteeringSystem.lastRequestId = -1
 
         EngineSystem.nanohttpClientIp = nanohttpClientIp
         EngineSystem.nanohttpClientPort = nanohttpClientPort

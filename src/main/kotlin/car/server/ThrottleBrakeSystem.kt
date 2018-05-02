@@ -18,8 +18,8 @@ class ThrottleBrakeSystem{
 
         println("Action: $action\n" +
                 "Value: $value\n" +
-                "ID request: $id\n" +
-                "ID last request: $lastRequestId\n")
+                "${this::class.simpleName} ID request: $id\n" +
+                "${this::class.simpleName} ID last request: $lastRequestId\n")
 
         //TODO add function for the hardware
         var state = "Unknown"
