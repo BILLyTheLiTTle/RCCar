@@ -9,6 +9,7 @@ interface ThrottleBrake {
     fun brake(value: Int): String
     fun parkingBrake(value: Int): String
     fun handbrake(value: Int): String
+    fun setNeutral(): String
 
     fun applyPwmValues(motorFRpin00: Int = 0, motorFRpin01: Int = 0,
                                  motorFLpin00: Int = 0, motorFLpin01: Int = 0,
@@ -18,7 +19,7 @@ interface ThrottleBrake {
     }
 
     fun reset() {
-        action = ThrottleBrakeSystem.ACTION_STILL
+        action = ThrottleBrakeSystem.ACTION_NEUTRAL
         value = 0
     }
 }

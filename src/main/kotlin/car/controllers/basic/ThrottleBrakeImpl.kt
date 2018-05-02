@@ -4,7 +4,7 @@ import car.server.ThrottleBrakeSystem
 
 object ThrottleBrakeImpl:ThrottleBrake {
 
-    override var action = ThrottleBrakeSystem.ACTION_STILL
+    override var action = ThrottleBrakeSystem.ACTION_BRAKING_STILL
 
     override var value = 0
 
@@ -27,7 +27,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
     override fun brake(value: Int): String {
         //TODO set value to pins
 
-        action = ThrottleBrakeSystem.ACTION_STILL
+        action = ThrottleBrakeSystem.ACTION_BRAKING_STILL
 	    ThrottleBrakeImpl.value = value
         return EngineImpl.SUCCESS // or error message from pins
     }
@@ -45,6 +45,13 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         action = ThrottleBrakeSystem.ACTION_HANDBRAKE
 	    ThrottleBrakeImpl.value = value
+        return EngineImpl.SUCCESS // or error message from pins
+    }
+
+    override fun setNeutral(): String {
+        //TODO set the motor to neutral
+
+        action = ThrottleBrakeSystem.ACTION_NEUTRAL
         return EngineImpl.SUCCESS // or error message from pins
     }
 }

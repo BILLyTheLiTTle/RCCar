@@ -10,7 +10,7 @@ class ThrottleBrakeSystem{
 
     @GetMapping("/set_throttle_brake_system")
     fun setThrottleBrakeAction(@RequestParam(value = "id", defaultValue = "-1") id: Int,
-                               @RequestParam(value = "action", defaultValue = "$ACTION_STILL") action: String,
+                               @RequestParam(value = "action", defaultValue = "$ACTION_NEUTRAL") action: String,
                                @RequestParam(value = "value", defaultValue =  "0") value: Int): String
     {
 
@@ -34,8 +34,11 @@ class ThrottleBrakeSystem{
                 else if (action == ACTION_HANDBRAKE) {
                     state = ThrottleBrakeImpl.handbrake(value)
                 }
-                else if (action == ACTION_STILL){
+                else if (action == ACTION_BRAKING_STILL){
                     state = ThrottleBrakeImpl.brake(value)
+                }
+                else if (action == ACTION_NEUTRAL){
+                    state = ThrottleBrakeImpl.setNeutral()
                 }
             }
         }
@@ -54,7 +57,8 @@ class ThrottleBrakeSystem{
 
         const val ACTION_MOVE_FORWARD = "forward"
         const val ACTION_MOVE_BACKWARD = "backwards"
-        const val ACTION_STILL = "still"
+        const val ACTION_NEUTRAL = "neutral"
+        const val ACTION_BRAKING_STILL = "braking_still"
         const val ACTION_PARKING_BRAKE = "parking_brake"
         const val ACTION_HANDBRAKE = "handbrake"
     }
