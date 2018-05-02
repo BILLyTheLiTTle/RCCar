@@ -6,9 +6,9 @@ interface ThrottleBrake {
     var action: String
     var value: Int
 
-    var getParkingBrakeState: Boolean
-    var getHandbrakeState: Boolean
-    var getMotionState: String
+    var parkingBrakeState: Boolean
+    var handbrakeState: Boolean
+    var motionState: String
     var isMovingForward: Boolean
     var isMovingBackward: Boolean
     var isBrakingStill: Boolean

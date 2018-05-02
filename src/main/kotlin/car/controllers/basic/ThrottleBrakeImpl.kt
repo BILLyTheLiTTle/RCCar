@@ -13,11 +13,11 @@ object ThrottleBrakeImpl:ThrottleBrake {
     override var action = ACTION_BRAKING_STILL
     override var value = 0
 
-    override var getParkingBrakeState = false
+    override var parkingBrakeState = false
         get() = action == ACTION_PARKING_BRAKE && ThrottleBrakeImpl.value == 100
-    override var getHandbrakeState = false
+    override var handbrakeState = false
         get() = action == ACTION_HANDBRAKE && ThrottleBrakeImpl.value == 100
-    override var getMotionState = EMPTY_STRING
+    override var motionState = EMPTY_STRING
         get() = when {
                 isNeutral -> ACTION_NEUTRAL
                 isBrakingStill -> ACTION_BRAKING_STILL

@@ -47,16 +47,19 @@ class ThrottleBrakeSystem{
     }
 
     @GetMapping("/get_parking_brake_state")
-    fun getParkingBrakeState() = ThrottleBrakeImpl.getParkingBrakeState
+    fun getParkingBrakeState() = ThrottleBrakeImpl.parkingBrakeState
 
     @GetMapping("/get_handbrake_state")
-    fun getHandbrakeState() = ThrottleBrakeImpl.getHandbrakeState
+    fun getHandbrakeState() = ThrottleBrakeImpl.handbrakeState
+
+    @GetMapping("/get_motion_state")
+    fun getMotionState() = ThrottleBrakeImpl.motionState
 
     companion object {
         var lastRequestId = -1
 
         const val ACTION_MOVE_FORWARD = "forward"
-        const val ACTION_MOVE_BACKWARD = "backwards"
+        const val ACTION_MOVE_BACKWARD = "backward"
         const val ACTION_NEUTRAL = "neutral"
         const val ACTION_BRAKING_STILL = "braking_still"
         const val ACTION_PARKING_BRAKE = "parking_brake"
