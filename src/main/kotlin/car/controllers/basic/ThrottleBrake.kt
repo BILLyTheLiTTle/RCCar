@@ -5,6 +5,15 @@ import car.server.ThrottleBrakeSystem
 interface ThrottleBrake {
     var action: String
     var value: Int
+
+    var getParkingBrakeState: Boolean
+    var getHandbrakeState: Boolean
+    var getMotionState: String
+    var isMovingForward: Boolean
+    var isMovingBackward: Boolean
+    var isBrakingStill: Boolean
+    var isNeutral: Boolean
+
     fun throttle(direction: String, value: Int): String
     fun brake(value: Int): String
     fun parkingBrake(value: Int): String

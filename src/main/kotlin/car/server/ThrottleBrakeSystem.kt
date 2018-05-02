@@ -47,10 +47,10 @@ class ThrottleBrakeSystem{
     }
 
     @GetMapping("/get_parking_brake_state")
-    fun getParkingBrakeState() = ThrottleBrakeImpl.action == ACTION_PARKING_BRAKE && ThrottleBrakeImpl.value == 100
+    fun getParkingBrakeState() = ThrottleBrakeImpl.getParkingBrakeState
 
     @GetMapping("/get_handbrake_state")
-    fun getHandbrakeState() = ThrottleBrakeImpl.action == ACTION_HANDBRAKE && ThrottleBrakeImpl.value == 100
+    fun getHandbrakeState() = ThrottleBrakeImpl.getHandbrakeState
 
     companion object {
         var lastRequestId = -1
