@@ -25,17 +25,18 @@ class SteeringSystem{
         var state = "Unknown"
         synchronized(this){
             if(id == lastRequestId) {
-                if (direction == ACTION_TURN_LEFT) {
-                    //TODO turn left with value
-                    state = SteeringImpl.turn(ACTION_TURN_LEFT, value)
-                }
-                else if (direction == ACTION_TURN_RIGHT) {
-                    //TODO turn right with value
-                    state = SteeringImpl.turn(ACTION_TURN_RIGHT, value)
-                }
-                else if (direction == ACTION_STRAIGHT) {
-                    //TODO go straight with no value
-                    state = SteeringImpl.turn(ACTION_STRAIGHT)
+                state = when (direction) {
+                    ACTION_TURN_LEFT ->
+                        //TODO turn left with value
+                        SteeringImpl.turn(ACTION_TURN_LEFT, value)
+                    ACTION_TURN_RIGHT ->
+                        //TODO turn right with value
+                        SteeringImpl.turn(ACTION_TURN_RIGHT, value)
+                    ACTION_TURN_RIGHT ->
+                        //TODO go straight with no value
+                        SteeringImpl.turn(ACTION_STRAIGHT)
+                    else ->
+                        "${this::class.simpleName} ERROR: Entered in else condition"
                 }
             }
         }

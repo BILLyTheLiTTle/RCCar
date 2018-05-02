@@ -25,20 +25,19 @@ class ThrottleBrakeSystem{
         var state = "Unknown"
         synchronized(this){
             if(id == lastRequestId) {
-                if (action == ACTION_MOVE_FORWARD || action == ACTION_MOVE_BACKWARD) {
-                    state = ThrottleBrakeImpl.throttle(action, value)
-                }
-                else if (action == ACTION_PARKING_BRAKE) {
-                    state = ThrottleBrakeImpl.parkingBrake(value)
-                }
-                else if (action == ACTION_HANDBRAKE) {
-                    state = ThrottleBrakeImpl.handbrake(value)
-                }
-                else if (action == ACTION_BRAKING_STILL){
-                    state = ThrottleBrakeImpl.brake(value)
-                }
-                else if (action == ACTION_NEUTRAL){
-                    state = ThrottleBrakeImpl.setNeutral()
+                state = when (action) {
+                    ACTION_MOVE_FORWARD, ACTION_MOVE_BACKWARD ->
+                        ThrottleBrakeImpl.throttle(action, value)
+                    ACTION_PARKING_BRAKE ->
+                        ThrottleBrakeImpl.parkingBrake(value)
+                    ACTION_HANDBRAKE ->
+                        ThrottleBrakeImpl.handbrake(value)
+                    ACTION_BRAKING_STILL ->
+                        ThrottleBrakeImpl.brake(value)
+                    ACTION_NEUTRAL ->
+                        ThrottleBrakeImpl.setNeutral()
+                    else ->
+                        "${this::class.simpleName} ERROR: Entered in else condition"
                 }
             }
         }
