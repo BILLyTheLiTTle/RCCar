@@ -18,6 +18,8 @@ class EngineSystem {
         EngineSystem.nanohttpClientIp = nanohttpClientIp
         EngineSystem.nanohttpClientPort = nanohttpClientPort
 
+        println("Engine started\nController IP: $nanohttpClientIp\nController Port: $nanohttpClientPort\n")
+
         return EngineImpl.start()
     }
 
