@@ -37,14 +37,33 @@ object ThrottleBrakeImpl:ThrottleBrake {
     override fun throttle(direction: String, value: Int): String {
         if(direction == ACTION_MOVE_FORWARD){
             // TODO prepare H-bridge for forward movement
+
+            //////
+            // Testing purposes
+            EngineImpl.pinInput1.high()
+            EngineImpl.pinInput2.low()
+            //////
+
             action = ACTION_MOVE_FORWARD
         }
         else if (direction == ACTION_MOVE_BACKWARD){
             // TODO prepare H-bridge for backward movement
+
+            //////
+            // Testing purposes
+            EngineImpl.pinInput1.low()
+            EngineImpl.pinInput2.high()
+            //////
+
             action = ACTION_MOVE_BACKWARD
         }
 
         //TODO set value to pins
+
+        //////
+        // Testing purposes
+        EngineImpl.pwmPinEnable.pwm = value
+        //////
 
 	    ThrottleBrakeImpl.value = value
         return EngineImpl.SUCCESS // or error message from pins
@@ -52,6 +71,13 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
     override fun brake(value: Int): String {
         //TODO set value to pins
+
+        //////
+        // Testing purposes
+        EngineImpl.pwmPinEnable.pwm = value
+        EngineImpl.pinInput1.low()
+        EngineImpl.pinInput2.low()
+        //////
 
         action = ACTION_BRAKING_STILL
 	    ThrottleBrakeImpl.value = value
@@ -61,6 +87,13 @@ object ThrottleBrakeImpl:ThrottleBrake {
     override fun parkingBrake(value: Int): String {
         //TODO set value to pins
 
+        //////
+        // Testing purposes
+        EngineImpl.pwmPinEnable.pwm = value
+        EngineImpl.pinInput1.low()
+        EngineImpl.pinInput2.low()
+        //////
+
         action = ACTION_PARKING_BRAKE
         ThrottleBrakeImpl.value = value
         return EngineImpl.SUCCESS // or error message from pins
@@ -69,6 +102,13 @@ object ThrottleBrakeImpl:ThrottleBrake {
     override fun handbrake(value: Int): String {
         //TODO set value to pins
 
+        //////
+        // Testing purposes
+        EngineImpl.pwmPinEnable.pwm = value
+        EngineImpl.pinInput1.low()
+        EngineImpl.pinInput2.low()
+        //////
+
         action = ACTION_HANDBRAKE
 	    ThrottleBrakeImpl.value = value
         return EngineImpl.SUCCESS // or error message from pins
@@ -76,6 +116,13 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
     override fun setNeutral(): String {
         //TODO set the motor to neutral
+
+        //////
+        // Testing purposes
+        EngineImpl.pwmPinEnable.pwm = value
+        EngineImpl.pinInput1.low()
+        EngineImpl.pinInput2.low()
+        //////
 
         action = ACTION_NEUTRAL
         return EngineImpl.SUCCESS // or error message from pins
