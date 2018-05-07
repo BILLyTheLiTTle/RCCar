@@ -40,8 +40,10 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
             //////
             // Testing purposes
-            EngineImpl.pinInput1.high()
-            EngineImpl.pinInput2.low()
+            if (EngineImpl.ENABLE_PINS) {
+                EngineImpl.pinInput1.high()
+                EngineImpl.pinInput2.low()
+            }
             //////
 
             action = ACTION_MOVE_FORWARD
@@ -51,8 +53,10 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
             //////
             // Testing purposes
-            EngineImpl.pinInput1.low()
-            EngineImpl.pinInput2.high()
+            if (EngineImpl.ENABLE_PINS) {
+                EngineImpl.pinInput1.low()
+                EngineImpl.pinInput2.high()
+            }
             //////
 
             action = ACTION_MOVE_BACKWARD
@@ -62,7 +66,9 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         //////
         // Testing purposes
-        EngineImpl.pwmPinEnable.pwm = value
+        if (EngineImpl.ENABLE_PINS) {
+            EngineImpl.pwmPinEnable.pwm = value
+        }
         //////
 
 	    ThrottleBrakeImpl.value = value
@@ -74,9 +80,11 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         //////
         // Testing purposes
-        EngineImpl.pwmPinEnable.pwm = value
-        EngineImpl.pinInput1.low()
-        EngineImpl.pinInput2.low()
+        if (EngineImpl.ENABLE_PINS) {
+            EngineImpl.pwmPinEnable.pwm = value
+            EngineImpl.pinInput1.low()
+            EngineImpl.pinInput2.low()
+        }
         //////
 
         action = ACTION_BRAKING_STILL
@@ -89,9 +97,11 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         //////
         // Testing purposes
-        EngineImpl.pwmPinEnable.pwm = value
-        EngineImpl.pinInput1.low()
-        EngineImpl.pinInput2.low()
+        if (EngineImpl.ENABLE_PINS) {
+            EngineImpl.pwmPinEnable.pwm = value
+            EngineImpl.pinInput1.low()
+            EngineImpl.pinInput2.low()
+        }
         //////
 
         action = ACTION_PARKING_BRAKE
@@ -104,9 +114,11 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         //////
         // Testing purposes
-        EngineImpl.pwmPinEnable.pwm = value
-        EngineImpl.pinInput1.low()
-        EngineImpl.pinInput2.low()
+        if (EngineImpl.ENABLE_PINS) {
+            EngineImpl.pwmPinEnable.pwm = value
+            EngineImpl.pinInput1.low()
+            EngineImpl.pinInput2.low()
+        }
         //////
 
         action = ACTION_HANDBRAKE
@@ -119,9 +131,11 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         //////
         // Testing purposes
-        EngineImpl.pwmPinEnable.pwm = value
-        EngineImpl.pinInput1.low()
-        EngineImpl.pinInput2.low()
+        if (EngineImpl.ENABLE_PINS) {
+            EngineImpl.pwmPinEnable.pwm = value
+            EngineImpl.pinInput1.low()
+            EngineImpl.pinInput2.low()
+        }
         //////
 
         action = ACTION_NEUTRAL
