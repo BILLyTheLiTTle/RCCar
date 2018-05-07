@@ -27,7 +27,10 @@ class EngineSystem {
     fun getEngineState() = EngineImpl.engineState
 
     @GetMapping("/stop_engine")
-    fun stopEngine() = EngineImpl.stop()
+    fun stopEngine(): String {
+        println("Engine stopped\nController IP: $nanohttpClientIp\nController Port: $nanohttpClientPort\n")
+        return EngineImpl.stop()
+    }
 
     companion object {
         const val EMPTY_STRING = "NULL"
