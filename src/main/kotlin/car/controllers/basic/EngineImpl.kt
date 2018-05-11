@@ -66,6 +66,9 @@ object EngineImpl:Engine {
         //////
 
         // TODO reset every significant variable
+        // Steering
+        SteeringImpl.reset()
+
         // ThrottleBrake
         ThrottleBrakeImpl.reset()
 
