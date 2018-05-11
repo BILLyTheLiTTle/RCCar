@@ -12,8 +12,8 @@ object EngineImpl:Engine {
     override var engineState = false
 
     //////
-    // Testing purposes
-    const val ENABLE_PINS = false
+    // Pi related
+    const val RUN_ON_PI = false
     lateinit var gpio: GpioController
     lateinit var pwmPinEnable: GpioPinPwmOutput
     lateinit var pinInput1: GpioPinDigitalOutput
@@ -23,8 +23,8 @@ object EngineImpl:Engine {
     override fun start(): String {
         //TODO("mode=input/output & and pin = false for GPIOs, PWM, etc")
         //////
-        // Testing purposes
-        if(ENABLE_PINS) {
+        // Pi related
+        if(RUN_ON_PI) {
             gpio = GpioFactory.getInstance()
             val pinEnable = CommandArgumentParser.getPin(
                 RaspiPin::class.java, // pin provider class to obtain pin instance from
@@ -51,8 +51,8 @@ object EngineImpl:Engine {
         //TODO("Shutdown & unprovision GPIOs, PWM, etc")
 
         //////
-        // Testing purposes
-        if(ENABLE_PINS) {
+        // Pi related
+        if(RUN_ON_PI) {
             pinInput1.low()
             pinInput2.low()
             pwmPinEnable.pwm = 0

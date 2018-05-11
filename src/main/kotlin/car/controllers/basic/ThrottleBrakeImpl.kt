@@ -39,8 +39,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
             // TODO prepare H-bridge for forward movement
 
             //////
-            // Testing purposes
-            if (EngineImpl.ENABLE_PINS) {
+            // Pi related
+            if (EngineImpl.RUN_ON_PI) {
                 EngineImpl.pinInput1.high()
                 EngineImpl.pinInput2.low()
             }
@@ -52,8 +52,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
             // TODO prepare H-bridge for backward movement
 
             //////
-            // Testing purposes
-            if (EngineImpl.ENABLE_PINS) {
+            // Pi related
+            if (EngineImpl.RUN_ON_PI) {
                 EngineImpl.pinInput1.low()
                 EngineImpl.pinInput2.high()
             }
@@ -65,8 +65,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //TODO set value to pins
 
         //////
-        // Testing purposes
-        if (EngineImpl.ENABLE_PINS) {
+        // Pi related
+        if (EngineImpl.RUN_ON_PI) {
             EngineImpl.pwmPinEnable.pwm = value
         }
         //////
@@ -79,8 +79,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //TODO set value to pins
 
         //////
-        // Testing purposes
-        if (EngineImpl.ENABLE_PINS) {
+        // Pi related
+        if (EngineImpl.RUN_ON_PI) {
             EngineImpl.pwmPinEnable.pwm = value
             EngineImpl.pinInput1.low()
             EngineImpl.pinInput2.low()
@@ -96,8 +96,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //TODO set value to pins
 
         //////
-        // Testing purposes
-        if (EngineImpl.ENABLE_PINS) {
+        // Pi related
+        if (EngineImpl.RUN_ON_PI) {
             EngineImpl.pwmPinEnable.pwm = value
             EngineImpl.pinInput1.low()
             EngineImpl.pinInput2.low()
@@ -113,8 +113,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //TODO set value to pins
 
         //////
-        // Testing purposes
-        if (EngineImpl.ENABLE_PINS) {
+        // Pi related
+        if (EngineImpl.RUN_ON_PI) {
             EngineImpl.pwmPinEnable.pwm = value
             EngineImpl.pinInput1.low()
             EngineImpl.pinInput2.low()
@@ -130,8 +130,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //TODO set the motor to neutral
 
         //////
-        // Testing purposes
-        if (EngineImpl.ENABLE_PINS) {
+        // Pi related
+        if (EngineImpl.RUN_ON_PI) {
             EngineImpl.pwmPinEnable.pwm = value
             EngineImpl.pinInput1.low()
             EngineImpl.pinInput2.low()
