@@ -66,6 +66,9 @@ object EngineImpl:Engine {
         //////
 
         // TODO reset every significant variable
+        // Electrics
+        ElectricsImpl.reset()
+
         // Steering
         SteeringImpl.reset()
 

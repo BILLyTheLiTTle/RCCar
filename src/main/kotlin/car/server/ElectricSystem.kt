@@ -1,5 +1,7 @@
 package car.server
 
+import car.controllers.basic.Electrics
+import car.controllers.basic.ElectricsImpl
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -20,7 +22,6 @@ class ElectricSystem{
 
         //TODO add function for the hardware
         synchronized(this){
-            Thread.sleep(1000)
             println("Light for $direction turn")
         }
 
@@ -32,38 +33,44 @@ class ElectricSystem{
         return "Read the hardware an show me what is going on"
     }
 
-    /*
-        All possible combinations and their meaning:
-        value = 0 -> All vision lights (front/back) are off
-        value = 0.5 front & 0.5 back -> Position scale vision lights (front/back) *1
-        direction = 1 front & 0.5 back -> Driving scale vision lights (front/back) *1
-        *1: Back vision light is 1 when braking
-     */
-    @GetMapping("/set_vision_light")
-    fun setVisionLightAction(@RequestParam(value = "value", defaultValue = "$VISION_LIGHTS_OFF") value: Int): String {
 
-        //TODO add function for the hardware
+    @GetMapping("/set_main_lights_state")
+    fun setMainLightsState(@RequestParam(value = "value", defaultValue = "$LIGHTS_OFF") value: String): String {
+
+        println("Main Lights State: $value\n")
+
         synchronized(this){
-            Thread.sleep(1000)
-            println("Vision lights scale is $value")
+            when(value){
+                LIGHTS_OFF -> ElectricsImpl.positionLightsState = false
+                POSITION_LIGHTS -> ElectricsImpl.positionLightsState = true
+                DRIVING_LIGHTS -> ElectricsImpl.drivingLightsState = true
+                LONG_RANGE_LIGHTS -> ElectricsImpl.longRangeLightsState = true
+                LONG_RANGE_SIGNAL_LIGHTS -> ElectricsImpl.doHeadlightsSignal()
+                else -> "${this::class.simpleName} ERROR: Entered in else condition"
+            }
         }
 
-        return "Vision lights scale is $value"
+        return getMainLightsState()
     }
 
-    @GetMapping("/get_vision_light")
-    fun setVisionLightAction(): String {
-        return "Read the hardware an show me what is going on"
-    }
+    @GetMapping("/get_main_lights_state")
+    fun getMainLightsState() =
+        if (ElectricsImpl.longRangeLightsState) LONG_RANGE_LIGHTS
+        else if (ElectricsImpl.drivingLightsState) DRIVING_LIGHTS
+        else if (ElectricsImpl.positionLightsState) POSITION_LIGHTS
+        else if (!ElectricsImpl.positionLightsState) LIGHTS_OFF
+        else EngineSystem.EMPTY_STRING
 
     companion object {
         const val DIRECTION_LIGHT_RIGHT = 1
         const val DIRECTION_LIGHT_LEFT = -1
         const val DIRECTION_LIGHT_STRAIGHT = 0
 
-        const val VISION_LIGHTS_OFF = 0
-        const val VISION_LIGHTS_POSITION_SCALE = 0.5
-        const val VISION_LIGHTS_DRIVING_SCALE = 1
+        const val LIGHTS_OFF = "lights_off"
+        const val POSITION_LIGHTS = "position_lights"
+        const val DRIVING_LIGHTS = "driving_lights"
+        const val LONG_RANGE_LIGHTS = "long_range_lights"
+        const val LONG_RANGE_SIGNAL_LIGHTS = "long_range_signal_lights"
     }
 
 }
