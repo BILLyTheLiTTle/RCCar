@@ -9,6 +9,8 @@ interface Electrics {
 
     var brakingLightsState: Boolean
 
+    var reverseLightsState: Boolean
+
     fun doHeadlightsSignal(): String
 
     // TODO the stuff here

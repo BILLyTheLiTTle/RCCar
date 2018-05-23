@@ -30,14 +30,14 @@ class ElectricSystem{
 
     @GetMapping("/get_turn_light")
     fun getTurnLightAction(): String {
-        return "Read the hardware an show me what is going on"
+        return "Read the hardware and show me what is going on"
     }
 
 
     @GetMapping("/set_main_lights_state")
     fun setMainLightsState(@RequestParam(value = "value", defaultValue = "$LIGHTS_OFF") value: String): String {
 
-        println("Main Lights State: $value\n")
+        println("${this::class.simpleName} Main Lights State Request: $value\n")
 
         synchronized(this){
             when(value){
@@ -66,6 +66,15 @@ class ElectricSystem{
         else if (!ElectricsImpl.positionLightsState) LIGHTS_OFF
         else EngineSystem.EMPTY_STRING
 
+    @GetMapping("/set_reverse_lights_state")
+    fun setReverseLightsState(@RequestParam(value = "state", defaultValue = "true") state: Boolean): String {
+        ElectricsImpl.reverseLightsState = state
+        return ElectricsImpl.reverseLightsState.toString()
+    }
+
+    @GetMapping("/get_reverse_lights_state")
+    fun getReverseLightsState() = ElectricsImpl.reverseLightsState
+
     companion object {
         const val DIRECTION_LIGHT_RIGHT = 1
         const val DIRECTION_LIGHT_LEFT = -1
@@ -77,8 +86,9 @@ class ElectricSystem{
         const val LONG_RANGE_LIGHTS = "long_range_lights"
         const val LONG_RANGE_SIGNAL_LIGHTS = "long_range_signal_lights"
 
-
         const val BRAKING_LIGHTS = "braking_lights"
+
+        const val REVERSE_LIGHTS = "reverse_lights"
     }
 
 }
