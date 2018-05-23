@@ -13,11 +13,11 @@ object ThrottleBrakeImpl:ThrottleBrake {
     override var action = ACTION_BRAKING_STILL
     override var value = 0
 
-    override var parkingBrakeState = false
+    override val parkingBrakeState
         get() = action == ACTION_PARKING_BRAKE && ThrottleBrakeImpl.value == 100
-    override var handbrakeState = false
+    override val handbrakeState
         get() = action == ACTION_HANDBRAKE && ThrottleBrakeImpl.value == 100
-    override var motionState = EMPTY_STRING
+    override val motionState
         get() = when {
                 isNeutral -> ACTION_NEUTRAL
                 isBrakingStill -> ACTION_BRAKING_STILL
@@ -25,13 +25,13 @@ object ThrottleBrakeImpl:ThrottleBrake {
                 isMovingBackward -> ACTION_MOVE_BACKWARD
                 else -> EMPTY_STRING
             }
-    override var isMovingForward = false
+    override val isMovingForward
         get() = action == ACTION_MOVE_FORWARD
-    override var isMovingBackward = false
+    override val isMovingBackward
         get() = action == ACTION_MOVE_BACKWARD
-    override var isBrakingStill = false
+    override val isBrakingStill
         get() = action == ACTION_BRAKING_STILL
-    override var isNeutral = false
+    override val isNeutral
         get() = action == ACTION_NEUTRAL
 
     override fun throttle(direction: String, value: Int): String {

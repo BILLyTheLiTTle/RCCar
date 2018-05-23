@@ -6,13 +6,13 @@ interface ThrottleBrake {
     var action: String
     var value: Int
 
-    var parkingBrakeState: Boolean
-    var handbrakeState: Boolean
-    var motionState: String
-    var isMovingForward: Boolean
-    var isMovingBackward: Boolean
-    var isBrakingStill: Boolean
-    var isNeutral: Boolean
+    val parkingBrakeState: Boolean
+    val handbrakeState: Boolean
+    val motionState: String
+    val isMovingForward: Boolean
+    val isMovingBackward: Boolean
+    val isBrakingStill: Boolean
+    val isNeutral: Boolean
 
     fun throttle(direction: String, value: Int): String
     fun brake(value: Int): String
