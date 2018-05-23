@@ -6,7 +6,7 @@ object ElectricsImpl:Electrics {
     private val _lights = mutableMapOf<String, Int>()
     override val lights: Map<String, Int> = _lights
 
-    override var positionLightsState: Boolean = false
+    override var positionLightsState = false
         set(value) {
             if (value)
                 _lights[ElectricSystem.POSITION_LIGHTS] = 1
@@ -17,9 +17,11 @@ object ElectricsImpl:Electrics {
             drivingLightsState = false
             longRangeLightsState = false
 
+            // TODO call handleLeds(...)
+
             field = value
     }
-    override var drivingLightsState: Boolean = false
+    override var drivingLightsState = false
         set(value) {
             if (value)
                 _lights[ElectricSystem.DRIVING_LIGHTS] = 1
@@ -29,19 +31,41 @@ object ElectricsImpl:Electrics {
             //reset the bigger light scales
             longRangeLightsState = false
 
+            // TODO call handleLeds(...)
+
             field = value
         }
-    override var longRangeLightsState: Boolean = false
+    override var longRangeLightsState = false
         set(value) {
             if (value)
                 _lights[ElectricSystem.LONG_RANGE_LIGHTS] = 1
             else
                 _lights[ElectricSystem.LONG_RANGE_LIGHTS] = 0
+
+            // TODO call handleLeds(...)
+
             field = value
         }
 
+    override var brakingLightsState = false
+        set(value) {
+            if (value)
+                _lights[ElectricSystem.BRAKING_LIGHTS] = 1
+            else
+                _lights[ElectricSystem.BRAKING_LIGHTS] = 0
+
+            println("${this::class.simpleName} Brake Lights: $value\n")
+
+            // TODO call handleLeds(...)
+
+            field = value
+        }
+
+
     override fun doHeadlightsSignal(): String {
         // TODO turn on/off the long_range lights twice in a TimerTask for a small period of time
+
+        // TODO call handleLeds(...)
 
         return "Signal"
     }

@@ -7,6 +7,8 @@ interface Electrics {
     var drivingLightsState: Boolean
     var longRangeLightsState: Boolean
 
+    var brakingLightsState: Boolean
+
     fun doHeadlightsSignal(): String
 
     // TODO the stuff here

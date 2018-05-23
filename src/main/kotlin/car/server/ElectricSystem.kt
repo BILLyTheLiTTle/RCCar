@@ -76,6 +76,9 @@ class ElectricSystem{
         const val DRIVING_LIGHTS = "driving_lights"
         const val LONG_RANGE_LIGHTS = "long_range_lights"
         const val LONG_RANGE_SIGNAL_LIGHTS = "long_range_signal_lights"
+
+
+        const val BRAKING_LIGHTS = "braking_lights"
     }
 
 }

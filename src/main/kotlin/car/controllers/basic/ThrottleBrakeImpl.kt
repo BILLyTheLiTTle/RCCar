@@ -7,6 +7,7 @@ import car.server.ThrottleBrakeSystem.Companion.ACTION_MOVE_FORWARD
 import car.server.ThrottleBrakeSystem.Companion.ACTION_NEUTRAL
 import car.server.ThrottleBrakeSystem.Companion.ACTION_PARKING_BRAKE
 import car.server.EngineSystem.Companion.EMPTY_STRING
+import kotlinx.coroutines.experimental.launch
 
 object ThrottleBrakeImpl:ThrottleBrake {
 
@@ -35,7 +36,15 @@ object ThrottleBrakeImpl:ThrottleBrake {
         get() = action == ACTION_NEUTRAL
 
     override fun throttle(direction: String, value: Int): String {
+
+        // turn on/off the braking lights
+        if (ThrottleBrakeImpl.value > value)
+            launch { ElectricsImpl.brakingLightsState = true }
+        else
+            launch { ElectricsImpl.brakingLightsState = false }
+
         if(direction == ACTION_MOVE_FORWARD){
+
             // TODO prepare H-bridge for forward movement
 
             //////
@@ -76,6 +85,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
     }
 
     override fun brake(value: Int): String {
+        launch { ElectricsImpl.brakingLightsState = true }
         //TODO set value to pins
 
         //////
@@ -93,6 +103,10 @@ object ThrottleBrakeImpl:ThrottleBrake {
     }
 
     override fun parkingBrake(value: Int): String {
+        if (value == 100)
+            launch { ElectricsImpl.brakingLightsState = true }
+        else if (value == 0)
+            launch { ElectricsImpl.brakingLightsState = false }
         //TODO set value to pins
 
         //////
@@ -127,6 +141,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
     }
 
     override fun setNeutral(): String {
+        launch { ElectricsImpl.brakingLightsState = false }
         //TODO set the motor to neutral
 
         //////
