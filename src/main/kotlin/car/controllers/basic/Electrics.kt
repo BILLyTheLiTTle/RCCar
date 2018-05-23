@@ -15,6 +15,9 @@ interface Electrics {
     }
 
     fun reset() {
+        longRangeLightsState =false
+        drivingLightsState = false
+        positionLightsState = false
         // TODO handleLeds(_lights) to turn LEDs off
     }
 }

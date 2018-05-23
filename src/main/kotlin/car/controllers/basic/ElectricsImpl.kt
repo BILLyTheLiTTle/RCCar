@@ -14,8 +14,8 @@ object ElectricsImpl:Electrics {
                 _lights[ElectricSystem.POSITION_LIGHTS] = 0
 
             //reset the bigger light scales
-            _lights[ElectricSystem.DRIVING_LIGHTS] = 0
-            _lights[ElectricSystem.LONG_RANGE_LIGHTS] = 0
+            drivingLightsState = false
+            longRangeLightsState = false
 
             field = value
     }
@@ -27,7 +27,7 @@ object ElectricsImpl:Electrics {
                 _lights[ElectricSystem.DRIVING_LIGHTS] = 0
 
             //reset the bigger light scales
-            _lights[ElectricSystem.LONG_RANGE_LIGHTS] = 0
+            longRangeLightsState = false
 
             field = value
         }

@@ -55,6 +55,11 @@ class ElectricSystem{
 
     @GetMapping("/get_main_lights_state")
     fun getMainLightsState() =
+        /* Condition should be executed this way cuz if I check
+            first for position lights, then driving lights, then long range lights
+            if the user has the long range beam the if clause will enter at
+            position lights condition.
+         */
         if (ElectricsImpl.longRangeLightsState) LONG_RANGE_LIGHTS
         else if (ElectricsImpl.drivingLightsState) DRIVING_LIGHTS
         else if (ElectricsImpl.positionLightsState) POSITION_LIGHTS
