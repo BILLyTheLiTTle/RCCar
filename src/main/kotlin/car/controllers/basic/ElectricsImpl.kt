@@ -69,4 +69,11 @@ object ElectricsImpl:Electrics {
 
         return "Signal"
     }
+
+    override fun reset() {
+        longRangeLightsState =false
+        drivingLightsState = false
+        positionLightsState = false
+        // TODO handleLeds(_lights) to turn LEDs off
+    }
 }

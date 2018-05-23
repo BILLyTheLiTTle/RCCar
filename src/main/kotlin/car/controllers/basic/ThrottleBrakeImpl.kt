@@ -7,12 +7,13 @@ import car.server.ThrottleBrakeSystem.Companion.ACTION_MOVE_FORWARD
 import car.server.ThrottleBrakeSystem.Companion.ACTION_NEUTRAL
 import car.server.ThrottleBrakeSystem.Companion.ACTION_PARKING_BRAKE
 import car.server.EngineSystem.Companion.EMPTY_STRING
+import car.server.ThrottleBrakeSystem
 import kotlinx.coroutines.experimental.launch
 
 object ThrottleBrakeImpl:ThrottleBrake {
 
-    override var action = ACTION_BRAKING_STILL
-    override var value = 0
+    private var action = ACTION_BRAKING_STILL
+    private var value = 0
 
     override val parkingBrakeState
         get() = action == ACTION_PARKING_BRAKE && ThrottleBrakeImpl.value == 100
@@ -155,5 +156,10 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         action = ACTION_NEUTRAL
         return EngineImpl.SUCCESS // or error message from pins
+    }
+
+    override fun reset() {
+        action = ThrottleBrakeSystem.ACTION_NEUTRAL
+        value = 0
     }
 }

@@ -3,8 +3,6 @@ package car.controllers.basic
 import car.server.ThrottleBrakeSystem
 
 interface ThrottleBrake {
-    var action: String
-    var value: Int
 
     val parkingBrakeState: Boolean
     val handbrakeState: Boolean
@@ -27,8 +25,5 @@ interface ThrottleBrake {
         //TODO implement it here
     }
 
-    fun reset() {
-        action = ThrottleBrakeSystem.ACTION_NEUTRAL
-        value = 0
-    }
+    fun reset()
 }

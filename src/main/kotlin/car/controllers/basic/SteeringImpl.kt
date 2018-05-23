@@ -5,8 +5,9 @@ import car.server.SteeringSystem.Companion.ACTION_TURN_LEFT
 import car.server.SteeringSystem.Companion.ACTION_TURN_RIGHT
 
 object SteeringImpl:Steering {
-    override var direction = ACTION_STRAIGHT
-    override var value = 0
+    var direction = ACTION_STRAIGHT
+    private set
+    private var value = 0
 
     override fun turn(direction: String, value: Int): String {
         when (direction) {
@@ -25,5 +26,10 @@ object SteeringImpl:Steering {
 
         SteeringImpl.value = value
         return EngineImpl.SUCCESS // or error message from pins
+    }
+
+    override fun reset() {
+        direction = ACTION_STRAIGHT
+        value = 0
     }
 }
