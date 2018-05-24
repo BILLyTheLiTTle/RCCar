@@ -4,7 +4,6 @@ import car.server.ElectricSystem
 
 object ElectricsImpl:Electrics {
     private val _lights = mutableMapOf<String, Int>()
-    override val lights: Map<String, Int> = _lights
 
     override var positionLightsState = false
         set(value) {
@@ -96,6 +95,9 @@ object ElectricsImpl:Electrics {
         positionLightsState = false
         brakingLightsState = false
         reverseLightsState = false
-        // TODO handleLeds(_lights) to turn LEDs off
+        /* No need to run handleLeds(...) cuz it should run
+            when we set every value to false, above
+        */
+        // TODO maybe reset the values of the pins (3 for Shift Registers and 2 for NPN BJTs)
     }
 }

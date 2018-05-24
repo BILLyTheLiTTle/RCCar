@@ -1,8 +1,6 @@
 package car.controllers.basic
 
 interface Electrics {
-    val lights: Map<String, Int>
-
     var positionLightsState: Boolean
     var drivingLightsState: Boolean
     var longRangeLightsState: Boolean
