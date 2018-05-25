@@ -80,6 +80,30 @@ object ElectricsImpl:Electrics {
             field = value
         }
 
+    override var leftTurnLightsState = false
+        set(value) {
+            if (value)
+                _lights[ElectricSystem.TURN_LIGHT_LEFT] = 1
+            else
+                _lights[ElectricSystem.TURN_LIGHT_LEFT] = 0
+
+            println("${this::class.simpleName} Left Turn Lights: $value\n")
+
+            field = value
+        }
+
+    override var rightTurnLightsState = false
+        set(value) {
+            if (value)
+                _lights[ElectricSystem.TURN_LIGHT_RIGHT] = 1
+            else
+                _lights[ElectricSystem.TURN_LIGHT_RIGHT] = 0
+
+            println("${this::class.simpleName} Right Turn Lights: $value\n")
+
+            field = value
+        }
+
 
     override fun doHeadlightsSignal(): String {
         // TODO turn on/off the long_range lights twice in a TimerTask for a small period of time
@@ -95,6 +119,8 @@ object ElectricsImpl:Electrics {
         positionLightsState = false
         brakingLightsState = false
         reverseLightsState = false
+        leftTurnLightsState = false
+        rightTurnLightsState = false
         /* No need to run handleLeds(...) cuz it should run
             when we set every value to false, above
         */

@@ -33,6 +33,7 @@ class EngineSystem {
     }
 
     companion object {
+        const val UNKNOWN_STATE = "Unknown"
         const val EMPTY_STRING = "NULL"
         const val EMPTY_INT = -1
         var nanohttpClientIp = EMPTY_STRING

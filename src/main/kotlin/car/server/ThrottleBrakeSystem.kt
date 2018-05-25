@@ -22,7 +22,7 @@ class ThrottleBrakeSystem{
                 "${this::class.simpleName} ID last request: $lastRequestId\n")
 
         //TODO add function for the hardware
-        var state = "Unknown"
+        var state = EngineSystem.UNKNOWN_STATE
         synchronized(this){
             if(id == lastRequestId) {
                 state = when (action) {

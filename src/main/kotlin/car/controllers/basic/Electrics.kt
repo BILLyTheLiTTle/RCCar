@@ -9,6 +9,9 @@ interface Electrics {
 
     var reverseLightsState: Boolean
 
+    var leftTurnLightsState: Boolean
+    var rightTurnLightsState: Boolean
+
     fun doHeadlightsSignal(): String
 
     // TODO the stuff here
