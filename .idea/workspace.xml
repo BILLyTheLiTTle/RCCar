@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4e38fa66-dbb5-4181-9628-5457650f884f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Electrics.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Electrics.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ElectricsImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ElectricsImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/server/ElectricSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/server/ElectricSystem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/server/EngineSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/server/EngineSystem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/server/ThrottleBrakeSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/server/ThrottleBrakeSystem.kt" afterDir="false" />
-    </list>
+    <list default="true" id="4e38fa66-dbb5-4181-9628-5457650f884f" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -62,8 +56,8 @@
       <file leaf-file-name="ElectricsImpl.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ElectricsImpl.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="122" column="36" selection-start-line="122" selection-start-column="36" selection-end-line="122" selection-end-column="36" />
+            <state relative-caret-position="601">
+              <caret line="118" column="35" lean-forward="true" selection-start-line="118" selection-start-column="35" selection-end-line="118" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -805,16 +799,15 @@
       <workItem from="1526971521404" duration="9682000" />
       <workItem from="1527053423760" duration="9195000" />
       <workItem from="1527156972599" duration="2351000" />
-      <workItem from="1527239242371" duration="3185000" />
+      <workItem from="1527239242371" duration="3978000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89759000" />
+    <option name="totallyTimeSpent" value="90552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -834,7 +827,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32683983" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32683983" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.32900432" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28944564" />
@@ -1167,8 +1160,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ElectricsImpl.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="122" column="36" selection-start-line="122" selection-start-column="36" selection-end-line="122" selection-end-column="36" />
+        <state relative-caret-position="601">
+          <caret line="118" column="35" lean-forward="true" selection-start-line="118" selection-start-column="35" selection-end-line="118" selection-end-column="35" />
         </state>
       </provider>
     </entry>
