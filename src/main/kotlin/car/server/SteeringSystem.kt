@@ -32,7 +32,7 @@ class SteeringSystem{
                     ACTION_TURN_RIGHT ->
                         //TODO turn right with value
                         SteeringImpl.turn(ACTION_TURN_RIGHT, value)
-                    ACTION_TURN_RIGHT ->
+                    ACTION_STRAIGHT ->
                         //TODO go straight with no value
                         SteeringImpl.turn(ACTION_STRAIGHT)
                     else ->

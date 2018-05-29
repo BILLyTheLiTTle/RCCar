@@ -17,22 +17,22 @@ class ElectricSystem{
      */
     @GetMapping("/set_direction_lights")
     fun setDirectionLights(
-        @RequestParam(value = "direction", defaultValue = "$TURN_LIGHT_STRAIGHT") direction: String)
+        @RequestParam(value = "direction", defaultValue = "$TURN_LIGHTS_STRAIGHT") direction: String)
             : String {
 
         println("${this::class.simpleName} Direction: $direction\n")
 
         synchronized(this){
             when (direction) {
-                TURN_LIGHT_STRAIGHT -> {
+                TURN_LIGHTS_STRAIGHT -> {
                     ElectricsImpl.leftTurnLightsState = false
                     ElectricsImpl.rightTurnLightsState = false
                 }
-                TURN_LIGHT_RIGHT -> {
+                TURN_LIGHTS_RIGHT -> {
                     ElectricsImpl.leftTurnLightsState = false
                     ElectricsImpl.rightTurnLightsState = !ElectricsImpl.rightTurnLightsState
                 }
-                TURN_LIGHT_LEFT -> {
+                TURN_LIGHTS_LEFT -> {
                     ElectricsImpl.leftTurnLightsState = !ElectricsImpl.leftTurnLightsState
                     ElectricsImpl.rightTurnLightsState = false
                 }
@@ -45,11 +45,11 @@ class ElectricSystem{
     @GetMapping("/get_direction_lights")
     fun getDirectionLights() =
         if (!ElectricsImpl.leftTurnLightsState && !ElectricsImpl.rightTurnLightsState)
-            TURN_LIGHT_STRAIGHT
+            TURN_LIGHTS_STRAIGHT
         else if (ElectricsImpl.leftTurnLightsState)
-            TURN_LIGHT_LEFT
+            TURN_LIGHTS_LEFT
         else if (ElectricsImpl.rightTurnLightsState)
-            TURN_LIGHT_RIGHT
+            TURN_LIGHTS_RIGHT
         else
             EngineSystem.UNKNOWN_STATE
 
@@ -96,9 +96,9 @@ class ElectricSystem{
     fun getReverseLightsState() = ElectricsImpl.reverseLightsState
 
     companion object {
-        const val TURN_LIGHT_RIGHT = "turn_lights_right"
-        const val TURN_LIGHT_LEFT = "turn_lights_left"
-        const val TURN_LIGHT_STRAIGHT = "turn_lights_straight"
+        const val TURN_LIGHTS_RIGHT = "turn_lights_right"
+        const val TURN_LIGHTS_LEFT = "turn_lights_left"
+        const val TURN_LIGHTS_STRAIGHT = "turn_lights_straight"
 
         const val LIGHTS_OFF = "lights_off"
         const val POSITION_LIGHTS = "position_lights"

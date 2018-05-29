@@ -83,9 +83,9 @@ object ElectricsImpl:Electrics {
     override var leftTurnLightsState = false
         set(value) {
             if (value)
-                _lights[ElectricSystem.TURN_LIGHT_LEFT] = 1
+                _lights[ElectricSystem.TURN_LIGHTS_LEFT] = 1
             else
-                _lights[ElectricSystem.TURN_LIGHT_LEFT] = 0
+                _lights[ElectricSystem.TURN_LIGHTS_LEFT] = 0
 
             println("${this::class.simpleName} Left Turn Lights: $value\n")
 
@@ -95,9 +95,9 @@ object ElectricsImpl:Electrics {
     override var rightTurnLightsState = false
         set(value) {
             if (value)
-                _lights[ElectricSystem.TURN_LIGHT_RIGHT] = 1
+                _lights[ElectricSystem.TURN_LIGHTS_RIGHT] = 1
             else
-                _lights[ElectricSystem.TURN_LIGHT_RIGHT] = 0
+                _lights[ElectricSystem.TURN_LIGHTS_RIGHT] = 0
 
             println("${this::class.simpleName} Right Turn Lights: $value\n")
 
