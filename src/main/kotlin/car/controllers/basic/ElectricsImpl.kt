@@ -3,14 +3,11 @@ package car.controllers.basic
 import car.server.ElectricSystem
 
 object ElectricsImpl:Electrics {
-    private val _lights = mutableMapOf<String, Int>()
+    private val _lights = mutableMapOf<String, Boolean>()
 
     override var positionLightsState = false
         set(value) {
-            if (value)
-                _lights[ElectricSystem.POSITION_LIGHTS] = 1
-            else
-                _lights[ElectricSystem.POSITION_LIGHTS] = 0
+            _lights[ElectricSystem.POSITION_LIGHTS] = value
 
             //println("${this::class.simpleName} Position Lights: $value\n")
 
@@ -24,10 +21,7 @@ object ElectricsImpl:Electrics {
     }
     override var drivingLightsState = false
         set(value) {
-            if (value)
-                _lights[ElectricSystem.DRIVING_LIGHTS] = 1
-            else
-                _lights[ElectricSystem.DRIVING_LIGHTS] = 0
+            _lights[ElectricSystem.DRIVING_LIGHTS] = value
 
             //println("${this::class.simpleName} Driving Lights: $value\n")
 
@@ -40,10 +34,7 @@ object ElectricsImpl:Electrics {
         }
     override var longRangeLightsState = false
         set(value) {
-            if (value)
-                _lights[ElectricSystem.LONG_RANGE_LIGHTS] = 1
-            else
-                _lights[ElectricSystem.LONG_RANGE_LIGHTS] = 0
+            _lights[ElectricSystem.LONG_RANGE_LIGHTS] = value
 
             //println("${this::class.simpleName} Long Range Lights: $value\n")
 
@@ -54,10 +45,7 @@ object ElectricsImpl:Electrics {
 
     override var brakingLightsState = false
         set(value) {
-            if (value)
-                _lights[ElectricSystem.BRAKING_LIGHTS] = 1
-            else
-                _lights[ElectricSystem.BRAKING_LIGHTS] = 0
+            _lights[ElectricSystem.BRAKING_LIGHTS] = value
 
             println("${this::class.simpleName} Brake Lights: $value\n")
 
@@ -68,10 +56,7 @@ object ElectricsImpl:Electrics {
 
     override var reverseLightsState = false
         set(value) {
-            if (value)
-                _lights[ElectricSystem.REVERSE_LIGHTS] = 1
-            else
-                _lights[ElectricSystem.REVERSE_LIGHTS] = 0
+            _lights[ElectricSystem.REVERSE_LIGHTS] = value
 
             println("${this::class.simpleName} Reverse Lights: $value\n")
 
@@ -82,10 +67,7 @@ object ElectricsImpl:Electrics {
 
     override var leftTurnLightsState = false
         set(value) {
-            if (value)
-                _lights[ElectricSystem.TURN_LIGHTS_LEFT] = 1
-            else
-                _lights[ElectricSystem.TURN_LIGHTS_LEFT] = 0
+            _lights[ElectricSystem.TURN_LIGHTS_LEFT] = value
 
             println("${this::class.simpleName} Left Turn Lights: $value\n")
 
@@ -94,10 +76,7 @@ object ElectricsImpl:Electrics {
 
     override var rightTurnLightsState = false
         set(value) {
-            if (value)
-                _lights[ElectricSystem.TURN_LIGHTS_RIGHT] = 1
-            else
-                _lights[ElectricSystem.TURN_LIGHTS_RIGHT] = 0
+            _lights[ElectricSystem.TURN_LIGHTS_RIGHT] = value
 
             println("${this::class.simpleName} Right Turn Lights: $value\n")
 
@@ -106,10 +85,7 @@ object ElectricsImpl:Electrics {
 
     override var emergencyLightsState = false
         set(value) {
-            if (value)
-                _lights[ElectricSystem.EMERGENCY_LIGHTS] = 1
-            else
-                _lights[ElectricSystem.EMERGENCY_LIGHTS] = 0
+            _lights[ElectricSystem.EMERGENCY_LIGHTS] = value
 
             println("${this::class.simpleName} Emergency Lights: $value\n")
 
@@ -132,6 +108,7 @@ object ElectricsImpl:Electrics {
         reverseLightsState = false
         leftTurnLightsState = false
         rightTurnLightsState = false
+        emergencyLightsState = false
         /* No need to run handleLeds(...) cuz it should run
             when we set every value to false, above
         */
