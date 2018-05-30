@@ -87,13 +87,22 @@ class ElectricSystem{
         else EngineSystem.UNKNOWN_STATE
 
     @GetMapping("/set_reverse_lights_state")
-    fun setReverseLightsState(@RequestParam(value = "state", defaultValue = "true") state: Boolean): String {
+    fun setReverseLightsState(@RequestParam(value = "state", defaultValue = "false") state: Boolean): String {
         ElectricsImpl.reverseLightsState = state
         return ElectricsImpl.reverseLightsState.toString()
     }
 
     @GetMapping("/get_reverse_lights_state")
     fun getReverseLightsState() = ElectricsImpl.reverseLightsState
+
+    @GetMapping("/set_emergency_lights_state")
+    fun setEmergencyLightsState(@RequestParam(value = "state", defaultValue = "false") state: Boolean): String {
+        ElectricsImpl.emergencyLightsState = state
+        return ElectricsImpl.emergencyLightsState.toString()
+    }
+
+    @GetMapping("/get_emergency_lights_state")
+    fun getEmergencyLightsState() = ElectricsImpl.emergencyLightsState
 
     companion object {
         const val TURN_LIGHTS_RIGHT = "turn_lights_right"
@@ -109,6 +118,8 @@ class ElectricSystem{
         const val BRAKING_LIGHTS = "braking_lights"
 
         const val REVERSE_LIGHTS = "reverse_lights"
+
+        const val EMERGENCY_LIGHTS = "emergency_lights"
     }
 
 }

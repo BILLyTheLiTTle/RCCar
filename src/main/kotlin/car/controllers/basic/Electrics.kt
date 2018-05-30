@@ -12,6 +12,8 @@ interface Electrics {
     var leftTurnLightsState: Boolean
     var rightTurnLightsState: Boolean
 
+    var emergencyLightsState: Boolean
+
     fun doHeadlightsSignal(): String
 
     // TODO the stuff here

@@ -104,6 +104,17 @@ object ElectricsImpl:Electrics {
             field = value
         }
 
+    override var emergencyLightsState = false
+        set(value) {
+            if (value)
+                _lights[ElectricSystem.EMERGENCY_LIGHTS] = 1
+            else
+                _lights[ElectricSystem.EMERGENCY_LIGHTS] = 0
+
+            println("${this::class.simpleName} Emergency Lights: $value\n")
+
+            field = value
+        }
 
     override fun doHeadlightsSignal(): String {
         // TODO turn on/off the long_range lights twice in a TimerTask for a small period of time
