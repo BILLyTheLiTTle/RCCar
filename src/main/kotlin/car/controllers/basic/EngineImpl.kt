@@ -1,6 +1,5 @@
 package car.controllers.basic
 
-import car.server.ThrottleBrakeSystem
 import com.pi4j.io.gpio.*
 import com.pi4j.util.CommandArgumentParser
 import com.pi4j.wiringpi.Gpio
@@ -66,6 +65,9 @@ object EngineImpl:Engine {
         //////
 
         // TODO reset every significant variable
+        // Temperatures
+        //TemperaturesImpl.reset()
+
         // Electrics
         ElectricsImpl.reset()
 
