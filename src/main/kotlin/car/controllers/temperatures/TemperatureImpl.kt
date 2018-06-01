@@ -11,7 +11,7 @@ open class TemperatureImpl: Temperature {
     override val value: Int
         get() {
             // TODO read the appropriate sensor
-            val temp = readSensor(ID)
+            val temp = readSensor()
 
             warning = when {
                 temp < MIN_MEDIUM_TEMP -> WARNING_TYPE_NORMAL

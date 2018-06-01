@@ -16,31 +16,31 @@ interface Temperature {
     val warning: String
 
     @Synchronized
-    fun readSensor(sensorId: String): Int {
+    fun readSensor(): Int {
         //Thread.sleep(10000)
         fun getSensorValue(): Int {
             return Random().nextInt(4)
         }
-        return when(sensorId) {
-            MotorRearRightTemperatureImpl.ID -> {
+        return when(this) {
+            is MotorRearRightTemperatureImpl -> {
                 getSensorValue()
             }
-            MotorRearLeftTemperatureImpl.ID -> {
+            is MotorRearLeftTemperatureImpl -> {
                 getSensorValue()
             }
-            MotorFrontRightTemperatureImpl.ID -> {
+            is MotorFrontRightTemperatureImpl -> {
                 getSensorValue()
             }
-            MotorFrontLeftTemperatureImpl.ID -> {
+            is MotorFrontLeftTemperatureImpl -> {
                 getSensorValue()
             }
-            HBridgeRearTemperatureImpl.ID -> {
+            is HBridgeRearTemperatureImpl -> {
                 getSensorValue()
             }
-            HBridgeFrontTemperatureImpl.ID -> {
+            is HBridgeFrontTemperatureImpl -> {
                 getSensorValue()
             }
-            RaspberryPiTemperatureImpl.ID -> {
+            is RaspberryPiTemperatureImpl -> {
                 val gpuTemp = getSensorValue()
                 val cpuTemp = getSensorValue()
                 max(gpuTemp, cpuTemp)
