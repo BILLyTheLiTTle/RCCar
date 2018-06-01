@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
+import kotlin.reflect.KClass
 
 @Configuration
 @EnableAsync
@@ -15,7 +16,7 @@ class TemperaturesCronJob {
 
     private val temperatureDiff = 9
 
-    private val SUB_URL = "/temp"
+    private val TEMP_URI = "/temp"
     private val PARAM_KEY_ITEM = "item"
     private val PARAM_KEY_WARNING = "warning"
     private val PARAM_KEY_VALUE = "value"
@@ -28,6 +29,8 @@ class TemperaturesCronJob {
     var reportedMrrtTempWarning = WARNING_TYPE_NOTHING
     var reportedMfltTempWarning = WARNING_TYPE_NOTHING
     var reportedMfrtTempWarning = WARNING_TYPE_NOTHING
+    var reportedHbrTempWarning = WARNING_TYPE_NOTHING
+    var reportedHbfTempWarning = WARNING_TYPE_NOTHING
 
     @Scheduled(initialDelay = 2000, fixedDelay = 420)
     fun checkPrimaryTemps(){
@@ -61,57 +64,77 @@ class TemperaturesCronJob {
         }*/
         if (reportedMrltTempWarning != MotorRearLeftTemperatureImpl.warning) {
             reportedMrltTempWarning = MotorRearLeftTemperatureImpl.warning
-            doNonBlockingRequest(
-                "http://" +
-                        "${EngineSystem.nanohttpClientIp}:" +
-                        "${EngineSystem.nanohttpClientPort}" +
-                        SUB_URL +
-                        "?$PARAM_KEY_ITEM=${MotorRearLeftTemperatureImpl.ID}" +
-                        "&$PARAM_KEY_WARNING=$reportedMrltTempWarning" +
-                        "&$PARAM_KEY_VALUE=$primaryTemp"
-            )
+
+            informClient(MotorRearLeftTemperatureImpl.ID, reportedMrltTempWarning, primaryTemp)
+
+            if(reportedMrltTempWarning == WARNING_TYPE_HIGH)
+                printTempInfo(MotorRearLeftTemperatureImpl::class, primaryTemp)
         }
 
         primaryTemp = MotorRearRightTemperatureImpl.value
         if (reportedMrrtTempWarning != MotorRearRightTemperatureImpl.warning) {
             reportedMrrtTempWarning = MotorRearRightTemperatureImpl.warning
-            doNonBlockingRequest(
-                "http://" +
-                        "${EngineSystem.nanohttpClientIp}:" +
-                        "${EngineSystem.nanohttpClientPort}" +
-                        SUB_URL +
-                        "?$PARAM_KEY_ITEM=${MotorRearRightTemperatureImpl.ID}" +
-                        "&$PARAM_KEY_WARNING=$reportedMrrtTempWarning" +
-                        "&$PARAM_KEY_VALUE=$primaryTemp"
-            )
+
+            informClient(MotorRearRightTemperatureImpl.ID, reportedMrrtTempWarning, primaryTemp)
+
+            if(reportedMrrtTempWarning == WARNING_TYPE_HIGH)
+                printTempInfo(MotorRearRightTemperatureImpl::class, primaryTemp)
         }
 
         primaryTemp = MotorFrontLeftTemperatureImpl.value
         if (reportedMfltTempWarning != MotorFrontLeftTemperatureImpl.warning) {
             reportedMfltTempWarning = MotorFrontLeftTemperatureImpl.warning
-            doNonBlockingRequest(
-                "http://" +
-                        "${EngineSystem.nanohttpClientIp}:" +
-                        "${EngineSystem.nanohttpClientPort}" +
-                        SUB_URL +
-                        "?$PARAM_KEY_ITEM=${MotorFrontLeftTemperatureImpl.ID}" +
-                        "&$PARAM_KEY_WARNING=$reportedMfltTempWarning" +
-                        "&$PARAM_KEY_VALUE=$primaryTemp"
-            )
+
+            informClient(MotorFrontLeftTemperatureImpl.ID, reportedMfltTempWarning, primaryTemp)
+
+            if(reportedMfltTempWarning == WARNING_TYPE_HIGH)
+                printTempInfo(MotorFrontLeftTemperatureImpl::class, primaryTemp)
         }
 
         primaryTemp = MotorFrontRightTemperatureImpl.value
         if (reportedMfrtTempWarning != MotorFrontRightTemperatureImpl.warning) {
             reportedMfrtTempWarning = MotorFrontRightTemperatureImpl.warning
-            doNonBlockingRequest(
-                "http://" +
-                        "${EngineSystem.nanohttpClientIp}:" +
-                        "${EngineSystem.nanohttpClientPort}" +
-                        SUB_URL +
-                        "?$PARAM_KEY_ITEM=${MotorFrontRightTemperatureImpl.ID}" +
-                        "&$PARAM_KEY_WARNING=$reportedMfrtTempWarning" +
-                        "&$PARAM_KEY_VALUE=$primaryTemp"
-            )
+
+            informClient(MotorFrontRightTemperatureImpl.ID, reportedMfrtTempWarning, primaryTemp)
+
+            if(reportedMfrtTempWarning == WARNING_TYPE_HIGH)
+                printTempInfo(MotorFrontRightTemperatureImpl::class, primaryTemp)
         }
+
+        primaryTemp = HBridgeRearTemperatureImpl.value
+        if (reportedHbrTempWarning != HBridgeRearTemperatureImpl.warning) {
+            reportedHbrTempWarning = HBridgeRearTemperatureImpl.warning
+
+            informClient(HBridgeRearTemperatureImpl.ID, reportedHbrTempWarning, primaryTemp)
+
+            if(reportedHbrTempWarning == WARNING_TYPE_HIGH)
+                printTempInfo(HBridgeRearTemperatureImpl::class, primaryTemp)
+        }
+
+        primaryTemp = HBridgeFrontTemperatureImpl.value
+        if (reportedHbfTempWarning != HBridgeFrontTemperatureImpl.warning) {
+            reportedHbfTempWarning = HBridgeFrontTemperatureImpl.warning
+
+            informClient(HBridgeFrontTemperatureImpl.ID, reportedHbfTempWarning, primaryTemp)
+
+            if(reportedHbfTempWarning == WARNING_TYPE_HIGH)
+                printTempInfo(HBridgeFrontTemperatureImpl::class, primaryTemp)
+        }
+    }
+
+    private fun informClient(hardwareID: String, warning: String, value: Int){
+        doNonBlockingRequest(
+            "http://" +
+                    "${EngineSystem.nanohttpClientIp}:" +
+                    "${EngineSystem.nanohttpClientPort}" +
+                    TEMP_URI +
+                    "?$PARAM_KEY_ITEM=$hardwareID" +
+                    "&$PARAM_KEY_WARNING=$warning" +
+                    "&$PARAM_KEY_VALUE=$value"
+        )
+    }
+
+    private fun printTempInfo(hardware: KClass<out Temperature>?, value: Int) {
+        println("{${hardware?.simpleName ?: "No Name Class"}} Temp Value: $value\n")
     }
 }

@@ -4,7 +4,7 @@ import car.server.EngineSystem
 
 open class TemperatureImpl: Temperature {
 
-    open val ID = "motor_front_right_temp"
+    protected open val ID = "parent_of_all_temp"
     protected open val MIN_MEDIUM_TEMP = 1
     protected open val MAX_MEDIUM_TEMP = 2
 
