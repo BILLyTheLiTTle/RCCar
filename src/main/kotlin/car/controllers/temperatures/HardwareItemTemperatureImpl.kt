@@ -7,8 +7,8 @@ import kotlin.math.max
 abstract class HardwareItemTemperatureImpl: Temperature {
 
     open val ID = "parent_of_all_temp"
-    protected open val MIN_MEDIUM_TEMP = 1
-    protected open val MAX_MEDIUM_TEMP = 2
+    protected open val MIN_MEDIUM_TEMP = -1
+    protected open val MAX_MEDIUM_TEMP = -1
 
     override val value: Int
         get() {
