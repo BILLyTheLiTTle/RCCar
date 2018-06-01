@@ -1,9 +1,6 @@
 package car.server.cron
 
-import car.controllers.temperatures.MotorFrontLeftTemperatureImpl
-import car.controllers.temperatures.MotorRearLeftTemperatureImpl
-import car.controllers.temperatures.MotorRearRightTemperatureImpl
-import car.controllers.temperatures.WARNING_TYPE_NOTHING
+import car.controllers.temperatures.*
 import car.server.EngineSystem
 import car.server.doNonBlockingRequest
 import org.springframework.context.annotation.Configuration
@@ -30,6 +27,7 @@ class TemperaturesCronJob {
     var reportedMrltTempWarning = WARNING_TYPE_NOTHING
     var reportedMrrtTempWarning = WARNING_TYPE_NOTHING
     var reportedMfltTempWarning = WARNING_TYPE_NOTHING
+    var reportedMfrtTempWarning = WARNING_TYPE_NOTHING
 
     @Scheduled(initialDelay = 2000, fixedDelay = 420)
     fun checkPrimaryTemps(){
@@ -98,6 +96,20 @@ class TemperaturesCronJob {
                         SUB_URL +
                         "?$PARAM_KEY_ITEM=${MotorFrontLeftTemperatureImpl.ID}" +
                         "&$PARAM_KEY_WARNING=$reportedMfltTempWarning" +
+                        "&$PARAM_KEY_VALUE=$primaryTemp"
+            )
+        }
+
+        primaryTemp = MotorFrontRightTemperatureImpl.value
+        if (reportedMfrtTempWarning != MotorFrontRightTemperatureImpl.warning) {
+            reportedMfrtTempWarning = MotorFrontRightTemperatureImpl.warning
+            doNonBlockingRequest(
+                "http://" +
+                        "${EngineSystem.nanohttpClientIp}:" +
+                        "${EngineSystem.nanohttpClientPort}" +
+                        SUB_URL +
+                        "?$PARAM_KEY_ITEM=${MotorFrontRightTemperatureImpl.ID}" +
+                        "&$PARAM_KEY_WARNING=$reportedMfrtTempWarning" +
                         "&$PARAM_KEY_VALUE=$primaryTemp"
             )
         }
