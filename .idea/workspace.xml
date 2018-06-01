@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e38fa66-dbb5-4181-9628-5457650f884f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/server/cron/TemperatureCronJob.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/server/cron/TemperatureCronJob.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -28,20 +28,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Electrics.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Electrics.kt">
+      <file leaf-file-name="ElectricsImpl.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ElectricsImpl.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="21" selection-start-line="2" selection-end-line="2" selection-end-column="21" />
+            <state relative-caret-position="-517">
+              <caret line="49" column="71" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="71" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ElectricsImpl.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ElectricsImpl.kt">
+      <file leaf-file-name="SteeringSystem.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/SteeringSystem.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="49" column="71" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="71" />
+            <state relative-caret-position="374">
+              <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+              <folding>
+                <element signature="e#20#241#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SteeringImpl.kt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="64" lean-forward="true" selection-start-line="27" selection-start-column="64" selection-end-line="27" selection-end-column="64" />
+              <folding>
+                <element signature="e#31#280#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ElectricSystem.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/ElectricSystem.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="89" column="82" selection-start-line="89" selection-start-column="82" selection-end-line="89" selection-end-column="82" />
             </state>
           </provider>
         </entry>
@@ -55,7 +79,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MotorRearLeftTemperatureImpl.kt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MotorRearLeftTemperatureImpl.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/temperatures/MotorRearLeftTemperatureImpl.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
@@ -544,7 +568,6 @@
         <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Electrics.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/server/ElectricSystem.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ElectricsImpl.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Temperature.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/TemperaturesData.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/TemperaturesItems.kt" />
@@ -557,6 +580,7 @@
         <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/temperatures/Temperature.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/temperatures/MotorRearRightTemperatureImpl.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/server/cron/TemperatureCronJob.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt" />
       </list>
     </option>
   </component>
@@ -569,7 +593,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -814,12 +838,12 @@
       <workItem from="1527573022600" duration="7863000" />
       <workItem from="1527662584032" duration="5718000" />
       <workItem from="1527754683982" duration="13169000" />
-      <workItem from="1527830673147" duration="5955000" />
+      <workItem from="1527830673147" duration="7492000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123257000" />
+    <option name="totallyTimeSpent" value="124794000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1069,33 +1093,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/ElectricSystem.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="89" column="82" selection-start-line="89" selection-start-column="82" selection-end-line="89" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="61" selection-start-line="24" selection-start-column="61" selection-end-line="24" selection-end-column="61" />
-          <folding>
-            <element signature="e#31#280#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/SteeringSystem.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-          <folding>
-            <element signature="e#20#241#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/ThrottleBrakeSystem.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -1148,13 +1145,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ElectricsImpl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="49" column="71" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/temperatures/Temperature.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -1193,6 +1183,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/ElectricSystem.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="89" column="82" selection-start-line="89" selection-start-column="82" selection-end-line="89" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ElectricsImpl.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-517">
+          <caret line="49" column="71" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/SteeringSystem.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+          <folding>
+            <element signature="e#20#241#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="64" lean-forward="true" selection-start-line="27" selection-start-column="64" selection-end-line="27" selection-end-column="64" />
+          <folding>
+            <element signature="e#31#280#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

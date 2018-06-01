@@ -25,8 +25,10 @@ object SteeringImpl:Steering {
                 // TODO prepare hardware for turning straight
 
                 // turn off the turn lights
-                ElectricsImpl.rightTurnLightsState = false
-                ElectricsImpl.leftTurnLightsState = false
+                if (SteeringImpl.direction != ACTION_STRAIGHT) {
+                    ElectricsImpl.rightTurnLightsState = false
+                    ElectricsImpl.leftTurnLightsState = false
+                }
 
                 SteeringImpl.direction = ACTION_STRAIGHT
             }
