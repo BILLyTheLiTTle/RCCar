@@ -1,5 +1,7 @@
 package car.controllers.temperatures
 
+import car.server.EngineSystem
+
 
 object MotorRearLeftTemperatureImpl: Temperature {
     const val ID = "motor_rear_left_temp"
@@ -9,15 +11,17 @@ object MotorRearLeftTemperatureImpl: Temperature {
     override val value: Int
         get() {
             // TODO read the appropriate sensor
-            return readSensor(ID)
-        }
+            val temp = readSensor(ID)
 
-    override val warning: String
-        get() {
-            return when {
-                value < MIN_MEDIUM_TEMP -> WARNING_TYPE_NORMAL
-                value > MAX_MEDIUM_TEMP -> WARNING_TYPE_HIGH
+            warning = when {
+                temp < MIN_MEDIUM_TEMP -> WARNING_TYPE_NORMAL
+                temp > MAX_MEDIUM_TEMP -> WARNING_TYPE_HIGH
                 else -> WARNING_TYPE_MEDIUM
             }
+
+            return temp
         }
+
+    override var warning = EngineSystem.EMPTY_STRING
+        private set
 }

@@ -31,7 +31,7 @@ class TemperaturesCronJob {
     fun checkPrimaryTemps(){
         // rear left motor
         primaryTemp = MotorRearLeftTemperatureImpl.value
-        /* The following commented code block will be enabled if I want to notify the client
+         /* The following commented code block will be enabled if I want to notify the client
             whenever the value changes, also.
 
          */
