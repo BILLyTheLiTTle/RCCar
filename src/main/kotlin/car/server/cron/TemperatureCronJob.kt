@@ -1,5 +1,6 @@
 package car.server.cron
 
+import car.controllers.temperatures.MotorFrontLeftTemperatureImpl
 import car.controllers.temperatures.MotorRearLeftTemperatureImpl
 import car.controllers.temperatures.MotorRearRightTemperatureImpl
 import car.controllers.temperatures.WARNING_TYPE_NOTHING
@@ -28,6 +29,7 @@ class TemperaturesCronJob {
     //var reportedMrltTempValue = EngineSystem.EMPTY_INT
     var reportedMrltTempWarning = WARNING_TYPE_NOTHING
     var reportedMrrtTempWarning = WARNING_TYPE_NOTHING
+    var reportedMfltTempWarning = WARNING_TYPE_NOTHING
 
     @Scheduled(initialDelay = 2000, fixedDelay = 420)
     fun checkPrimaryTemps(){
@@ -82,6 +84,20 @@ class TemperaturesCronJob {
                         SUB_URL +
                         "?$PARAM_KEY_ITEM=${MotorRearRightTemperatureImpl.ID}" +
                         "&$PARAM_KEY_WARNING=$reportedMrrtTempWarning" +
+                        "&$PARAM_KEY_VALUE=$primaryTemp"
+            )
+        }
+
+        primaryTemp = MotorFrontLeftTemperatureImpl.value
+        if (reportedMfltTempWarning != MotorFrontLeftTemperatureImpl.warning) {
+            reportedMfltTempWarning = MotorFrontLeftTemperatureImpl.warning
+            doNonBlockingRequest(
+                "http://" +
+                        "${EngineSystem.nanohttpClientIp}:" +
+                        "${EngineSystem.nanohttpClientPort}" +
+                        SUB_URL +
+                        "?$PARAM_KEY_ITEM=${MotorFrontLeftTemperatureImpl.ID}" +
+                        "&$PARAM_KEY_WARNING=$reportedMfltTempWarning" +
                         "&$PARAM_KEY_VALUE=$primaryTemp"
             )
         }
