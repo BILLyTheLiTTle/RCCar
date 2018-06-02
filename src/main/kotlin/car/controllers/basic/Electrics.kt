@@ -16,10 +16,14 @@ interface Electrics {
 
     fun doHeadlightsSignal(): String
 
-    // TODO the stuff here
-    @Synchronized fun handleLeds() {
+    /* When I wrote @Synchronized here, the following error was thrown on the Pi
 
-    }
+        java.lang.ClassFormatError:
+        Method handleLeds in class car/controllers/basic/Electrics has illegal modifiers: 0x421
+
+        I don't understand why, but implement this function in the child class
+    */
+    fun handleLeds()
 
     fun reset()
 }

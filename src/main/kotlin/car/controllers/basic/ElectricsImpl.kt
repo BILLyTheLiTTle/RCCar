@@ -100,6 +100,12 @@ object ElectricsImpl:Electrics {
         return "Signal"
     }
 
+    // TODO the stuff here
+    @Synchronized
+    override fun handleLeds() {
+        
+    }
+
     override fun reset() {
         longRangeLightsState =false
         drivingLightsState = false
