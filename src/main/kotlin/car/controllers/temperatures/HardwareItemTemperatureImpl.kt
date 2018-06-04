@@ -68,6 +68,11 @@ abstract class HardwareItemTemperatureImpl: Temperature {
                     max(frontMotorBatteryBox,
                         max(stepperMotorBatteryBox, ledsBatteryBox)))
             }
+            is ShiftRegistersTemperatureImpl -> {
+                val mainLightsTemp = getSensorValue()
+                val signalLightsTemp = getSensorValue()
+                max(mainLightsTemp, signalLightsTemp)
+            }
             else -> EngineSystem.EMPTY_INT
         }
     }

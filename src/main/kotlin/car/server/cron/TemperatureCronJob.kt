@@ -27,11 +27,13 @@ class TemperaturesCronJob {
         MotorFrontLeftTemperatureImpl, MotorFrontRightTemperatureImpl,
         HBridgeRearTemperatureImpl, HBridgeFrontTemperatureImpl,
         RaspberryPiTemperatureImpl,
-        BatteriesTemperatureImpl)
+        BatteriesTemperatureImpl,
+        ShiftRegistersTemperatureImpl)
 
     var reportedTempWarnings = arrayOf(WARNING_TYPE_NOTHING, WARNING_TYPE_NOTHING,
         WARNING_TYPE_NOTHING, WARNING_TYPE_NOTHING,
         WARNING_TYPE_NOTHING, WARNING_TYPE_NOTHING,
+        WARNING_TYPE_NOTHING,
         WARNING_TYPE_NOTHING,
         WARNING_TYPE_NOTHING)
 
