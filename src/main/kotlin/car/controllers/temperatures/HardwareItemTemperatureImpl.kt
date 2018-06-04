@@ -6,6 +6,8 @@ import kotlin.math.max
 
 abstract class HardwareItemTemperatureImpl: Temperature {
 
+    private val lock = Any()
+
     open val ID = "parent_of_all_temp"
     protected open val MIN_MEDIUM_TEMP = -1
     protected open val MAX_MEDIUM_TEMP = -1
@@ -13,7 +15,7 @@ abstract class HardwareItemTemperatureImpl: Temperature {
     override val value: Int
         get() {
             // TODO read the appropriate sensor
-            val temp = readSensor()
+            val temp = synchronized(lock) { readSensor() }
 
             warning = when {
                 temp < MIN_MEDIUM_TEMP -> WARNING_TYPE_NORMAL
@@ -27,9 +29,7 @@ abstract class HardwareItemTemperatureImpl: Temperature {
     override var warning = EngineSystem.EMPTY_STRING
         protected set
 
-    @Synchronized
     private fun readSensor(): Int {
-        //Thread.sleep(10000)
 
         fun getSensorValue(): Int {
             return Random().nextInt(4)
