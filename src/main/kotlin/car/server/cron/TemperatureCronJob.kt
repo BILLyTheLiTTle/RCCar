@@ -26,15 +26,17 @@ class TemperaturesCronJob {
     var hardwareItems = arrayOf(MotorRearLeftTemperatureImpl,MotorRearRightTemperatureImpl,
         MotorFrontLeftTemperatureImpl, MotorFrontRightTemperatureImpl,
         HBridgeRearTemperatureImpl, HBridgeFrontTemperatureImpl,
-        RaspberryPiTemperatureImpl)
+        RaspberryPiTemperatureImpl,
+        BatteriesTemperatureImpl)
 
     var reportedTempWarnings = arrayOf(WARNING_TYPE_NOTHING, WARNING_TYPE_NOTHING,
         WARNING_TYPE_NOTHING, WARNING_TYPE_NOTHING,
         WARNING_TYPE_NOTHING, WARNING_TYPE_NOTHING,
+        WARNING_TYPE_NOTHING,
         WARNING_TYPE_NOTHING)
 
     @Scheduled(initialDelay = 2000, fixedDelay = 420)
-    fun checkPrimaryTemps(){
+    fun checkTemps(){
 
         for(i in 0 until hardwareItems.size) {
             primaryTemp = hardwareItems[i].value

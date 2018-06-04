@@ -59,6 +59,15 @@ abstract class HardwareItemTemperatureImpl: Temperature {
                 val cpuTemp = getSensorValue()
                 max(gpuTemp, cpuTemp)
             }
+            is BatteriesTemperatureImpl -> {
+                val rearMotorBatterBox = getSensorValue()
+                val frontMotorBatteryBox = getSensorValue()
+                val stepperMotorBatteryBox = getSensorValue()
+                val ledsBatteryBox = getSensorValue()
+                max(rearMotorBatterBox,
+                    max(frontMotorBatteryBox,
+                        max(stepperMotorBatteryBox, ledsBatteryBox)))
+            }
             else -> EngineSystem.EMPTY_INT
         }
     }
