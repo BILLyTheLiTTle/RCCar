@@ -1,6 +1,7 @@
 package car.controllers.basic
 
 import com.pi4j.io.gpio.*
+import com.pi4j.system.SystemInfo
 import com.pi4j.util.CommandArgumentParser
 import com.pi4j.wiringpi.Gpio
 
@@ -12,7 +13,11 @@ object EngineImpl:Engine {
 
     //////
     // Pi related
-    const val RUN_ON_PI = false
+    val RUN_ON_PI: Boolean = try {
+        SystemInfo.getBoardType().name.contains("raspberry", true)
+    }
+    catch (e: Exception) { false }
+
     lateinit var gpio: GpioController
     lateinit var pwmPinEnable: GpioPinPwmOutput
     lateinit var pinInput1: GpioPinDigitalOutput
@@ -23,6 +28,7 @@ object EngineImpl:Engine {
         //TODO("mode=input/output & and pin = false for GPIOs, PWM, etc")
         //////
         // Pi related
+        println("===Software IS ${if (RUN_ON_PI) "" else "NOT"} running on Pi.===\n")
         if(RUN_ON_PI) {
             gpio = GpioFactory.getInstance()
             val pinEnable = CommandArgumentParser.getPin(
