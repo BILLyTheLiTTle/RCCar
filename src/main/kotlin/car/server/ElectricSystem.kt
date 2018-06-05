@@ -2,6 +2,7 @@ package car.server
 
 import car.controllers.basic.Electrics
 import car.controllers.basic.ElectricsImpl
+import car.showMessage
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -17,10 +18,11 @@ class ElectricSystem{
      */
     @GetMapping("/set_direction_lights")
     fun setDirectionLights(
-        @RequestParam(value = "direction", defaultValue = "$TURN_LIGHTS_STRAIGHT") direction: String)
-            : String {
+        @RequestParam(value = "direction", defaultValue = "$TURN_LIGHTS_STRAIGHT") direction: String
+    ): String {
 
-        println("${this::class.simpleName} Direction: $direction\n")
+        showMessage(title = "ELECTRIC SYSTEM",
+            body = "{ ${this::class.simpleName} } Direction: $direction")
 
         synchronized(this){
             when (direction) {
@@ -57,7 +59,8 @@ class ElectricSystem{
     @GetMapping("/set_main_lights_state")
     fun setMainLightsState(@RequestParam(value = "value", defaultValue = "$LIGHTS_OFF") value: String): String {
 
-        println("${this::class.simpleName} Main Lights State Request: $value\n")
+        showMessage(title = "ELECTRIC SYSTEM",
+            body = "{ ${this::class.simpleName} } Main Lights State Request: $value")
 
         synchronized(this){
             when(value){

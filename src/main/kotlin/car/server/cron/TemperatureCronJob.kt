@@ -1,8 +1,10 @@
 package car.server.cron
 
+import car.TYPE_CRITICAL
 import car.controllers.temperatures.*
 import car.server.EngineSystem
 import car.server.doNonBlockingRequest
+import car.showMessage
 import org.springframework.context.annotation.Configuration
 import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.scheduling.annotation.EnableScheduling
@@ -48,7 +50,7 @@ class TemperaturesCronJob {
                 informClient(hardwareItems[i].ID, reportedTempWarnings[i], primaryTemp)
 
                 if(reportedTempWarnings[i] == WARNING_TYPE_HIGH)
-                    printTempInfo(hardwareItems[i]::class, primaryTemp)
+                    printHighTempInfo(hardwareItems[i]::class, primaryTemp)
             }
         }
 
@@ -94,7 +96,9 @@ class TemperaturesCronJob {
         )
     }
 
-    private fun printTempInfo(hardware: KClass<out Temperature>?, value: Int) {
-        println("{${hardware?.simpleName ?: "No Name Class"}} Temp Value: $value\n")
+    private fun printHighTempInfo(hardware: KClass<out Temperature>?, value: Int) {
+        showMessage(msgType = TYPE_CRITICAL,
+            title = "TEMPERATURE CRON JOB",
+            body = "{ ${hardware?.simpleName ?: "No Name Class"} } Temp Value: $value")
     }
 }

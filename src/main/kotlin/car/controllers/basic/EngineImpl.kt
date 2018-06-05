@@ -1,5 +1,7 @@
 package car.controllers.basic
 
+import car.TYPE_WARNING
+import car.showMessage
 import com.pi4j.io.gpio.*
 import com.pi4j.system.SystemInfo
 import com.pi4j.util.CommandArgumentParser
@@ -28,7 +30,10 @@ object EngineImpl:Engine {
         //TODO("mode=input/output & and pin = false for GPIOs, PWM, etc")
         //////
         // Pi related
-        println("===Software IS ${if (RUN_ON_PI) "" else "NOT"} running on Pi.===\n")
+        showMessage(msgType = TYPE_WARNING,
+            title = "ENGINE",
+            body = "Software IS ${if (RUN_ON_PI) "" else "NOT"} running on Pi.")
+
         if(RUN_ON_PI) {
             gpio = GpioFactory.getInstance()
             val pinEnable = CommandArgumentParser.getPin(

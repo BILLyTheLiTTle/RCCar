@@ -1,8 +1,11 @@
 package car.server.cron
 
+import car.TYPE_CRITICAL
+import car.TYPE_WARNING
 import car.controllers.basic.EngineImpl
 import car.controllers.basic.ThrottleBrakeImpl
 import car.server.EngineSystem
+import car.showMessage
 import org.springframework.context.annotation.Configuration
 import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.scheduling.annotation.EnableScheduling
@@ -41,25 +44,29 @@ class ConnectionCronJob {
                 if (wasClientOnline) {
                     if (counter == maxResetCounter) {
                         counter = 0
-                        println("Client is still online\nIP:${EngineSystem.nanohttpClientIp}\n")
+                        showMessage(title = "CONNECTION CRON JOB",
+                            body = """Client is still online\nIP: ${EngineSystem.nanohttpClientIp}""")
                     } else
                         counter++
                 } else
-                    println("Client came online\nIP:${EngineSystem.nanohttpClientIp}\n")
+                    showMessage(msgType = TYPE_WARNING,
+                        title = "CONNECTION CRON JOB",
+                        body = """Client came online\nIP: ${EngineSystem.nanohttpClientIp}""")
             } else {
                 if (wasClientOnline) {
                     ThrottleBrakeImpl.parkingBrake(100)
-                    println(
-                        "Client (${EngineSystem.nanohttpClientIp}) not found. " +
-                                "Parking brake applied: ${ThrottleBrakeImpl.parkingBrakeState}\n"
-                    )
+                    showMessage(msgType = TYPE_CRITICAL,
+                        title = "CONNECTION CRON JOB",
+                        body = "Client (${EngineSystem.nanohttpClientIp}) not found." +
+                                "Parking brake applied: ${ThrottleBrakeImpl.parkingBrakeState}")
                 } else {
                     if (counter == maxResetCounter) {
                         counter = 0
-                        println(
-                            "Client (${EngineSystem.nanohttpClientIp}) still not found. " +
-                                    "Parking brake was applied: ${ThrottleBrakeImpl.parkingBrakeState}\n"
-                        )
+
+                        showMessage(msgType = TYPE_CRITICAL,
+                            title = "CONNECTION CRON JOB",
+                            body = "Client (${EngineSystem.nanohttpClientIp}) still not found." +
+                                    "Parking brake was applied: ${ThrottleBrakeImpl.parkingBrakeState}")
                     } else
                         counter++
                 }

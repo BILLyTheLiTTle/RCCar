@@ -1,6 +1,7 @@
 package car.controllers.basic
 
 import car.server.ElectricSystem
+import car.showMessage
 
 object ElectricsImpl:Electrics {
     private val _lights = mutableMapOf<String, Boolean>()
@@ -47,7 +48,8 @@ object ElectricsImpl:Electrics {
         set(value) {
             _lights[ElectricSystem.BRAKING_LIGHTS] = value
 
-            println("${this::class.simpleName} Brake Lights: $value\n")
+            showMessage(title = "LIGHTS",
+                body = "{ ${this::class.simpleName} } Brake Lights: $value")
 
             // TODO call handleLeds(...)
 
@@ -58,7 +60,8 @@ object ElectricsImpl:Electrics {
         set(value) {
             _lights[ElectricSystem.REVERSE_LIGHTS] = value
 
-            println("${this::class.simpleName} Reverse Lights: $value\n")
+            showMessage(title = "LIGHTS",
+                body = "{ ${this::class.simpleName} } Reverse Lights: $value")
 
             // TODO call handleLeds(...)
 
@@ -69,7 +72,8 @@ object ElectricsImpl:Electrics {
         set(value) {
             _lights[ElectricSystem.TURN_LIGHTS_LEFT] = value
 
-            println("${this::class.simpleName} Left Turn Lights: $value\n")
+            showMessage(title = "LIGHTS",
+                body = "{ ${this::class.simpleName} } Left Turn Lights: $value")
 
             field = value
         }
@@ -78,7 +82,8 @@ object ElectricsImpl:Electrics {
         set(value) {
             _lights[ElectricSystem.TURN_LIGHTS_RIGHT] = value
 
-            println("${this::class.simpleName} Right Turn Lights: $value\n")
+            showMessage(title = "LIGHTS",
+                body = "{ ${this::class.simpleName} } Right Turn Lights: $value")
 
             field = value
         }
@@ -87,7 +92,8 @@ object ElectricsImpl:Electrics {
         set(value) {
             _lights[ElectricSystem.EMERGENCY_LIGHTS] = value
 
-            println("${this::class.simpleName} Emergency Lights: $value\n")
+            showMessage(title = "LIGHTS",
+                body = "{ ${this::class.simpleName} } Emergency Lights: $value")
 
             field = value
         }

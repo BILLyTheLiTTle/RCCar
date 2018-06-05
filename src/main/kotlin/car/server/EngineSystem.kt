@@ -1,6 +1,7 @@
 package car.server
 
 import car.controllers.basic.EngineImpl
+import car.showMessage
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -8,9 +9,11 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class EngineSystem {
     @GetMapping("/start_engine")
-    fun startEngine(@RequestParam(value = "nanohttp_client_ip", defaultValue = "$EMPTY_STRING") nanohttpClientIp: String,
-                  @RequestParam(value = "nanohttp_client_port", defaultValue = "$EMPTY_INT") nanohttpClientPort: Int)
-    : String {
+    fun startEngine(
+        @RequestParam(value = "nanohttp_client_ip", defaultValue = "$EMPTY_STRING") nanohttpClientIp: String,
+        @RequestParam(value = "nanohttp_client_port", defaultValue = "$EMPTY_INT") nanohttpClientPort: Int
+    ): String {
+
         //reset and get ready for new requests
         ThrottleBrakeSystem.lastRequestId = -1
         SteeringSystem.lastRequestId = -1
@@ -18,7 +21,10 @@ class EngineSystem {
         EngineSystem.nanohttpClientIp = if (nanohttpClientIp == "0.0.0.0") "10.0.2.15" else nanohttpClientIp
         EngineSystem.nanohttpClientPort = nanohttpClientPort
 
-        println("Engine started\nController IP: $nanohttpClientIp\nController Port: $nanohttpClientPort\n")
+        showMessage(title = "ENGINE SYSTEM",
+            body = "Engine started\n" +
+                    "Controller IP: $nanohttpClientIp\n" +
+                    "Controller Port: $nanohttpClientPort")
 
         return EngineImpl.start()
     }
@@ -28,7 +34,10 @@ class EngineSystem {
 
     @GetMapping("/stop_engine")
     fun stopEngine(): String {
-        println("Engine stopped\nController IP: $nanohttpClientIp\nController Port: $nanohttpClientPort\n")
+        showMessage(title = "ENGINE SYSTEM",
+            body = "Engine stopped\n" +
+                    "Controller IP: $nanohttpClientIp\n" +
+                    "Controller Port: $nanohttpClientPort")
         return EngineImpl.stop()
     }
 

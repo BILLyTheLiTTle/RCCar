@@ -1,6 +1,7 @@
 package car.server
 
 import car.controllers.basic.ThrottleBrakeImpl
+import car.showMessage
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -16,10 +17,11 @@ class ThrottleBrakeSystem{
 
         lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
-        println("Action: $action\n" +
-                "Value: $value\n" +
-                "${this::class.simpleName} ID request: $id\n" +
-                "${this::class.simpleName} ID last request: $lastRequestId\n")
+        showMessage(title = "THROTTLE -N- BRAKE SYSTEM",
+            body = "Action: $action\n" +
+                    "Value: $value\n" +
+                    "{ ${this::class.simpleName} } ID request: $id\n" +
+                    "{ ${this::class.simpleName} } ID last request: $lastRequestId")
 
         //TODO add function for the hardware
         var state = EngineSystem.UNKNOWN_STATE

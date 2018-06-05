@@ -1,6 +1,7 @@
 package car.server
 
 import car.controllers.basic.SteeringImpl
+import car.showMessage
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -9,17 +10,19 @@ import org.springframework.web.bind.annotation.RestController
 class SteeringSystem{
 
     @GetMapping("/set_steering_system")
-    fun setSteeringAction(@RequestParam(value = "id", defaultValue = "-1") id: Int,
-                          @RequestParam(value = "direction", defaultValue = "$ACTION_STRAIGHT") direction: String,
-                          @RequestParam(value = "value", defaultValue =  "0") value: Int): String
-    {
+    fun setSteeringAction(
+        @RequestParam(value = "id", defaultValue = "-1") id: Int,
+        @RequestParam(value = "direction", defaultValue = "$ACTION_STRAIGHT") direction: String,
+        @RequestParam(value = "value", defaultValue =  "0") value: Int
+    ): String {
 
         lastRequestId = if(id > lastRequestId) id else lastRequestId
 
-        println("Direction: $direction\n" +
-                "Value: $value\n" +
-                "${this::class.simpleName} ID request: $id\n" +
-                "${this::class.simpleName} ID last request: $lastRequestId\n")
+        showMessage(title = "ENGINE SYSTEM",
+            body = "Direction: $direction\n" +
+                    "Value: $value\n" +
+                    "{ ${this::class.simpleName} } ID request: $id\n" +
+                    "{ ${this::class.simpleName} } ID last request: $lastRequestId")
 
         //TODO add function for the hardware
         var state = "Unknown"
