@@ -17,7 +17,8 @@ abstract class HardwareItemTemperatureImpl: Temperature {
     protected open val MAX_MEDIUM_TEMP = -1
 
     private val ERROR_TEMP = 1000
-    private val ERROR_TEMP_GENERATOR = Random().nextInt(100)
+    private val ERROR_TEMP_GENERATOR
+        get() =  Random().nextInt(100)
 
     override val value: Int
         get() {

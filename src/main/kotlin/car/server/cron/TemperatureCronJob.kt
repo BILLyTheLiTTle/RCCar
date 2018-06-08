@@ -1,6 +1,7 @@
 package car.server.cron
 
 import car.TYPE_CRITICAL
+import car.controllers.basic.EngineImpl
 import car.controllers.temperatures.*
 import car.server.EngineSystem
 import car.server.doNonBlockingRequest
@@ -15,8 +16,6 @@ import kotlin.reflect.KClass
 @EnableAsync
 @EnableScheduling
 class TemperaturesCronJob {
-
-    private val temperatureDiff = 9
 
     private val TEMP_URI = "/temp"
     private val PARAM_KEY_ITEM = "item"
@@ -42,15 +41,17 @@ class TemperaturesCronJob {
     @Scheduled(initialDelay = 2000, fixedDelay = 420)
     fun checkTemps(){
 
-        for(i in 0 until hardwareItems.size) {
-            primaryTemp = hardwareItems[i].value
-            if(reportedTempWarnings[i] != hardwareItems[i].warning) {
-                reportedTempWarnings[i] = hardwareItems[i].warning
+        if (EngineImpl.engineState) {
+            for (i in 0 until hardwareItems.size) {
+                primaryTemp = hardwareItems[i].value
+                if (reportedTempWarnings[i] != hardwareItems[i].warning) {
+                    reportedTempWarnings[i] = hardwareItems[i].warning
 
-                informClient(hardwareItems[i].ID, reportedTempWarnings[i], primaryTemp)
+                    informClient(hardwareItems[i].ID, reportedTempWarnings[i], primaryTemp)
 
-                if(reportedTempWarnings[i] == WARNING_TYPE_HIGH)
-                    printHighTempInfo(hardwareItems[i]::class, primaryTemp)
+                    if (reportedTempWarnings[i] == WARNING_TYPE_HIGH)
+                        printHighTempInfo(hardwareItems[i]::class, primaryTemp)
+                }
             }
         }
 
