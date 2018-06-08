@@ -22,7 +22,7 @@ abstract class HardwareItemTemperatureImpl: Temperature {
 
     override val value: Int
         get() {
-            // TODO read the appropriate sensor
+            // I need synchronization because I use multiplexers
             val temp = synchronized(lock) { readSensor() }
 
             warning = when {

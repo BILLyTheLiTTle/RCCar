@@ -106,8 +106,14 @@ object ElectricsImpl:Electrics {
         return "Signal"
     }
 
-    // TODO the stuff here
-    @Synchronized
+    /* I am not going to touch the same LEDs for different reasons.
+        Also, I am not going to change the same key/value of the
+        _lights Map for different reasons.
+        This means, for example, that I will handle turn light for turn reasons
+        and not for braking.
+        So, in my opinion synchronizing this function is not necessary.
+     */
+    //@Synchronized
     override fun handleLeds() {
         
     }

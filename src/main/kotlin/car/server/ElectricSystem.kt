@@ -62,7 +62,8 @@ class ElectricSystem{
         showMessage(title = "ELECTRIC SYSTEM",
             body = "{ ${this::class.simpleName} } Main Lights State Request: $value")
 
-        synchronized(this){
+        // I don't think I need synchronization
+        //synchronized(this){
             when(value){
                 LIGHTS_OFF -> ElectricsImpl.positionLightsState = false
                 POSITION_LIGHTS -> ElectricsImpl.positionLightsState = true
@@ -71,7 +72,7 @@ class ElectricSystem{
                 LONG_RANGE_SIGNAL_LIGHTS -> ElectricsImpl.doHeadlightsSignal()
                 else -> "${this::class.simpleName} ERROR: Entered in else condition"
             }
-        }
+        //}
 
         return getMainLightsState()
     }

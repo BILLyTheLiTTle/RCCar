@@ -25,7 +25,8 @@ class ThrottleBrakeSystem{
 
         //TODO add function for the hardware
         var state = EngineSystem.UNKNOWN_STATE
-        synchronized(this){
+        // I don't think I need synchronization
+        //synchronized(this){
             if(id == lastRequestId) {
                 state = when (action) {
                     ACTION_MOVE_FORWARD, ACTION_MOVE_BACKWARD ->
@@ -42,7 +43,7 @@ class ThrottleBrakeSystem{
                         "${this::class.simpleName} ERROR: Entered in else condition"
                 }
             }
-        }
+        //}
 
         return state
     }

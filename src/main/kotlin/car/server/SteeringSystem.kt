@@ -26,7 +26,8 @@ class SteeringSystem{
 
         //TODO add function for the hardware
         var state = "Unknown"
-        synchronized(this){
+        // I don't think I need synchronization
+        //synchronized(this){
             if(id == lastRequestId) {
                 state = when (direction) {
                     ACTION_TURN_LEFT ->
@@ -42,7 +43,7 @@ class SteeringSystem{
                         "${this::class.simpleName} ERROR: Entered in else condition"
                 }
             }
-        }
+        //}
 
         return state
     }
