@@ -1,6 +1,10 @@
 package car.controllers.temperatures
 
+import car.controllers.basic.EngineImpl
 import car.server.EngineSystem
+import com.pi4j.system.SystemInfo
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.util.*
 import kotlin.math.max
 
@@ -11,6 +15,9 @@ abstract class HardwareItemTemperatureImpl: Temperature {
     open val ID = "parent_of_all_temp"
     protected open val MIN_MEDIUM_TEMP = -1
     protected open val MAX_MEDIUM_TEMP = -1
+
+    private val ERROR_TEMP = 1000
+    private val ERROR_TEMP_GENERATOR = Random().nextInt(100)
 
     override val value: Int
         get() {
@@ -32,7 +39,7 @@ abstract class HardwareItemTemperatureImpl: Temperature {
     private fun readSensor(): Int {
 
         fun getSensorValue(): Int {
-            return Random().nextInt(4)
+            return ERROR_TEMP_GENERATOR
         }
 
         return when(this) {
@@ -55,8 +62,29 @@ abstract class HardwareItemTemperatureImpl: Temperature {
                 getSensorValue()
             }
             is RaspberryPiTemperatureImpl -> {
-                val gpuTemp = getSensorValue()
-                val cpuTemp = getSensorValue()
+                var gpuTemp: Int
+                var cpuTemp: Int
+                if (EngineImpl.RUN_ON_PI) {
+                    cpuTemp = try {
+                        SystemInfo.getCpuTemperature().toInt()
+                    } catch (e: Exception) {
+                        ERROR_TEMP
+                    }
+
+                    gpuTemp = try {
+                        val args = arrayOf("vcgencmd", "measure_temp")
+                        val proc = ProcessBuilder(*args).start()
+                        // Read the output
+                        val reader = BufferedReader(InputStreamReader(proc.inputStream))
+                        var line = reader.readLine()
+                        line.subSequence(5, 7).toString().toInt()
+                    }
+                    catch (e: Exception){ERROR_TEMP}
+                }
+                else {
+                    gpuTemp = ERROR_TEMP_GENERATOR
+                    cpuTemp = ERROR_TEMP_GENERATOR
+                }
                 max(gpuTemp, cpuTemp)
             }
             is BatteriesTemperatureImpl -> {

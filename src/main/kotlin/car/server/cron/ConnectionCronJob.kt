@@ -45,13 +45,13 @@ class ConnectionCronJob {
                     if (counter == maxResetCounter) {
                         counter = 0
                         showMessage(title = "CONNECTION CRON JOB",
-                            body = """Client is still online\nIP: ${EngineSystem.nanohttpClientIp}""")
+                            body = "Client is still online\nIP: ${EngineSystem.nanohttpClientIp}")
                     } else
                         counter++
                 } else
                     showMessage(msgType = TYPE_WARNING,
                         title = "CONNECTION CRON JOB",
-                        body = """Client came online\nIP: ${EngineSystem.nanohttpClientIp}""")
+                        body = "Client came online\nIP: ${EngineSystem.nanohttpClientIp}")
             } else {
                 if (wasClientOnline) {
                     ThrottleBrakeImpl.parkingBrake(100)
