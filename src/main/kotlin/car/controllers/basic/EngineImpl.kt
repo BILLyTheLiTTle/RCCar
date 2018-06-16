@@ -1,6 +1,7 @@
 package car.controllers.basic
 
 import car.TYPE_WARNING
+import car.server.EngineSystem
 import car.showMessage
 import com.pi4j.io.gpio.*
 import com.pi4j.system.SystemInfo
@@ -8,8 +9,6 @@ import com.pi4j.util.CommandArgumentParser
 import com.pi4j.wiringpi.Gpio
 
 object EngineImpl:Engine {
-
-    const val SUCCESS = "OK"
 
     override var engineState = false
 
@@ -54,7 +53,7 @@ object EngineImpl:Engine {
 
         engineState = true
 
-        return SUCCESS
+        return EngineSystem.SUCCESS
     }
 
     override fun stop(): String {
@@ -76,6 +75,9 @@ object EngineImpl:Engine {
         //////
 
         // TODO reset every significant variable
+        // Setup
+        SetupImpl.reset()
+
         // Temperatures
         //TemperaturesImpl.reset()
 
@@ -91,6 +93,6 @@ object EngineImpl:Engine {
         // Engine
         reset()
 
-        return SUCCESS
+        return EngineSystem.SUCCESS
     }
 }

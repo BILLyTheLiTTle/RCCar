@@ -37,7 +37,7 @@ object SteeringImpl:Steering {
         //TODO set value to pins
 
         SteeringImpl.value = value
-        return EngineImpl.SUCCESS // or error message from pins
+        return EngineSystem.SUCCESS // or error message from pins
     }
 
     override fun reset() {

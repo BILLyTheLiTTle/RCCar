@@ -31,12 +31,12 @@ class TemperaturesCronJob {
         BatteriesTemperatureImpl,
         ShiftRegistersTemperatureImpl)
 
-    var reportedTempWarnings = arrayOf(WARNING_TYPE_NOTHING, WARNING_TYPE_NOTHING,
-        WARNING_TYPE_NOTHING, WARNING_TYPE_NOTHING,
-        WARNING_TYPE_NOTHING, WARNING_TYPE_NOTHING,
-        WARNING_TYPE_NOTHING,
-        WARNING_TYPE_NOTHING,
-        WARNING_TYPE_NOTHING)
+    var reportedTempWarnings = arrayOf(Temperature.WARNING_TYPE_NOTHING, Temperature.WARNING_TYPE_NOTHING,
+        Temperature.WARNING_TYPE_NOTHING, Temperature.WARNING_TYPE_NOTHING,
+        Temperature.WARNING_TYPE_NOTHING, Temperature.WARNING_TYPE_NOTHING,
+        Temperature.WARNING_TYPE_NOTHING,
+        Temperature.WARNING_TYPE_NOTHING,
+        Temperature.WARNING_TYPE_NOTHING)
 
     @Scheduled(initialDelay = 2000, fixedDelay = 420)
     fun checkTemps(){
@@ -49,7 +49,7 @@ class TemperaturesCronJob {
 
                     informClient(hardwareItems[i].ID, reportedTempWarnings[i], primaryTemp)
 
-                    if (reportedTempWarnings[i] == WARNING_TYPE_HIGH)
+                    if (reportedTempWarnings[i] == Temperature.WARNING_TYPE_HIGH)
                         printHighTempInfo(hardwareItems[i]::class, primaryTemp)
                 }
             }

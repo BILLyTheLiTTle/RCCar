@@ -1,5 +1,6 @@
 package car.controllers.basic
 
+import car.server.EngineSystem
 import car.server.ThrottleBrakeSystem.Companion.ACTION_BRAKING_STILL
 import car.server.ThrottleBrakeSystem.Companion.ACTION_HANDBRAKE
 import car.server.ThrottleBrakeSystem.Companion.ACTION_MOVE_BACKWARD
@@ -82,7 +83,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //////
 
 	    ThrottleBrakeImpl.value = value
-        return EngineImpl.SUCCESS // or error message from pins
+        return EngineSystem.SUCCESS // or error message from pins
     }
 
     override fun brake(value: Int): String {
@@ -100,7 +101,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         action = ACTION_BRAKING_STILL
 	    ThrottleBrakeImpl.value = value
-        return EngineImpl.SUCCESS // or error message from pins
+        return EngineSystem.SUCCESS // or error message from pins
     }
 
     override fun parkingBrake(value: Int): String {
@@ -121,7 +122,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         action = ACTION_PARKING_BRAKE
         ThrottleBrakeImpl.value = value
-        return EngineImpl.SUCCESS // or error message from pins
+        return EngineSystem.SUCCESS // or error message from pins
     }
 
     override fun handbrake(value: Int): String {
@@ -138,7 +139,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         action = ACTION_HANDBRAKE
 	    ThrottleBrakeImpl.value = value
-        return EngineImpl.SUCCESS // or error message from pins
+        return EngineSystem.SUCCESS // or error message from pins
     }
 
     override fun setNeutral(): String {
@@ -155,7 +156,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //////
 
         action = ACTION_NEUTRAL
-        return EngineImpl.SUCCESS // or error message from pins
+        return EngineSystem.SUCCESS // or error message from pins
     }
 
     override fun reset() {

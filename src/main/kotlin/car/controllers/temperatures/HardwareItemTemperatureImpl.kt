@@ -26,9 +26,9 @@ abstract class HardwareItemTemperatureImpl: Temperature {
             val temp = synchronized(lock) { readSensor() }
 
             warning = when {
-                temp < MIN_MEDIUM_TEMP -> WARNING_TYPE_NORMAL
-                temp > MAX_MEDIUM_TEMP -> WARNING_TYPE_HIGH
-                else -> WARNING_TYPE_MEDIUM
+                temp < MIN_MEDIUM_TEMP -> Temperature.WARNING_TYPE_NORMAL
+                temp > MAX_MEDIUM_TEMP -> Temperature.WARNING_TYPE_HIGH
+                else -> Temperature.WARNING_TYPE_MEDIUM
             }
 
             return temp
