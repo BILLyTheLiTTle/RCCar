@@ -1,10 +1,12 @@
 package car.server
 
+import car.controllers.basic.SetupImpl
 import car.controllers.basic.ThrottleBrakeImpl
 import car.showMessage
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import kotlin.math.roundToInt
 
 @RestController
 class ThrottleBrakeSystem{
@@ -19,7 +21,8 @@ class ThrottleBrakeSystem{
 
         showMessage(title = "THROTTLE -N- BRAKE SYSTEM",
             body = "Action: $action\n" +
-                    "Value: $value\n" +
+                    "Clear Value: $value\n" +
+                    "Limited Value: ${(value * SetupImpl.motorSpeedLimiter).roundToInt()}\n" +
                     "{ ${this::class.simpleName} } ID request: $id\n" +
                     "{ ${this::class.simpleName} } ID last request: $lastRequestId")
 
@@ -30,7 +33,7 @@ class ThrottleBrakeSystem{
             if(id == lastRequestId) {
                 state = when (action) {
                     ACTION_MOVE_FORWARD, ACTION_MOVE_BACKWARD ->
-                        ThrottleBrakeImpl.throttle(action, value)
+                        ThrottleBrakeImpl.throttle(action, (value * SetupImpl.motorSpeedLimiter).roundToInt())
                     ACTION_PARKING_BRAKE ->
                         ThrottleBrakeImpl.parkingBrake(value)
                     ACTION_HANDBRAKE ->

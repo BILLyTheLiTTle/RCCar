@@ -7,6 +7,7 @@ import kotlinx.coroutines.experimental.channels.NULL_VALUE
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import kotlin.math.roundToInt
 
 @RestController
 class SetupSystem{
@@ -27,12 +28,26 @@ class SetupSystem{
     @GetMapping("/get_handling_assistance_state")
     fun getHandlingAssistanceState() = SetupImpl.handlingAssistanceState
 
+    @GetMapping("/set_motor_speed_limiter")
+    fun setMotorSpeedLimiter(
+        @RequestParam(value = "value", defaultValue =  "$MOTOR_SPEED_LIMITER_NO_SPEED") value: Double
+    ): String {
+        SetupImpl.motorSpeedLimiter = value
+        return EngineSystem.SUCCESS
+    }
+
+    @GetMapping("/get_motor_speed_limiter")
+    fun getMotorSpeedLimiter() = SetupImpl.motorSpeedLimiter
+
 
     companion object {
         const val ASSISTANCE_NULL = EngineSystem.EMPTY_STRING
         const val ASSISTANCE_NONE = "assistance_none"
         const val ASSISTANCE_WARNING = "assistance_warning"
         const val ASSISTANCE_FULL = "assistance_full"
+
+        const val MOTOR_SPEED_LIMITER_NO_SPEED = 0.00
+        const val MOTOR_SPEED_LIMITER_FULL_SPEED = 1.00
     }
 
 }
