@@ -39,6 +39,28 @@ class SetupSystem{
     @GetMapping("/get_motor_speed_limiter")
     fun getMotorSpeedLimiter() = SetupImpl.motorSpeedLimiter
 
+    @GetMapping("/set_front_differential_slippery_limiter")
+    fun setFrontDifferentialSlipperyLimiter(
+        @RequestParam(value = "value", defaultValue =  "$DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED") value: Int
+    ): String {
+        SetupImpl.frontDifferentialSlipperyLimiter = value
+        return EngineSystem.SUCCESS
+    }
+
+    @GetMapping("/get_front_differential_slippery_limiter")
+    fun getFrontDifferentialSlipperyLimiter() = SetupImpl.frontDifferentialSlipperyLimiter
+
+    @GetMapping("/set_rear_differential_slippery_limiter")
+    fun setRearDifferentialSlipperyLimiter(
+        @RequestParam(value = "value", defaultValue =  "$DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED") value: Int
+    ): String {
+        SetupImpl.rearDifferentialSlipperyLimiter = value
+        return EngineSystem.SUCCESS
+    }
+
+    @GetMapping("/get_rear_differential_slippery_limiter")
+    fun getRearDifferentialSlipperyLimiter() = SetupImpl.rearDifferentialSlipperyLimiter
+
 
     companion object {
         const val ASSISTANCE_NULL = EngineSystem.EMPTY_STRING
@@ -48,6 +70,13 @@ class SetupSystem{
 
         const val MOTOR_SPEED_LIMITER_NO_SPEED = 0.00
         const val MOTOR_SPEED_LIMITER_FULL_SPEED = 1.00
+
+        const val DIFFERENTIAL_SLIPPERY_LIMITER_OPEN = 0
+        const val DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 = 1
+        const val DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 = 2
+        const val DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 = 3
+        const val DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED = 4
+        const val DIFFERENTIAL_SLIPPERY_LIMITER_AUTO = 10
     }
 
 }
