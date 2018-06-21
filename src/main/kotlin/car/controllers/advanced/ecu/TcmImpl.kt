@@ -7,9 +7,8 @@ import car.controllers.basic.SteeringImpl
 import car.controllers.basic.ThrottleBrakeImpl
 
 object TcmImpl: Tcm {
-    val valueOuterFront
-        get() = ThrottleBrakeImpl.value
-    var phi = SteeringImpl.phi
+    var valueOuterFront: Int = 0
+    var phi: Double = SteeringImpl.phi
     var theta = SteeringImpl.theta
     private val valueInnerFront
         get() = ( valueOuterFront /

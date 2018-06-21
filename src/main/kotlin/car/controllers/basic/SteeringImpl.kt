@@ -33,7 +33,8 @@ object SteeringImpl:Steering {
     private val outerFrontDegreesPhi = doubleArrayOf(19.9, 37.9, 41.7, 49.2, 47.8)
     var direction = ACTION_STRAIGHT
         private set
-    private var value = 0
+    var value = 0
+        private set
 
     override fun turn(direction: String, value: Int): String {
         when (direction) {
