@@ -57,6 +57,12 @@ class SteeringSystem{
         const val ACTION_TURN_RIGHT = "right"
         const val ACTION_TURN_LEFT = "left"
         const val ACTION_STRAIGHT = "straight"
+
+        const val STEERING_VALUE_20 = 20
+        const val STEERING_VALUE_40 = 40
+        const val STEERING_VALUE_60 = 60
+        const val STEERING_VALUE_80 = 80
+        const val STEERING_VALUE_100 = 100
     }
 
 }

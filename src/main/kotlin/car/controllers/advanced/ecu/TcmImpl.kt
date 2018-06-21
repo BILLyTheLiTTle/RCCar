@@ -60,5 +60,9 @@ object TcmImpl: Tcm {
         get() = intArrayOf(valueOuterFront, valueOuterFront)
     val rearLockedDiffValues
         get() = intArrayOf(valueOuterFront, valueOuterFront)
+    val frontAutoDiffValues
+        get() = intArrayOf(valueOuterFront, valueOuterFront)
+    val rearAutoDiffValues
+        get() = intArrayOf(valueOuterFront, valueOuterFront)
     ////////////////////
 }
