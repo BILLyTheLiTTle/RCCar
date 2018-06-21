@@ -1,5 +1,6 @@
 package car.controllers.basic
 
+import car.controllers.advanced.ecu.TcmImpl
 import car.server.EngineSystem
 import car.server.SteeringSystem.Companion.ACTION_STRAIGHT
 import car.server.SteeringSystem.Companion.ACTION_TURN_LEFT
@@ -37,6 +38,8 @@ object SteeringImpl:Steering {
         private set
 
     override fun turn(direction: String, value: Int): String {
+        TcmImpl.phi = phi
+        TcmImpl.theta = theta
         when (direction) {
             ACTION_TURN_RIGHT ->
                 // TODO prepare hardware for turning right

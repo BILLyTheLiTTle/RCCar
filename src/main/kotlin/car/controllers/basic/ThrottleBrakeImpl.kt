@@ -173,106 +173,108 @@ object ThrottleBrakeImpl:ThrottleBrake {
     }
 
     private fun showDifferentialInfo(userThrottleValue: Int) {
-        showMessage(title = "-- ECU -- THROTTLE -N- BRAKE SYSTEM", body = "User Throttle Value: $userThrottleValue\n" +
-                "User Steering Value: ${SteeringImpl.value}\n"+
-        when (SteeringImpl.direction) {
-                SteeringSystem.ACTION_TURN_LEFT -> {
-                    when (SetupImpl.frontDifferentialSlipperyLimiter) {
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
-                            "Front Differential is \"OPEN\"\n" +
-                                    "Inner (Left) Front Wheel Speed: ${TcmImpl.frontOpenDiffValues[0]}\n" +
-                                    "Outer (Right) Front Wheel Speed: ${TcmImpl.frontOpenDiffValues[1]}\n"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
-                            "Front Differential is \"MEDI 0\"\n" +
-                                    "Inner (Left) Front Wheel Speed: ${TcmImpl.frontMedi0DiffValues[0]}\n" +
-                                    "Outer (Right) Front Wheel Speed: ${TcmImpl.frontMedi0DiffValues[1]}\n"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
-                            "Front Differential is \"MEDI 1\"\n" +
-                                    "Inner (Left) Front Wheel Speed: ${TcmImpl.frontMedi1DiffValues[0]}\n" +
-                                    "Outer (Right) Front Wheel Speed: ${TcmImpl.frontMedi1DiffValues[1]}\n"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
-                            "Front Differential is \"MEDI 2\"\n" +
-                                    "Inner (Left) Front Wheel Speed: ${TcmImpl.frontMedi2DiffValues[0]}\n" +
-                                    "Outer (Right) Front Wheel Speed: ${TcmImpl.frontMedi2DiffValues[1]}\n"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
-                            "Front Differential is \"LOCKED\"\n" +
-                                    "Inner (Left) Front Wheel Speed: ${TcmImpl.frontLockedDiffValues[0]}\n" +
-                                    "Outer (Right) Front Wheel Speed: ${TcmImpl.frontLockedDiffValues[1]}\n"
-                        else -> "ERROR in Front differential for Left turn\n"
-                    } +
-                    when (SetupImpl.rearDifferentialSlipperyLimiter) {
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
-                            "Rear Differential is \"OPEN\"\n" +
-                                    "Inner (Left) Rear Wheel Speed: ${TcmImpl.rearOpenDiffValues[0]}\n" +
-                                    "Outer (Right) Rear Wheel Speed: ${TcmImpl.rearOpenDiffValues[1]}"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
-                            "Rear Differential is \"MEDI 0\"\n" +
-                                    "Inner (Left) Rear Wheel Speed: ${TcmImpl.rearMedi0DiffValues[0]}\n" +
-                                    "Outer (Right) Rear Wheel Speed: ${TcmImpl.rearMedi0DiffValues[1]}"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
-                            "Rear Differential is \"MEDI 1\"\n" +
-                                    "Inner (Left) Rear Wheel Speed: ${TcmImpl.rearMedi1DiffValues[0]}\n" +
-                                    "Outer (Right) Rear Wheel Speed: ${TcmImpl.rearMedi1DiffValues[1]}"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
-                            "Rear Differential is \"MEDI 2\"\n" +
-                                    "Inner (Left) Rear Wheel Speed: ${TcmImpl.rearMedi2DiffValues[0]}\n" +
-                                    "Outer (Right) Rear Wheel Speed: ${TcmImpl.rearMedi2DiffValues[1]}"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
-                            "Rear Differential is \"LOCKED\"\n" +
-                                    "Inner (Left) Rear Wheel Speed: ${TcmImpl.rearLockedDiffValues[0]}\n" +
-                                    "Outer (Right) Rear Wheel Speed: ${TcmImpl.rearLockedDiffValues[1]}"
-                        else -> "ERROR in Rear differential for Left turn"
+        if (SetupImpl.handlingAssistanceState != SetupSystem.ASSISTANCE_FULL) {
+            showMessage(title = "-- ECU -- THROTTLE -N- BRAKE SYSTEM", body = "User Throttle Value: $userThrottleValue\n" +
+                    "User Steering Value: ${SteeringImpl.value}\n"+
+            when (SteeringImpl.direction) {
+                    SteeringSystem.ACTION_TURN_LEFT -> {
+                        when (SetupImpl.frontDifferentialSlipperyLimiter) {
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                                "Front Differential is \"OPEN\"\n" +
+                                        "Inner (Left) Front Wheel Speed: ${TcmImpl.frontOpenDiffValues[0]}\n" +
+                                        "Outer (Right) Front Wheel Speed: ${TcmImpl.frontOpenDiffValues[1]}\n"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                                "Front Differential is \"MEDI 0\"\n" +
+                                        "Inner (Left) Front Wheel Speed: ${TcmImpl.frontMedi0DiffValues[0]}\n" +
+                                        "Outer (Right) Front Wheel Speed: ${TcmImpl.frontMedi0DiffValues[1]}\n"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                                "Front Differential is \"MEDI 1\"\n" +
+                                        "Inner (Left) Front Wheel Speed: ${TcmImpl.frontMedi1DiffValues[0]}\n" +
+                                        "Outer (Right) Front Wheel Speed: ${TcmImpl.frontMedi1DiffValues[1]}\n"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                                "Front Differential is \"MEDI 2\"\n" +
+                                        "Inner (Left) Front Wheel Speed: ${TcmImpl.frontMedi2DiffValues[0]}\n" +
+                                        "Outer (Right) Front Wheel Speed: ${TcmImpl.frontMedi2DiffValues[1]}\n"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                                "Front Differential is \"LOCKED\"\n" +
+                                        "Inner (Left) Front Wheel Speed: ${TcmImpl.frontLockedDiffValues[0]}\n" +
+                                        "Outer (Right) Front Wheel Speed: ${TcmImpl.frontLockedDiffValues[1]}\n"
+                            else -> "ERROR in Front differential for Left turn\n"
+                        } +
+                        when (SetupImpl.rearDifferentialSlipperyLimiter) {
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                                "Rear Differential is \"OPEN\"\n" +
+                                        "Inner (Left) Rear Wheel Speed: ${TcmImpl.rearOpenDiffValues[0]}\n" +
+                                        "Outer (Right) Rear Wheel Speed: ${TcmImpl.rearOpenDiffValues[1]}"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                                "Rear Differential is \"MEDI 0\"\n" +
+                                        "Inner (Left) Rear Wheel Speed: ${TcmImpl.rearMedi0DiffValues[0]}\n" +
+                                        "Outer (Right) Rear Wheel Speed: ${TcmImpl.rearMedi0DiffValues[1]}"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                                "Rear Differential is \"MEDI 1\"\n" +
+                                        "Inner (Left) Rear Wheel Speed: ${TcmImpl.rearMedi1DiffValues[0]}\n" +
+                                        "Outer (Right) Rear Wheel Speed: ${TcmImpl.rearMedi1DiffValues[1]}"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                                "Rear Differential is \"MEDI 2\"\n" +
+                                        "Inner (Left) Rear Wheel Speed: ${TcmImpl.rearMedi2DiffValues[0]}\n" +
+                                        "Outer (Right) Rear Wheel Speed: ${TcmImpl.rearMedi2DiffValues[1]}"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                                "Rear Differential is \"LOCKED\"\n" +
+                                        "Inner (Left) Rear Wheel Speed: ${TcmImpl.rearLockedDiffValues[0]}\n" +
+                                        "Outer (Right) Rear Wheel Speed: ${TcmImpl.rearLockedDiffValues[1]}"
+                            else -> "ERROR in Rear differential for Left turn"
+                        }
                     }
-                }
-                SteeringSystem.ACTION_TURN_RIGHT -> {
-                    when (SetupImpl.frontDifferentialSlipperyLimiter) {
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
-                            "Front Differential is \"OPEN\"\n" +
-                                    "Inner (Right) Front Wheel Speed: ${TcmImpl.frontOpenDiffValues[0]}\n" +
-                                    "Outer (Left) Front Wheel Speed: ${TcmImpl.frontOpenDiffValues[1]}\n"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
-                            "Front Differential is \"MEDI 0\"\n" +
-                                    "Inner (Right) Front Wheel Speed: ${TcmImpl.frontMedi0DiffValues[0]}\n" +
-                                    "Outer (Left) Front Wheel Speed: ${TcmImpl.frontMedi0DiffValues[1]}\n"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
-                            "Front Differential is \"MEDI 1\"\n" +
-                                    "Inner (Right) Front Wheel Speed: ${TcmImpl.frontMedi1DiffValues[0]}\n" +
-                                    "Outer (Left) Front Wheel Speed: ${TcmImpl.frontMedi1DiffValues[1]}\n"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
-                            "Front Differential is \"MEDI 2\"\n" +
-                                    "Inner (Right) Front Wheel Speed: ${TcmImpl.frontMedi2DiffValues[0]}\n" +
-                                    "Outer (Left) Front Wheel Speed: ${TcmImpl.frontMedi2DiffValues[1]}\n"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
-                            "Front Differential is \"MEDI 2\"\n" +
-                                    "Inner (Right) Front Wheel Speed: ${TcmImpl.frontLockedDiffValues[0]}\n" +
-                                    "Outer (Left) Front Wheel Speed: ${TcmImpl.frontLockedDiffValues[1]}\n"
-                        else -> "ERROR in Front differential (${SetupImpl.frontDifferentialSlipperyLimiter}) for Right turn\n"
-                    } +
-                    when (SetupImpl.rearDifferentialSlipperyLimiter) {
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
-                            "Rear Differential is \"OPEN\"\n" +
-                                    "Inner (Right) Rear Wheel Speed: ${TcmImpl.rearOpenDiffValues[0]}\n" +
-                                    "Outer (Left) Rear Wheel Speed: ${TcmImpl.rearOpenDiffValues[1]}"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
-                            "Rear Differential is \"MEDI 0\"\n" +
-                                    "Inner (Right) Rear Wheel Speed: ${TcmImpl.rearMedi0DiffValues[0]}\n" +
-                                    "Outer (Left) Rear Wheel Speed: ${TcmImpl.rearMedi0DiffValues[1]}"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
-                            "Rear Differential is \"MEDI 1\"\n" +
-                                    "Inner (Right) Rear Wheel Speed: ${TcmImpl.rearMedi1DiffValues[0]}\n" +
-                                    "Outer (Left) Rear Wheel Speed: ${TcmImpl.rearMedi1DiffValues[1]}"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
-                            "Rear Differential is \"MEDI 2\"\n" +
-                                    "Inner (Right) Rear Wheel Speed: ${TcmImpl.rearMedi2DiffValues[0]}\n" +
-                                    "Outer (Left) Rear Wheel Speed: ${TcmImpl.rearMedi2DiffValues[1]}"
-                        SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
-                            "Rear Differential is \"MEDI 2\"\n" +
-                                    "Inner (Right) Rear Wheel Speed: ${TcmImpl.rearLockedDiffValues[0]}\n" +
-                                    "Outer (Left) Rear Wheel Speed: ${TcmImpl.rearLockedDiffValues[1]}"
-                        else -> "ERROR in Rear differential (${SetupImpl.rearDifferentialSlipperyLimiter}) for Right turn"
+                    SteeringSystem.ACTION_TURN_RIGHT -> {
+                        when (SetupImpl.frontDifferentialSlipperyLimiter) {
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                                "Front Differential is \"OPEN\"\n" +
+                                        "Inner (Right) Front Wheel Speed: ${TcmImpl.frontOpenDiffValues[0]}\n" +
+                                        "Outer (Left) Front Wheel Speed: ${TcmImpl.frontOpenDiffValues[1]}\n"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                                "Front Differential is \"MEDI 0\"\n" +
+                                        "Inner (Right) Front Wheel Speed: ${TcmImpl.frontMedi0DiffValues[0]}\n" +
+                                        "Outer (Left) Front Wheel Speed: ${TcmImpl.frontMedi0DiffValues[1]}\n"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                                "Front Differential is \"MEDI 1\"\n" +
+                                        "Inner (Right) Front Wheel Speed: ${TcmImpl.frontMedi1DiffValues[0]}\n" +
+                                        "Outer (Left) Front Wheel Speed: ${TcmImpl.frontMedi1DiffValues[1]}\n"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                                "Front Differential is \"MEDI 2\"\n" +
+                                        "Inner (Right) Front Wheel Speed: ${TcmImpl.frontMedi2DiffValues[0]}\n" +
+                                        "Outer (Left) Front Wheel Speed: ${TcmImpl.frontMedi2DiffValues[1]}\n"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                                "Front Differential is \"MEDI 2\"\n" +
+                                        "Inner (Right) Front Wheel Speed: ${TcmImpl.frontLockedDiffValues[0]}\n" +
+                                        "Outer (Left) Front Wheel Speed: ${TcmImpl.frontLockedDiffValues[1]}\n"
+                            else -> "ERROR in Front differential (${SetupImpl.frontDifferentialSlipperyLimiter}) for Right turn\n"
+                        } +
+                        when (SetupImpl.rearDifferentialSlipperyLimiter) {
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                                "Rear Differential is \"OPEN\"\n" +
+                                        "Inner (Right) Rear Wheel Speed: ${TcmImpl.rearOpenDiffValues[0]}\n" +
+                                        "Outer (Left) Rear Wheel Speed: ${TcmImpl.rearOpenDiffValues[1]}"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                                "Rear Differential is \"MEDI 0\"\n" +
+                                        "Inner (Right) Rear Wheel Speed: ${TcmImpl.rearMedi0DiffValues[0]}\n" +
+                                        "Outer (Left) Rear Wheel Speed: ${TcmImpl.rearMedi0DiffValues[1]}"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                                "Rear Differential is \"MEDI 1\"\n" +
+                                        "Inner (Right) Rear Wheel Speed: ${TcmImpl.rearMedi1DiffValues[0]}\n" +
+                                        "Outer (Left) Rear Wheel Speed: ${TcmImpl.rearMedi1DiffValues[1]}"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                                "Rear Differential is \"MEDI 2\"\n" +
+                                        "Inner (Right) Rear Wheel Speed: ${TcmImpl.rearMedi2DiffValues[0]}\n" +
+                                        "Outer (Left) Rear Wheel Speed: ${TcmImpl.rearMedi2DiffValues[1]}"
+                            SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                                "Rear Differential is \"MEDI 2\"\n" +
+                                        "Inner (Right) Rear Wheel Speed: ${TcmImpl.rearLockedDiffValues[0]}\n" +
+                                        "Outer (Left) Rear Wheel Speed: ${TcmImpl.rearLockedDiffValues[1]}"
+                            else -> "ERROR in Rear differential (${SetupImpl.rearDifferentialSlipperyLimiter}) for Right turn"
+                        }
                     }
-                }
-            else -> ""
-        })
+                else -> ""
+            })
+        }
     }
 }
