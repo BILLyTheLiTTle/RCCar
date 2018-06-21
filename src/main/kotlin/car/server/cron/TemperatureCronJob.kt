@@ -49,8 +49,8 @@ class TemperaturesCronJob {
 
                     informClient(hardwareItems[i].ID, reportedTempWarnings[i], primaryTemp)
 
-                    if (reportedTempWarnings[i] == Temperature.WARNING_TYPE_HIGH)
-                        printHighTempInfo(hardwareItems[i]::class, primaryTemp)
+                    //if (reportedTempWarnings[i] == Temperature.WARNING_TYPE_HIGH)
+                    //    printHighTempInfo(hardwareItems[i]::class, primaryTemp)
                 }
             }
         }

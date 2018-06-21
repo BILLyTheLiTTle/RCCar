@@ -21,8 +21,8 @@ class ThrottleBrakeSystem{
 
         showMessage(title = "THROTTLE -N- BRAKE SYSTEM",
             body = "Action: $action\n" +
-                    "Clear Value: $value\n" +
-                    "Limited Value: ${(value * SetupImpl.motorSpeedLimiter).roundToInt()}\n" +
+                    "Clear User Value: $value\n" +
+                    "Limited User Value: ${(value * SetupImpl.motorSpeedLimiter).roundToInt()}\n" +
                     "{ ${this::class.simpleName} } ID request: $id\n" +
                     "{ ${this::class.simpleName} } ID last request: $lastRequestId")
 

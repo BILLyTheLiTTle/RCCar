@@ -7,8 +7,32 @@ import car.server.SteeringSystem.Companion.ACTION_TURN_RIGHT
 import car.server.doNonBlockingRequest
 
 object SteeringImpl:Steering {
+    override val theta: Double
+        get() =
+            when (value) {
+                20 -> innerFrontDegreesTheta[0]
+                40 -> innerFrontDegreesTheta[1]
+                60 -> innerFrontDegreesTheta[2]
+                80 -> innerFrontDegreesTheta[3]
+                100 -> innerFrontDegreesTheta[4]
+                else -> 0.00
+            }
+    override val phi: Double
+        get() =
+            when (value) {
+                20 -> outerFrontDegreesPhi[0]
+                40 -> outerFrontDegreesPhi[1]
+                60 -> outerFrontDegreesPhi[2]
+                80 -> outerFrontDegreesPhi[3]
+                100 -> outerFrontDegreesPhi[4]
+                else -> 0.00
+            }
+
+
+    private val innerFrontDegreesTheta = doubleArrayOf(22.0, 45.0, 52.0, 60.0, 66.0)
+    private val outerFrontDegreesPhi = doubleArrayOf(19.9, 37.9, 41.7, 49.2, 47.8)
     var direction = ACTION_STRAIGHT
-    private set
+        private set
     private var value = 0
 
     override fun turn(direction: String, value: Int): String {
