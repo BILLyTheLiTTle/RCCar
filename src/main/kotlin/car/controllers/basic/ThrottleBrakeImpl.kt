@@ -177,7 +177,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
     private fun showDifferentialInfo(userThrottleValue: Int) {
         showMessage(title = "-- ECU -- THROTTLE -N- BRAKE SYSTEM",
             body = "User Throttle Value: $userThrottleValue\n" +
-                "User Steering Value: ${SteeringImpl.value}\n"+
+                "User Steering Value: ${SteeringImpl.value}\n" +
         when (SteeringImpl.direction) {
                 SteeringSystem.ACTION_TURN_LEFT -> {
                     when (SetupImpl.frontDifferentialSlipperyLimiter) {
@@ -291,7 +291,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
                         else -> "ERROR in Rear differential (${SetupImpl.rearDifferentialSlipperyLimiter}) for Right turn"
                     }
                 }
-            else -> ""
+            else -> "Steering value: ${SteeringImpl.value}\n"
         })
     }
 }

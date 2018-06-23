@@ -18,7 +18,7 @@ class SteeringSystem{
 
         lastRequestId = if(id > lastRequestId) id else lastRequestId
 
-        showMessage(title = "ENGINE SYSTEM",
+        showMessage(title = "STEERING SYSTEM",
             body = "Direction: $direction\n" +
                     "Value: $value\n" +
                     "{ ${this::class.simpleName} } ID request: $id\n" +
