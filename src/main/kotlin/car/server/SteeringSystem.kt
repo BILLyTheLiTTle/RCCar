@@ -1,6 +1,7 @@
 package car.server
 
 import car.controllers.basic.SteeringImpl
+import car.controllers.basic.ThrottleBrakeImpl
 import car.showMessage
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -42,6 +43,11 @@ class SteeringSystem{
                     else ->
                         "${this::class.simpleName} ERROR: Entered in else condition"
                 }
+
+                /* This function is called because the throttle values, due to differential functionality,
+                    must be updated also when the throttle is steady but the steering is changing
+                 */
+                ThrottleBrakeImpl.throttle(ThrottleBrakeImpl.motionState, ThrottleBrakeImpl.value)
             }
         //}
 
