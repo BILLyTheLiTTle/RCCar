@@ -5,6 +5,8 @@ package car.controllers.advanced.ecu
  */
 
 interface Tcm {
-
+    var valueOuterFront: Int
+    var phi: Double
+    var theta: Double
 
 }

@@ -5,9 +5,12 @@ import car.FRONT_WHEELS_DISTANCE
 import car.REAR_CHASSIS_WIDTH
 
 object TcmImpl: Tcm {
-    var valueOuterFront = 0
-    var phi = 0.00
-    var theta = 0.00
+    override var valueOuterFront = 0
+    override var phi = 0.00
+    override var theta = 0.00
+
+    private const val DIFFERENTIAL_STEPS = 4
+
     private val valueInnerFront
         get() = ( valueOuterFront /
                 ( ( 2 * Math.PI * ( ( FRONT_REAR_WHEELS_DISTANCE / Math.sin(Math.toRadians(phi) ) +
@@ -31,10 +34,10 @@ object TcmImpl: Tcm {
             ).toInt()
 
     private val vifSteps
-        get() = (valueOuterFront - valueInnerFront) / 4
+        get() = (valueOuterFront - valueInnerFront) / DIFFERENTIAL_STEPS
     private val virSteps
-        get() = (valueOuterRear - valueInnerRear) / 4
-    //private val vorSteps = (valueOuterFront - valueOuterRear) / 4
+        get() = (valueOuterRear - valueInnerRear) / DIFFERENTIAL_STEPS
+    //private val vorSteps = (valueOuterFront - valueOuterRear) / DIFFERENTIAL_STEPS
 
     ////////////////////
     /* If the following values don't work well as PWM values
