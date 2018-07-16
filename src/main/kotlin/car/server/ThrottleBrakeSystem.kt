@@ -21,8 +21,15 @@ class ThrottleBrakeSystem{
 
         showMessage(title = "THROTTLE -N- BRAKE SYSTEM",
             body = "Action: $action\n" +
-                    "Clear User Value: $value\n" +
-                    "Limited User Value: ${(value * SetupImpl.motorSpeedLimiter).roundToInt()}\n" +
+                    "Primitive User Value: $value\n" +
+                    if (action == ACTION_MOVE_FORWARD || action == ACTION_MOVE_BACKWARD) {
+                        "Limited User Value: " +
+                                "${(value * SetupImpl.motorSpeedLimiter).roundToInt()}\n"
+                    }
+                    else {
+                        ""
+                    }
+                    +
                     "{ ${this::class.simpleName} } ID request: $id\n" +
                     "{ ${this::class.simpleName} } ID last request: $lastRequestId")
 

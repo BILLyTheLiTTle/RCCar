@@ -25,14 +25,6 @@ object ThrottleBrakeImpl:ThrottleBrake {
         get() = action == ACTION_PARKING_BRAKE && ThrottleBrakeImpl.value == 100
     override val handbrakeState
         get() = action == ACTION_HANDBRAKE && ThrottleBrakeImpl.value == 100
-    override val motionState
-        get() = when {
-                isNeutral -> ACTION_NEUTRAL
-                isBrakingStill -> ACTION_BRAKING_STILL
-                isMovingForward -> ACTION_MOVE_FORWARD
-                isMovingBackward -> ACTION_MOVE_BACKWARD
-                else -> EMPTY_STRING
-            }
     override val isMovingForward
         get() = action == ACTION_MOVE_FORWARD
     override val isMovingBackward
@@ -41,13 +33,16 @@ object ThrottleBrakeImpl:ThrottleBrake {
         get() = action == ACTION_BRAKING_STILL
     override val isNeutral
         get() = action == ACTION_NEUTRAL
+    override val motionState
+        get() = when {
+            isNeutral -> ACTION_NEUTRAL
+            isBrakingStill -> ACTION_BRAKING_STILL
+            isMovingForward -> ACTION_MOVE_FORWARD
+            isMovingBackward -> ACTION_MOVE_BACKWARD
+            else -> EMPTY_STRING
+        }
 
     override fun throttle(direction: String, value: Int): String {
-
-        // inform TCM of the ECU
-        TcmImpl.valueOuterFront = value
-
-        showDifferentialInfo(value)
 
         // turn on/off the braking lights
         if (ThrottleBrakeImpl.value > value)
@@ -56,6 +51,10 @@ object ThrottleBrakeImpl:ThrottleBrake {
             launch { ElectricsImpl.brakingLightsState = false }
 
         if(direction == ACTION_MOVE_FORWARD){
+            // inform TCM of the ECU only for forward movement
+            TcmImpl.valueOuterFront = value
+
+            showDifferentialInfo(value)
 
             // TODO prepare H-bridge for forward movement
 
@@ -65,9 +64,6 @@ object ThrottleBrakeImpl:ThrottleBrake {
                 EngineImpl.pinInput1.high()
                 EngineImpl.pinInput2.low()
             }
-            //////
-
-            action = ACTION_MOVE_FORWARD
         }
         else if (direction == ACTION_MOVE_BACKWARD){
             // TODO prepare H-bridge for backward movement
@@ -78,10 +74,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
                 EngineImpl.pinInput1.low()
                 EngineImpl.pinInput2.high()
             }
-            //////
-
-            action = ACTION_MOVE_BACKWARD
         }
+        action = direction
 
         //TODO set value to pins
 
