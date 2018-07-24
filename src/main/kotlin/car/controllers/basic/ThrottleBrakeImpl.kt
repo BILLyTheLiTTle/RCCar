@@ -58,18 +58,13 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         // inform TCM of the ECU for forward and backward movement
         TcmImpl.valueOuterFront = value
+
         //////
         // Pi related
-        if (EngineImpl.RUN_ON_PI) {
-            // TODO apply values according to differential and print them like showDifferentialInfo function
-            EngineImpl.motorFrontRightPwmPin.pwm = value
-            EngineImpl.motorFrontLeftPwmPin.pwm = value
-            EngineImpl.motorRearRightPwmPin.pwm = value
-            EngineImpl.motorRearLeftPwmPin.pwm = value
-        }
-        else {
+        if (EngineImpl.RUN_ON_PI)
+            calculateDifferentialValues(value)
+        else
             showDifferentialInfo(value)
-        }
         //////
 
         if(direction == ACTION_MOVE_FORWARD){
@@ -195,6 +190,171 @@ object ThrottleBrakeImpl:ThrottleBrake {
     override fun reset() {
         action = ThrottleBrakeSystem.ACTION_NEUTRAL
         value = 0
+    }
+
+    private fun calculateDifferentialValues(userThrottleValue: Int) {
+        when (SteeringImpl.direction) {
+            SteeringSystem.ACTION_TURN_LEFT -> {
+                when (SetupImpl.frontDifferentialSlipperyLimiter) {
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN -> {
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontOpenDiffValues[0]
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontOpenDiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 -> {
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontMedi0DiffValues[0]
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontMedi0DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 -> {
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontMedi1DiffValues[0]
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontMedi1DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 -> {
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontMedi2DiffValues[0]
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontMedi2DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED -> {
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontLockedDiffValues[0]
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontLockedDiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_AUTO -> {
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontAutoDiffValues[0]
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontAutoDiffValues[1]
+                    }
+                    else -> {
+                        EngineImpl.motorFrontLeftPwmPin.pwm = 0
+                        EngineImpl.motorFrontRightPwmPin.pwm = 0
+                    }
+                }
+                when (SetupImpl.rearDifferentialSlipperyLimiter) {
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN -> {
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearOpenDiffValues[0]
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearOpenDiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 -> {
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearMedi0DiffValues[0]
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearMedi0DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 -> {
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearMedi1DiffValues[0]
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearMedi1DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 -> {
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearMedi2DiffValues[0]
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearMedi2DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED -> {
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearLockedDiffValues[0]
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearLockedDiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_AUTO -> {
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearAutoDiffValues[0]
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearAutoDiffValues[1]
+                    }
+                    else -> {
+                        EngineImpl.motorRearLeftPwmPin.pwm = 0
+                        EngineImpl.motorRearRightPwmPin.pwm = 0
+                    }
+                }
+                showMessage(title = "-- ECU -- THROTTLE -N- BRAKE SYSTEM",
+                body = "User Throttle Value: $userThrottleValue\n" +
+                        "User Steering Value: ${SteeringImpl.value}\n" +
+                        "Front Differential is: ${SetupImpl.frontDifferentialSlipperyLimiter}\n" +
+                        "Inner (Left) Front Wheel Speed: ${EngineImpl.motorFrontLeftPwmPin}\n" +
+                        "Outer (Right) Front Wheel Speed: ${EngineImpl.motorFrontRightPwmPin}\n" +
+                        "Rear Differential is: ${SetupImpl.rearDifferentialSlipperyLimiter}\n" +
+                        "Inner (Left) Rear Wheel Speed: ${EngineImpl.motorRearLeftPwmPin}\n" +
+                        "Outer (Right) Rear Wheel Speed: ${EngineImpl.motorRearRightPwmPin}"
+                )
+            }
+            SteeringSystem.ACTION_TURN_RIGHT -> {
+                when (SetupImpl.frontDifferentialSlipperyLimiter) {
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN -> {
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontOpenDiffValues[0]
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontOpenDiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 -> {
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontMedi0DiffValues[0]
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontMedi0DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 -> {
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontMedi1DiffValues[0]
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontMedi1DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 -> {
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontMedi2DiffValues[0]
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontMedi2DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED -> {
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontLockedDiffValues[0]
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontLockedDiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_AUTO -> {
+                        EngineImpl.motorFrontRightPwmPin.pwm = TcmImpl.frontAutoDiffValues[0]
+                        EngineImpl.motorFrontLeftPwmPin.pwm = TcmImpl.frontAutoDiffValues[1]
+                    }
+                    else -> {
+                        EngineImpl.motorFrontRightPwmPin.pwm = 0
+                        EngineImpl.motorFrontLeftPwmPin.pwm = 0
+                    }
+                }
+                when (SetupImpl.rearDifferentialSlipperyLimiter) {
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_OPEN -> {
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearOpenDiffValues[0]
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearOpenDiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 -> {
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearMedi0DiffValues[0]
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearMedi0DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 -> {
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearMedi1DiffValues[0]
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearMedi1DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 -> {
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearMedi2DiffValues[0]
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearMedi2DiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED -> {
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearLockedDiffValues[0]
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearLockedDiffValues[1]
+                    }
+                    SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_AUTO -> {
+                        EngineImpl.motorRearRightPwmPin.pwm = TcmImpl.rearAutoDiffValues[0]
+                        EngineImpl.motorRearLeftPwmPin.pwm = TcmImpl.rearAutoDiffValues[1]
+                    }
+                    else -> {
+                        EngineImpl.motorRearRightPwmPin.pwm = 0
+                        EngineImpl.motorRearLeftPwmPin.pwm = 0
+                    }
+                }
+                showMessage(title = "-- ECU -- THROTTLE -N- BRAKE SYSTEM",
+                    body = "User Throttle Value: $userThrottleValue\n" +
+                            "User Steering Value: ${SteeringImpl.value}\n" +
+                            "Front Differential is: ${SetupImpl.frontDifferentialSlipperyLimiter}\n" +
+                            "Inner (Right) Front Wheel Speed: ${EngineImpl.motorFrontRightPwmPin}\n" +
+                            "Outer (Left) Front Wheel Speed: ${EngineImpl.motorFrontLeftPwmPin}\n" +
+                            "Rear Differential is: ${SetupImpl.rearDifferentialSlipperyLimiter}\n" +
+                            "Inner (Right) Rear Wheel Speed: ${EngineImpl.motorRearRightPwmPin}\n" +
+                            "Outer (Left) Rear Wheel Speed: ${EngineImpl.motorRearLeftPwmPin}"
+                )
+            }
+            else -> {
+                EngineImpl.motorFrontRightPwmPin.pwm = userThrottleValue
+                EngineImpl.motorFrontLeftPwmPin.pwm = userThrottleValue
+                EngineImpl.motorRearRightPwmPin.pwm = userThrottleValue
+                EngineImpl.motorRearLeftPwmPin.pwm = userThrottleValue
+                showMessage(title = "-- ECU -- THROTTLE -N- BRAKE SYSTEM",
+                    body = "User Throttle Value: $userThrottleValue\n" +
+                            "User Steering Value: ${SteeringImpl.value}\n" +
+                            "Front Differential is: ${SetupImpl.frontDifferentialSlipperyLimiter}\n" +
+                            "Right Front Wheel Speed: ${EngineImpl.motorFrontRightPwmPin}\n" +
+                            "Left Front Wheel Speed: ${EngineImpl.motorFrontLeftPwmPin}\n" +
+                            "Rear Differential is: ${SetupImpl.rearDifferentialSlipperyLimiter}\n" +
+                            "Right Rear Wheel Speed: ${EngineImpl.motorRearRightPwmPin}\n" +
+                            "Left Rear Wheel Speed: ${EngineImpl.motorRearLeftPwmPin}"
+                )
+            }
+        }
     }
 
     private fun showDifferentialInfo(userThrottleValue: Int) {
