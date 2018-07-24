@@ -29,6 +29,10 @@ object EngineImpl:Engine {
     lateinit var motorFrontRightDirPin: GpioPinDigitalOutput
     lateinit var motorFrontLeftPwmPin: GpioPinPwmOutput
     lateinit var motorFrontLeftDirPin: GpioPinDigitalOutput
+    lateinit var motorRearRightPwmPin: GpioPinPwmOutput
+    lateinit var motorRearRightDirPin: GpioPinDigitalOutput
+    lateinit var motorRearLeftPwmPin: GpioPinPwmOutput
+    lateinit var motorRearLeftDirPin: GpioPinDigitalOutput
     //////
 
     override fun start(): String {
@@ -75,6 +79,26 @@ object EngineImpl:Engine {
         motorFrontLeftPwmPin = gpio.provisionPwmOutputPin(motorFrontLeftPin)
         motorFrontLeftDirPin = gpio.provisionDigitalOutputPin(motorsNledsPinsProvider, MCP23S17Pin.GPIO_A0,
             "Front Left Motor Dir Pin", PinState.LOW)
+
+        // Rear Right Motor
+        val motorRearRightPin = CommandArgumentParser.getPin(
+            RaspiPin::class.java, // pin provider class to obtain pin instance from
+            BcmPins.BCM_12, // default pin if no pin argument found
+            null
+        )
+        motorRearRightPwmPin = gpio.provisionPwmOutputPin(motorRearRightPin)
+        motorRearRightDirPin = gpio.provisionDigitalOutputPin(motorsNledsPinsProvider, MCP23S17Pin.GPIO_A3,
+            "Rear Right Motor Dir Pin", PinState.LOW)
+
+        // Rear Left Motor
+        val motorRearLeftPin = CommandArgumentParser.getPin(
+            RaspiPin::class.java, // pin provider class to obtain pin instance from
+            BcmPins.BCM_18, // default pin if no pin argument found
+            null
+        )
+        motorRearLeftPwmPin = gpio.provisionPwmOutputPin(motorRearLeftPin)
+        motorRearLeftDirPin = gpio.provisionDigitalOutputPin(motorsNledsPinsProvider, MCP23S17Pin.GPIO_A2,
+            "Rear Left Motor Dir Pin", PinState.LOW)
     }
 
     override fun stop(): String {
@@ -87,6 +111,12 @@ object EngineImpl:Engine {
             motorFrontLeftPwmPin.pwm = 0
             motorFrontLeftDirPin.low()
 
+            motorRearRightPwmPin.pwm = 0
+            motorRearRightDirPin.low()
+
+            motorRearLeftPwmPin.pwm = 0
+            motorRearLeftDirPin.low()
+
             gpio.apply {
                 shutdown()
                 unprovisionPin(motorFrontRightPwmPin)
@@ -94,6 +124,12 @@ object EngineImpl:Engine {
 
                 unprovisionPin(motorFrontLeftPwmPin)
                 unprovisionPin(motorFrontLeftDirPin)
+
+                unprovisionPin(motorRearRightPwmPin)
+                unprovisionPin(motorRearRightDirPin)
+
+                unprovisionPin(motorRearLeftPwmPin)
+                unprovisionPin(motorRearLeftDirPin)
             }
         }
         //////

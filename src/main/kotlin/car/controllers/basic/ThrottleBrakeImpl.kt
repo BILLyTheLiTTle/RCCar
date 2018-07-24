@@ -13,6 +13,7 @@ import car.server.SetupSystem
 import car.server.SteeringSystem
 import car.server.ThrottleBrakeSystem
 import car.showMessage
+import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
 
 object ThrottleBrakeImpl:ThrottleBrake {
@@ -46,9 +47,15 @@ object ThrottleBrakeImpl:ThrottleBrake {
 
         // turn on/off the braking lights
         if (ThrottleBrakeImpl.value > value)
-            launch { ElectricsImpl.brakingLightsState = true }
+            launch {
+                ElectricsImpl.brakingLightsState = true
+                // turn them off after a while
+                delay(300)
+                ElectricsImpl.brakingLightsState = false}
         else
             launch { ElectricsImpl.brakingLightsState = false }
+
+
 
         // inform TCM of the ECU for forward and backward movement
         TcmImpl.valueOuterFront = value
@@ -61,6 +68,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
             if (EngineImpl.RUN_ON_PI) {
                 EngineImpl.motorFrontRightDirPin.high()
                 EngineImpl.motorFrontLeftDirPin.high()
+                EngineImpl.motorRearRightDirPin.high()
+                EngineImpl.motorRearLeftDirPin.high()
             }
         }
         else if (direction == ACTION_MOVE_BACKWARD){
@@ -69,6 +78,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
             if (EngineImpl.RUN_ON_PI) {
                 EngineImpl.motorFrontRightDirPin.low()
                 EngineImpl.motorFrontLeftDirPin.low()
+                EngineImpl.motorRearRightDirPin.low()
+                EngineImpl.motorRearLeftDirPin.low()
             }
         }
         action = direction
@@ -79,6 +90,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
             // TODO apply value according to differential
             EngineImpl.motorFrontRightPwmPin.pwm = value
             EngineImpl.motorFrontLeftPwmPin.pwm = value
+            EngineImpl.motorRearRightPwmPin.pwm = value
+            EngineImpl.motorRearLeftPwmPin.pwm = value
         }
         //////
 
@@ -95,6 +108,10 @@ object ThrottleBrakeImpl:ThrottleBrake {
             EngineImpl.motorFrontRightDirPin.low()
             EngineImpl.motorFrontLeftPwmPin.pwm = value
             EngineImpl.motorFrontLeftDirPin.low()
+            EngineImpl.motorRearRightPwmPin.pwm = value
+            EngineImpl.motorRearRightDirPin.low()
+            EngineImpl.motorRearLeftPwmPin.pwm = value
+            EngineImpl.motorRearLeftDirPin.low()
         }
         //////
 
@@ -111,10 +128,14 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //////
         // Pi related
         if (EngineImpl.RUN_ON_PI) {
-            EngineImpl.motorFrontRightPwmPin.pwm = value
+            EngineImpl.motorFrontRightPwmPin.pwm = 0 //value
             EngineImpl.motorFrontRightDirPin.low()
-            EngineImpl.motorFrontLeftPwmPin.pwm = value
+            EngineImpl.motorFrontLeftPwmPin.pwm = 0 //value
             EngineImpl.motorFrontLeftDirPin.low()
+            EngineImpl.motorRearRightPwmPin.pwm = 0 //value
+            EngineImpl.motorRearRightDirPin.low()
+            EngineImpl.motorRearLeftPwmPin.pwm = 0 //value
+            EngineImpl.motorRearLeftDirPin.low()
         }
         //////
 
@@ -132,6 +153,10 @@ object ThrottleBrakeImpl:ThrottleBrake {
             EngineImpl.motorFrontLeftPwmPin.pwm = value
             EngineImpl.motorFrontLeftDirPin.low() */
             // Affects only the rear wheels
+            EngineImpl.motorRearRightPwmPin.pwm = 0 //value
+            EngineImpl.motorRearRightDirPin.low()
+            EngineImpl.motorRearLeftPwmPin.pwm = 0 //value
+            EngineImpl.motorRearLeftDirPin.low()
         }
         //////
 
@@ -145,10 +170,14 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //////
         // Pi related
         if (EngineImpl.RUN_ON_PI) {
-            EngineImpl.motorFrontRightPwmPin.pwm = value
+            EngineImpl.motorFrontRightPwmPin.pwm = 0 //value
             EngineImpl.motorFrontRightDirPin.low()
-            EngineImpl.motorFrontLeftPwmPin.pwm = value
+            EngineImpl.motorFrontLeftPwmPin.pwm = 0 //value
             EngineImpl.motorFrontLeftDirPin.low()
+            EngineImpl.motorRearRightPwmPin.pwm = 0 //value
+            EngineImpl.motorRearRightDirPin.low()
+            EngineImpl.motorRearLeftPwmPin.pwm = 0 //value
+            EngineImpl.motorRearLeftDirPin.low()
         }
         //////
 
