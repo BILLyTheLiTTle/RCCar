@@ -44,23 +44,33 @@ object ThrottleBrakeImpl:ThrottleBrake {
         }
 
     override fun throttle(direction: String, value: Int): String {
-
         // turn on/off the braking lights
         if (ThrottleBrakeImpl.value > value)
             launch {
                 ElectricsImpl.brakingLightsState = true
                 // turn them off after a while
-                delay(300)
-                ElectricsImpl.brakingLightsState = false}
+                delay(500)
+                ElectricsImpl.brakingLightsState = false
+            }
         else
             launch { ElectricsImpl.brakingLightsState = false }
 
 
-
         // inform TCM of the ECU for forward and backward movement
         TcmImpl.valueOuterFront = value
-
-        showDifferentialInfo(value)
+        //////
+        // Pi related
+        if (EngineImpl.RUN_ON_PI) {
+            // TODO apply values according to differential and print them like showDifferentialInfo function
+            EngineImpl.motorFrontRightPwmPin.pwm = value
+            EngineImpl.motorFrontLeftPwmPin.pwm = value
+            EngineImpl.motorRearRightPwmPin.pwm = value
+            EngineImpl.motorRearLeftPwmPin.pwm = value
+        }
+        else {
+            showDifferentialInfo(value)
+        }
+        //////
 
         if(direction == ACTION_MOVE_FORWARD){
             //////
@@ -84,33 +94,25 @@ object ThrottleBrakeImpl:ThrottleBrake {
         }
         action = direction
 
-        //////
-        // Pi related
-        if (EngineImpl.RUN_ON_PI) {
-            // TODO apply value according to differential
-            EngineImpl.motorFrontRightPwmPin.pwm = value
-            EngineImpl.motorFrontLeftPwmPin.pwm = value
-            EngineImpl.motorRearRightPwmPin.pwm = value
-            EngineImpl.motorRearLeftPwmPin.pwm = value
-        }
-        //////
-
 	    ThrottleBrakeImpl.value = value
         return EngineSystem.SUCCESS // or error message from pins
     }
 
+    /* The value param will be used  for identification purposes only and
+        will not be used as pin values
+     */
     override fun brake(value: Int): String {
         launch { ElectricsImpl.brakingLightsState = true }
         //////
         // Pi related
         if (EngineImpl.RUN_ON_PI) {
-            EngineImpl.motorFrontRightPwmPin.pwm = value
+            EngineImpl.motorFrontRightPwmPin.pwm = 0 //value
             EngineImpl.motorFrontRightDirPin.low()
-            EngineImpl.motorFrontLeftPwmPin.pwm = value
+            EngineImpl.motorFrontLeftPwmPin.pwm = 0 //value
             EngineImpl.motorFrontLeftDirPin.low()
-            EngineImpl.motorRearRightPwmPin.pwm = value
+            EngineImpl.motorRearRightPwmPin.pwm = 0 //value
             EngineImpl.motorRearRightDirPin.low()
-            EngineImpl.motorRearLeftPwmPin.pwm = value
+            EngineImpl.motorRearLeftPwmPin.pwm = 0 //value
             EngineImpl.motorRearLeftDirPin.low()
         }
         //////
@@ -120,6 +122,9 @@ object ThrottleBrakeImpl:ThrottleBrake {
         return EngineSystem.SUCCESS // or error message from pins
     }
 
+    /* The value param will be used  for identification purposes only and
+        will not be used as pin values
+     */
     override fun parkingBrake(value: Int): String {
         if (value == 100)
             launch { ElectricsImpl.brakingLightsState = true }
@@ -144,14 +149,13 @@ object ThrottleBrakeImpl:ThrottleBrake {
         return EngineSystem.SUCCESS // or error message from pins
     }
 
+    /* The value param will be used  for identification purposes only and
+        will not be used as pin values
+     */
     override fun handbrake(value: Int): String {
         //////
         // Pi related
         if (EngineImpl.RUN_ON_PI) {
-            /* EngineImpl.motorFrontRightPwmPin.pwm = value
-            EngineImpl.motorFrontRightDirPin.low()
-            EngineImpl.motorFrontLeftPwmPin.pwm = value
-            EngineImpl.motorFrontLeftDirPin.low() */
             // Affects only the rear wheels
             EngineImpl.motorRearRightPwmPin.pwm = 0 //value
             EngineImpl.motorRearRightDirPin.low()
@@ -165,6 +169,9 @@ object ThrottleBrakeImpl:ThrottleBrake {
         return EngineSystem.SUCCESS // or error message from pins
     }
 
+    /* Neutral state is not achievable with H-bridge used
+        So, it works almost like the brake function.
+    */
     override fun setNeutral(): String {
         launch { ElectricsImpl.brakingLightsState = false }
         //////

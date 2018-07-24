@@ -46,7 +46,7 @@ class ThrottleBrakeSystem{
                     ACTION_HANDBRAKE ->
                         ThrottleBrakeImpl.handbrake(value)
                     ACTION_BRAKING_STILL ->
-                        ThrottleBrakeImpl.brake(0)
+                        ThrottleBrakeImpl.brake(value)
                     ACTION_NEUTRAL ->
                         ThrottleBrakeImpl.setNeutral()
                     else ->
