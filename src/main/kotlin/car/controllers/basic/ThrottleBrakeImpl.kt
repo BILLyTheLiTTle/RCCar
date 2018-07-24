@@ -61,7 +61,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
             //////
             // Pi related
             if (EngineImpl.RUN_ON_PI) {
-                EngineImpl.pinInput1.high()
+                EngineImpl.motorFrontRightDirPin.high()
                 EngineImpl.pinInput2.low()
             }
         }
@@ -71,7 +71,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
             //////
             // Pi related
             if (EngineImpl.RUN_ON_PI) {
-                EngineImpl.pinInput1.low()
+                EngineImpl.motorFrontRightDirPin.low()
                 EngineImpl.pinInput2.high()
             }
         }
@@ -82,7 +82,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //////
         // Pi related
         if (EngineImpl.RUN_ON_PI) {
-            EngineImpl.pwmPinEnable.pwm = value
+            EngineImpl.motorFrontRightPwmPin.pwm = value
         }
         //////
 
@@ -97,8 +97,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //////
         // Pi related
         if (EngineImpl.RUN_ON_PI) {
-            EngineImpl.pwmPinEnable.pwm = value
-            EngineImpl.pinInput1.low()
+            EngineImpl.motorFrontRightPwmPin.pwm = value
+            EngineImpl.motorFrontRightDirPin.low()
             EngineImpl.pinInput2.low()
         }
         //////
@@ -118,8 +118,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //////
         // Pi related
         if (EngineImpl.RUN_ON_PI) {
-            EngineImpl.pwmPinEnable.pwm = value
-            EngineImpl.pinInput1.low()
+            EngineImpl.motorFrontRightPwmPin.pwm = value
+            EngineImpl.motorFrontRightDirPin.low()
             EngineImpl.pinInput2.low()
         }
         //////
@@ -135,8 +135,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //////
         // Pi related
         if (EngineImpl.RUN_ON_PI) {
-            EngineImpl.pwmPinEnable.pwm = value
-            EngineImpl.pinInput1.low()
+            EngineImpl.motorFrontRightPwmPin.pwm = value
+            EngineImpl.motorFrontRightDirPin.low()
             EngineImpl.pinInput2.low()
         }
         //////
@@ -153,8 +153,8 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //////
         // Pi related
         if (EngineImpl.RUN_ON_PI) {
-            EngineImpl.pwmPinEnable.pwm = value
-            EngineImpl.pinInput1.low()
+            EngineImpl.motorFrontRightPwmPin.pwm = value
+            EngineImpl.motorFrontRightDirPin.low()
             EngineImpl.pinInput2.low()
         }
         //////
