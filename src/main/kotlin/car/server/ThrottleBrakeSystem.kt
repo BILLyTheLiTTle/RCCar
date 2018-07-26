@@ -1,5 +1,6 @@
 package car.server
 
+import car.controllers.advanced.ElectronicThrottleBrakeImpl
 import car.controllers.basic.SetupImpl
 import car.controllers.basic.ThrottleBrakeImpl
 import car.showMessage
@@ -39,8 +40,14 @@ class ThrottleBrakeSystem{
         //synchronized(this){
             if(id == lastRequestId) {
                 state = when (action) {
-                    ACTION_MOVE_FORWARD, ACTION_MOVE_BACKWARD ->
-                        ThrottleBrakeImpl.throttle(action, (value * SetupImpl.motorSpeedLimiter).roundToInt())
+                    ACTION_MOVE_FORWARD, ACTION_MOVE_BACKWARD -> {
+                        if (SetupImpl.handlingAssistanceState == SetupSystem.ASSISTANCE_NONE) {
+                            ThrottleBrakeImpl.throttle(action, (value * SetupImpl.motorSpeedLimiter).roundToInt())
+                        }
+                        else {
+                            ElectronicThrottleBrakeImpl.throttle(action, (value * SetupImpl.motorSpeedLimiter).roundToInt())
+                        }
+                    }
                     ACTION_PARKING_BRAKE ->
                         ThrottleBrakeImpl.parkingBrake(value)
                     ACTION_HANDBRAKE ->

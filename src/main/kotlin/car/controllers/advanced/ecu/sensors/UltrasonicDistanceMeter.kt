@@ -1,5 +1,6 @@
 package car.controllers.advanced.ecu.sensors
 
 interface UltrasonicDistanceMeter {
-    val value: Double
+    val frontDistance: Double
+    val rearDistance: Double
 }
