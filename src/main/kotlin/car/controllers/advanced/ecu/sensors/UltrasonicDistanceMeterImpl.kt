@@ -6,7 +6,7 @@ import java.util.*
 object UltrasonicDistanceMeterImpl: UltrasonicDistanceMeter {
 
     private val ERROR_SPEED_GENERATOR: Double
-        get() =  (Random().nextInt(10) + 1) / 10 as Double
+        get() =  ((Random().nextInt(10) + 1)).toDouble() / 10
 
     override val frontDistance: Double
         get() = calculateFrontDistance()
