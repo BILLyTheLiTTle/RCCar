@@ -1,6 +1,8 @@
 package car.controllers.advanced.ecu
 
 import car.controllers.advanced.ecu.sensors.UltrasonicDistanceMeterImpl
+import car.controllers.basic.SetupImpl
+import car.server.SetupSystem
 import car.server.ThrottleBrakeSystem
 import car.showMessage
 
@@ -65,6 +67,8 @@ object CdmImpl: Cdm {
         showMessage(title = "-- ECU / CDM Activated: $isActive-- ",
             body = "Entered Throttle Value: $rawThrottleValue\n" +
                     "Calculated Throttle Value: $throttleValue\n" +
+                    "Calculated Thorttle Value Applied: " +
+                    "${SetupImpl.handlingAssistanceState == SetupSystem.ASSISTANCE_FULL}\n" +
                     "Obstacle's distance: $distance meters\n" +
                     "Vehicle's direction: $direction")
 

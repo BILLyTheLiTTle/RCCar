@@ -4,6 +4,11 @@ import car.server.EngineSystem
 
 interface Ecu {
     companion object {
+        const val TRACTION_CONTROL_MODULE = "TCM"
+        const val ANTILOCK_BRAKING_MODULE = "ABM"
+        const val ELECTRONIC_STABILITY_MODULE = "ESM"
+        const val UNDERSTEER_DETECTION_MODULE = "UDM"
+        const val OVERSTEER_DETECTION_MODULE = "ODM"
         const val COLLISION_DETECTION_MODULE = "CDM"
 
         const val ECU_URI = "/ecu"

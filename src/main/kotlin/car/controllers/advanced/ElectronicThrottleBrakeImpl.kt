@@ -13,40 +13,50 @@ object ElectronicThrottleBrakeImpl: ThrottleBrake by ThrottleBrakeImpl{
 
     override fun throttle(direction: String, value: Int): String {
         // check the CDM
+        val throttle = checkCdm(direction, value)
+
+        return when (SetupImpl.handlingAssistanceState) {
+            SetupSystem.ASSISTANCE_FULL -> ThrottleBrakeImpl.throttle(direction, throttle)
+            SetupSystem.ASSISTANCE_WARNING -> ThrottleBrakeImpl.throttle(direction, value)
+            SetupSystem.ASSISTANCE_NONE -> ThrottleBrakeImpl.throttle(direction, value)
+            else -> ThrottleBrakeImpl.throttle(direction, value)
+        }
+    }
+
+    private fun checkCdm(direction: String, value: Int): Int {
+        fun cdmInformClient(hardwareID: String, value: String) {
+            doNonBlockingRequest(
+                "http://" +
+                        "${EngineSystem.nanohttpClientIp}:" +
+                        "${EngineSystem.nanohttpAdvancedSensorClientPort}" +
+                        Ecu.ECU_URI +
+                        "?${Ecu.ECU_PARAM_KEY_ITEM}=$hardwareID" +
+                        "&${Ecu.ECU_PARAM_KEY_VALUE}=$value"
+            )
+        }
+
         val throttle = CdmImpl.calculateThrottleValue(direction, value)
 
         return when (SetupImpl.handlingAssistanceState) {
             SetupSystem.ASSISTANCE_FULL -> {
                 if (CdmImpl.isActive) {
                     cdmInformClient(Ecu.COLLISION_DETECTION_MODULE, Ecu.MODULE_ON_STATE)
-                }
-                else {
+                } else {
                     cdmInformClient(Ecu.COLLISION_DETECTION_MODULE, Ecu.MODULE_IDLE_STATE)
                 }
-                ThrottleBrakeImpl.throttle(direction, throttle)
+                throttle
             }
             SetupSystem.ASSISTANCE_WARNING -> {
                 if (CdmImpl.isActive) {
                     cdmInformClient(Ecu.COLLISION_DETECTION_MODULE, Ecu.MODULE_ON_STATE)
-                }
-                else {
+                } else {
                     cdmInformClient(Ecu.COLLISION_DETECTION_MODULE, Ecu.MODULE_IDLE_STATE)
                 }
-                ThrottleBrakeImpl.throttle(direction, value)
+                value
             }
-            SetupSystem.ASSISTANCE_NONE -> ThrottleBrakeImpl.throttle(direction, value)
-            else -> ThrottleBrakeImpl.throttle(direction, value)
+            SetupSystem.ASSISTANCE_NONE -> value
+            else -> value
         }
-    }
 
-    private fun cdmInformClient(hardwareID: String, value: String){
-        doNonBlockingRequest(
-            "http://" +
-                    "${EngineSystem.nanohttpClientIp}:" +
-                    "${EngineSystem.nanohttpClientPort + 1}" +
-                    Ecu.ECU_URI +
-                    "?${Ecu.ECU_PARAM_KEY_ITEM}=$hardwareID" +
-                    "&${Ecu.ECU_PARAM_KEY_VALUE}=$value"
-        )
     }
 }

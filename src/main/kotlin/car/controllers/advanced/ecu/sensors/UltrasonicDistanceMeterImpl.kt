@@ -5,7 +5,7 @@ import java.util.*
 
 object UltrasonicDistanceMeterImpl: UltrasonicDistanceMeter {
 
-    private val ERROR_SPEED_GENERATOR: Double
+    private val DUMMY_DISTANCE_GENERATOR: Double
         get() =  ((Random().nextInt(10) + 1)).toDouble() / 10
 
     override val frontDistance: Double
@@ -18,12 +18,12 @@ object UltrasonicDistanceMeterImpl: UltrasonicDistanceMeter {
     private fun calculateFrontDistance(): Double {
         return if(EngineImpl.RUN_ON_PI) {
             // TODO measure distance according to sensor
-            ERROR_SPEED_GENERATOR
+            DUMMY_DISTANCE_GENERATOR
         }
         else {
             // return a dummy distance
             Thread.sleep(500)
-            ERROR_SPEED_GENERATOR
+            DUMMY_DISTANCE_GENERATOR
         }
     }
 
@@ -31,12 +31,12 @@ object UltrasonicDistanceMeterImpl: UltrasonicDistanceMeter {
     private fun calculateRearDistance(): Double {
         return if(EngineImpl.RUN_ON_PI) {
             // TODO measure distance according to sensor
-            ERROR_SPEED_GENERATOR
+            DUMMY_DISTANCE_GENERATOR
         }
         else {
             // return a dummy distance
             Thread.sleep(500)
-            ERROR_SPEED_GENERATOR
+            DUMMY_DISTANCE_GENERATOR
         }
     }
 
