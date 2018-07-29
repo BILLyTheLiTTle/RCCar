@@ -48,7 +48,7 @@ class EngineSystem {
         const val SUCCESS = "OK"
         var nanohttpClientIp = EMPTY_STRING
             private set
-        var nanohttpBasicSensorClientPort = EMPTY_INT 
+        var nanohttpBasicSensorClientPort = EMPTY_INT
             private set
         var nanohttpAdvancedSensorClientPort: Int = EMPTY_INT
             private set
