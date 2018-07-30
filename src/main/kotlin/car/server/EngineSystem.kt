@@ -19,7 +19,7 @@ class EngineSystem {
         SteeringSystem.lastRequestId = -1
 
         EngineSystem.nanohttpClientIp = if (nanohttpClientIp == "0.0.0.0") "10.0.2.15" else nanohttpClientIp
-        EngineSystem.nanohttpBasicSensorClientPort = nanohttpClientPort
+        EngineSystem.nanohttpClientPort = nanohttpClientPort
 
         showMessage(title = "ENGINE SYSTEM",
             body = "Engine started\n" +
@@ -37,7 +37,7 @@ class EngineSystem {
         showMessage(title = "ENGINE SYSTEM",
             body = "Engine stopped\n" +
                     "Controller IP: $nanohttpClientIp\n" +
-                    "Controller Port: $nanohttpBasicSensorClientPort")
+                    "Controller Port: $nanohttpClientPort")
         return EngineImpl.stop()
     }
 
@@ -48,10 +48,7 @@ class EngineSystem {
         const val SUCCESS = "OK"
         var nanohttpClientIp = EMPTY_STRING
             private set
-        var nanohttpBasicSensorClientPort = EMPTY_INT
+        var nanohttpClientPort = EMPTY_INT
             private set
-        var nanohttpAdvancedSensorClientPort: Int = EMPTY_INT
-            private set
-            get() = nanohttpBasicSensorClientPort +1
     }
 }

@@ -89,7 +89,7 @@ class TemperaturesCronJob {
         doNonBlockingRequest(
             "http://" +
                     "${EngineSystem.nanohttpClientIp}:" +
-                    "${EngineSystem.nanohttpBasicSensorClientPort}" +
+                    "${EngineSystem.nanohttpClientPort}" +
                     TEMP_URI +
                     "?$PARAM_KEY_ITEM=$hardwareID" +
                     "&$PARAM_KEY_WARNING=$warning" +

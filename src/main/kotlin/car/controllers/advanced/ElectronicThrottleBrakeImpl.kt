@@ -28,7 +28,7 @@ object ElectronicThrottleBrakeImpl: ThrottleBrake by ThrottleBrakeImpl{
             doNonBlockingRequest(
                 "http://" +
                         "${EngineSystem.nanohttpClientIp}:" +
-                        "${EngineSystem.nanohttpAdvancedSensorClientPort}" +
+                        "${EngineSystem.nanohttpClientPort}" +
                         Ecu.ECU_URI +
                         "?${Ecu.ECU_PARAM_KEY_ITEM}=$hardwareID" +
                         "&${Ecu.ECU_PARAM_KEY_VALUE}=$value"

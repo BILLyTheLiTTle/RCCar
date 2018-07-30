@@ -34,7 +34,7 @@ object CdmImpl: Cdm {
                     Cdm.LOW_SPEED_LIMITER_THRESHOLD_SPEED
                 }
                 else {
-                    isActive = true
+                    isActive = false
                     rawThrottleValue
                 }
             }

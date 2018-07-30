@@ -36,7 +36,7 @@ class SpeedometerCronJob {
         doNonBlockingRequest(
             "http://" +
                     "${EngineSystem.nanohttpClientIp}:" +
-                    "${EngineSystem.nanohttpBasicSensorClientPort}" +
+                    "${EngineSystem.nanohttpClientPort}" +
                     SPEED_URI +
                     "?$PARAM_KEY_VALUE=$value"
         )
