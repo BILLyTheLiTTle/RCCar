@@ -7,9 +7,12 @@ import car.controllers.basic.ThrottleBrake
 import car.controllers.basic.ThrottleBrakeImpl
 import car.server.EngineSystem
 import car.server.SetupSystem
+import car.server.ThrottleBrakeSystem
 import car.server.doNonBlockingRequest
 
-object ElectronicThrottleBrakeImpl: ThrottleBrake by ThrottleBrakeImpl{
+object ElectronicThrottleBrakeImpl: ThrottleBrake by ThrottleBrakeImpl {
+
+    private var reportedCdmState = Ecu.MODULE_IDLE_STATE
 
     override fun throttle(direction: String, value: Int): String {
         // check the CDM
@@ -17,10 +20,15 @@ object ElectronicThrottleBrakeImpl: ThrottleBrake by ThrottleBrakeImpl{
 
         return when (SetupImpl.handlingAssistanceState) {
             SetupSystem.ASSISTANCE_FULL -> ThrottleBrakeImpl.throttle(direction, throttle)
-            SetupSystem.ASSISTANCE_WARNING -> ThrottleBrakeImpl.throttle(direction, value)
+            SetupSystem.ASSISTANCE_WARNING,
             SetupSystem.ASSISTANCE_NONE -> ThrottleBrakeImpl.throttle(direction, value)
             else -> ThrottleBrakeImpl.throttle(direction, value)
         }
+    }
+
+    override fun setNeutral(): String {
+        checkCdm(ThrottleBrakeSystem.ACTION_NEUTRAL, 0)
+        return ThrottleBrakeImpl.setNeutral()
     }
 
     private fun checkCdm(direction: String, value: Int): Int {
@@ -37,21 +45,27 @@ object ElectronicThrottleBrakeImpl: ThrottleBrake by ThrottleBrakeImpl{
 
         val throttle = CdmImpl.calculateThrottleValue(direction, value)
 
+        val currentCdmState = if (throttle != value) {
+                Ecu.MODULE_ON_STATE
+            } else {
+                Ecu.MODULE_IDLE_STATE
+            }
+
+        when (SetupImpl.handlingAssistanceState) {
+            SetupSystem.ASSISTANCE_FULL,
+            SetupSystem.ASSISTANCE_WARNING -> {
+                if (reportedCdmState != currentCdmState) {
+                    reportedCdmState = currentCdmState
+                    cdmInformClient(Ecu.COLLISION_DETECTION_MODULE, reportedCdmState)
+                }
+            }
+        }
+
         return when (SetupImpl.handlingAssistanceState) {
             SetupSystem.ASSISTANCE_FULL -> {
-                if (CdmImpl.isActive) {
-                    cdmInformClient(Ecu.COLLISION_DETECTION_MODULE, Ecu.MODULE_ON_STATE)
-                } else {
-                    cdmInformClient(Ecu.COLLISION_DETECTION_MODULE, Ecu.MODULE_IDLE_STATE)
-                }
                 throttle
             }
             SetupSystem.ASSISTANCE_WARNING -> {
-                if (CdmImpl.isActive) {
-                    cdmInformClient(Ecu.COLLISION_DETECTION_MODULE, Ecu.MODULE_ON_STATE)
-                } else {
-                    cdmInformClient(Ecu.COLLISION_DETECTION_MODULE, Ecu.MODULE_IDLE_STATE)
-                }
                 value
             }
             SetupSystem.ASSISTANCE_NONE -> value

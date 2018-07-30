@@ -9,7 +9,6 @@ import car.showMessage
  */
 
 interface Cdm {
-    var isActive: Boolean
 
     fun calculateThrottleValue(direction: String, rawThrottleValue: Int): Int
 
