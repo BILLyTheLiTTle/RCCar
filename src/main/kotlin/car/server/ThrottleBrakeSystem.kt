@@ -57,10 +57,11 @@ class ThrottleBrakeSystem{
                     ACTION_NEUTRAL -> {
                         if (SetupImpl.handlingAssistanceState == SetupSystem.ASSISTANCE_NONE) {
                         ThrottleBrakeImpl.setNeutral()
+                        }
+                        else {
+                            ElectronicThrottleBrakeImpl.setNeutral()
+                        }
                     }
-                    else {
-                        ElectronicThrottleBrakeImpl.setNeutral()
-                    }}
                     else ->
                         "${this::class.simpleName} ERROR: Entered in else condition"
                 }

@@ -22,7 +22,6 @@ object UltrasonicDistanceMeterImpl: UltrasonicDistanceMeter {
         }
         else {
             // return a dummy distance
-            Thread.sleep(500)
             DUMMY_DISTANCE_GENERATOR
         }
     }
@@ -35,7 +34,6 @@ object UltrasonicDistanceMeterImpl: UltrasonicDistanceMeter {
         }
         else {
             // return a dummy distance
-            Thread.sleep(500)
             DUMMY_DISTANCE_GENERATOR
         }
     }
