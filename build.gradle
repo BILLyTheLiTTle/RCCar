@@ -66,4 +66,5 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
 	testCompile 'io.kotlintest:kotlintest-runner-junit5:3.1.8'
+    testCompile 'io.kotlintest:kotlintest-extensions-spring:3.0.2'
 }
