@@ -1,5 +1,10 @@
 package car.server
 
+/* For more info about KotlinTest see
+    here (https://github.com/kotlintest/kotlintest/blob/master/doc/reference.md)
+    and here (https://github.com/kotlintest/kotlintest/blob/master/kotlintest-samples/kotlintest-samples-spring/src/test/kotlin/io/kotlintest/spring/MyBean.kt)
+ */
+
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldNotBe
 import io.kotlintest.specs.WordSpec
