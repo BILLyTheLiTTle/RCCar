@@ -2,6 +2,7 @@ package car.server
 
 import car.controllers.basic.EngineImpl
 import org.assertj.core.api.Assertions.*
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,6 +18,21 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 internal class EngineSystemTest(@Autowired val restTemplate: TestRestTemplate) {
 
     @Test
+    fun `rc controller server should be empty`() {
+        val entity = restTemplate.getForEntity<String>("/start_engine")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(EngineSystem.nanohttpClientIp).isEqualTo(EngineSystem.EMPTY_STRING)
+        assertThat(EngineSystem.nanohttpClientPort).isEqualTo(EngineSystem.EMPTY_INT)
+    }
+    @Test
+    fun `rc controller server should have a value`() {
+        val entity = restTemplate.getForEntity<String>("/start_engine?nanohttp_client_ip=ip&nanohttp_client_port=1")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(EngineSystem.nanohttpClientIp).isEqualTo("ip")
+        assertThat(EngineSystem.nanohttpClientPort).isEqualTo(1)
+    }
+
+    @Test
     fun `start engine without parameters`() {
         val entity = restTemplate.getForEntity<String>("/start_engine")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
@@ -24,7 +40,15 @@ internal class EngineSystemTest(@Autowired val restTemplate: TestRestTemplate) {
     }
 
     @Test
+    fun `get the engine state when the engine is actually on`() {
+        restTemplate.getForEntity<String>("/start_engine")
+        val entity = restTemplate.getForEntity<String>("/get_engine_state")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(EngineImpl.engineState).isTrue()
+    }
+    @Test
     fun `get the engine state when the engine is actually off`() {
+        restTemplate.getForEntity<String>("/stop_engine")
         val entity = restTemplate.getForEntity<String>("/get_engine_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(EngineImpl.engineState).isFalse()

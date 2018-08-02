@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e38fa66-dbb5-4181-9628-5457650f884f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules/rc_car_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/rc_car_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/car/server/EngineSystemTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/car/server/EngineSystemTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/car/server/SteeringSystemTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/car/server/SteeringSystemTest.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -14,6 +17,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/rc_car$car_server_in_rc_car_test.ic" NAME="car.server in rc_car_test Coverage Results" MODIFIED="1533195736032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>car.server.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/rc_car$All_in_rc_car_test.ic" NAME="All in rc_car_test Coverage Results" MODIFIED="1533194164176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/rc_car$SteeringSystemTest_steering_direction_should_be_unknown.ic" NAME="SteeringSystemTest.steering direction should be unknown Coverage Results" MODIFIED="1533193813153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>car.server.*</FILTER>
@@ -21,12 +27,12 @@
     <SUITE FILE_PATH="coverage/rc_car$SteeringSystemTest.ic" NAME="SteeringSystemTest Coverage Results" MODIFIED="1533194031624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>car.server.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/rc_car$EngineSystemTest.ic" NAME="EngineSystemTest Coverage Results" MODIFIED="1533190428768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/rc_car$EngineSystemTest.ic" NAME="EngineSystemTest Coverage Results" MODIFIED="1533194985210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>car.server.*</FILTER>
     </SUITE>
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="324" />
+    <option name="myElementSize" value="176" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -66,26 +72,26 @@
         <counts>
           <entry key="gradle" value="1" />
           <entry key="java" value="2" />
-          <entry key="kt" value="8" />
+          <entry key="kt" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="1" />
           <entry key="JAVA" value="2" />
-          <entry key="Kotlin" value="8" />
+          <entry key="Kotlin" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="11" />
-          <entry key="kt" value="774" />
+          <entry key="kt" value="956" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="11" />
-          <entry key="Kotlin" value="774" />
+          <entry key="Kotlin" value="956" />
         </counts>
       </usages-collector>
     </session>
@@ -124,7 +130,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/ThrottleBrakeSystem.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="333">
-              <caret line="48" column="25" lean-forward="true" selection-start-line="43" selection-start-column="24" selection-end-line="48" selection-end-column="25" />
+              <caret line="48" column="25" selection-start-line="43" selection-start-column="24" selection-end-line="48" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -132,8 +138,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/SteeringSystemTest.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+            <state relative-caret-position="542">
+              <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
               <folding>
                 <element signature="e#20#547#0" expanded="true" />
               </folding>
@@ -142,19 +148,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/EngineSystem.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/SteeringSystem.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+            <state relative-caret-position="167">
+              <caret line="52" column="60" selection-start-line="52" selection-start-column="60" selection-end-line="52" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -695,10 +692,10 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/RcCarApplicationTests.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/server/EngineSystemTest.java" />
-        <option value="$PROJECT_DIR$/src/test/kotlin/car/server/EngineSystemTest.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/server/SteeringSystemTest.java" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/server/SteeringSystem.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/server/SteeringSystemTest.kt" />
+        <option value="$PROJECT_DIR$/src/test/kotlin/car/server/EngineSystemTest.kt" />
       </list>
     </option>
   </component>
@@ -834,7 +831,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533194639513" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533195735177" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -869,7 +866,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.EngineSystemTest">
+  <component name="RunManager" selected="JUnit.car.server in rc_car_test">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -940,7 +937,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SteeringSystemTest.steering direction should be unknown" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="car.server in rc_car_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rc_car_test" />
       <extension name="coverage">
         <pattern>
@@ -949,16 +953,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="car.server" />
-      <option name="MAIN_CLASS_NAME" value="car.server.SteeringSystemTest" />
-      <option name="METHOD_NAME" value="steering direction should be unknown" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="package" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
@@ -993,18 +988,18 @@
     <list>
       <item itemvalue="Spring Boot.RcCarApplication" />
       <item itemvalue="JUnit.RcCarApplicationTests" />
-      <item itemvalue="JUnit.EngineSystemTest" />
       <item itemvalue="JUnit.SteeringSystemTest" />
-      <item itemvalue="JUnit.SteeringSystemTest.steering direction should be unknown" />
       <item itemvalue="JUnit.All in rc_car_test" />
+      <item itemvalue="JUnit.car.server in rc_car_test" />
+      <item itemvalue="JUnit.EngineSystemTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.car.server in rc_car_test" />
+        <item itemvalue="JUnit.EngineSystemTest" />
         <item itemvalue="JUnit.RcCarApplicationTests" />
         <item itemvalue="JUnit.All in rc_car_test" />
         <item itemvalue="JUnit.SteeringSystemTest" />
-        <item itemvalue="JUnit.SteeringSystemTest.steering direction should be unknown" />
-        <item itemvalue="JUnit.EngineSystemTest" />
       </list>
     </recent_temporary>
   </component>
@@ -1069,44 +1064,44 @@
       <workItem from="1533123389892" duration="542000" />
       <workItem from="1533129414103" duration="676000" />
       <workItem from="1533131606331" duration="881000" />
-      <workItem from="1533188962826" duration="5167000" />
+      <workItem from="1533188962826" duration="6255000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SteeringSystemTest_steering_direction_should_be_unknown - 2018.08.02 at 10h 07m 59s.xml">
-      <configuration name="SteeringSystemTest.steering direction should be unknown" configurationId="JUnit" />
+    <history-entry file="EngineSystemTest - 2018.08.02 at 10h 29m 33s.xml">
+      <configuration name="EngineSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringSystemTest_steering_direction_should_be_unknown - 2018.08.02 at 10h 09m 26s.xml">
-      <configuration name="SteeringSystemTest.steering direction should be unknown" configurationId="JUnit" />
+    <history-entry file="EngineSystemTest - 2018.08.02 at 10h 29m 53s.xml">
+      <configuration name="EngineSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringSystemTest_steering_direction_should_be_unknown - 2018.08.02 at 10h 09m 43s.xml">
-      <configuration name="SteeringSystemTest.steering direction should be unknown" configurationId="JUnit" />
+    <history-entry file="EngineSystemTest - 2018.08.02 at 10h 31m 51s.xml">
+      <configuration name="EngineSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringSystemTest - 2018.08.02 at 10h 09m 53s.xml">
-      <configuration name="SteeringSystemTest" configurationId="JUnit" />
+    <history-entry file="EngineSystemTest - 2018.08.02 at 10h 33m 19s.xml">
+      <configuration name="EngineSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringSystemTest_steering_direction_should_be_unknown - 2018.08.02 at 10h 10m 20s.xml">
-      <configuration name="SteeringSystemTest.steering direction should be unknown" configurationId="JUnit" />
+    <history-entry file="EngineSystemTest - 2018.08.02 at 10h 35m 52s.xml">
+      <configuration name="EngineSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringSystemTest - 2018.08.02 at 10h 13m 11s.xml">
-      <configuration name="SteeringSystemTest" configurationId="JUnit" />
+    <history-entry file="EngineSystemTest - 2018.08.02 at 10h 38m 01s.xml">
+      <configuration name="EngineSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringSystemTest - 2018.08.02 at 10h 13m 42s.xml">
-      <configuration name="SteeringSystemTest" configurationId="JUnit" />
+    <history-entry file="EngineSystemTest - 2018.08.02 at 10h 39m 10s.xml">
+      <configuration name="EngineSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringSystemTest - 2018.08.02 at 10h 14m 00s.xml">
-      <configuration name="SteeringSystemTest" configurationId="JUnit" />
+    <history-entry file="EngineSystemTest - 2018.08.02 at 10h 39m 50s.xml">
+      <configuration name="EngineSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_rc_car_test - 2018.08.02 at 10h 16m 18s.xml">
-      <configuration name="All in rc_car_test" configurationId="JUnit" />
+    <history-entry file="EngineSystemTest - 2018.08.02 at 10h 41m 36s.xml">
+      <configuration name="EngineSystemTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RcCarApplicationTests - 2018.08.02 at 10h 17m 32s.xml">
-      <configuration name="RcCarApplicationTests" configurationId="JUnit" />
+    <history-entry file="car_server_in_rc_car_test - 2018.08.02 at 10h 42m 06s.xml">
+      <configuration name="car.server in rc_car_test" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="235334000" />
+    <option name="totallyTimeSpent" value="236422000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1131,8 +1126,8 @@
       <window_info id="Designer" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32900432" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3206934" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3206934" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50053304" side_tool="true" weight="0.3217768" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32900432" />
@@ -1436,27 +1431,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/EngineSystemTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" column="52" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="29" selection-end-column="52" />
-          <folding>
-            <element signature="e#20#545#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/ThrottleBrakeSystem.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
-          <caret line="48" column="25" lean-forward="true" selection-start-line="43" selection-start-column="24" selection-end-line="48" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/SteeringSystem.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+          <caret line="48" column="25" selection-start-line="43" selection-start-column="24" selection-end-line="48" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1470,20 +1448,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/SteeringSystemTest.kt">
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/EngineSystemTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        <state relative-caret-position="459">
+          <caret line="46" column="51" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
           <folding>
-            <element signature="e#20#547#0" expanded="true" />
+            <element signature="e#20#545#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/EngineSystem.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
+        <state relative-caret-position="-2">
+          <caret line="13" column="51" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/SteeringSystemTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+          <folding>
+            <element signature="e#20#547#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/SteeringSystem.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="52" column="60" selection-start-line="52" selection-start-column="60" selection-end-line="52" selection-end-column="60" />
         </state>
       </provider>
     </entry>
