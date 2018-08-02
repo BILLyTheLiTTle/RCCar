@@ -40,6 +40,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
             isBrakingStill -> ACTION_BRAKING_STILL
             isMovingForward -> ACTION_MOVE_FORWARD
             isMovingBackward -> ACTION_MOVE_BACKWARD
+            parkingBrakeState -> ACTION_PARKING_BRAKE
             else -> EMPTY_STRING
         }
 

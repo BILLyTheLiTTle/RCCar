@@ -19,7 +19,7 @@ class SteeringSystem{
         @RequestParam(value = "value", defaultValue =  "0") value: Int
     ): String {
 
-        lastRequestId = if(id > lastRequestId) id else lastRequestId
+        lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
         showMessage(title = "STEERING SYSTEM",
             body = "Direction: $direction\n" +
@@ -28,7 +28,7 @@ class SteeringSystem{
                     "{ ${this::class.simpleName} } ID last request: $lastRequestId")
 
         //TODO add function for the hardware
-        var state = "Unknown"
+        var state = EngineSystem.UNKNOWN_STATE
         // I don't think I need synchronization
         //synchronized(this){
             if(id == lastRequestId) {
@@ -49,11 +49,13 @@ class SteeringSystem{
                 /* This function is called because the throttle values, due to differential functionality,
                     must be updated also when the throttle is steady but the steering is changing
                  */
-                if (SetupImpl.handlingAssistanceState == SetupSystem.ASSISTANCE_NONE) {
-                    ThrottleBrakeImpl.throttle(ThrottleBrakeImpl.motionState, ThrottleBrakeImpl.value)
-                }
-                else {
-                    ElectronicThrottleBrakeImpl.throttle(ThrottleBrakeImpl.motionState, ThrottleBrakeImpl.value)
+                when (SetupImpl.handlingAssistanceState) {
+                    SetupSystem.ASSISTANCE_NONE ->
+                        ThrottleBrakeImpl.throttle(ThrottleBrakeImpl.motionState, ThrottleBrakeImpl.value)
+                    SetupSystem.ASSISTANCE_NULL ->
+                        ThrottleBrakeImpl.parkingBrake(100)
+                    else ->
+                        ElectronicThrottleBrakeImpl.throttle(ThrottleBrakeImpl.motionState, ThrottleBrakeImpl.value)
                 }
             }
         //}

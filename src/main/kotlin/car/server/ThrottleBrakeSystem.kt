@@ -41,11 +41,15 @@ class ThrottleBrakeSystem{
             if(id == lastRequestId) {
                 state = when (action) {
                     ACTION_MOVE_FORWARD, ACTION_MOVE_BACKWARD -> {
-                        if (SetupImpl.handlingAssistanceState == SetupSystem.ASSISTANCE_NONE) {
-                            ThrottleBrakeImpl.throttle(action, (value * SetupImpl.motorSpeedLimiter).roundToInt())
-                        }
-                        else {
-                            ElectronicThrottleBrakeImpl.throttle(action, (value * SetupImpl.motorSpeedLimiter).roundToInt())
+                        when (SetupImpl.handlingAssistanceState) {
+                            SetupSystem.ASSISTANCE_NONE ->
+                                ThrottleBrakeImpl.throttle(action,
+                                    (value * SetupImpl.motorSpeedLimiter).roundToInt())
+                            SetupSystem.ASSISTANCE_NULL ->
+                                ThrottleBrakeImpl.parkingBrake(100)
+                            else ->
+                                ElectronicThrottleBrakeImpl.throttle(action,
+                                    (value * SetupImpl.motorSpeedLimiter).roundToInt())
                         }
                     }
                     ACTION_PARKING_BRAKE ->
@@ -55,11 +59,11 @@ class ThrottleBrakeSystem{
                     ACTION_BRAKING_STILL ->
                         ThrottleBrakeImpl.brake(value)
                     ACTION_NEUTRAL -> {
-                        if (SetupImpl.handlingAssistanceState == SetupSystem.ASSISTANCE_NONE) {
-                        ThrottleBrakeImpl.setNeutral()
-                        }
-                        else {
-                            ElectronicThrottleBrakeImpl.setNeutral()
+                        when (SetupImpl.handlingAssistanceState) {
+                            SetupSystem.ASSISTANCE_NONE, SetupSystem.ASSISTANCE_NULL ->
+                                ThrottleBrakeImpl.setNeutral()
+                            else ->
+                                ElectronicThrottleBrakeImpl.setNeutral()
                         }
                     }
                     else ->

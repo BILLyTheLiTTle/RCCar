@@ -40,14 +40,14 @@ internal class EngineSystemTest(@Autowired val restTemplate: TestRestTemplate) {
     }
 
     @Test
-    fun `get the engine state when the engine is actually on`() {
+    fun `engine state should be on`() {
         restTemplate.getForEntity<String>("/start_engine")
         val entity = restTemplate.getForEntity<String>("/get_engine_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(EngineImpl.engineState).isTrue()
+        assertThat(entity.body?.toBoolean()).isEqualTo(EngineImpl.engineState).isTrue()
     }
     @Test
-    fun `get the engine state when the engine is actually off`() {
+    fun `engine state should be off`() {
         restTemplate.getForEntity<String>("/stop_engine")
         val entity = restTemplate.getForEntity<String>("/get_engine_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
