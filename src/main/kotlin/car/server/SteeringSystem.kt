@@ -1,5 +1,7 @@
 package car.server
 
+import car.controllers.advanced.ElectronicThrottleBrakeImpl
+import car.controllers.basic.SetupImpl
 import car.controllers.basic.SteeringImpl
 import car.controllers.basic.ThrottleBrakeImpl
 import car.showMessage
@@ -47,7 +49,12 @@ class SteeringSystem{
                 /* This function is called because the throttle values, due to differential functionality,
                     must be updated also when the throttle is steady but the steering is changing
                  */
-                ThrottleBrakeImpl.throttle(ThrottleBrakeImpl.motionState, ThrottleBrakeImpl.value)
+                if (SetupImpl.handlingAssistanceState == SetupSystem.ASSISTANCE_NONE) {
+                    ThrottleBrakeImpl.throttle(ThrottleBrakeImpl.motionState, ThrottleBrakeImpl.value)
+                }
+                else {
+                    ElectronicThrottleBrakeImpl.throttle(ThrottleBrakeImpl.motionState, ThrottleBrakeImpl.value)
+                }
             }
         //}
 
