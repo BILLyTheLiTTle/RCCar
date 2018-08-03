@@ -6,7 +6,6 @@ import car.server.SteeringSystem
 import car.server.SteeringSystem.Companion.ACTION_STRAIGHT
 import car.server.SteeringSystem.Companion.ACTION_TURN_LEFT
 import car.server.SteeringSystem.Companion.ACTION_TURN_RIGHT
-import car.server.doNonBlockingRequest
 
 object SteeringImpl:Steering {
     private val innerFrontDegreesTheta = doubleArrayOf(22.0, 45.0, 52.0, 60.0, 66.0)

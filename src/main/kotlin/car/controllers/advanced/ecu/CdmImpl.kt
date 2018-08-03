@@ -2,10 +2,8 @@ package car.controllers.advanced.ecu
 
 import car.controllers.advanced.ecu.sensors.UltrasonicDistanceMeterImpl
 import car.controllers.basic.SetupImpl
-import car.server.EngineSystem
 import car.server.SetupSystem
 import car.server.ThrottleBrakeSystem
-import car.server.doNonBlockingRequest
 import car.showMessage
 
 
