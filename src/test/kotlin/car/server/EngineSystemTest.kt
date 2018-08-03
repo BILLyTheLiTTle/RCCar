@@ -2,7 +2,6 @@ package car.server
 
 import car.controllers.basic.EngineImpl
 import org.assertj.core.api.Assertions.*
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired

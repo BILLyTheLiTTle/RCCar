@@ -1,6 +1,5 @@
 package car.server
 
-import car.controllers.basic.SteeringImpl
 import car.controllers.basic.ThrottleBrakeImpl
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
