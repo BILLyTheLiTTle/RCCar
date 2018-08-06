@@ -1,10 +1,11 @@
 package car.server.cron
 
-import car.controllers.basic.SetupImpl
 import org.assertj.core.api.Assertions.*
+import org.awaitility.Awaitility
 import org.awaitility.Duration
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.Mockito.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
@@ -12,8 +13,6 @@ import org.springframework.boot.test.web.client.getForEntity
 import org.springframework.http.HttpStatus
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.boot.test.mock.mockito.SpyBean
-import org.awaitility.Duration.FIVE_SECONDS
-import org.awaitility.kotlin.await
 
 
 @ExtendWith(SpringExtension::class)
@@ -25,10 +24,15 @@ internal class ConnectionCronJobTest {
 
     // checkClientStatus
     @Test
-    fun `has checkClientStatus run in schedule`() {
-        await.atMost(Duration.FIVE_SECONDS)
+    fun `function called from scheduler`() {
+        // Is this really working?
+        Awaitility.await().atMost(Duration.FIVE_HUNDRED_MILLISECONDS)
             .untilAsserted {
-                verify(myTask, times(1)).work()
+                verify(myTask, atLeast(1))
             }
+    }
+    @Test
+    fun `engine state on with wrong ip format`() {
+        // TODO it some time
     }
 }
