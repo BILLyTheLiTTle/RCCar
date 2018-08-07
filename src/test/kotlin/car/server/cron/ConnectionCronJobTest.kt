@@ -45,4 +45,24 @@ internal class ConnectionCronJobTest {
         val ret = task?.checkClientStatus()
         assertThat(ret).isEqualTo(ConnectionCronJob.IP_ERROR).isEqualTo(0)
     }
+    @Test
+    fun `engine state on with client still online`() {
+
+    }
+    @Test
+    fun `engine state on with client came online`() {
+
+    }
+    @Test
+    fun `engine state on with client not found`() {
+
+    }
+    @Test
+    fun `engine state on with client still not found`() {
+
+    }
+    @Test
+    fun `engine state off`() {
+
+    }
 }
