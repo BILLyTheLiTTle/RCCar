@@ -1,7 +1,7 @@
 package car.controllers.basic
 
 import car.server.EngineSystem
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -17,10 +17,14 @@ internal class EngineImplTest {
     @Test
     fun `start the engine`() {
         val ret = EngineImpl.start()
-        Assertions.assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
     }
     @Test
     fun `start the engine on PC`() {
+        EngineImpl.start()
+        assertThrows(UninitializedPropertyAccessException::class.java) {
+            EngineImpl.gpio
+        }
     }
 
     @Test
