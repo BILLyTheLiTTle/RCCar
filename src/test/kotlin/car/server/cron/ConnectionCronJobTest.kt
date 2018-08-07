@@ -3,20 +3,13 @@ package car.server.cron
 import car.controllers.basic.EngineImpl
 import car.server.EngineSystem
 import org.assertj.core.api.Assertions.*
-import org.awaitility.Awaitility
-import org.awaitility.Duration
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito.*
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.boot.test.web.client.getForEntity
-import org.springframework.http.HttpStatus
-import org.springframework.test.context.junit.jupiter.SpringExtension
+import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.mock.mockito.SpyBean
-import kotlin.reflect.full.declaredMembers
-import kotlin.reflect.jvm.isAccessible
+import org.springframework.test.context.junit.jupiter.SpringExtension
 import kotlin.reflect.jvm.javaField
 
 
@@ -30,11 +23,7 @@ internal class ConnectionCronJobTest {
     // checkClientStatus
     @Test
     fun `function called from scheduler`() {
-        // Is this really working?
-        Awaitility.await().atMost(Duration.FIVE_HUNDRED_MILLISECONDS)
-            .untilAsserted {
-                verify(task, atLeast(1))
-            }
+        // TODO how to implement this kind of test?
     }
     @Test
     fun `engine state on with wrong ip format`() {
@@ -71,7 +60,7 @@ internal class ConnectionCronJobTest {
         var i = 0
         var ret: Int? = -100
         while (i <= rstCounter!!.getInt(task!!)) {
-            ret = task?.checkClientStatus()
+            ret = task.checkClientStatus()
             i++
         }
         assertThat(ret).isEqualTo(2) // CLIENT_STILL_ONLINE
@@ -141,7 +130,7 @@ internal class ConnectionCronJobTest {
         var i = 0
         var ret: Int? = -100
         while (i <= rstCounter!!.getInt(task!!)) {
-            ret = task?.checkClientStatus()
+            ret = task.checkClientStatus()
             i++
         }
         assertThat(ret).isEqualTo(5) // CLIENT_STILL_NOT_FOUND

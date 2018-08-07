@@ -27,7 +27,10 @@ internal class EngineImplTest {
         }
     }
 
+    // stop
     @Test
-    fun stop() {
+    fun `stop the engine`() {
+        val ret = EngineImpl.start()
+        assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
     }
 }
