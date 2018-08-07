@@ -27,7 +27,7 @@ class ConnectionCronJob {
     private val maxResetCounter = 50
 
     @Scheduled(initialDelay = 3000, fixedDelay = 400)  // 2 minutes
-    fun checkClientStatus() {
+    fun checkClientStatus(): Int {
 
         wasClientOnline = isClientOnline
 
@@ -46,12 +46,20 @@ class ConnectionCronJob {
                         counter = 0
                         showMessage(title = "CONNECTION CRON JOB",
                             body = "Client is still online\nIP: ${EngineSystem.nanohttpClientIp}")
-                    } else
+                    }
+                    else {
                         counter++
-                } else
-                    showMessage(msgType = TYPE_WARNING,
+                    }
+                    return CLIENT_STILL_ONLINE
+                }
+                else {
+                    showMessage(
+                        msgType = TYPE_WARNING,
                         title = "CONNECTION CRON JOB",
-                        body = "Client came online\nIP: ${EngineSystem.nanohttpClientIp}")
+                        body = "Client came online\nIP: ${EngineSystem.nanohttpClientIp}"
+                    )
+                    return CLIENT_CAME_ONLINE
+                }
             } else {
                 if (wasClientOnline) {
                     ThrottleBrakeImpl.parkingBrake(100)
@@ -59,21 +67,32 @@ class ConnectionCronJob {
                         title = "CONNECTION CRON JOB",
                         body = "Client (${EngineSystem.nanohttpClientIp}) not found." +
                                 "Parking brake applied: ${ThrottleBrakeImpl.parkingBrakeState}")
+                    return CLIENT_NOT_FOUND
                 } else {
                     if (counter == maxResetCounter) {
                         counter = 0
-
                         showMessage(msgType = TYPE_CRITICAL,
                             title = "CONNECTION CRON JOB",
                             body = "Client (${EngineSystem.nanohttpClientIp}) still not found." +
                                     "Parking brake was applied: ${ThrottleBrakeImpl.parkingBrakeState}")
                     } else
                         counter++
+                    return CLIENT_STILL_NOT_FOUND
                 }
 
             }
 
         }
+        return ENGINE_OFF_STATE
+    }
+
+
+    companion object {
+        private const val ENGINE_OFF_STATE = 0
+        private const val CLIENT_STILL_ONLINE = 1
+        private const val CLIENT_CAME_ONLINE = 2
+        private const val CLIENT_NOT_FOUND = 3
+        private const val CLIENT_STILL_NOT_FOUND = 4
     }
 
 }
