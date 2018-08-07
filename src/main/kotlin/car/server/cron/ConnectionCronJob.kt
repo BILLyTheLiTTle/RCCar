@@ -11,8 +11,6 @@ import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
 import java.net.InetAddress
-import java.net.SocketException
-import java.net.UnknownHostException
 
 
 @Configuration
@@ -34,10 +32,9 @@ class ConnectionCronJob {
         if (EngineImpl.engineState) {
             isClientOnline = try {
                 InetAddress.getByName(EngineSystem.nanohttpClientIp).isReachable(200)
-            } catch (uhe: UnknownHostException) {
+            } catch (e: Exception) {
                 false
-            } catch (se: SocketException) {
-                false
+                return IP_ERROR
             }
 
             if (isClientOnline) {
@@ -88,11 +85,12 @@ class ConnectionCronJob {
 
 
     companion object {
-        private const val ENGINE_OFF_STATE = 0
-        private const val CLIENT_STILL_ONLINE = 1
-        private const val CLIENT_CAME_ONLINE = 2
-        private const val CLIENT_NOT_FOUND = 3
-        private const val CLIENT_STILL_NOT_FOUND = 4
+        internal const val IP_ERROR = 0
+        internal const val ENGINE_OFF_STATE = 1
+        internal const val CLIENT_STILL_ONLINE = 2
+        internal const val CLIENT_CAME_ONLINE = 3
+        internal const val CLIENT_NOT_FOUND = 4
+        internal const val CLIENT_STILL_NOT_FOUND = 5
     }
 
 }

@@ -1,5 +1,7 @@
 package car.server.cron
 
+import car.controllers.basic.EngineImpl
+import car.server.EngineSystem
 import org.assertj.core.api.Assertions.*
 import org.awaitility.Awaitility
 import org.awaitility.Duration
@@ -13,6 +15,9 @@ import org.springframework.boot.test.web.client.getForEntity
 import org.springframework.http.HttpStatus
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.boot.test.mock.mockito.SpyBean
+import kotlin.reflect.full.declaredMembers
+import kotlin.reflect.jvm.isAccessible
+import kotlin.reflect.jvm.javaField
 
 
 @ExtendWith(SpringExtension::class)
@@ -20,7 +25,7 @@ import org.springframework.boot.test.mock.mockito.SpyBean
 internal class ConnectionCronJobTest {
 
     @SpyBean
-    private val myTask: ConnectionCronJob? = null
+    private val task: ConnectionCronJob? = null
 
     // checkClientStatus
     @Test
@@ -28,11 +33,16 @@ internal class ConnectionCronJobTest {
         // Is this really working?
         Awaitility.await().atMost(Duration.FIVE_HUNDRED_MILLISECONDS)
             .untilAsserted {
-                verify(myTask, atLeast(1))
+                verify(task, atLeast(1))
             }
     }
     @Test
     fun `engine state on with wrong ip format`() {
-        // TODO it some time
+        EngineImpl.engineState = true
+        val field = EngineSystem.Companion::nanohttpClientIp.javaField
+        field?.isAccessible = true
+        field?.set(String::class, "oops")
+        val ret = task?.checkClientStatus()
+        assertThat(ret).isEqualTo(ConnectionCronJob.IP_ERROR).isEqualTo(0)
     }
 }
