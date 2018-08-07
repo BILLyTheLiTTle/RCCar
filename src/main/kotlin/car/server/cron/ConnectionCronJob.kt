@@ -18,6 +18,13 @@ import java.net.InetAddress
 @EnableScheduling
 class ConnectionCronJob {
 
+    private val IP_ERROR = 0
+    private val ENGINE_OFF_STATE = 1
+    private val CLIENT_STILL_ONLINE = 2
+    private val CLIENT_CAME_ONLINE = 3
+    private val CLIENT_NOT_FOUND = 4
+    private val CLIENT_STILL_NOT_FOUND = 5
+
     private var isClientOnline = false
     private var wasClientOnline = false
 
@@ -26,8 +33,6 @@ class ConnectionCronJob {
 
     @Scheduled(initialDelay = 3000, fixedDelay = 400)  // 2 minutes
     fun checkClientStatus(): Int {
-
-        wasClientOnline = isClientOnline
 
         if (EngineImpl.engineState) {
             isClientOnline = try {
@@ -80,17 +85,8 @@ class ConnectionCronJob {
             }
 
         }
+        wasClientOnline = isClientOnline
         return ENGINE_OFF_STATE
-    }
-
-
-    companion object {
-        internal const val IP_ERROR = 0
-        internal const val ENGINE_OFF_STATE = 1
-        internal const val CLIENT_STILL_ONLINE = 2
-        internal const val CLIENT_CAME_ONLINE = 3
-        internal const val CLIENT_NOT_FOUND = 4
-        internal const val CLIENT_STILL_NOT_FOUND = 5
     }
 
 }
