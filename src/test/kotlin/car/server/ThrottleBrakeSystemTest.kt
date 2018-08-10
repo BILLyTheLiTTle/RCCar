@@ -238,7 +238,7 @@ internal class ThrottleBrakeSystemTest(@Autowired val restTemplate: TestRestTemp
         restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=oops")
         val entity = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(EngineSystem.EMPTY_STRING).isEqualTo("NULL")
+        assertThat(entity.body).isEqualTo(ThrottleBrakeSystem.ACTION_NEUTRAL).isEqualTo("neutral")
     }
 
 

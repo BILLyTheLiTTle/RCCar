@@ -18,9 +18,9 @@ import kotlinx.coroutines.experimental.launch
 
 object ThrottleBrakeImpl:ThrottleBrake {
 
-    private var action = ACTION_BRAKING_STILL
+    private var action = ACTION_NEUTRAL
     var value = 0
-    private set
+        private set
 
     override val parkingBrakeState
         get() = action == ACTION_PARKING_BRAKE && ThrottleBrakeImpl.value == 100
@@ -40,6 +40,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
             isBrakingStill -> ACTION_BRAKING_STILL
             isMovingForward -> ACTION_MOVE_FORWARD
             isMovingBackward -> ACTION_MOVE_BACKWARD
+            handbrakeState -> ACTION_HANDBRAKE
             parkingBrakeState -> ACTION_PARKING_BRAKE
             else -> EMPTY_STRING
         }
@@ -140,8 +141,20 @@ object ThrottleBrakeImpl:ThrottleBrake {
         }
         //////
 
-        action = ACTION_PARKING_BRAKE
+        /* In else condition is better to let the car be at braking still than neutral
+            because the car may be stopped in uphill or downhill and could slide down
+            when the user deactivates parking brake from ImageView
+         */
+        action = if (value == 100) {
+            ACTION_PARKING_BRAKE
+        }
+        else
+        {
+            brake(100)
+            ACTION_BRAKING_STILL
+        }
         ThrottleBrakeImpl.value = value
+
         return EngineSystem.SUCCESS // or error message from pins
     }
 
@@ -151,7 +164,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
     override fun handbrake(value: Int): String {
         //////
         // Pi related
-        if (EngineImpl.RUN_ON_PI) {
+        if (EngineImpl.RUN_ON_PI && value == 100) {
             // Affects only the rear wheels
             EngineImpl.motorRearRightPwmPin.pwm = 0 //value
             EngineImpl.motorRearRightDirPin.low()
@@ -160,12 +173,23 @@ object ThrottleBrakeImpl:ThrottleBrake {
         }
         //////
 
-        action = ACTION_HANDBRAKE
+        action = if (value == 100) {
+            ACTION_HANDBRAKE
+        }
+        else {
+            /* TODO or NOTTODO: Uncomment the below when neutral state will work as it should
+                At the moment the Android client (controller) when the handbrake is
+                deactivated throttles according to the current throttle slider progress value.
+             */
+            // setNeutral()
+            ACTION_NEUTRAL
+        }
 	    ThrottleBrakeImpl.value = value
+
         return EngineSystem.SUCCESS // or error message from pins
     }
 
-    /* Neutral state is not achievable with H-bridge used
+    /* Neutral state is not achievable with H-bridge used.
         So, it works almost like the brake function.
     */
     override fun setNeutral(): String {
@@ -185,6 +209,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
         //////
 
         action = ACTION_NEUTRAL
+        value = 0
         return EngineSystem.SUCCESS // or error message from pins
     }
 
