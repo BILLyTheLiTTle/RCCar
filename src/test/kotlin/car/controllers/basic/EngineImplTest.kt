@@ -18,6 +18,7 @@ internal class EngineImplTest {
     fun `start the engine`() {
         val ret = EngineImpl.start()
         assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(EngineImpl.engineState).isTrue()
     }
     @Test
     fun `start the engine on PC`() {
@@ -25,12 +26,14 @@ internal class EngineImplTest {
         assertThrows(UninitializedPropertyAccessException::class.java) {
             EngineImpl.gpio
         }
+        assertThat(EngineImpl.RUN_ON_PI).isFalse()
     }
 
     // stop
     @Test
     fun `stop the engine`() {
-        val ret = EngineImpl.start()
+        val ret = EngineImpl.stop()
         assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(EngineImpl.engineState).isFalse()
     }
 }
