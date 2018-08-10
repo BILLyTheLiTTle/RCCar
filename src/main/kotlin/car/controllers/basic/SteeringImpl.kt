@@ -42,15 +42,15 @@ object SteeringImpl:Steering {
             else -> 0.00
         }
 
-        when (direction) {
+        SteeringImpl.direction = when (direction) {
             ACTION_TURN_RIGHT ->
                 // TODO prepare hardware for turning right
 
-                SteeringImpl.direction = ACTION_TURN_RIGHT
+                 ACTION_TURN_RIGHT
             ACTION_TURN_LEFT ->
                 // TODO prepare hardware for turning left
 
-                SteeringImpl.direction = ACTION_TURN_LEFT
+                ACTION_TURN_LEFT
             else  -> {
                 // TODO prepare hardware for turning straight
 
@@ -60,7 +60,7 @@ object SteeringImpl:Steering {
                     ElectricsImpl.leftTurnLightsState = false
                 }
 
-                SteeringImpl.direction = ACTION_STRAIGHT
+                ACTION_STRAIGHT
             }
         }
 
