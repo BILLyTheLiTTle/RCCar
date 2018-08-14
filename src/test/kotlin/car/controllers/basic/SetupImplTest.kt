@@ -1,5 +1,6 @@
 package car.controllers.basic
 
+import car.server.SetupSystem
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -14,7 +15,21 @@ internal class SetupImplTest {
 
 
     @Test
-    fun `method name`() {
+    fun reset() {
+        SetupImpl.reset()
+        assertThat(SetupImpl.handlingAssistanceState)
+            .isEqualTo(SetupSystem.ASSISTANCE_NONE)
+            .isEqualTo("assistance_none")
+        assertThat(SetupImpl.motorSpeedLimiter)
+            .isEqualTo(SetupSystem.MOTOR_SPEED_LIMITER_FULL_SPEED)
+            .isEqualTo(1.00)
 
+        assertThat(SetupImpl.frontDifferentialSlipperyLimiter)
+            .isEqualTo(SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED)
+            .isEqualTo(4)
+
+        assertThat(SetupImpl.rearDifferentialSlipperyLimiter)
+            .isEqualTo(SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED)
+            .isEqualTo(4)
     }
 }

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e38fa66-dbb5-4181-9628-5457650f884f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SetupImplTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SetupImplTest.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -126,26 +125,26 @@
         <counts>
           <entry key="gradle" value="6" />
           <entry key="java" value="5" />
-          <entry key="kt" value="32" />
+          <entry key="kt" value="37" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="6" />
           <entry key="JAVA" value="5" />
-          <entry key="Kotlin" value="32" />
+          <entry key="Kotlin" value="37" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="8" />
-          <entry key="kt" value="4516" />
+          <entry key="kt" value="4551" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="8" />
-          <entry key="Kotlin" value="4516" />
+          <entry key="Kotlin" value="4551" />
         </counts>
       </usages-collector>
     </session>
@@ -197,29 +196,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="72" column="8" lean-forward="true" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
+            <state relative-caret-position="191">
+              <caret line="79" column="25" lean-forward="true" selection-start-line="73" selection-start-column="8" selection-end-line="79" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Steering.kt">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Setup.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SetupImplTest.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="69" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
-              <folding>
-                <element signature="e#31#359#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="180">
+              <caret line="12" column="61" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -227,8 +214,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SetupImpl.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+            <state relative-caret-position="120">
+              <caret line="8" column="99" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="99" />
             </state>
           </provider>
         </entry>
@@ -236,8 +223,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/SetupSystem.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+            <state relative-caret-position="132">
+              <caret line="77" column="58" lean-forward="true" selection-start-line="77" selection-start-column="57" selection-end-line="77" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SetupImplTest.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ElectricsImplTest.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -686,7 +691,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/temperatures/HardwareItemTemperatureImpl.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SetupImpl.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/raspi/hardware/CarDimensions.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/CarDimensions.kt" />
@@ -736,6 +740,7 @@
         <option value="$PROJECT_DIR$/src/main/kotlin/car/server/SteeringSystem.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt" />
+        <option value="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ElectricsImplTest.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SetupImplTest.kt" />
       </list>
     </option>
@@ -931,7 +936,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534262180159" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534262945938" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -968,7 +973,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SteeringImplTest">
+  <component name="RunManager" selected="JUnit.SetupImplTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -977,6 +982,22 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SetupImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="rc_car_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="car.controllers.basic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="car.controllers.basic" />
+      <option name="MAIN_CLASS_NAME" value="car.controllers.basic.SetupImplTest" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -1007,24 +1028,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="car.controllers.basic" />
       <option name="MAIN_CLASS_NAME" value="car.controllers.basic.ThrottleBrakeImplTest" />
-      <option name="VM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ThrottleBrakeImplTest.client activate handbrake" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="rc_car_test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="car.controllers.basic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="car.controllers.basic" />
-      <option name="MAIN_CLASS_NAME" value="car.controllers.basic.ThrottleBrakeImplTest" />
-      <option name="METHOD_NAME" value="client activate handbrake" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
@@ -1098,18 +1101,18 @@
     <list>
       <item itemvalue="Spring Boot.RcCarApplication" />
       <item itemvalue="JUnit.ThrottleBrakeImplTest" />
-      <item itemvalue="JUnit.ThrottleBrakeImplTest.client activate handbrake" />
       <item itemvalue="JUnit.car in rc_car_test" />
       <item itemvalue="JUnit.ThrottleBrakeSystemTest" />
       <item itemvalue="JUnit.SteeringImplTest" />
+      <item itemvalue="JUnit.SetupImplTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SetupImplTest" />
         <item itemvalue="JUnit.SteeringImplTest" />
         <item itemvalue="JUnit.car in rc_car_test" />
         <item itemvalue="JUnit.ThrottleBrakeSystemTest" />
         <item itemvalue="JUnit.ThrottleBrakeImplTest" />
-        <item itemvalue="JUnit.ThrottleBrakeImplTest.client activate handbrake" />
       </list>
     </recent_temporary>
   </component>
@@ -1183,7 +1186,7 @@
       <workItem from="1533640356388" duration="9673000" />
       <workItem from="1533881939218" duration="18332000" />
       <workItem from="1534052184764" duration="1718000" />
-      <workItem from="1534259867158" duration="2271000" />
+      <workItem from="1534259867158" duration="2787000" />
     </task>
     <servers />
   </component>
@@ -1220,7 +1223,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="297217000" />
+    <option name="totallyTimeSpent" value="297733000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1280,7 +1283,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/Dimensions.kt" />
     <entry file="jar://$PROJECT_DIR$/lib/pi4j-core.jar!/com/pi4j/io/gpio/RaspiBcmPin.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1300,13 +1302,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="78" lean-forward="true" selection-start-line="23" selection-start-column="78" selection-end-line="23" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Setup.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="61" selection-start-line="12" selection-start-column="61" selection-end-line="12" selection-end-column="61" />
         </state>
       </provider>
     </entry>
@@ -1516,13 +1511,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Steering.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -1533,34 +1521,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.kt">
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ElectricsImplTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="72" column="8" lean-forward="true" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
+        <state relative-caret-position="90">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SetupImpl.kt">
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Steering.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="79" column="25" lean-forward="true" selection-start-line="73" selection-start-column="8" selection-end-line="79" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Setup.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="61" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/SetupSystem.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        <state relative-caret-position="132">
+          <caret line="77" column="58" lean-forward="true" selection-start-line="77" selection-start-column="57" selection-end-line="77" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SetupImpl.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="99" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="99" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SetupImplTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="69" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
-          <folding>
-            <element signature="e#31#359#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="236">
+          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
         </state>
       </provider>
     </entry>
