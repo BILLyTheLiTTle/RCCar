@@ -66,4 +66,17 @@ internal class SteeringImplTest {
             .isEqualTo(SteeringSystem.STEERING_VALUE_00)
             .isEqualTo(0)
     }
+
+
+    @Test
+    fun reset() {
+        SteeringImpl.reset()
+        assertThat(SteeringImpl.direction)
+            .isEqualTo(direction?.get(SteeringImpl).toString())
+            .isEqualTo(SteeringSystem.ACTION_STRAIGHT)
+            .isEqualTo("straight")
+        assertThat(value?.getInt(ThrottleBrakeImpl))
+            .isEqualTo(SteeringSystem.STEERING_VALUE_00)
+            .isEqualTo(0)
+    }
 }

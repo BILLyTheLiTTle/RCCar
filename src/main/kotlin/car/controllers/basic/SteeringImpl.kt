@@ -6,13 +6,14 @@ import car.server.SteeringSystem
 import car.server.SteeringSystem.Companion.ACTION_STRAIGHT
 import car.server.SteeringSystem.Companion.ACTION_TURN_LEFT
 import car.server.SteeringSystem.Companion.ACTION_TURN_RIGHT
+import car.server.SteeringSystem.Companion.STEERING_VALUE_00
 
 object SteeringImpl:Steering {
     private val innerFrontDegreesTheta = doubleArrayOf(22.0, 45.0, 52.0, 60.0, 66.0)
     private val outerFrontDegreesPhi = doubleArrayOf(19.9, 37.9, 41.7, 49.2, 47.8)
     var direction = ACTION_STRAIGHT
         private set
-    var value = 0
+    var value = STEERING_VALUE_00
         private set
 
     override fun turn(direction: String, value: Int): String {
@@ -75,6 +76,6 @@ object SteeringImpl:Steering {
 
     override fun reset() {
         direction = ACTION_STRAIGHT
-        value = 0
+        value = STEERING_VALUE_00
     }
 }
