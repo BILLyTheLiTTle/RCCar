@@ -16,6 +16,10 @@ internal class ElectricsImplTest {
     // positionLightsState
     @Test
     fun `turn on position lights`() {
+        ElectricsImpl.positionLightsState = true
+        assertThat(ElectricsImpl.positionLightsState).isTrue()
+        assertThat(ElectricsImpl.drivingLightsState).isFalse()
+        assertThat(ElectricsImpl.longRangeLightsState).isFalse()
 
     }
     @Test
