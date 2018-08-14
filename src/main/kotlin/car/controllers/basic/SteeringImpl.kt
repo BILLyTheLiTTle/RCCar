@@ -39,7 +39,10 @@ object SteeringImpl:Steering {
                 TcmImpl.phi = outerFrontDegreesPhi[4]
                 TcmImpl.theta = innerFrontDegreesTheta[4]
             }
-            else -> 0.00
+            else -> {
+                TcmImpl.phi = 0.00
+                TcmImpl.theta = 0.00
+            }
         }
 
         SteeringImpl.direction = when (direction) {

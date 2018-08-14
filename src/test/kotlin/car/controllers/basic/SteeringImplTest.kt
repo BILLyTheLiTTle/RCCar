@@ -56,5 +56,14 @@ internal class SteeringImplTest {
     }
     @Test
     fun `turn straight`() {
+        val ret = SteeringImpl.turn(SteeringSystem.ACTION_STRAIGHT)
+        assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(SteeringImpl.direction)
+            .isEqualTo(direction?.get(SteeringImpl).toString())
+            .isEqualTo(SteeringSystem.ACTION_STRAIGHT)
+            .isEqualTo("straight")
+        assertThat(value?.getInt(ThrottleBrakeImpl))
+            .isEqualTo(SteeringSystem.STEERING_VALUE_00)
+            .isEqualTo(0)
     }
 }

@@ -16,7 +16,7 @@ class SteeringSystem{
     fun setSteeringAction(
         @RequestParam(value = "id", defaultValue = "-1") id: Int,
         @RequestParam(value = "direction", defaultValue = "$ACTION_STRAIGHT") direction: String,
-        @RequestParam(value = "value", defaultValue =  "0") value: Int
+        @RequestParam(value = "value", defaultValue =  "$STEERING_VALUE_00") value: Int
     ): String {
 
         lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
@@ -73,6 +73,7 @@ class SteeringSystem{
         const val ACTION_TURN_LEFT = "left"
         const val ACTION_STRAIGHT = "straight"
 
+        const val STEERING_VALUE_00 = 0
         const val STEERING_VALUE_20 = 20
         const val STEERING_VALUE_40 = 40
         const val STEERING_VALUE_60 = 60
