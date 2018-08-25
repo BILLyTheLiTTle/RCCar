@@ -75,6 +75,12 @@ object ElectricsImpl:Electrics {
             showMessage(title = "LIGHTS",
                 body = "{ ${this::class.simpleName} } Left Turn Lights: $value")
 
+            if(value)
+                //reset the right turn light
+                rightTurnLightsState = false
+
+            // TODO call handleLeds(...)
+
             field = value
         }
 
@@ -84,6 +90,12 @@ object ElectricsImpl:Electrics {
 
             showMessage(title = "LIGHTS",
                 body = "{ ${this::class.simpleName} } Right Turn Lights: $value")
+
+            if(value)
+                //reset the left turn light
+                leftTurnLightsState = false
+
+            // TODO call handleLeds(...)
 
             field = value
         }
@@ -95,11 +107,20 @@ object ElectricsImpl:Electrics {
             showMessage(title = "LIGHTS",
                 body = "{ ${this::class.simpleName} } Emergency Lights: $value")
 
+            // TODO call handleLeds(...)
+
             field = value
         }
 
     override fun doHeadlightsSignal(): String {
-        // TODO turn on/off the long_range lights twice in a TimerTask for a small period of time
+        // TODO play with the long_range lights twice in a TimerTask for a small period of time
+
+        /* TODO
+            If the lights are on, then do off/on, off/on
+            But if the lights are off, then do on/off, on/off
+
+            The above actions will put the LEDs on their initial state( on or off)
+         */
 
         // TODO call handleLeds(...)
 
@@ -109,8 +130,8 @@ object ElectricsImpl:Electrics {
     /* I am not going to touch the same LEDs for different reasons.
         Also, I am not going to change the same key/value of the
         _lights Map for different reasons.
-        This means, for example, that I will handle turn light for turn reasons
-        and not for braking.
+        This means, for example, that I will handle turn lights for turn reasons
+        and not when braking.
         So, in my opinion synchronizing this function is not necessary.
      */
     //@Synchronized

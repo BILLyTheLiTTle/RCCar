@@ -21,7 +21,7 @@ interface Electrics {
         java.lang.ClassFormatError:
         Method handleLeds in class car/controllers/basic/Electrics has illegal modifiers: 0x421
 
-        I don't understand why, but implement this function in the child class
+        I don't understand why, but implement this function in the child class.
     */
     fun handleLeds()
 

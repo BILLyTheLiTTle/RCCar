@@ -214,7 +214,7 @@ object ThrottleBrakeImpl:ThrottleBrake {
     }
 
     override fun reset() {
-        action = ThrottleBrakeSystem.ACTION_NEUTRAL
+        action = ACTION_NEUTRAL
         value = 0
     }
 

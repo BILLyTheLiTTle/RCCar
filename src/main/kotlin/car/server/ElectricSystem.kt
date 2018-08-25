@@ -31,12 +31,12 @@ class ElectricSystem{
                     ElectricsImpl.rightTurnLightsState = false
                 }
                 TURN_LIGHTS_RIGHT -> {
-                    ElectricsImpl.leftTurnLightsState = false
+                    //ElectricsImpl.leftTurnLightsState = false
                     ElectricsImpl.rightTurnLightsState = !ElectricsImpl.rightTurnLightsState
                 }
                 TURN_LIGHTS_LEFT -> {
                     ElectricsImpl.leftTurnLightsState = !ElectricsImpl.leftTurnLightsState
-                    ElectricsImpl.rightTurnLightsState = false
+                    //ElectricsImpl.rightTurnLightsState = false
                 }
             }
         }
