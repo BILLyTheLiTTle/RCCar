@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e38fa66-dbb5-4181-9628-5457650f884f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/car/server/ElectricSystemTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/car/server/ElectricSystemTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ThrottleBrakeImplTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ThrottleBrakeImplTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/car/server/cron/ConnectionCronJobTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/car/server/cron/ConnectionCronJobTest.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -110,59 +111,51 @@
     <session id="1417254279">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.109" value="1" />
           <entry key="project.open.time.112" value="1" />
           <entry key="project.open.time.129" value="1" />
           <entry key="project.open.time.144" value="1" />
           <entry key="project.open.time.186" value="1" />
           <entry key="project.open.time.191" value="1" />
+          <entry key="project.open.time.193" value="1" />
           <entry key="project.open.time.195" value="1" />
           <entry key="project.open.time.213" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.82" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gradle" value="6" />
           <entry key="java" value="5" />
-          <entry key="kt" value="63" />
+          <entry key="kt" value="69" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="6" />
           <entry key="JAVA" value="5" />
-          <entry key="Kotlin" value="63" />
+          <entry key="Kotlin" value="69" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="8" />
-          <entry key="kt" value="7604" />
+          <entry key="kt" value="8645" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="8" />
-          <entry key="Kotlin" value="7604" />
+          <entry key="Kotlin" value="8645" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/ElectricSystemFromLightsOnTest.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="26" column="93" selection-start-line="26" selection-start-column="93" selection-end-line="26" selection-end-column="93" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/ElectricSystemFromLightsOffTest.kt">
           <provider selected="true" editor-type-id="text-editor">
@@ -173,43 +166,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="67" column="44" selection-start-line="67" selection-start-column="44" selection-end-line="67" selection-end-column="44" />
-              <folding>
-                <element signature="e#31#507#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ThrottleBrakeImplTest.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-              <folding>
-                <element signature="e#31#551#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/cron/ConnectionCronJobTest.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="73" column="59" selection-start-line="73" selection-start-column="59" selection-end-line="73" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/ElectricSystemTest.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="191">
-              <caret line="145" column="5" lean-forward="true" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
+              <caret line="145" column="5" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/EngineSystem.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="117">
+              <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -257,6 +226,7 @@
       <find>5aedf9fb</find>
       <find>GPIO_29</find>
       <find>GPIO_19</find>
+      <find>value</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -715,10 +685,8 @@
         <option value="$PROJECT_DIR$/src/test/kotlin/car/server/cron/ConnectionCronJobTest.java" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/EngineImplTest.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/test/kotlin/car/server/cron/ConnectionCronJobTest.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/EngineImplTest.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ThrottleBrakeImplTest.java" />
-        <option value="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ThrottleBrakeImplTest.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/server/ThrottleBrakeSystemTest.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/server/cron/ConnectionCronJob.kt" />
@@ -736,6 +704,8 @@
         <option value="$PROJECT_DIR$/src/test/kotlin/car/server/ElectricSystemFromLightsOffTest.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/server/ElectricSystemFromLightsOnTest.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.kt" />
+        <option value="$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ThrottleBrakeImplTest.kt" />
+        <option value="$PROJECT_DIR$/src/test/kotlin/car/server/cron/ConnectionCronJobTest.kt" />
       </list>
     </option>
   </component>
@@ -760,8 +730,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -916,6 +884,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -930,7 +900,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535636496196" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535652173256" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -967,7 +937,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SteeringImplTest">
+  <component name="RunManager" selected="JUnit.ConnectionCronJobTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -980,39 +950,59 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElectricSystemFromLightsOffTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ConnectionCronJobTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rc_car_test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="car.server.*" />
+          <option name="PATTERN" value="car.server.cron.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="car.server" />
-      <option name="MAIN_CLASS_NAME" value="car.server.ElectricSystemFromLightsOffTest" />
+      <option name="PACKAGE_NAME" value="car.server.cron" />
+      <option name="MAIN_CLASS_NAME" value="car.server.cron.ConnectionCronJobTest" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElectricSystemFromLightsOnTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ConnectionCronJobTest.engine state on with client still online with message" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rc_car_test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="car.server.*" />
+          <option name="PATTERN" value="car.server.cron.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="car.server" />
-      <option name="MAIN_CLASS_NAME" value="car.server.ElectricSystemFromLightsOnTest" />
+      <option name="PACKAGE_NAME" value="car.server.cron" />
+      <option name="MAIN_CLASS_NAME" value="car.server.cron.ConnectionCronJobTest" />
+      <option name="METHOD_NAME" value="engine state on with client still online with message" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElectricsImplFromLightsOffTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ConnectionCronJobTest.engine state on with client still online" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="rc_car_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="car.server.cron.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="car.server.cron" />
+      <option name="MAIN_CLASS_NAME" value="car.server.cron.ConnectionCronJobTest" />
+      <option name="METHOD_NAME" value="engine state on with client still online" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ThrottleBrakeImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rc_car_test" />
       <extension name="coverage">
         <pattern>
@@ -1021,14 +1011,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="car.controllers.basic" />
-      <option name="MAIN_CLASS_NAME" value="car.controllers.basic.ElectricsImplFromLightsOffTest" />
+      <option name="MAIN_CLASS_NAME" value="car.controllers.basic.ThrottleBrakeImplTest" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElectricsImplFromLightsOnTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ThrottleBrakeImplTest.reset" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rc_car_test" />
       <extension name="coverage">
         <pattern>
@@ -1037,23 +1027,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="car.controllers.basic" />
-      <option name="MAIN_CLASS_NAME" value="car.controllers.basic.ElectricsImplFromLightsOnTest" />
-      <option name="VM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SteeringImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="rc_car_test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="car.controllers.basic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="car.controllers.basic" />
-      <option name="MAIN_CLASS_NAME" value="car.controllers.basic.SteeringImplTest" />
+      <option name="MAIN_CLASS_NAME" value="car.controllers.basic.ThrottleBrakeImplTest" />
+      <option name="METHOD_NAME" value="reset" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
@@ -1094,19 +1070,19 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.RcCarApplication" />
-      <item itemvalue="JUnit.ElectricsImplFromLightsOffTest" />
-      <item itemvalue="JUnit.ElectricsImplFromLightsOnTest" />
-      <item itemvalue="JUnit.ElectricSystemFromLightsOffTest" />
-      <item itemvalue="JUnit.ElectricSystemFromLightsOnTest" />
-      <item itemvalue="JUnit.SteeringImplTest" />
+      <item itemvalue="JUnit.ThrottleBrakeImplTest" />
+      <item itemvalue="JUnit.ConnectionCronJobTest.engine state on with client still online" />
+      <item itemvalue="JUnit.ThrottleBrakeImplTest.reset" />
+      <item itemvalue="JUnit.ConnectionCronJobTest" />
+      <item itemvalue="JUnit.ConnectionCronJobTest.engine state on with client still online with message" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SteeringImplTest" />
-        <item itemvalue="JUnit.ElectricSystemFromLightsOnTest" />
-        <item itemvalue="JUnit.ElectricSystemFromLightsOffTest" />
-        <item itemvalue="JUnit.ElectricsImplFromLightsOnTest" />
-        <item itemvalue="JUnit.ElectricsImplFromLightsOffTest" />
+        <item itemvalue="JUnit.ConnectionCronJobTest" />
+        <item itemvalue="JUnit.ConnectionCronJobTest.engine state on with client still online with message" />
+        <item itemvalue="JUnit.ThrottleBrakeImplTest" />
+        <item itemvalue="JUnit.ThrottleBrakeImplTest.reset" />
+        <item itemvalue="JUnit.ConnectionCronJobTest.engine state on with client still online" />
       </list>
     </recent_temporary>
   </component>
@@ -1183,43 +1159,44 @@
       <workItem from="1534259867158" duration="4355000" />
       <workItem from="1535192421768" duration="11518000" />
       <workItem from="1535286906365" duration="8917000" />
+      <workItem from="1535645759807" duration="6254000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ElectricSystemFromLightsOnTest - 2018.08.26 at 16h 51m 16s.xml">
-      <configuration name="ElectricSystemFromLightsOnTest" configurationId="JUnit" />
+    <history-entry file="ThrottleBrakeImplTest_reset - 2018.08.30 at 20h 16m 11s.xml">
+      <configuration name="ThrottleBrakeImplTest.reset" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ElectricSystemFromLightsOffTest - 2018.08.26 at 16h 58m 57s.xml">
-      <configuration name="ElectricSystemFromLightsOffTest" configurationId="JUnit" />
+    <history-entry file="ThrottleBrakeImplTest - 2018.08.30 at 20h 21m 13s.xml">
+      <configuration name="ThrottleBrakeImplTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ElectricSystemFromLightsOnTest - 2018.08.26 at 17h 00m 46s.xml">
-      <configuration name="ElectricSystemFromLightsOnTest" configurationId="JUnit" />
+    <history-entry file="ConnectionCronJobTest - 2018.08.30 at 20h 28m 57s.xml">
+      <configuration name="ConnectionCronJobTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ElectricSystemFromLightsOnTest - 2018.08.26 at 17h 22m 37s.xml">
-      <configuration name="ElectricSystemFromLightsOnTest" configurationId="JUnit" />
+    <history-entry file="ConnectionCronJobTest - 2018.08.30 at 20h 32m 16s.xml">
+      <configuration name="ConnectionCronJobTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ElectricSystemFromLightsOffTest - 2018.08.26 at 17h 29m 25s.xml">
-      <configuration name="ElectricSystemFromLightsOffTest" configurationId="JUnit" />
+    <history-entry file="ConnectionCronJobTest_engine_state_on_with_client_still_online_with_message - 2018.08.30 at 20h 36m 43s.xml">
+      <configuration name="ConnectionCronJobTest.engine state on with client still online with message" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ElectricSystemFromLightsOffTest - 2018.08.26 at 18h 03m 40s.xml">
-      <configuration name="ElectricSystemFromLightsOffTest" configurationId="JUnit" />
+    <history-entry file="ConnectionCronJobTest - 2018.08.30 at 20h 51m 53s.xml">
+      <configuration name="ConnectionCronJobTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ElectricSystemFromLightsOnTest - 2018.08.26 at 18h 08m 09s.xml">
-      <configuration name="ElectricSystemFromLightsOnTest" configurationId="JUnit" />
+    <history-entry file="ConnectionCronJobTest - 2018.08.30 at 20h 54m 15s.xml">
+      <configuration name="ConnectionCronJobTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringImplTest - 2018.08.30 at 16h 28m 48s.xml">
-      <configuration name="SteeringImplTest" configurationId="JUnit" />
+    <history-entry file="ConnectionCronJobTest - 2018.08.30 at 20h 59m 16s.xml">
+      <configuration name="ConnectionCronJobTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringImplTest - 2018.08.30 at 16h 33m 22s.xml">
-      <configuration name="SteeringImplTest" configurationId="JUnit" />
+    <history-entry file="ConnectionCronJobTest - 2018.08.30 at 21h 02m 20s.xml">
+      <configuration name="ConnectionCronJobTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringImplTest - 2018.08.30 at 16h 37m 55s.xml">
-      <configuration name="SteeringImplTest" configurationId="JUnit" />
+    <history-entry file="ConnectionCronJobTest - 2018.08.30 at 21h 04m 41s.xml">
+      <configuration name="ConnectionCronJobTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="320360000" />
+    <option name="totallyTimeSpent" value="330994000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1232,9 +1209,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-1" width="1026" height="581" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2617108" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26680243" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Capture Tool" order="3" />
@@ -1244,7 +1220,7 @@
       <window_info id="Designer" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32827735" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25490198" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25490198" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50053304" side_tool="true" weight="0.3217768" />
@@ -1256,7 +1232,8 @@
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32900432" />
       <window_info anchor="bottom" id="Build" order="12" weight="0.32719395" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.49946696" weight="0.32" />
+      <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.49946696" weight="0.31808278" />
+      <window_info anchor="right" x="0" y="0" width="206" height="381" id="Documentation" side_tool="true" weight="0.3299389" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1271,44 +1248,6 @@
       <window_info anchor="right" id="Kotlin Bytecode" order="11" weight="0.32977587" />
       <window_info anchor="right" id="Coverage" order="12" side_tool="true" weight="0.30855396" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.25661916" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info id="Capture Tool" order="3" />
-      <window_info id="Web" order="4" side_tool="true" />
-      <window_info id="Image Layers" order="5" />
-      <window_info id="UI Designer" order="6" />
-      <window_info id="Designer" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32827735" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.25490198" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50053304" side_tool="true" weight="0.3217768" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32900432" />
-      <window_info anchor="bottom" id="Java Enterprise" order="7" weight="0.32900432" />
-      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32827735" />
-      <window_info anchor="bottom" id="Spring" order="10" weight="0.32900432" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32900432" />
-      <window_info anchor="bottom" id="Build" order="12" weight="0.32719395" />
-      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.49946696" weight="0.32" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Palette&#9;" order="5" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="right" id="Bean Validation" order="7" />
-      <window_info anchor="right" id="Database" order="8" />
-      <window_info anchor="right" id="Capture Analysis" order="9" />
-      <window_info anchor="right" id="Gradle" order="10" weight="0.32995737" />
-      <window_info anchor="right" id="Kotlin Bytecode" order="11" weight="0.32977587" />
-      <window_info anchor="right" id="Coverage" order="12" side_tool="true" weight="0.30855396" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1399,24 +1338,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/cron/ConnectionCronJobTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="73" column="59" selection-start-line="73" selection-start-column="59" selection-end-line="73" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ThrottleBrake.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
           <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/EngineSystem.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="45" column="30" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1438,16 +1363,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ThrottleBrakeImplTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-          <folding>
-            <element signature="e#31#551#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1507,24 +1422,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ThrottleBrakeImpl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-195">
-          <caret line="216" column="17" selection-start-line="216" selection-start-column="17" selection-end-line="216" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ElectricsImplFromLightsOffTest.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
           <caret line="39" column="63" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/cron/ConnectionCronJob.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -1535,37 +1436,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-          <folding>
-            <element signature="e#31#379#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ElectricsImpl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="93" column="17" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Electrics.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="79" selection-start-line="23" selection-start-column="79" selection-end-line="23" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ElectricsImplTest.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-15">
           <caret line="14" column="29" selection-start-line="14" selection-end-line="14" selection-end-column="29" />
-          <folding>
-            <element signature="e#31#328#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1590,17 +1464,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/ElectricSystem.kt">
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/SteeringImpl.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1665">
-          <caret line="116" column="52" selection-start-line="116" selection-start-column="37" selection-end-line="116" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/ElectricSystemFromLightsOffTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
+        <state relative-caret-position="90">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding>
+            <element signature="e#31#379#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1611,20 +1481,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/ElectricSystemTest.kt">
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/ElectricSystem.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="145" column="5" lean-forward="true" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
+        <state relative-caret-position="1665">
+          <caret line="116" column="52" selection-start-line="116" selection-start-column="37" selection-end-line="116" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ElectricsImpl.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="93" column="17" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/Electrics.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="79" selection-start-line="23" selection-start-column="79" selection-end-line="23" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/controllers/basic/ThrottleBrakeImpl.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/EngineSystem.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/SteeringImplTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="67" column="44" selection-start-line="67" selection-start-column="44" selection-end-line="67" selection-end-column="44" />
-          <folding>
-            <element signature="e#31#507#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="270">
+          <caret line="26" column="38" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/ElectricSystemFromLightsOffTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/server/cron/ConnectionCronJob.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/cron/ConnectionCronJobTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="38" column="52" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/controllers/basic/ThrottleBrakeImplTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/server/ElectricSystemTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="145" column="5" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
         </state>
       </provider>
     </entry>

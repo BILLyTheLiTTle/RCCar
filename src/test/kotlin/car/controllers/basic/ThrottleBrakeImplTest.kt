@@ -11,107 +11,119 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.lang.reflect.Field
+import kotlin.reflect.KMutableProperty
+import kotlin.reflect.KMutableProperty0
+import kotlin.reflect.KProperty0
+import kotlin.reflect.KProperty1
+import kotlin.reflect.full.memberProperties
+import kotlin.reflect.jvm.isAccessible
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
 internal class ThrottleBrakeImplTest {
 
-    var action: Field? = null
-    var value: Field? = null
+    private var actionMemProp: KMutableProperty<*>? = null
+    private var valueMemProp: KMutableProperty<*>? = null
 
     @BeforeEach
     internal fun setUp() {
-        action = ThrottleBrakeImpl::class.java.getDeclaredField("action")
-        action?.isAccessible = true
-        value = ThrottleBrakeImpl::class.java.getDeclaredField("value")
-        value?.isAccessible = true
+        actionMemProp = ThrottleBrakeImpl::class.memberProperties
+            .filterIsInstance<KMutableProperty<*>>()
+            .filter { it.name =="action" }
+            .firstOrNull()
+        actionMemProp?.isAccessible = true
+        valueMemProp = ThrottleBrakeImpl::class.memberProperties
+            .filterIsInstance<KMutableProperty<*>>()
+            .filter { it.name =="value" }
+            .firstOrNull()
+        valueMemProp?.isAccessible = true
     }
 
     // getParkingBrakeState
     @Test
     fun `parking brake should be activated`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_PARKING_BRAKE)
-        value?.setInt(ThrottleBrakeImpl, 100)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_PARKING_BRAKE)
+        valueMemProp?.setter?.call(ThrottleBrakeImpl, 100)
         assertThat(ThrottleBrakeImpl.parkingBrakeState).isTrue()
     }
     @Test
     fun `parking brake should be deactivated`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_BRAKING_STILL)
-        value?.setInt(ThrottleBrakeImpl, 100)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_BRAKING_STILL)
+        valueMemProp?.setter?.call(ThrottleBrakeImpl, 100)
         assertThat(ThrottleBrakeImpl.parkingBrakeState).isFalse()
     }
     @Test
     fun `parking brake should be deactivated also`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_PARKING_BRAKE)
-        value?.setInt(ThrottleBrakeImpl, 10)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_PARKING_BRAKE)
+        valueMemProp?.setter?.call(ThrottleBrakeImpl, 10)
         assertThat(ThrottleBrakeImpl.parkingBrakeState).isFalse()
     }
 
     // getHandbrakeState
     @Test
     fun `handbrake should be activated`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_HANDBRAKE)
-        value?.setInt(ThrottleBrakeImpl, 100)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_HANDBRAKE)
+        valueMemProp?.setter?.call(ThrottleBrakeImpl, 100)
         assertThat(ThrottleBrakeImpl.handbrakeState).isTrue()
     }
     @Test
     fun `handbrake should be deactivated`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_BRAKING_STILL)
-        value?.setInt(ThrottleBrakeImpl, 100)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_BRAKING_STILL)
+        valueMemProp?.setter?.call(ThrottleBrakeImpl, 100)
         assertThat(ThrottleBrakeImpl.handbrakeState).isFalse()
     }
     @Test
     fun `handbrake should be deactivated also`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_HANDBRAKE)
-        value?.setInt(ThrottleBrakeImpl, 10)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_HANDBRAKE)
+        valueMemProp?.setter?.call(ThrottleBrakeImpl, 10)
         assertThat(ThrottleBrakeImpl.handbrakeState).isFalse()
     }
 
     // isMovingForward
     @Test
     fun `is moving forward`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_MOVE_FORWARD)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_MOVE_FORWARD)
         assertThat(ThrottleBrakeImpl.isMovingForward).isTrue()
     }
     @Test
     fun `is not moving forward`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_MOVE_BACKWARD)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_MOVE_BACKWARD)
         assertThat(ThrottleBrakeImpl.isMovingForward).isFalse()
     }
 
     // isMovingBackward
     @Test
     fun `is moving backward`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_MOVE_BACKWARD)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_MOVE_BACKWARD)
         assertThat(ThrottleBrakeImpl.isMovingBackward).isTrue()
     }
     @Test
     fun `is not moving backward`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_MOVE_FORWARD)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_MOVE_FORWARD)
         assertThat(ThrottleBrakeImpl.isMovingBackward).isFalse()
     }
 
     // isBrakingStill
     @Test
     fun `is braking still`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_BRAKING_STILL)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_BRAKING_STILL)
         assertThat(ThrottleBrakeImpl.isBrakingStill).isTrue()
     }
     @Test
     fun `is not braking still`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_MOVE_FORWARD)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_MOVE_FORWARD)
         assertThat(ThrottleBrakeImpl.isBrakingStill).isFalse()
     }
 
     // isNeutral
     @Test
     fun `is neutral`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_NEUTRAL)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_NEUTRAL)
         assertThat(ThrottleBrakeImpl.isNeutral).isTrue()
     }
     @Test
     fun `is not neutral`() {
-        action?.set(ThrottleBrakeImpl, ThrottleBrakeSystem.ACTION_MOVE_FORWARD)
+        actionMemProp?.setter?.call(ThrottleBrakeSystem.ACTION_MOVE_FORWARD)
         assertThat(ThrottleBrakeImpl.isNeutral).isFalse()
     }
 
@@ -165,20 +177,20 @@ internal class ThrottleBrakeImplTest {
         val ret = ThrottleBrakeImpl.throttle(ThrottleBrakeSystem.ACTION_MOVE_FORWARD, -30)
         assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
         assertThat(ThrottleBrakeImpl.motionState)
-            .isEqualTo(action?.get(ThrottleBrakeImpl).toString())
+            .isEqualTo(actionMemProp?.getter?.call())
             .isEqualTo(ThrottleBrakeSystem.ACTION_MOVE_FORWARD)
             .isEqualTo("forward")
-        assertThat(value?.getInt(ThrottleBrakeImpl)).isEqualTo(-30)
+        assertThat(valueMemProp?.getter?.call(ThrottleBrakeImpl)).isEqualTo(-30)
     }
     @Test
     fun `throttle backward`() {
         val ret = ThrottleBrakeImpl.throttle(ThrottleBrakeSystem.ACTION_MOVE_BACKWARD, 300)
         assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
         assertThat(ThrottleBrakeImpl.motionState)
-            .isEqualTo(action?.get(ThrottleBrakeImpl).toString())
+            .isEqualTo(actionMemProp?.getter?.call())
             .isEqualTo(ThrottleBrakeSystem.ACTION_MOVE_BACKWARD)
             .isEqualTo("backward")
-        assertThat(value?.getInt(ThrottleBrakeImpl)).isEqualTo(300)
+        assertThat(valueMemProp?.getter?.call(ThrottleBrakeImpl)).isEqualTo(300)
     }
 
     @Test
@@ -186,10 +198,10 @@ internal class ThrottleBrakeImplTest {
         val ret = ThrottleBrakeImpl.brake(10)
         assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
         assertThat(ThrottleBrakeImpl.motionState)
-            .isEqualTo(action?.get(ThrottleBrakeImpl).toString())
+            .isEqualTo(actionMemProp?.getter?.call())
             .isEqualTo(ThrottleBrakeSystem.ACTION_BRAKING_STILL)
             .isEqualTo("braking_still")
-        assertThat(value?.getInt(ThrottleBrakeImpl)).isEqualTo(10)
+        assertThat(valueMemProp?.getter?.call(ThrottleBrakeImpl)).isEqualTo(10)
     }
 
     // parkingBrake
@@ -198,20 +210,20 @@ internal class ThrottleBrakeImplTest {
         val ret = ThrottleBrakeImpl.parkingBrake(100)
         assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
         assertThat(ThrottleBrakeImpl.motionState)
-            .isEqualTo(action?.get(ThrottleBrakeImpl).toString())
+            .isEqualTo(actionMemProp?.getter?.call())
             .isEqualTo(ThrottleBrakeSystem.ACTION_PARKING_BRAKE)
             .isEqualTo("parking_brake")
-        assertThat(value?.getInt(ThrottleBrakeImpl)).isEqualTo(100)
+        assertThat(valueMemProp?.getter?.call(ThrottleBrakeImpl)).isEqualTo(100)
     }
     @Test
     fun `client deactivate parking brake from ImageView`() {
         val ret = ThrottleBrakeImpl.parkingBrake(0)
         assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
         assertThat(ThrottleBrakeImpl.motionState)
-            .isEqualTo(action?.get(ThrottleBrakeImpl).toString())
+            .isEqualTo(actionMemProp?.getter?.call())
             .isEqualTo(ThrottleBrakeSystem.ACTION_BRAKING_STILL)
             .isEqualTo("braking_still")
-        assertThat(value?.getInt(ThrottleBrakeImpl)).isEqualTo(0)
+        assertThat(valueMemProp?.getter?.call(ThrottleBrakeImpl)).isEqualTo(0)
     }
 
     // handbrake
@@ -220,20 +232,20 @@ internal class ThrottleBrakeImplTest {
         val ret = ThrottleBrakeImpl.handbrake(100)
         assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
         assertThat(ThrottleBrakeImpl.motionState)
-            .isEqualTo(action?.get(ThrottleBrakeImpl).toString())
+            .isEqualTo(actionMemProp?.getter?.call())
             .isEqualTo(ThrottleBrakeSystem.ACTION_HANDBRAKE)
             .isEqualTo("handbrake")
-        assertThat(value?.getInt(ThrottleBrakeImpl)).isEqualTo(100)
+        assertThat(valueMemProp?.getter?.call(ThrottleBrakeImpl)).isEqualTo(100)
     }
     @Test
     fun `client deactivate handbrake from ImageView`() {
         val ret = ThrottleBrakeImpl.handbrake(0)
         assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
         assertThat(ThrottleBrakeImpl.motionState)
-            .isEqualTo(action?.get(ThrottleBrakeImpl).toString())
+            .isEqualTo(actionMemProp?.getter?.call())
             .isEqualTo(ThrottleBrakeSystem.ACTION_NEUTRAL)
             .isEqualTo("neutral")
-        assertThat(value?.getInt(ThrottleBrakeImpl)).isEqualTo(0)
+        assertThat(valueMemProp?.getter?.call(ThrottleBrakeImpl)).isEqualTo(0)
     }
 
     @Test
@@ -241,19 +253,19 @@ internal class ThrottleBrakeImplTest {
         val ret = ThrottleBrakeImpl.setNeutral()
         assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
         assertThat(ThrottleBrakeImpl.motionState)
-            .isEqualTo(action?.get(ThrottleBrakeImpl).toString())
+            .isEqualTo(actionMemProp?.getter?.call())
             .isEqualTo(ThrottleBrakeSystem.ACTION_NEUTRAL)
             .isEqualTo("neutral")
-        assertThat(value?.getInt(ThrottleBrakeImpl)).isEqualTo(0)
+        assertThat(valueMemProp?.getter?.call(ThrottleBrakeImpl)).isEqualTo(0)
     }
 
     @Test
     fun reset() {
         ThrottleBrakeImpl.reset()
         assertThat(ThrottleBrakeImpl.motionState)
-            .isEqualTo(action?.get(ThrottleBrakeImpl).toString())
+            .isEqualTo(actionMemProp?.getter?.call())
             .isEqualTo(ThrottleBrakeSystem.ACTION_NEUTRAL)
             .isEqualTo("neutral")
-        assertThat(value?.getInt(ThrottleBrakeImpl)).isEqualTo(0)
+        assertThat(valueMemProp?.getter?.call(ThrottleBrakeImpl)).isEqualTo(0)
     }
 }
