@@ -17,10 +17,10 @@ import kotlin.reflect.KClass
 @EnableScheduling
 class TemperaturesCronJob {
 
-    private val TEMP_URI = "/temp"
-    private val PARAM_KEY_ITEM = "item"
-    private val PARAM_KEY_WARNING = "warning"
-    private val PARAM_KEY_VALUE = "value"
+    private val tempUri = "/temp"
+    private val paramKeyItem = "item"
+    private val paramKeyWarning = "warning"
+    private val paramKeyValue = "value"
 
     private var primaryTemp = EngineSystem.EMPTY_INT
 
@@ -47,7 +47,7 @@ class TemperaturesCronJob {
                 if (reportedTempWarnings[i] != hardwareItems[i].warning) {
                     reportedTempWarnings[i] = hardwareItems[i].warning
 
-                    informClient(hardwareItems[i].ID, reportedTempWarnings[i], primaryTemp)
+                    informClient(hardwareItems[i].id, reportedTempWarnings[i], primaryTemp)
 
                     //if (reportedTempWarnings[i] == Temperature.WARNING_TYPE_HIGH)
                     //    printHighTempInfo(hardwareItems[i]::class, primaryTemp)
@@ -90,10 +90,10 @@ class TemperaturesCronJob {
             "http://" +
                     "${EngineSystem.nanohttpClientIp}:" +
                     "${EngineSystem.nanohttpClientPort}" +
-                    TEMP_URI +
-                    "?$PARAM_KEY_ITEM=$hardwareID" +
-                    "&$PARAM_KEY_WARNING=$warning" +
-                    "&$PARAM_KEY_VALUE=$value"
+                    tempUri +
+                    "?$paramKeyItem=$hardwareID" +
+                    "&$paramKeyWarning=$warning" +
+                    "&$paramKeyValue=$value"
         )
     }
 

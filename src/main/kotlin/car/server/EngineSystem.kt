@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 class EngineSystem {
     @GetMapping("/start_engine")
     fun startEngine(
-        @RequestParam(value = "nanohttp_client_ip", defaultValue = "$EMPTY_STRING") nanohttpClientIp: String,
+        @RequestParam(value = "nanohttp_client_ip", defaultValue = EMPTY_STRING) nanohttpClientIp: String,
         @RequestParam(value = "nanohttp_client_port", defaultValue = "$EMPTY_INT") nanohttpClientPort: Int
     ): String {
 

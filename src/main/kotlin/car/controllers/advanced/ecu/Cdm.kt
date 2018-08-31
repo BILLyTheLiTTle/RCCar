@@ -1,9 +1,5 @@
 package car.controllers.advanced.ecu
 
-import car.controllers.advanced.ecu.sensors.UltrasonicDistanceMeterImpl
-import car.server.ThrottleBrakeSystem
-import car.showMessage
-
 /* CDM stands for Collision Detection Module
 
  */

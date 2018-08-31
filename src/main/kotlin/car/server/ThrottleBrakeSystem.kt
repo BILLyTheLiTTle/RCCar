@@ -14,7 +14,7 @@ class ThrottleBrakeSystem{
 
     @GetMapping("/set_throttle_brake_system")
     fun setThrottleBrakeAction(@RequestParam(value = "id", defaultValue = "-1") id: Int,
-                               @RequestParam(value = "action", defaultValue = "$ACTION_NEUTRAL") action: String,
+                               @RequestParam(value = "action", defaultValue = ACTION_NEUTRAL) action: String,
                                @RequestParam(value = "value", defaultValue =  "0") value: Int): String
     {
 

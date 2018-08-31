@@ -11,7 +11,6 @@ import car.server.ThrottleBrakeSystem.Companion.ACTION_PARKING_BRAKE
 import car.server.EngineSystem.Companion.EMPTY_STRING
 import car.server.SetupSystem
 import car.server.SteeringSystem
-import car.server.ThrottleBrakeSystem
 import car.showMessage
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch

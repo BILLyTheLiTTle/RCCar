@@ -11,9 +11,9 @@ import java.net.URL
 fun doNonBlockingRequest(url:String) = launch { doRequest(url) }
 
 private fun doRequest(url: String): String {
-    var con: HttpURLConnection?
+    val con: HttpURLConnection?
     val urlGet: URL
-    var requestInputStream: InputStream? = null
+    val requestInputStream: InputStream?
     val sb =  StringBuilder()
     try {
         urlGet = URL(url)

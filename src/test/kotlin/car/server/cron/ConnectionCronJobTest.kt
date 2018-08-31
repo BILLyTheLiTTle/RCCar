@@ -6,16 +6,13 @@ import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.Mockito.*
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.mock.mockito.SpyBean
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KProperty
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
-import kotlin.reflect.jvm.javaField
 
 
 @ExtendWith(SpringExtension::class)
@@ -26,7 +23,6 @@ internal class ConnectionCronJobTest {
     private val task: ConnectionCronJob? = null
 
     private var nanohttpClientIpMemProp: KMutableProperty<*>? = null
-    private var isClientOnlineMemProp: KMutableProperty<*>? = null
     private var wasClientOnlineMemProp: KMutableProperty<*>? = null
     private var rstCounterMemProp: KProperty<*>? = null
 
@@ -34,17 +30,14 @@ internal class ConnectionCronJobTest {
     internal fun setUp() {
         nanohttpClientIpMemProp = EngineSystem.Companion::class.memberProperties
             .filterIsInstance<KMutableProperty<*>>()
-            .filter { it.name =="nanohttpClientIp" }
-            .firstOrNull()
+            .firstOrNull { it.name =="nanohttpClientIp" }
         nanohttpClientIpMemProp?.isAccessible = true
         wasClientOnlineMemProp = ConnectionCronJob::class.memberProperties
             .filterIsInstance<KMutableProperty<*>>()
-            .filter { it.name =="wasClientOnline" }
-            .firstOrNull()
+            .firstOrNull { it.name =="wasClientOnline" }
         wasClientOnlineMemProp?.isAccessible = true
         rstCounterMemProp = ConnectionCronJob::class.memberProperties
-            .filter { it.name =="maxResetCounter" }
-            .firstOrNull()
+            .firstOrNull { it.name =="maxResetCounter" }
         rstCounterMemProp?.isAccessible = true
     }
 

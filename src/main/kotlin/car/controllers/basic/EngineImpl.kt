@@ -46,9 +46,9 @@ object EngineImpl:Engine {
             gpio = GpioFactory.getInstance()
             motorsNledsPinsProvider = MCP23S17GpioProvider(MCP23S17GpioProvider.ADDRESS_0, SpiChannel.CS0)
 
-            Gpio.pwmSetMode(Gpio.PWM_MODE_MS);
-            Gpio.pwmSetRange(100);
-            Gpio.pwmSetClock(500);
+            Gpio.pwmSetMode(Gpio.PWM_MODE_MS)
+            Gpio.pwmSetRange(100)
+            Gpio.pwmSetClock(500)
 
             initializeMotors()
         }

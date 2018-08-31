@@ -4,11 +4,11 @@ import car.server.ElectricSystem
 import car.showMessage
 
 object ElectricsImpl:Electrics {
-    private val _lights = mutableMapOf<String, Boolean>()
+    private val lights = mutableMapOf<String, Boolean>()
 
     override var positionLightsState = false
         set(value) {
-            _lights[ElectricSystem.POSITION_LIGHTS] = value
+            lights[ElectricSystem.POSITION_LIGHTS] = value
 
             //println("${this::class.simpleName} Position Lights: $value\n")
 
@@ -22,7 +22,7 @@ object ElectricsImpl:Electrics {
     }
     override var drivingLightsState = false
         set(value) {
-            _lights[ElectricSystem.DRIVING_LIGHTS] = value
+            lights[ElectricSystem.DRIVING_LIGHTS] = value
 
             //println("${this::class.simpleName} Driving Lights: $value\n")
 
@@ -35,7 +35,7 @@ object ElectricsImpl:Electrics {
         }
     override var longRangeLightsState = false
         set(value) {
-            _lights[ElectricSystem.LONG_RANGE_LIGHTS] = value
+            lights[ElectricSystem.LONG_RANGE_LIGHTS] = value
 
             //println("${this::class.simpleName} Long Range Lights: $value\n")
 
@@ -46,7 +46,7 @@ object ElectricsImpl:Electrics {
 
     override var brakingLightsState = false
         set(value) {
-            _lights[ElectricSystem.BRAKING_LIGHTS] = value
+            lights[ElectricSystem.BRAKING_LIGHTS] = value
 
             showMessage(title = "LIGHTS",
                 body = "{ ${this::class.simpleName} } Brake Lights: $value")
@@ -58,7 +58,7 @@ object ElectricsImpl:Electrics {
 
     override var reverseLightsState = false
         set(value) {
-            _lights[ElectricSystem.REVERSE_LIGHTS] = value
+            lights[ElectricSystem.REVERSE_LIGHTS] = value
 
             showMessage(title = "LIGHTS",
                 body = "{ ${this::class.simpleName} } Reverse Lights: $value")
@@ -70,7 +70,7 @@ object ElectricsImpl:Electrics {
 
     override var leftTurnLightsState = false
         set(value) {
-            _lights[ElectricSystem.TURN_LIGHTS_LEFT] = value
+            lights[ElectricSystem.TURN_LIGHTS_LEFT] = value
 
             showMessage(title = "LIGHTS",
                 body = "{ ${this::class.simpleName} } Left Turn Lights: $value")
@@ -86,7 +86,7 @@ object ElectricsImpl:Electrics {
 
     override var rightTurnLightsState = false
         set(value) {
-            _lights[ElectricSystem.TURN_LIGHTS_RIGHT] = value
+            lights[ElectricSystem.TURN_LIGHTS_RIGHT] = value
 
             showMessage(title = "LIGHTS",
                 body = "{ ${this::class.simpleName} } Right Turn Lights: $value")
@@ -102,7 +102,7 @@ object ElectricsImpl:Electrics {
 
     override var emergencyLightsState = false
         set(value) {
-            _lights[ElectricSystem.EMERGENCY_LIGHTS] = value
+            lights[ElectricSystem.EMERGENCY_LIGHTS] = value
 
             showMessage(title = "LIGHTS",
                 body = "{ ${this::class.simpleName} } Emergency Lights: $value")

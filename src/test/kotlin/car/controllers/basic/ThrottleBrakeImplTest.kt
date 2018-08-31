@@ -4,17 +4,11 @@ import car.server.EngineSystem
 import car.server.ThrottleBrakeSystem
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit.jupiter.SpringExtension
-import java.lang.reflect.Field
 import kotlin.reflect.KMutableProperty
-import kotlin.reflect.KMutableProperty0
-import kotlin.reflect.KProperty0
-import kotlin.reflect.KProperty1
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
 
@@ -29,13 +23,11 @@ internal class ThrottleBrakeImplTest {
     internal fun setUp() {
         actionMemProp = ThrottleBrakeImpl::class.memberProperties
             .filterIsInstance<KMutableProperty<*>>()
-            .filter { it.name =="action" }
-            .firstOrNull()
+            .firstOrNull { it.name =="action" }
         actionMemProp?.isAccessible = true
         valueMemProp = ThrottleBrakeImpl::class.memberProperties
             .filterIsInstance<KMutableProperty<*>>()
-            .filter { it.name =="value" }
-            .firstOrNull()
+            .firstOrNull { it.name =="value" }
         valueMemProp?.isAccessible = true
     }
 

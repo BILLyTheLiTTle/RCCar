@@ -12,12 +12,12 @@ abstract class HardwareItemTemperatureImpl: Temperature {
 
     private val lock = Any()
 
-    open val ID = "parent_of_all_temp"
-    protected open val MIN_MEDIUM_TEMP = -1
-    protected open val MAX_MEDIUM_TEMP = -1
+    open val id = "parent_of_all_temp"
+    protected open val minMediumTemp = -1
+    protected open val maxMediumTemp = -1
 
-    private val ERROR_TEMP = 1000
-    private val ERROR_TEMP_GENERATOR
+    private val errorTemp = 1000
+    private val errorTempGenerator
         get() =  Random().nextInt(100)
 
     override val value: Int
@@ -26,8 +26,8 @@ abstract class HardwareItemTemperatureImpl: Temperature {
             val temp = synchronized(lock) { readSensor() }
 
             warning = when {
-                temp < MIN_MEDIUM_TEMP -> Temperature.WARNING_TYPE_NORMAL
-                temp > MAX_MEDIUM_TEMP -> Temperature.WARNING_TYPE_HIGH
+                temp < minMediumTemp -> Temperature.WARNING_TYPE_NORMAL
+                temp > maxMediumTemp -> Temperature.WARNING_TYPE_HIGH
                 else -> Temperature.WARNING_TYPE_MEDIUM
             }
 
@@ -40,7 +40,7 @@ abstract class HardwareItemTemperatureImpl: Temperature {
     private fun readSensor(): Int {
 
         fun getSensorValue(): Int {
-            return ERROR_TEMP_GENERATOR
+            return errorTempGenerator
         }
 
         return when(this) {
@@ -63,13 +63,13 @@ abstract class HardwareItemTemperatureImpl: Temperature {
                 getSensorValue()
             }
             is RaspberryPiTemperatureImpl -> {
-                var gpuTemp: Int
-                var cpuTemp: Int
+                val gpuTemp: Int
+                val cpuTemp: Int
                 if (EngineImpl.RUN_ON_PI) {
                     cpuTemp = try {
                         SystemInfo.getCpuTemperature().toInt()
                     } catch (e: Exception) {
-                        ERROR_TEMP
+                        errorTemp
                     }
 
                     gpuTemp = try {
@@ -77,14 +77,14 @@ abstract class HardwareItemTemperatureImpl: Temperature {
                         val proc = ProcessBuilder(*args).start()
                         // Read the output
                         val reader = BufferedReader(InputStreamReader(proc.inputStream))
-                        var line = reader.readLine()
+                        val line = reader.readLine()
                         line.subSequence(5, 7).toString().toInt()
                     }
-                    catch (e: Exception){ERROR_TEMP}
+                    catch (e: Exception){errorTemp}
                 }
                 else {
-                    gpuTemp = ERROR_TEMP_GENERATOR
-                    cpuTemp = ERROR_TEMP_GENERATOR
+                    gpuTemp = errorTempGenerator
+                    cpuTemp = errorTempGenerator
                 }
                 max(gpuTemp, cpuTemp)
             }

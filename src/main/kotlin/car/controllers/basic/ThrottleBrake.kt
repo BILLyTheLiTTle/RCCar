@@ -1,7 +1,5 @@
 package car.controllers.basic
 
-import car.server.ThrottleBrakeSystem
-
 interface ThrottleBrake {
 
     val parkingBrakeState: Boolean

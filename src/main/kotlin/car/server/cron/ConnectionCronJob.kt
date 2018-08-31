@@ -18,11 +18,11 @@ import java.net.InetAddress
 @EnableScheduling
 class ConnectionCronJob {
 
-    private val ENGINE_OFF_STATE = 1
-    private val CLIENT_STILL_ONLINE = 2
-    private val CLIENT_CAME_ONLINE = 3
-    private val CLIENT_NOT_FOUND = 4
-    private val CLIENT_STILL_NOT_FOUND = 5
+    private val engineOffState = 1
+    private val clientStillOnline = 2
+    private val clientCameOnline = 3
+    private val clientNotFound = 4
+    private val clientStillNotFound = 5
 
     private var isClientOnline = false
     private var wasClientOnline = false
@@ -50,7 +50,7 @@ class ConnectionCronJob {
                     else {
                         counter++
                     }
-                    return CLIENT_STILL_ONLINE
+                    return clientStillOnline
                 }
                 else {
                     showMessage(
@@ -58,7 +58,7 @@ class ConnectionCronJob {
                         title = "CONNECTION CRON JOB",
                         body = "Client came online\nIP: ${EngineSystem.nanohttpClientIp}"
                     )
-                    return CLIENT_CAME_ONLINE
+                    return clientCameOnline
                 }
             } else {
                 if (wasClientOnline) {
@@ -67,7 +67,7 @@ class ConnectionCronJob {
                         title = "CONNECTION CRON JOB",
                         body = "Client (${EngineSystem.nanohttpClientIp}) not found." +
                                 "Parking brake applied: ${ThrottleBrakeImpl.parkingBrakeState}")
-                    return CLIENT_NOT_FOUND
+                    return clientNotFound
                 } else {
                     if (counter == maxResetCounter) {
                         counter = 0
@@ -77,14 +77,14 @@ class ConnectionCronJob {
                                     "Parking brake was applied: ${ThrottleBrakeImpl.parkingBrakeState}")
                     } else
                         counter++
-                    return CLIENT_STILL_NOT_FOUND
+                    return clientStillNotFound
                 }
 
             }
 
         }
         wasClientOnline = isClientOnline
-        return ENGINE_OFF_STATE
+        return engineOffState
     }
 
 }

@@ -1,20 +1,16 @@
 package car.server
 
 import car.controllers.basic.SetupImpl
-import car.controllers.basic.SteeringImpl
-import car.showMessage
-import kotlinx.coroutines.experimental.channels.NULL_VALUE
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import kotlin.math.roundToInt
 
 @RestController
 class SetupSystem{
 
     @GetMapping("/set_handling_assistance")
     fun setHandlingAssistance(
-        @RequestParam(value = "state", defaultValue =  "$ASSISTANCE_NULL") state: String
+        @RequestParam(value = "state", defaultValue =  ASSISTANCE_NULL) state: String
     ): String {
         when (state) {
             ASSISTANCE_NONE -> SetupImpl.handlingAssistanceState = ASSISTANCE_NONE

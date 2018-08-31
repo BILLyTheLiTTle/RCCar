@@ -15,8 +15,8 @@ import org.springframework.scheduling.annotation.Scheduled
 @EnableScheduling
 class SpeedometerCronJob {
 
-    private val SPEED_URI = "/speed"
-    private val PARAM_KEY_VALUE = "value"
+    private val speedUri = "/speed"
+    private val paramKeyValue = "value"
 
     private var primarySpeed = EngineSystem.EMPTY_INT
     private var reportedSpeed = EngineSystem.EMPTY_INT
@@ -37,8 +37,8 @@ class SpeedometerCronJob {
             "http://" +
                     "${EngineSystem.nanohttpClientIp}:" +
                     "${EngineSystem.nanohttpClientPort}" +
-                    SPEED_URI +
-                    "?$PARAM_KEY_VALUE=$value"
+                    speedUri +
+                    "?$paramKeyValue=$value"
         )
     }
 }

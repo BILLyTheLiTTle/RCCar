@@ -2,9 +2,6 @@ package car.controllers.temperatures
 
 import car.server.EngineSystem
 
-
-
-
 interface Temperature {
 
     val value: Int
