@@ -54,19 +54,18 @@ internal class ConnectionCronJobTest {
         // TODO how to implement this kind of test?
     }
 
-    @Test
+    /*@Test
     fun `engine state on with wrong ip format`() {
         EngineImpl.engineState = true
         nanohttpClientIpMemProp?.setter?.call(EngineSystem.Companion, "oops")
         val ret = task?.checkClientStatus()
         assertThat(ret).isEqualTo(0) // IP_ERROR
-    }
+    }*/
 
     @Test
     fun `engine state on with client still online`() {
         EngineImpl.engineState = true
         nanohttpClientIpMemProp?.setter?.call(EngineSystem.Companion, "localhost")
-        //isClientOnlineMemProp?.setter?.call(task, true)
         wasClientOnlineMemProp?.setter?.call(task, true)
         val ret = task?.checkClientStatus()
         assertThat(ret).isEqualTo(2) // CLIENT_STILL_ONLINE

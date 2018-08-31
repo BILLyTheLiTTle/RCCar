@@ -18,7 +18,6 @@ import java.net.InetAddress
 @EnableScheduling
 class ConnectionCronJob {
 
-    private val IP_ERROR = 0
     private val ENGINE_OFF_STATE = 1
     private val CLIENT_STILL_ONLINE = 2
     private val CLIENT_CAME_ONLINE = 3
@@ -39,7 +38,6 @@ class ConnectionCronJob {
                 InetAddress.getByName(EngineSystem.nanohttpClientIp).isReachable(200)
             } catch (e: Exception) {
                 false
-                return IP_ERROR
             }
 
             if (isClientOnline) {
