@@ -143,15 +143,43 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
     // setMainLightsState
     @Test
     fun `turn off main lights`() {
+        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?value=lights_off")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo(ElectricSystem.LIGHTS_OFF)
+        assertThat(ElectricsImpl.positionLightsState).isFalse()
+        assertThat(ElectricsImpl.drivingLightsState).isFalse()
+        assertThat(ElectricsImpl.longRangeLightsState).isFalse()
     }
     @Test
     fun `turn on position lights`() {
+        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?value=position_lights")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo(ElectricSystem.POSITION_LIGHTS)
+        assertThat(ElectricsImpl.positionLightsState).isTrue()
+        assertThat(ElectricsImpl.drivingLightsState).isFalse()
+        assertThat(ElectricsImpl.longRangeLightsState).isFalse()
     }
     @Test
     fun `turn on driving lights`() {
+        `turn on position lights`()
+
+        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?value=driving_lights")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo(ElectricSystem.DRIVING_LIGHTS)
+        assertThat(ElectricsImpl.positionLightsState).isTrue()
+        assertThat(ElectricsImpl.drivingLightsState).isTrue()
+        assertThat(ElectricsImpl.longRangeLightsState).isFalse()
     }
     @Test
     fun `turn on long range lights`() {
+        `turn on driving lights`()
+
+        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?value=long_range_lights")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo(ElectricSystem.LONG_RANGE_LIGHTS)
+        assertThat(ElectricsImpl.positionLightsState).isTrue()
+        assertThat(ElectricsImpl.drivingLightsState).isTrue()
+        assertThat(ElectricsImpl.longRangeLightsState).isTrue()
     }
     @Test
     fun `signal with headlights`() {
@@ -160,25 +188,51 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
 
     // getMainLightsState
     @Test
-    fun `get all lights state when long range lights are on`() {
+    fun `get all lights state when till long range lights are on`() {
+        restTemplate.getForEntity<String>("/set_main_lights_state?value=position_lights")
+        restTemplate.getForEntity<String>("/set_main_lights_state?value=driving_lights")
+        restTemplate.getForEntity<String>("/set_main_lights_state?value=long_range_lights")
+
+        val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo(ElectricSystem.LONG_RANGE_LIGHTS)
+        assertThat(ElectricsImpl.positionLightsState).isTrue()
+        assertThat(ElectricsImpl.drivingLightsState).isTrue()
+        assertThat(ElectricsImpl.longRangeLightsState).isTrue()
     }
     @Test
-    fun `get all lights state when long range lights are off`() {
+    fun `get all lights state when till driving lights are on`() {
+        restTemplate.getForEntity<String>("/set_main_lights_state?value=position_lights")
+        restTemplate.getForEntity<String>("/set_main_lights_state?value=driving_lights")
+
+        val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo(ElectricSystem.DRIVING_LIGHTS)
+        assertThat(ElectricsImpl.positionLightsState).isTrue()
+        assertThat(ElectricsImpl.drivingLightsState).isTrue()
+        assertThat(ElectricsImpl.longRangeLightsState).isFalse()
     }
     @Test
-    fun `get all lights state when driving lights are on`() {
-    }
-    @Test
-    fun `get all lights state when driving lights are off`() {
-    }
-    @Test
-    fun `get all lights state when position lights are on`() {
-    }
-    @Test
-    fun `get all lights state when position lights are off`() {
+    fun `get all lights state when till position lights are on`() {
+        restTemplate.getForEntity<String>("/set_main_lights_state?value=position_lights")
+
+        val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo(ElectricSystem.POSITION_LIGHTS)
+        assertThat(ElectricsImpl.positionLightsState).isTrue()
+        assertThat(ElectricsImpl.drivingLightsState).isFalse()
+        assertThat(ElectricsImpl.longRangeLightsState).isFalse()
     }
     @Test
     fun `get all lights state when main lights are off`() {
+        restTemplate.getForEntity<String>("/set_main_lights_state?value=lights_off")
+
+        val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo(ElectricSystem.LIGHTS_OFF)
+        assertThat(ElectricsImpl.positionLightsState).isFalse()
+        assertThat(ElectricsImpl.drivingLightsState).isFalse()
+        assertThat(ElectricsImpl.longRangeLightsState).isFalse()
     }
 
     // setReverseLightsState

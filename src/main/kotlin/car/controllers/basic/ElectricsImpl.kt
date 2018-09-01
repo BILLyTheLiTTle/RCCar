@@ -14,7 +14,7 @@ object ElectricsImpl:Electrics {
 
             //reset the bigger light scales
             drivingLightsState = false
-            longRangeLightsState = false
+            //longRangeLightsState = false
 
             // TODO call handleLeds(...)
 
