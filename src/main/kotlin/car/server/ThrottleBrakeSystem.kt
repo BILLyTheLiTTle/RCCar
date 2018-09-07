@@ -13,7 +13,7 @@ import kotlin.math.roundToInt
 class ThrottleBrakeSystem{
 
     @GetMapping("/set_throttle_brake_system")
-    fun setThrottleBrakeAction(@RequestParam(value = "id", defaultValue = "-1") id: Int,
+    fun setThrottleBrakeAction(@RequestParam(value = "id", defaultValue = "-1") id: Long,
                                @RequestParam(value = "action", defaultValue = ACTION_NEUTRAL) action: String,
                                @RequestParam(value = "value", defaultValue =  "0") value: Int): String
     {
@@ -85,7 +85,7 @@ class ThrottleBrakeSystem{
     fun getMotionState() = ThrottleBrakeImpl.motionState
 
     companion object {
-        var lastRequestId = -1
+        var lastRequestId = -1L
 
         const val ACTION_MOVE_FORWARD = "forward"
         const val ACTION_MOVE_BACKWARD = "backward"

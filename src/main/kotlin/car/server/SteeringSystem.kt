@@ -14,7 +14,7 @@ class SteeringSystem{
 
     @GetMapping("/set_steering_system")
     fun setSteeringAction(
-        @RequestParam(value = "id", defaultValue = "-1") id: Int,
+        @RequestParam(value = "id", defaultValue = "-1") id: Long,
         @RequestParam(value = "direction", defaultValue = ACTION_STRAIGHT) direction: String,
         @RequestParam(value = "value", defaultValue =  "$STEERING_VALUE_00") value: Int
     ): String {
@@ -67,7 +67,7 @@ class SteeringSystem{
     fun getSteeringDirection() = SteeringImpl.direction
 
     companion object {
-        var lastRequestId = -1
+        var lastRequestId = -1L
 
         const val ACTION_TURN_RIGHT = "right"
         const val ACTION_TURN_LEFT = "left"
