@@ -47,7 +47,10 @@ class SteeringSystem{
                 }
 
                 /* This function is called because the throttle values, due to differential functionality,
-                    must be updated also when the throttle is steady but the steering is changing
+                    must be updated also when the throttle is steady but the steering angle is changing.
+                    For example:
+                    1). When the user turns more to the same direction
+                    2). When the user turns to the opposite direction
                  */
                 when (SetupImpl.handlingAssistanceState) {
                     SetupSystem.ASSISTANCE_NONE ->

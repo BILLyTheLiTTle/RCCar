@@ -16,11 +16,19 @@ interface ThrottleBrake {
     fun handbrake(value: Int): String
     fun setNeutral(): String
 
-    fun applyPwmValues(motorFRpin00: Int = 0, motorFRpin01: Int = 0,
-                                 motorFLpin00: Int = 0, motorFLpin01: Int = 0,
-                                 motorRRpin00: Int = 0, motorRRpin01: Int = 0,
-                                 motorRLpin00: Int = 0, motorRLpin01: Int = 0){
-        //TODO implement it here
+    fun applyPinValues(motorFrontRightPwm: Int? = null, motorFrontRightDigital: Boolean? = null,
+                       motorFrontLeftPwm: Int? = null, motorFrontLeftDigital: Boolean? = null,
+                       motorRearRightPwm: Int? = null, motorRearRightDigital: Boolean? = null,
+                       motorRearLeftPwm: Int? = null, motorRearLeftDigital: Boolean? = null){
+
+        motorFrontRightPwm?.let { EngineImpl.motorFrontRightPwmPin.pwm = it }
+        motorFrontRightDigital?.let { EngineImpl.motorFrontRightDirPin.setState(it) }
+        motorFrontLeftPwm?.let { EngineImpl.motorFrontLeftPwmPin.pwm = it }
+        motorFrontLeftDigital?.let { EngineImpl.motorFrontLeftDirPin.setState(it) }
+        motorRearRightPwm?.let { EngineImpl.motorRearRightPwmPin.pwm = it }
+        motorRearRightDigital?.let { EngineImpl.motorRearRightDirPin.setState(it) }
+        motorRearLeftPwm?.let { EngineImpl.motorRearLeftPwmPin.pwm = it }
+        motorRearLeftDigital?.let { EngineImpl.motorRearLeftDirPin.setState(it) }
     }
 
     fun reset()
