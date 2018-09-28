@@ -238,32 +238,72 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
     // setReverseLightsState
     @Test
     fun `turn on reverse lights`() {
+        val entity = restTemplate.getForEntity<String>("/set_reverse_lights_state?state=true")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo("true")
+        assertThat(ElectricsImpl.reverseLightsState).isTrue()
     }
     @Test
     fun `turn off reverse lights`() {
+        val entity = restTemplate.getForEntity<String>("/set_reverse_lights_state?state=false")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo("false")
+        assertThat(ElectricsImpl.reverseLightsState).isFalse()
     }
 
     // getReverseLightsState
     @Test
     fun `reverse lights should be on`() {
+        restTemplate.getForEntity<String>("/set_reverse_lights_state?state=true")
+
+        val entity = restTemplate.getForEntity<String>("/get_reverse_lights_state")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo("true")
+        assertThat(ElectricsImpl.reverseLightsState).isTrue()
     }
     @Test
     fun `reverse lights should be off`() {
+        restTemplate.getForEntity<String>("/set_reverse_lights_state?state=false")
+
+        val entity = restTemplate.getForEntity<String>("/get_reverse_lights_state")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo("false")
+        assertThat(ElectricsImpl.reverseLightsState).isFalse()
     }
 
     // setEmergencyLightsState
     @Test
     fun `turn on emergency lights`() {
+        val entity = restTemplate.getForEntity<String>("/set_emergency_lights_state?state=true")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo("true")
+        assertThat(ElectricsImpl.emergencyLightsState).isTrue()
     }
     @Test
     fun `turn off emergency lights`() {
+        val entity = restTemplate.getForEntity<String>("/set_emergency_lights_state?state=false")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo("false")
+        assertThat(ElectricsImpl.emergencyLightsState).isFalse()
     }
 
     // getEmergencyLightsState
     @Test
     fun `emergency lights should be on`() {
+        restTemplate.getForEntity<String>("/set_emergency_lights_state?state=true")
+
+        val entity = restTemplate.getForEntity<String>("/get_emergency_lights_state")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo("true")
+        assertThat(ElectricsImpl.emergencyLightsState).isTrue()
     }
     @Test
     fun `emergency lights should be off`() {
+        restTemplate.getForEntity<String>("/set_emergency_lights_state?state=false")
+
+        val entity = restTemplate.getForEntity<String>("/get_emergency_lights_state")
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).isEqualTo("false")
+        assertThat(ElectricsImpl.emergencyLightsState).isFalse()
     }
 }
