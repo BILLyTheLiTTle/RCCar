@@ -12,7 +12,7 @@ abstract class HardwareItemTemperatureImpl: Temperature {
 
     private val lock = Any()
 
-    open val id = "parent_of_all_temp"
+    open val id = "parent_of_all_hardware_temp"
     protected open val minMediumTemp = -1
     protected open val maxMediumTemp = -1
 

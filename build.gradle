@@ -68,4 +68,6 @@ dependencies {
 	}
 	testImplementation('org.junit.jupiter:junit-jupiter-api')
 	testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine')
+
+	testCompile 'org.mockito:mockito-inline:2.22.0'
 }

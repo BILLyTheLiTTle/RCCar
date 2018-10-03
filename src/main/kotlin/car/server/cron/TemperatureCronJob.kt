@@ -22,7 +22,7 @@ class TemperaturesCronJob {
     private val paramKeyWarning = "warning"
     private val paramKeyValue = "value"
 
-    var primaryTempValues = arrayOf(EngineSystem.EMPTY_INT,EngineSystem.EMPTY_INT,
+    var primaryTempValues = intArrayOf(EngineSystem.EMPTY_INT,EngineSystem.EMPTY_INT,
         EngineSystem.EMPTY_INT, EngineSystem.EMPTY_INT,
         EngineSystem.EMPTY_INT, EngineSystem.EMPTY_INT,
         EngineSystem.EMPTY_INT,
