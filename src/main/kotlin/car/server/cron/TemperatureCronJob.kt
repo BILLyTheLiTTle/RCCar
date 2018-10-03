@@ -22,7 +22,12 @@ class TemperaturesCronJob {
     private val paramKeyWarning = "warning"
     private val paramKeyValue = "value"
 
-    private var primaryTemp = EngineSystem.EMPTY_INT
+    var primaryTempValues = arrayOf(EngineSystem.EMPTY_INT,EngineSystem.EMPTY_INT,
+        EngineSystem.EMPTY_INT, EngineSystem.EMPTY_INT,
+        EngineSystem.EMPTY_INT, EngineSystem.EMPTY_INT,
+        EngineSystem.EMPTY_INT,
+        EngineSystem.EMPTY_INT,
+        EngineSystem.EMPTY_INT)
 
     var hardwareItems = arrayOf(MotorRearLeftTemperatureImpl,MotorRearRightTemperatureImpl,
         MotorFrontLeftTemperatureImpl, MotorFrontRightTemperatureImpl,
@@ -43,11 +48,11 @@ class TemperaturesCronJob {
 
         if (EngineImpl.engineState) {
             for (i in 0 until hardwareItems.size) {
-                primaryTemp = hardwareItems[i].value
+                primaryTempValues[i] = hardwareItems[i].value
                 if (reportedTempWarnings[i] != hardwareItems[i].warning) {
                     reportedTempWarnings[i] = hardwareItems[i].warning
 
-                    informClient(hardwareItems[i].id, reportedTempWarnings[i], primaryTemp)
+                    informClient(hardwareItems[i].id, reportedTempWarnings[i], primaryTempValues[i])
 
                     //if (reportedTempWarnings[i] == Temperature.WARNING_TYPE_HIGH)
                     //    printHighTempInfo(hardwareItems[i]::class, primaryTemp)
