@@ -8,7 +8,7 @@ import java.io.InputStreamReader
 import java.util.*
 import kotlin.math.max
 
-abstract class HardwareItemTemperatureImpl: Temperature {
+open class HardwareItemTemperatureImpl: Temperature {
 
     private val lock = Any()
 
