@@ -1,0 +1,3 @@
+package car.cockpit.dashboard.lights.warning.temperatures
+
+internal class HardwareItemTemperatureImplTestTodo
