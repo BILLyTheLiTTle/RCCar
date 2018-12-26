@@ -1,16 +1,13 @@
 package car.dummy
 
-class DummyRunningTask: Runnable {
-    private lateinit var dummyListener: DummyListener
+import java.util.*
 
-    fun setDummyListener(dummyListener: DummyListener) {
-        this.dummyListener = dummyListener
-    }
+class DummyRunningTask(private val dummyListener: DummyListener) : Runnable {
 
     override fun run() {
         try {
             Thread.sleep(100)
-            dummyListener.onDummyValueChange()
+            dummyListener.onDummyValueChange(Random().nextInt(50)+1)
         } catch (e: Exception) {
             print(e.message)
         }
