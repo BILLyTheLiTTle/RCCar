@@ -1,9 +1,8 @@
 package car.cockpit.dashboard.speedometer
 
 
-import car.cockpit.engine.EngineImpl
+import car.cockpit.engine.*
 import car.ecu.sensors.speed.SpeedometerImpl
-import car.cockpit.engine.EngineSystem
 import car.doNonBlockingRequest
 import org.springframework.context.annotation.Configuration
 import org.springframework.scheduling.annotation.EnableAsync
@@ -18,8 +17,8 @@ class SpeedometerCron {
     private val speedUri = "/speed"
     private val paramKeyValue = "value"
 
-    private var primarySpeed = EngineSystem.EMPTY_INT
-    private var reportedSpeed = EngineSystem.EMPTY_INT
+    private var primarySpeed = EMPTY_INT
+    private var reportedSpeed = EMPTY_INT
 
     @Scheduled(initialDelay = 5000, fixedDelay = 600)
     fun checkSpeed(){
@@ -35,8 +34,8 @@ class SpeedometerCron {
     private fun informClient(value: Int){
         doNonBlockingRequest(
             "http://" +
-                    "${EngineSystem.nanohttpClientIp}:" +
-                    "${EngineSystem.nanohttpClientPort}" +
+                    "$nanohttpClientIp:" +
+                    "$nanohttpClientPort" +
                     speedUri +
                     "?$paramKeyValue=$value"
         )

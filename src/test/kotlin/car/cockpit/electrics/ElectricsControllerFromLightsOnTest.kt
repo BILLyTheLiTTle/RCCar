@@ -1,7 +1,5 @@
 package car.cockpit.electrics
 
-import car.cockpit.electrics.ElectricSystemTest
-import car.cockpit.electrics.ElectricsImpl
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
@@ -13,9 +11,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class ElectricSystemFromLightsOnTest(
+internal class ElectricsControllerFromLightsOnTest(
     @Autowired override val restTemplate: TestRestTemplate
-): ElectricSystemTest(restTemplate) {
+): ElectricsControllerTest(restTemplate) {
 
     override val initialLightsState = true
 

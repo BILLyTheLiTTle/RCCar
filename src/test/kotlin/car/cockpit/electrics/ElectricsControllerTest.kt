@@ -1,7 +1,5 @@
 package car.cockpit.electrics
 
-import car.cockpit.electrics.ElectricsImpl
-import car.cockpit.electrics.ElectricSystem
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -14,7 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate) {
+internal class ElectricsControllerTest(@Autowired val restTemplate: TestRestTemplate) {
 
     val initialLightsState = true
 
@@ -26,7 +24,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
         }
         val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=turn_lights_left")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.TURN_LIGHTS_LEFT)
+        assertThat(entity.body).isEqualTo(TURN_LIGHTS_LEFT)
         assertThat(ElectricsImpl.leftTurnLightsState).isTrue()
         assertThat(ElectricsImpl.rightTurnLightsState).isFalse()
     }
@@ -37,7 +35,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
         }
         val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=turn_lights_left")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.TURN_LIGHTS_STRAIGHT)
+        assertThat(entity.body).isEqualTo(TURN_LIGHTS_STRAIGHT)
         assertThat(ElectricsImpl.leftTurnLightsState).isFalse()
         assertThat(ElectricsImpl.rightTurnLightsState).isFalse()
     }
@@ -48,7 +46,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
         }
         val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=turn_lights_right")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.TURN_LIGHTS_RIGHT)
+        assertThat(entity.body).isEqualTo(TURN_LIGHTS_RIGHT)
         assertThat(ElectricsImpl.rightTurnLightsState).isTrue()
         assertThat(ElectricsImpl.leftTurnLightsState).isFalse()
     }
@@ -59,7 +57,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
         }
         val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=turn_lights_right")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.TURN_LIGHTS_STRAIGHT)
+        assertThat(entity.body).isEqualTo(TURN_LIGHTS_STRAIGHT)
         assertThat(ElectricsImpl.rightTurnLightsState).isFalse()
         assertThat(ElectricsImpl.leftTurnLightsState).isFalse()
     }
@@ -70,7 +68,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
         }
         val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=turn_lights_straight")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.TURN_LIGHTS_STRAIGHT)
+        assertThat(entity.body).isEqualTo(TURN_LIGHTS_STRAIGHT)
         assertThat(ElectricsImpl.rightTurnLightsState).isFalse()
         assertThat(ElectricsImpl.leftTurnLightsState).isFalse()
     }
@@ -81,7 +79,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
         }
         val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=turn_lights_straight")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.TURN_LIGHTS_STRAIGHT)
+        assertThat(entity.body).isEqualTo(TURN_LIGHTS_STRAIGHT)
         assertThat(ElectricsImpl.rightTurnLightsState).isFalse()
         assertThat(ElectricsImpl.leftTurnLightsState).isFalse()
     }
@@ -94,7 +92,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
         }
         val entity = restTemplate.getForEntity<String>("/get_direction_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.TURN_LIGHTS_LEFT)
+        assertThat(entity.body).isEqualTo(TURN_LIGHTS_LEFT)
         assertThat(ElectricsImpl.rightTurnLightsState).isFalse()
         assertThat(ElectricsImpl.leftTurnLightsState).isTrue()
     }
@@ -105,7 +103,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
         }
         val entity = restTemplate.getForEntity<String>("/get_direction_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.TURN_LIGHTS_STRAIGHT)
+        assertThat(entity.body).isEqualTo(TURN_LIGHTS_STRAIGHT)
         assertThat(ElectricsImpl.rightTurnLightsState).isFalse()
         assertThat(ElectricsImpl.leftTurnLightsState).isFalse()
     }
@@ -116,7 +114,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
         }
         val entity = restTemplate.getForEntity<String>("/get_direction_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.TURN_LIGHTS_RIGHT)
+        assertThat(entity.body).isEqualTo(TURN_LIGHTS_RIGHT)
         assertThat(ElectricsImpl.rightTurnLightsState).isTrue()
         assertThat(ElectricsImpl.leftTurnLightsState).isFalse()
     }
@@ -127,7 +125,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
         }
         val entity = restTemplate.getForEntity<String>("/get_direction_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.TURN_LIGHTS_STRAIGHT)
+        assertThat(entity.body).isEqualTo(TURN_LIGHTS_STRAIGHT)
         assertThat(ElectricsImpl.rightTurnLightsState).isFalse()
         assertThat(ElectricsImpl.leftTurnLightsState).isFalse()
     }
@@ -136,7 +134,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
         restTemplate.getForEntity<String>("/set_direction_lights?direction=turn_lights_straight")
         val entity = restTemplate.getForEntity<String>("/get_direction_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.TURN_LIGHTS_STRAIGHT)
+        assertThat(entity.body).isEqualTo(TURN_LIGHTS_STRAIGHT)
         assertThat(ElectricsImpl.rightTurnLightsState).isFalse()
         assertThat(ElectricsImpl.leftTurnLightsState).isFalse()
     }
@@ -146,7 +144,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
     fun `turn off main lights`() {
         val entity = restTemplate.getForEntity<String>("/set_main_lights_state?value=lights_off")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.LIGHTS_OFF)
+        assertThat(entity.body).isEqualTo(LIGHTS_OFF)
         assertThat(ElectricsImpl.positionLightsState).isFalse()
         assertThat(ElectricsImpl.drivingLightsState).isFalse()
         assertThat(ElectricsImpl.longRangeLightsState).isFalse()
@@ -155,7 +153,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
     fun `turn on position lights`() {
         val entity = restTemplate.getForEntity<String>("/set_main_lights_state?value=position_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.POSITION_LIGHTS)
+        assertThat(entity.body).isEqualTo(POSITION_LIGHTS)
         assertThat(ElectricsImpl.positionLightsState).isTrue()
         assertThat(ElectricsImpl.drivingLightsState).isFalse()
         assertThat(ElectricsImpl.longRangeLightsState).isFalse()
@@ -166,7 +164,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
 
         val entity = restTemplate.getForEntity<String>("/set_main_lights_state?value=driving_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.DRIVING_LIGHTS)
+        assertThat(entity.body).isEqualTo(DRIVING_LIGHTS)
         assertThat(ElectricsImpl.positionLightsState).isTrue()
         assertThat(ElectricsImpl.drivingLightsState).isTrue()
         assertThat(ElectricsImpl.longRangeLightsState).isFalse()
@@ -177,7 +175,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
 
         val entity = restTemplate.getForEntity<String>("/set_main_lights_state?value=long_range_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.LONG_RANGE_LIGHTS)
+        assertThat(entity.body).isEqualTo(LONG_RANGE_LIGHTS)
         assertThat(ElectricsImpl.positionLightsState).isTrue()
         assertThat(ElectricsImpl.drivingLightsState).isTrue()
         assertThat(ElectricsImpl.longRangeLightsState).isTrue()
@@ -196,7 +194,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
 
         val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.LONG_RANGE_LIGHTS)
+        assertThat(entity.body).isEqualTo(LONG_RANGE_LIGHTS)
         assertThat(ElectricsImpl.positionLightsState).isTrue()
         assertThat(ElectricsImpl.drivingLightsState).isTrue()
         assertThat(ElectricsImpl.longRangeLightsState).isTrue()
@@ -208,7 +206,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
 
         val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.DRIVING_LIGHTS)
+        assertThat(entity.body).isEqualTo(DRIVING_LIGHTS)
         assertThat(ElectricsImpl.positionLightsState).isTrue()
         assertThat(ElectricsImpl.drivingLightsState).isTrue()
         assertThat(ElectricsImpl.longRangeLightsState).isFalse()
@@ -219,7 +217,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
 
         val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.POSITION_LIGHTS)
+        assertThat(entity.body).isEqualTo(POSITION_LIGHTS)
         assertThat(ElectricsImpl.positionLightsState).isTrue()
         assertThat(ElectricsImpl.drivingLightsState).isFalse()
         assertThat(ElectricsImpl.longRangeLightsState).isFalse()
@@ -230,7 +228,7 @@ internal class ElectricSystemTest(@Autowired val restTemplate: TestRestTemplate)
 
         val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ElectricSystem.LIGHTS_OFF)
+        assertThat(entity.body).isEqualTo(LIGHTS_OFF)
         assertThat(ElectricsImpl.positionLightsState).isFalse()
         assertThat(ElectricsImpl.drivingLightsState).isFalse()
         assertThat(ElectricsImpl.longRangeLightsState).isFalse()

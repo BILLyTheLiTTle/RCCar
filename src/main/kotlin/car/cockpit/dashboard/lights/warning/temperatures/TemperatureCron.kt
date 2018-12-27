@@ -1,8 +1,7 @@
 package car.cockpit.dashboard.lights.warning.temperatures
 
 import car.TYPE_CRITICAL
-import car.cockpit.engine.EngineImpl
-import car.cockpit.engine.EngineSystem
+import car.cockpit.engine.*
 import car.doNonBlockingRequest
 import car.showMessage
 import org.springframework.context.annotation.Configuration
@@ -22,12 +21,12 @@ class TemperaturesCronJob {
     private val paramKeyValue = "value"
 
     var primaryTempValues = intArrayOf(
-        EngineSystem.EMPTY_INT, EngineSystem.EMPTY_INT,
-        EngineSystem.EMPTY_INT, EngineSystem.EMPTY_INT,
-        EngineSystem.EMPTY_INT, EngineSystem.EMPTY_INT,
-        EngineSystem.EMPTY_INT,
-        EngineSystem.EMPTY_INT,
-        EngineSystem.EMPTY_INT)
+        EMPTY_INT, EMPTY_INT,
+        EMPTY_INT, EMPTY_INT,
+        EMPTY_INT, EMPTY_INT,
+        EMPTY_INT,
+        EMPTY_INT,
+        EMPTY_INT)
 
     var hardwareItems = arrayOf(MotorRearLeftTemperatureImpl,MotorRearRightTemperatureImpl,
         MotorFrontLeftTemperatureImpl, MotorFrontRightTemperatureImpl,
@@ -70,8 +69,8 @@ class TemperaturesCronJob {
             || reportedMrltTempValue < primaryTemp + temperatureDiff) {
             reportedMrltTempValue = primaryTemp
             doNonBlockingRequest("http://" +
-                    "${EngineSystem.nanohttpClientIp}:" +
-                    "${EngineSystem.nanohttpClientPort}" +
+                    "$nanohttpClientIp:" +
+                    "$nanohttpClientPort" +
                     "/temp" +
                     "?item=${MotorRearLeftTemp.ID}" +
                     "&warning=$reportedMrltTempWarning" +
@@ -81,8 +80,8 @@ class TemperaturesCronJob {
         if (reportedMrltTempWarning != MotorRearLeftTemp.warning) {
             reportedMrltTempWarning = MotorRearLeftTemp.warning
             doNonBlockingRequest("http://" +
-                    "${EngineSystem.nanohttpClientIp}:" +
-                    "${EngineSystem.nanohttpClientPort}" +
+                    "$nanohttpClientIp:" +
+                    "$nanohttpClientPort" +
                     "/temp" +
                     "?item=${MotorRearLeftTemp.ID}" +
                     "&warning=$reportedMrltTempWarning" +
@@ -93,8 +92,8 @@ class TemperaturesCronJob {
     private fun informClient(hardwareID: String, warning: String, value: Int){
         doNonBlockingRequest(
             "http://" +
-                    "${EngineSystem.nanohttpClientIp}:" +
-                    "${EngineSystem.nanohttpClientPort}" +
+                    "$nanohttpClientIp:" +
+                    "$nanohttpClientPort" +
                     tempUri +
                     "?$paramKeyItem=$hardwareID" +
                     "&$paramKeyWarning=$warning" +

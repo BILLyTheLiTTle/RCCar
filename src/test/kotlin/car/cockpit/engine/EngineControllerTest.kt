@@ -13,28 +13,28 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class EngineSystemTest(@Autowired val restTemplate: TestRestTemplate) {
+internal class EngineControllerTest(@Autowired val restTemplate: TestRestTemplate) {
 
     @Test
     fun `rc controller server should be empty`() {
         val entity = restTemplate.getForEntity<String>("/start_engine")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(EngineSystem.nanohttpClientIp).isEqualTo(EngineSystem.EMPTY_STRING)
-        assertThat(EngineSystem.nanohttpClientPort).isEqualTo(EngineSystem.EMPTY_INT)
+        assertThat(nanohttpClientIp).isEqualTo(EMPTY_STRING)
+        assertThat(nanohttpClientPort).isEqualTo(EMPTY_INT)
     }
     @Test
     fun `rc controller server should have a value`() {
         val entity = restTemplate.getForEntity<String>("/start_engine?nanohttp_client_ip=ip&nanohttp_client_port=1")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(EngineSystem.nanohttpClientIp).isEqualTo("ip")
-        assertThat(EngineSystem.nanohttpClientPort).isEqualTo(1)
+        assertThat(nanohttpClientIp).isEqualTo("ip")
+        assertThat(nanohttpClientPort).isEqualTo(1)
     }
 
     @Test
     fun `start engine without parameters`() {
         val entity = restTemplate.getForEntity<String>("/start_engine")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(entity.body).isEqualTo(SUCCESS)
     }
 
     @Test
@@ -56,6 +56,6 @@ internal class EngineSystemTest(@Autowired val restTemplate: TestRestTemplate) {
     fun `stop the engine`() {
         val entity = restTemplate.getForEntity<String>("/stop_engine")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(entity.body).isEqualTo(SUCCESS)
     }
 }

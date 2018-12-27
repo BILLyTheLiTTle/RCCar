@@ -1,6 +1,6 @@
 package car
 
-import car.cockpit.engine.EngineSystem
+import car.cockpit.engine.EMPTY_STRING
 import kotlinx.coroutines.experimental.launch
 import java.io.BufferedReader
 import java.io.IOException
@@ -40,7 +40,7 @@ private fun doRequest(url: String): String {
         bufferReader.close()
     } catch (e: IOException) {
         //handle the exception !
-        sb.append(e.message ?: EngineSystem.EMPTY_STRING)
+        sb.append(e.message ?: EMPTY_STRING)
     }
     return sb.toString()
 }

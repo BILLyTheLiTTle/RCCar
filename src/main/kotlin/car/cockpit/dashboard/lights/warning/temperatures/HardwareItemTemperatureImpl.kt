@@ -1,7 +1,9 @@
 package car.cockpit.dashboard.lights.warning.temperatures
 
+import car.cockpit.engine.EMPTY_INT
+import car.cockpit.engine.EMPTY_STRING
 import car.cockpit.engine.EngineImpl
-import car.cockpit.engine.EngineSystem
+import car.cockpit.engine.EngineController
 import com.pi4j.system.SystemInfo
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -34,7 +36,7 @@ open class HardwareItemTemperatureImpl: Temperature {
             return temp
         }
 
-    override var warning = EngineSystem.EMPTY_STRING
+    override var warning = EMPTY_STRING
         protected set
 
     private fun readSensor(): Int {
@@ -102,7 +104,7 @@ open class HardwareItemTemperatureImpl: Temperature {
                 val signalLightsTemp = getSensorValue()
                 max(mainLightsTemp, signalLightsTemp)
             }
-            else -> EngineSystem.EMPTY_INT
+            else -> EMPTY_INT
         }
     }
 }

@@ -1,8 +1,6 @@
 package car.cockpit.steering
 
-import car.cockpit.engine.EngineSystem
-import car.cockpit.steering.SteeringImpl
-import car.cockpit.steering.SteeringWheel
+import car.cockpit.engine.SUCCESS
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -17,41 +15,41 @@ internal class SteeringImplTest {
     @Test
     fun `turn right`() {
         val ret = SteeringImpl.turn(
-            SteeringWheel.ACTION_TURN_RIGHT,
-            SteeringWheel.STEERING_VALUE_40)
-        assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
+            ACTION_TURN_RIGHT,
+            STEERING_VALUE_40)
+        assertThat(ret).isEqualTo(SUCCESS)
         assertThat(SteeringImpl.direction)
             .isEqualTo(SteeringImpl::direction.get())
-            .isEqualTo(SteeringWheel.ACTION_TURN_RIGHT)
+            .isEqualTo(ACTION_TURN_RIGHT)
             .isEqualTo("right")
         assertThat(SteeringImpl::value.get())
-            .isEqualTo(SteeringWheel.STEERING_VALUE_40)
+            .isEqualTo(STEERING_VALUE_40)
             .isEqualTo(40)
     }
     @Test
     fun `turn left`() {
         val ret = SteeringImpl.turn(
-            SteeringWheel.ACTION_TURN_LEFT,
-            SteeringWheel.STEERING_VALUE_60)
-        assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
+            ACTION_TURN_LEFT,
+            STEERING_VALUE_60)
+        assertThat(ret).isEqualTo(SUCCESS)
         assertThat(SteeringImpl.direction)
             .isEqualTo(SteeringImpl::direction.get())
-            .isEqualTo(SteeringWheel.ACTION_TURN_LEFT)
+            .isEqualTo(ACTION_TURN_LEFT)
             .isEqualTo("left")
         assertThat(SteeringImpl::value.get())
-            .isEqualTo(SteeringWheel.STEERING_VALUE_60)
+            .isEqualTo(STEERING_VALUE_60)
             .isEqualTo(60)
     }
     @Test
     fun `turn straight`() {
-        val ret = SteeringImpl.turn(SteeringWheel.ACTION_STRAIGHT)
-        assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
+        val ret = SteeringImpl.turn(ACTION_STRAIGHT)
+        assertThat(ret).isEqualTo(SUCCESS)
         assertThat(SteeringImpl.direction)
             .isEqualTo(SteeringImpl::direction.get())
-            .isEqualTo(SteeringWheel.ACTION_STRAIGHT)
+            .isEqualTo(ACTION_STRAIGHT)
             .isEqualTo("straight")
         assertThat(SteeringImpl::value.get())
-            .isEqualTo(SteeringWheel.STEERING_VALUE_00)
+            .isEqualTo(STEERING_VALUE_00)
             .isEqualTo(0)
     }
 
@@ -61,10 +59,10 @@ internal class SteeringImplTest {
         SteeringImpl.reset()
         assertThat(SteeringImpl.direction)
             .isEqualTo(SteeringImpl::direction.get())
-            .isEqualTo(SteeringWheel.ACTION_STRAIGHT)
+            .isEqualTo(ACTION_STRAIGHT)
             .isEqualTo("straight")
         assertThat(SteeringImpl::value.get())
-            .isEqualTo(SteeringWheel.STEERING_VALUE_00)
+            .isEqualTo(STEERING_VALUE_00)
             .isEqualTo(0)
     }
 }

@@ -1,9 +1,12 @@
 package car.ecu.modules.cdm
 
+import car.cockpit.pedals.ACTION_MOVE_BACKWARD
+import car.cockpit.pedals.ACTION_MOVE_FORWARD
+import car.cockpit.pedals.ACTION_NEUTRAL
+import car.cockpit.setup.ASSISTANCE_FULL
 import car.ecu.sensors.distance.UltrasonicDistanceMeterImpl
 import car.cockpit.setup.SetupImpl
-import car.cockpit.setup.SetupSystem
-import car.cockpit.pedals.ThrottleBrakePedal
+import car.cockpit.setup.SetupController
 import car.showMessage
 
 
@@ -17,9 +20,9 @@ object CdmImpl: Cdm {
     override fun calculateThrottleValue(direction: String, rawThrottleValue: Int): Int {
         val distance: Double =
             when (direction) {
-                ThrottleBrakePedal.ACTION_MOVE_FORWARD -> UltrasonicDistanceMeterImpl.frontDistance
-                ThrottleBrakePedal.ACTION_MOVE_BACKWARD -> UltrasonicDistanceMeterImpl.rearDistance
-                ThrottleBrakePedal.ACTION_NEUTRAL -> Cdm.STOP_THRESHOLD_DISTANCE
+                ACTION_MOVE_FORWARD -> UltrasonicDistanceMeterImpl.frontDistance
+                ACTION_MOVE_BACKWARD -> UltrasonicDistanceMeterImpl.rearDistance
+                ACTION_NEUTRAL -> Cdm.STOP_THRESHOLD_DISTANCE
                 else -> Cdm.ERROR_DISTANCE
             }
 
@@ -60,7 +63,7 @@ object CdmImpl: Cdm {
             body = "Entered Throttle Value: $rawThrottleValue\n" +
                     "Calculated Throttle Value: $throttleValue\n" +
                     "Calculated Throttle Value Applied: " +
-                    "${SetupImpl.handlingAssistanceState == SetupSystem.ASSISTANCE_FULL}\n" +
+                    "${SetupImpl.handlingAssistanceState == ASSISTANCE_FULL}\n" +
                     "Obstacle's distance: $distance meters\n" +
                     "Vehicle's direction: $direction")
 

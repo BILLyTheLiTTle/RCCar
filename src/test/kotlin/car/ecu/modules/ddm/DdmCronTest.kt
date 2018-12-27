@@ -1,7 +1,7 @@
 package car.ecu.modules.ddm
 
 import car.cockpit.engine.EngineImpl
-import car.cockpit.engine.EngineSystem
+import car.cockpit.engine.EngineController
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.SpyBean
 import org.springframework.test.context.junit.jupiter.SpringExtension
+import java.lang.reflect.Field
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KProperty
 import kotlin.reflect.full.memberProperties
@@ -22,15 +23,14 @@ internal class DdmCronTest {
     @SpyBean
     private val task: DdmCron? = null
 
-    private var nanohttpClientIpMemProp: KMutableProperty<*>? = null
+    private var nanohttpClientIpMemProp: Field? = null
     private var wasClientOnlineMemProp: KMutableProperty<*>? = null
     private var rstCounterMemProp: KProperty<*>? = null
 
     @BeforeEach
     internal fun setUp() {
-        nanohttpClientIpMemProp = EngineSystem.Companion::class.memberProperties
-            .filterIsInstance<KMutableProperty<*>>()
-            .firstOrNull { it.name =="nanohttpClientIp" }
+        nanohttpClientIpMemProp = Class.forName("car.cockpit.engine.EngineServiceKt")
+            .getDeclaredField("nanohttpClientIp")
         nanohttpClientIpMemProp?.isAccessible = true
         wasClientOnlineMemProp = DdmCron::class.memberProperties
             .filterIsInstance<KMutableProperty<*>>()
@@ -50,7 +50,7 @@ internal class DdmCronTest {
     /*@Test
     fun `engine state on with wrong ip format`() {
         EngineImpl.engineState = true
-        nanohttpClientIpMemProp?.setter?.call(EngineSystem.Companion, "oops")
+        nanohttpClientIpMemProp?.setter?.call(EngineController.Companion, "oops")
         val ret = task?.checkClientStatus()
         assertThat(ret).isEqualTo(0) // IP_ERROR
     }*/
@@ -58,7 +58,7 @@ internal class DdmCronTest {
     @Test
     fun `engine state on with client still online`() {
         EngineImpl.engineState = true
-        nanohttpClientIpMemProp?.setter?.call(EngineSystem.Companion, "localhost")
+        nanohttpClientIpMemProp?.set(EngineController.Companion, "localhost")
         wasClientOnlineMemProp?.setter?.call(task, true)
         val ret = task?.checkClientStatus()
         assertThat(ret).isEqualTo(2) // CLIENT_STILL_ONLINE
@@ -67,7 +67,7 @@ internal class DdmCronTest {
     @Test
     fun `engine state on with client still online with message`() {
         EngineImpl.engineState = true
-        nanohttpClientIpMemProp?.setter?.call(EngineSystem.Companion, "localhost")
+        nanohttpClientIpMemProp?.set(EngineController.Companion, "localhost")
         var i = 0
         var ret: Int? = -100
         while (i <= rstCounterMemProp?.getter?.call(task!!) as Int) {
@@ -80,7 +80,7 @@ internal class DdmCronTest {
     @Test
     fun `engine state on with client came online`() {
         EngineImpl.engineState = true
-        nanohttpClientIpMemProp?.setter?.call(EngineSystem.Companion, "localhost")
+        nanohttpClientIpMemProp?.set(EngineController.Companion, "localhost")
         wasClientOnlineMemProp?.setter?.call(task, false)
         val ret = task?.checkClientStatus()
         assertThat(ret).isEqualTo(3) // CLIENT_CAME_ONLINE
@@ -90,7 +90,7 @@ internal class DdmCronTest {
     @Test
     fun `engine state on with client not found`() {
         EngineImpl.engineState = true
-        nanohttpClientIpMemProp?.setter?.call(EngineSystem.Companion, "127.0.0.0")
+        nanohttpClientIpMemProp?.set(EngineController.Companion, "127.0.0.0")
         wasClientOnlineMemProp?.setter?.call(task, true)
         val ret = task?.checkClientStatus()
         assertThat(ret).isEqualTo(4) // CLIENT_NOT_FOUND
@@ -100,7 +100,7 @@ internal class DdmCronTest {
     @Test
     fun `engine state on with client still not found`() {
         EngineImpl.engineState = true
-        nanohttpClientIpMemProp?.setter?.call(EngineSystem.Companion, "127.0.0.0")
+        nanohttpClientIpMemProp?.set(EngineController.Companion, "127.0.0.0")
         wasClientOnlineMemProp?.setter?.call(task, false)
         val ret = task?.checkClientStatus()
         assertThat(ret).isEqualTo(5) // CLIENT_STILL_NOT_FOUND
@@ -110,7 +110,7 @@ internal class DdmCronTest {
     @Test
     fun `engine state on with client still not found with message`() {
         EngineImpl.engineState = true
-        nanohttpClientIpMemProp?.setter?.call(EngineSystem.Companion, "127.0.0.0")
+        nanohttpClientIpMemProp?.set(EngineController.Companion, "127.0.0.0")
         wasClientOnlineMemProp?.setter?.call(task, false)
         var i = 0
         var ret: Int? = -100

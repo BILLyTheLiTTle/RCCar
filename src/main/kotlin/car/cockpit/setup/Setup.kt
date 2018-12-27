@@ -1,7 +1,5 @@
 package car.cockpit.setup
 
-import car.cockpit.setup.SetupSystem
-
 
 interface Setup {
     var handlingAssistanceState: String
@@ -10,9 +8,9 @@ interface Setup {
     var rearDifferentialSlipperyLimiter: Int
 
     fun reset(){
-        handlingAssistanceState = SetupSystem.ASSISTANCE_NONE
-        motorSpeedLimiter = SetupSystem.MOTOR_SPEED_LIMITER_FULL_SPEED
-        frontDifferentialSlipperyLimiter = SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED
-        rearDifferentialSlipperyLimiter = SetupSystem.DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED
+        handlingAssistanceState = ASSISTANCE_NONE
+        motorSpeedLimiter = MOTOR_SPEED_LIMITER_FULL_SPEED
+        frontDifferentialSlipperyLimiter = DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED
+        rearDifferentialSlipperyLimiter = DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED
     }
 }

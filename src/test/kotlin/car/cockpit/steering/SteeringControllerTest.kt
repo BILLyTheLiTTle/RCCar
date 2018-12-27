@@ -1,6 +1,6 @@
 package car.cockpit.steering
 
-import car.cockpit.engine.EngineSystem
+import car.cockpit.engine.SUCCESS
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class SteeringWheelTest(@Autowired val restTemplate: TestRestTemplate) {
+internal class SteeringControllerTest(@Autowired val restTemplate: TestRestTemplate) {
 
     @BeforeEach
     fun setup(){
@@ -26,32 +26,32 @@ internal class SteeringWheelTest(@Autowired val restTemplate: TestRestTemplate) 
     fun `turn steering to nothing is successful`() {
         val entity = restTemplate.getForEntity<String>("/set_steering_system?id=$id")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(entity.body).isEqualTo(SUCCESS)
     }
     @Test
     fun `turn steering is successful no matter handling assistance`() {
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_none")
         val entity = restTemplate.getForEntity<String>("/set_steering_system?id=$id")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(entity.body).isEqualTo(SUCCESS)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_warning")
         val entity1 = restTemplate.getForEntity<String>("/set_steering_system?id=$id")
         assertThat(entity1.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity1.body).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(entity1.body).isEqualTo(SUCCESS)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_full")
         val entity2 = restTemplate.getForEntity<String>("/set_steering_system?id=$id")
         assertThat(entity2.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity2.body).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(entity2.body).isEqualTo(SUCCESS)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=NULL")
         val entity3 = restTemplate.getForEntity<String>("/set_steering_system?id=$id")
         assertThat(entity3.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity3.body).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(entity3.body).isEqualTo(SUCCESS)
     }
     @Test
     fun `turn steering with wrong id is not successful`() {
@@ -72,21 +72,21 @@ internal class SteeringWheelTest(@Autowired val restTemplate: TestRestTemplate) 
         restTemplate.getForEntity<String>("/set_steering_system?id=$id")
         val entity = restTemplate.getForEntity<String>("/get_steering_direction")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(SteeringImpl.direction).isEqualTo(SteeringWheel.ACTION_STRAIGHT)
+        assertThat(entity.body).isEqualTo(SteeringImpl.direction).isEqualTo(ACTION_STRAIGHT)
     }
     @Test
     fun `steering direction should be left`() {
         restTemplate.getForEntity<String>("/set_steering_system?id=$id&direction=left")
         val entity = restTemplate.getForEntity<String>("/get_steering_direction")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(SteeringImpl.direction).isEqualTo(SteeringWheel.ACTION_TURN_LEFT)
+        assertThat(entity.body).isEqualTo(SteeringImpl.direction).isEqualTo(ACTION_TURN_LEFT)
     }
     @Test
     fun `steering direction should be right`() {
         restTemplate.getForEntity<String>("/set_steering_system?id=$id&direction=right")
         val entity = restTemplate.getForEntity<String>("/get_steering_direction")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(SteeringImpl.direction).isEqualTo(SteeringWheel.ACTION_TURN_RIGHT)
+        assertThat(entity.body).isEqualTo(SteeringImpl.direction).isEqualTo(ACTION_TURN_RIGHT)
     }
 
 

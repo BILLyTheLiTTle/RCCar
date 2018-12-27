@@ -59,7 +59,7 @@ object EngineImpl: Engine {
 
         engineState = true
 
-        return EngineSystem.SUCCESS
+        return SUCCESS
     }
 
     private fun initializeMotors(){
@@ -160,6 +160,6 @@ object EngineImpl: Engine {
         // Engine
         reset()
 
-        return EngineSystem.SUCCESS
+        return SUCCESS
     }
 }

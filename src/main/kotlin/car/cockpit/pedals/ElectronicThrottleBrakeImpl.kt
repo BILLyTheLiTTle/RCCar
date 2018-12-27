@@ -1,9 +1,9 @@
 package car.cockpit.pedals
 
 import car.ecu.modules.cdm.CdmImpl
-import car.cockpit.setup.SetupImpl
-import car.cockpit.engine.EngineSystem
-import car.cockpit.setup.SetupSystem
+import car.cockpit.engine.nanohttpClientIp
+import car.cockpit.engine.nanohttpClientPort
+import car.cockpit.setup.*
 import car.ecu.Ecu
 import car.doNonBlockingRequest
 
@@ -16,15 +16,15 @@ object ElectronicThrottleBrakeImpl: ThrottleBrake by ThrottleBrakeImpl {
         val throttle = checkCdm(direction, value)
 
         return when (SetupImpl.handlingAssistanceState) {
-            SetupSystem.ASSISTANCE_FULL -> ThrottleBrakeImpl.throttle(direction, throttle)
-            SetupSystem.ASSISTANCE_WARNING,
-            SetupSystem.ASSISTANCE_NONE -> ThrottleBrakeImpl.throttle(direction, value)
+            ASSISTANCE_FULL -> ThrottleBrakeImpl.throttle(direction, throttle)
+            ASSISTANCE_WARNING,
+            ASSISTANCE_NONE -> ThrottleBrakeImpl.throttle(direction, value)
             else -> ThrottleBrakeImpl.throttle(direction, value)
         }
     }
 
     override fun setNeutral(): String {
-        checkCdm(ThrottleBrakePedal.ACTION_NEUTRAL, 0)
+        checkCdm(ACTION_NEUTRAL, 0)
         return ThrottleBrakeImpl.setNeutral()
     }
 
@@ -32,8 +32,8 @@ object ElectronicThrottleBrakeImpl: ThrottleBrake by ThrottleBrakeImpl {
         fun cdmInformClient(hardwareID: String, value: String) {
             doNonBlockingRequest(
                 "http://" +
-                        "${EngineSystem.nanohttpClientIp}:" +
-                        "${EngineSystem.nanohttpClientPort}" +
+                        "$nanohttpClientIp:" +
+                        "$nanohttpClientPort" +
                         Ecu.ECU_URI +
                         "?${Ecu.ECU_PARAM_KEY_ITEM}=$hardwareID" +
                         "&${Ecu.ECU_PARAM_KEY_VALUE}=$value"
@@ -49,8 +49,8 @@ object ElectronicThrottleBrakeImpl: ThrottleBrake by ThrottleBrakeImpl {
             }
 
         when (SetupImpl.handlingAssistanceState) {
-            SetupSystem.ASSISTANCE_FULL,
-            SetupSystem.ASSISTANCE_WARNING -> {
+            ASSISTANCE_FULL,
+            ASSISTANCE_WARNING -> {
                 if (reportedCdmState != currentCdmState) {
                     reportedCdmState = currentCdmState
                     cdmInformClient(Ecu.COLLISION_DETECTION_MODULE,
@@ -61,13 +61,13 @@ object ElectronicThrottleBrakeImpl: ThrottleBrake by ThrottleBrakeImpl {
         }
 
         return when (SetupImpl.handlingAssistanceState) {
-            SetupSystem.ASSISTANCE_FULL -> {
+            ASSISTANCE_FULL -> {
                 throttle
             }
-            SetupSystem.ASSISTANCE_WARNING -> {
+            ASSISTANCE_WARNING -> {
                 value
             }
-            SetupSystem.ASSISTANCE_NONE -> value
+            ASSISTANCE_NONE -> value
             else -> value
         }
 

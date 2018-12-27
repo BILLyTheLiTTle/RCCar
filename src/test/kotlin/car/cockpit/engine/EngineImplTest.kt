@@ -16,7 +16,7 @@ internal class EngineImplTest {
     @Test
     fun `start the engine`() {
         val ret = EngineImpl.start()
-        assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(ret).isEqualTo(SUCCESS)
         assertThat(EngineImpl.engineState).isTrue()
     }
     @Test
@@ -32,7 +32,7 @@ internal class EngineImplTest {
     @Test
     fun `stop the engine`() {
         val ret = EngineImpl.stop()
-        assertThat(ret).isEqualTo(EngineSystem.SUCCESS)
+        assertThat(ret).isEqualTo(SUCCESS)
         assertThat(EngineImpl.engineState).isFalse()
     }
 }

@@ -8,7 +8,8 @@ import car.TYPE_CRITICAL
 import car.TYPE_WARNING
 import car.cockpit.engine.EngineImpl
 import car.cockpit.pedals.ThrottleBrakeImpl
-import car.cockpit.engine.EngineSystem
+import car.cockpit.engine.EngineController
+import car.cockpit.engine.nanohttpClientIp
 import car.showMessage
 import org.springframework.context.annotation.Configuration
 import org.springframework.scheduling.annotation.EnableAsync
@@ -39,7 +40,7 @@ class DdmCron {
 
         if (EngineImpl.engineState) {
             isClientOnline = try {
-                InetAddress.getByName(EngineSystem.nanohttpClientIp).isReachable(200)
+                InetAddress.getByName(nanohttpClientIp).isReachable(200)
             } catch (e: Exception) {
                 false
             }
@@ -49,7 +50,7 @@ class DdmCron {
                     if (counter == maxResetCounter) {
                         counter = 0
                         showMessage(title = "CONNECTION CRON JOB",
-                            body = "Client is still online\nIP: ${EngineSystem.nanohttpClientIp}")
+                            body = "Client is still online\nIP: $nanohttpClientIp")
                     }
                     else {
                         counter++
@@ -60,7 +61,7 @@ class DdmCron {
                     showMessage(
                         msgType = TYPE_WARNING,
                         title = "CONNECTION CRON JOB",
-                        body = "Client came online\nIP: ${EngineSystem.nanohttpClientIp}"
+                        body = "Client came online\nIP: $nanohttpClientIp"
                     )
                     return clientCameOnline
                 }
@@ -69,7 +70,7 @@ class DdmCron {
                     ThrottleBrakeImpl.parkingBrake(100)
                     showMessage(msgType = TYPE_CRITICAL,
                         title = "CONNECTION CRON JOB",
-                        body = "Client (${EngineSystem.nanohttpClientIp}) not found." +
+                        body = "Client ($nanohttpClientIp) not found." +
                                 "Parking brake applied: ${ThrottleBrakeImpl.parkingBrakeState}")
                     return clientNotFound
                 } else {
@@ -77,7 +78,7 @@ class DdmCron {
                         counter = 0
                         showMessage(msgType = TYPE_CRITICAL,
                             title = "CONNECTION CRON JOB",
-                            body = "Client (${EngineSystem.nanohttpClientIp}) still not found." +
+                            body = "Client ($nanohttpClientIp) still not found." +
                                     "Parking brake was applied: ${ThrottleBrakeImpl.parkingBrakeState}")
                     } else
                         counter++
