@@ -7,7 +7,7 @@ object SpeedometerImpl: Speedometer {
     private val DUMMY_SPEED_GENERATOR
         get() =  Random().nextInt(200)
 
-    override val value: Int
+    override val travelSpeed: Int
         get() = calculateSpeed()
 
     private fun calculateSpeed(): Int {

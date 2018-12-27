@@ -2,5 +2,9 @@ package car.ecu.sensors.speed
 
 interface Speedometer {
 
-    val value: Int
+    val travelSpeed: Int
+    /*val rotationSpeedWheelFrontRight: Int
+    val rotationSpeedWheelFrontLeft: Int
+    val rotationSpeedWheelRearRight: Int
+    val rotationSpeedWheelRearLeft: Int*/
 }

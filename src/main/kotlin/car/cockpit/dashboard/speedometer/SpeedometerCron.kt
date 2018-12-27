@@ -24,7 +24,7 @@ class SpeedometerCron {
     @Scheduled(initialDelay = 5000, fixedDelay = 600)
     fun checkSpeed(){
         if (EngineImpl.engineState) {
-            primarySpeed = SpeedometerImpl.value
+            primarySpeed = SpeedometerImpl.travelSpeed
             if (primarySpeed != reportedSpeed) {
                 reportedSpeed = primarySpeed
                 informClient(reportedSpeed)
