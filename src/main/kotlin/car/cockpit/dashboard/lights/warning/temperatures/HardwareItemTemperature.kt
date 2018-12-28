@@ -1,16 +1,18 @@
 package car.cockpit.dashboard.lights.warning.temperatures
 
-import car.cockpit.engine.EMPTY_INT
-import car.cockpit.engine.EMPTY_STRING
-import car.cockpit.engine.EngineImpl
-import car.cockpit.engine.EngineController
+import car.cockpit.engine.*
 import com.pi4j.system.SystemInfo
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.*
 import kotlin.math.max
 
-open class HardwareItemTemperatureImpl: Temperature {
+open class HardwareItemTemperature: Temperature {
+
+    @Autowired
+    private lateinit var engineComponent: Engine
 
     private val lock = Any()
 
@@ -46,28 +48,28 @@ open class HardwareItemTemperatureImpl: Temperature {
         }
 
         return when(this) {
-            is MotorRearRightTemperatureImpl -> {
+            is MotorRearRightTemperature -> {
                 getSensorValue()
             }
-            is MotorRearLeftTemperatureImpl -> {
+            is MotorRearLeftTemperature -> {
                 getSensorValue()
             }
-            is MotorFrontRightTemperatureImpl -> {
+            is MotorFrontRightTemperature -> {
                 getSensorValue()
             }
-            is MotorFrontLeftTemperatureImpl -> {
+            is MotorFrontLeftTemperature -> {
                 getSensorValue()
             }
-            is HBridgeRearTemperatureImpl -> {
+            is HBridgeRearTemperature -> {
                 getSensorValue()
             }
-            is HBridgeFrontTemperatureImpl -> {
+            is HBridgeFrontTemperature -> {
                 getSensorValue()
             }
-            is RaspberryPiTemperatureImpl -> {
+            is RaspberryPiTemperature -> {
                 val gpuTemp: Int
                 val cpuTemp: Int
-                if (EngineImpl.RUN_ON_PI) {
+                if (engineComponent.RunOnPi) {
                     cpuTemp = try {
                         SystemInfo.getCpuTemperature().toInt()
                     } catch (e: Exception) {
@@ -90,16 +92,16 @@ open class HardwareItemTemperatureImpl: Temperature {
                 }
                 max(gpuTemp, cpuTemp)
             }
-            is BatteriesTemperatureImpl -> {
-                val rearMotorBatterBox = getSensorValue()
+            is BatteriesTemperature -> {
+                val rearMotorBatteryBox = getSensorValue()
                 val frontMotorBatteryBox = getSensorValue()
                 val stepperMotorBatteryBox = getSensorValue()
                 val ledsBatteryBox = getSensorValue()
-                max(rearMotorBatterBox,
+                max(rearMotorBatteryBox,
                     max(frontMotorBatteryBox,
                         max(stepperMotorBatteryBox, ledsBatteryBox)))
             }
-            is ShiftRegistersTemperatureImpl -> {
+            is ShiftRegistersTemperature -> {
                 val mainLightsTemp = getSensorValue()
                 val signalLightsTemp = getSensorValue()
                 max(mainLightsTemp, signalLightsTemp)

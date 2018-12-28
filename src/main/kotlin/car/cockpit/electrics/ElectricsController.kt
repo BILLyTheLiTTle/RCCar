@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RestController
 class ElectricsController{
 
     @Autowired
-    private lateinit var service: ElectricsService
+    private lateinit var electricsService: ElectricsService
+
+    @Autowired
+    private lateinit var electricsComponent: Electrics
 
     /*
         All possible combinations and their meaning:
@@ -20,35 +23,35 @@ class ElectricsController{
     @GetMapping("/set_direction_lights")
     fun setDirectionLights(
         @RequestParam(value = "direction", defaultValue = TURN_LIGHTS_STRAIGHT) direction: String
-    ) = service.setDirectionLights(direction)
+    ) = electricsService.setDirectionLights(direction)
 
     @GetMapping("/get_direction_lights")
-    fun getDirectionLights() = service.getDirectionLights()
+    fun getDirectionLights() = electricsService.getDirectionLights()
 
 
     @GetMapping("/set_main_lights_state")
     fun setMainLightsState(@RequestParam(value = "value", defaultValue = LIGHTS_OFF) value: String) =
-        service.setMainLightsState(value)
+        electricsService.setMainLightsState(value)
 
     @GetMapping("/get_main_lights_state")
-    fun getMainLightsState() = service.getMainLightsState()
+    fun getMainLightsState() = electricsService.getMainLightsState()
 
     @GetMapping("/set_reverse_lights_state")
     fun setReverseLightsState(@RequestParam(value = "state", defaultValue = "false") state: Boolean): String {
-        ElectricsImpl.reverseLightsState = state
-        return ElectricsImpl.reverseLightsState.toString()
+        electricsComponent.reverseLightsState = state
+        return electricsComponent.reverseLightsState.toString()
     }
 
     @GetMapping("/get_reverse_lights_state")
-    fun getReverseLightsState() = ElectricsImpl.reverseLightsState
+    fun getReverseLightsState() = electricsComponent.reverseLightsState
 
     @GetMapping("/set_emergency_lights_state")
     fun setEmergencyLightsState(@RequestParam(value = "state", defaultValue = "false") state: Boolean): String {
-        ElectricsImpl.emergencyLightsState = state
-        return ElectricsImpl.emergencyLightsState.toString()
+        electricsComponent.emergencyLightsState = state
+        return electricsComponent.emergencyLightsState.toString()
     }
 
     @GetMapping("/get_emergency_lights_state")
-    fun getEmergencyLightsState() = ElectricsImpl.emergencyLightsState
+    fun getEmergencyLightsState() = electricsComponent.emergencyLightsState
 
 }

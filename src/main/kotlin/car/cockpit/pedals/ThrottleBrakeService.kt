@@ -1,16 +1,26 @@
 package car.cockpit.pedals
 
 import car.cockpit.engine.UNKNOWN_STATE
-import car.cockpit.setup.ASSISTANCE_NONE
-import car.cockpit.setup.ASSISTANCE_NULL
-import car.cockpit.setup.SetupImpl
-import car.cockpit.setup.SetupController
+import car.cockpit.setup.*
 import car.showMessage
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 import kotlin.math.roundToInt
 
-@Service("Throttle -n- Brake")
+@Service("Throttle -n- Brake Service")
 class ThrottleBrakeService {
+
+    @Autowired
+    @Qualifier("Throttle -n- Brake Component")
+    private lateinit var throttleBrake: ThrottleBrake
+
+    @Autowired
+    @Qualifier("Electronic Throttle -n Brake Component")
+    private lateinit var electronicThrottleBrake: ThrottleBrake
+
+    @Autowired
+    private lateinit var setupComponent: Setup
 
     var lastRequestId = -1L
 
@@ -23,7 +33,7 @@ class ThrottleBrakeService {
                     "Primitive User Value: $value\n" +
                     if (action == ACTION_MOVE_FORWARD || action == ACTION_MOVE_BACKWARD) {
                         "Limited User Value: " +
-                                "${(value * SetupImpl.motorSpeedLimiter).roundToInt()}\n"
+                                "${(value * setupComponent.motorSpeedLimiter).roundToInt()}\n"
                     }
                     else {
                         ""
@@ -39,29 +49,29 @@ class ThrottleBrakeService {
         if(id == lastRequestId) {
             state = when (action) {
                 ACTION_MOVE_FORWARD, ACTION_MOVE_BACKWARD -> {
-                    when (SetupImpl.handlingAssistanceState) {
+                    when (setupComponent.handlingAssistanceState) {
                         ASSISTANCE_NONE ->
-                            ThrottleBrakeImpl.throttle(action,
-                                (value * SetupImpl.motorSpeedLimiter).roundToInt())
+                            throttleBrake.throttle(action,
+                                (value * setupComponent.motorSpeedLimiter).roundToInt())
                         ASSISTANCE_NULL ->
-                            ThrottleBrakeImpl.parkingBrake(100)
+                            throttleBrake.parkingBrake(100)
                         else ->
-                            ElectronicThrottleBrakeImpl.throttle(action,
-                                (value * SetupImpl.motorSpeedLimiter).roundToInt())
+                            electronicThrottleBrake.throttle(action,
+                                (value * setupComponent.motorSpeedLimiter).roundToInt())
                     }
                 }
                 ACTION_PARKING_BRAKE ->
-                    ThrottleBrakeImpl.parkingBrake(value)
+                    throttleBrake.parkingBrake(value)
                 ACTION_HANDBRAKE ->
-                    ThrottleBrakeImpl.handbrake(value)
+                    throttleBrake.handbrake(value)
                 ACTION_BRAKING_STILL ->
-                    ThrottleBrakeImpl.brake(value)
+                    throttleBrake.brake(value)
                 ACTION_NEUTRAL -> {
-                    when (SetupImpl.handlingAssistanceState) {
+                    when (setupComponent.handlingAssistanceState) {
                         ASSISTANCE_NONE, ASSISTANCE_NULL ->
-                            ThrottleBrakeImpl.setNeutral()
+                            throttleBrake.setNeutral()
                         else ->
-                            ElectronicThrottleBrakeImpl.setNeutral()
+                            electronicThrottleBrake.setNeutral()
                     }
                 }
                 else ->
@@ -73,11 +83,11 @@ class ThrottleBrakeService {
         return state
     }
 
-    fun getParkingBrakeState() = ThrottleBrakeImpl.parkingBrakeState
+    fun getParkingBrakeState() = throttleBrake.parkingBrakeState
 
-    fun getHandbrakeState() = ThrottleBrakeImpl.handbrakeState
+    fun getHandbrakeState() = throttleBrake.handbrakeState
 
-    fun getMotionState() = ThrottleBrakeImpl.motionState
+    fun getMotionState() = throttleBrake.motionState
 }
 
 const val ACTION_MOVE_FORWARD = "forward"

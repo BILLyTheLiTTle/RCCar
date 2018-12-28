@@ -1,16 +1,31 @@
 package car.cockpit.steering
 
 import car.cockpit.engine.UNKNOWN_STATE
-import car.cockpit.pedals.ElectronicThrottleBrakeImpl
-import car.cockpit.pedals.ThrottleBrakeImpl
+import car.cockpit.pedals.ThrottleBrake
 import car.cockpit.setup.ASSISTANCE_NONE
 import car.cockpit.setup.ASSISTANCE_NULL
-import car.cockpit.setup.SetupImpl
+import car.cockpit.setup.Setup
 import car.showMessage
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 
-@Service("Steering")
+@Service("Steering Service")
 class SteeringService {
+
+    @Autowired
+    @Qualifier("Throttle -n- Brake Component")
+    private lateinit var throttleBrake: ThrottleBrake
+
+    @Autowired
+    @Qualifier("Electronic Throttle -n Brake Component")
+    private lateinit var electronicThrottleBrake: ThrottleBrake
+
+    @Autowired
+    private lateinit var setupComponent: Setup
+
+    @Autowired
+    private lateinit var steeringComponent: Steering
 
     var lastRequestId = -1L
 
@@ -32,13 +47,13 @@ class SteeringService {
             state = when (direction) {
                 ACTION_TURN_LEFT ->
                     //TODO turn left with value
-                    SteeringImpl.turn(ACTION_TURN_LEFT, value)
+                    steeringComponent.turn(ACTION_TURN_LEFT, value)
                 ACTION_TURN_RIGHT ->
                     //TODO turn right with value
-                    SteeringImpl.turn(ACTION_TURN_RIGHT, value)
+                    steeringComponent.turn(ACTION_TURN_RIGHT, value)
                 ACTION_STRAIGHT ->
                     //TODO go straight with no value
-                    SteeringImpl.turn(ACTION_STRAIGHT)
+                    steeringComponent.turn(ACTION_STRAIGHT)
                 else ->
                     "${this::class.simpleName} ERROR: Entered in else condition"
             }
@@ -49,13 +64,13 @@ class SteeringService {
                 1). When the user turns more to the same direction
                 2). When the user turns to the opposite direction
              */
-            when (SetupImpl.handlingAssistanceState) {
+            when (setupComponent.handlingAssistanceState) {
                 ASSISTANCE_NONE ->
-                    ThrottleBrakeImpl.throttle(ThrottleBrakeImpl.motionState, ThrottleBrakeImpl.value)
+                    throttleBrake.throttle(throttleBrake.motionState, throttleBrake.value)
                 ASSISTANCE_NULL ->
-                    ThrottleBrakeImpl.parkingBrake(100)
+                    throttleBrake.parkingBrake(100)
                 else ->
-                    ElectronicThrottleBrakeImpl.throttle(ThrottleBrakeImpl.motionState, ThrottleBrakeImpl.value)
+                    electronicThrottleBrake.throttle(throttleBrake.motionState, throttleBrake.value)
             }
         }
         //}
@@ -63,7 +78,7 @@ class SteeringService {
         return state
     }
 
-    fun getSteeringDirection() = SteeringImpl.direction
+    fun getSteeringDirection() = steeringComponent.direction
 }
 
 const val ACTION_TURN_RIGHT = "right"

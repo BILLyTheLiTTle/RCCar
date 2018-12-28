@@ -3,13 +3,13 @@ package car.ecu.modules.dcm
 import car.FRONT_REAR_WHEELS_DISTANCE
 import car.FRONT_WHEELS_DISTANCE
 import car.REAR_CHASSIS_WIDTH
+import org.springframework.stereotype.Component
 
-object DcmImpl: Dcm {
+@Component("Differential Control Module Component")
+class DcmComponent: Dcm {
     override var valueOuterFront = 0
     override var phi = 0.00
     override var theta = 0.00
-
-    private const val DIFFERENTIAL_STEPS = 4
 
     private val valueInnerFront
         get() = ( valueOuterFront /
@@ -43,47 +43,51 @@ object DcmImpl: Dcm {
     /* If the following values don't work well as PWM values
         then I have to create PWM in hand and store them in tables
      */
-    val frontOpenDiffValues
+    override val frontOpenDiffValues
         get() = intArrayOf(valueInnerFront, valueOuterFront)
-    val rearOpenDiffValues
+    override val rearOpenDiffValues
         get() = intArrayOf(valueInnerRear, valueOuterRear)
-    val frontMedi0DiffValues
+    override val frontMedi0DiffValues
         get() = intArrayOf(
             valueInnerFront + vifSteps,
             valueOuterFront
         )
-    val rearMedi0DiffValues
+    override val rearMedi0DiffValues
         get() = intArrayOf(
             valueInnerRear + virSteps,
             valueOuterRear
         )
-    val frontMedi1DiffValues
+    override val frontMedi1DiffValues
         get() = intArrayOf(
             valueInnerFront + 2 * vifSteps,
             valueOuterFront
         )
-    val rearMedi1DiffValues
+    override val rearMedi1DiffValues
         get() = intArrayOf(
             valueInnerRear + 2 * virSteps,
             valueOuterRear
         )
-    val frontMedi2DiffValues
+    override val frontMedi2DiffValues
         get() = intArrayOf(
             valueInnerFront + 3 * vifSteps,
             valueOuterFront
         )
-    val rearMedi2DiffValues
+    override val rearMedi2DiffValues
         get() = intArrayOf(
             valueInnerRear + 3 * virSteps,
             valueOuterRear
         )
-    val frontLockedDiffValues
+    override val frontLockedDiffValues
         get() = intArrayOf(valueOuterFront, valueOuterFront)
-    val rearLockedDiffValues
+    override val rearLockedDiffValues
         get() = intArrayOf(valueOuterFront, valueOuterFront)
-    val frontAutoDiffValues
+    override val frontAutoDiffValues
         get() = intArrayOf(valueOuterFront, valueOuterFront)
-    val rearAutoDiffValues
+    override val rearAutoDiffValues
         get() = intArrayOf(valueOuterFront, valueOuterFront)
     ////////////////////
+
+    private companion object {
+        const val DIFFERENTIAL_STEPS = 4
+    }
 }

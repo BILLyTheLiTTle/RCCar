@@ -12,33 +12,34 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class ElectricsControllerFromLightsOnTest(
-    @Autowired override val restTemplate: TestRestTemplate
-): ElectricsControllerTest(restTemplate) {
+    @Autowired override val restTemplate: TestRestTemplate,
+    @Autowired override val electricsComponent: Electrics
+): ElectricsControllerTest(restTemplate, electricsComponent) {
 
     override val initialLightsState = true
 
     @BeforeEach
     internal fun setUp() {
-        if (ElectricsImpl.positionLightsState != initialLightsState){
+        if (electricsComponent.positionLightsState != initialLightsState){
             restTemplate.getForEntity<String>("/set_main_lights_state?value=position_lights")
         }
-        if (ElectricsImpl.drivingLightsState != initialLightsState){
+        if (electricsComponent.drivingLightsState != initialLightsState){
             restTemplate.getForEntity<String>("/set_main_lights_state?value=driving_lights")
         }
-        if (ElectricsImpl.longRangeLightsState != initialLightsState){
+        if (electricsComponent.longRangeLightsState != initialLightsState){
             restTemplate.getForEntity<String>("/set_main_lights_state?value=long_range_lights")
         }
     }
 
     @AfterEach
     internal fun tearDown() {
-        if (ElectricsImpl.longRangeLightsState){
+        if (electricsComponent.longRangeLightsState){
             restTemplate.getForEntity<String>("/set_main_lights_state?value=long_range_lights")
         }
-        if (ElectricsImpl.drivingLightsState){
+        if (electricsComponent.drivingLightsState){
             restTemplate.getForEntity<String>("/set_main_lights_state?value=driving_lights")
         }
-        if (ElectricsImpl.positionLightsState){
+        if (electricsComponent.positionLightsState){
             restTemplate.getForEntity<String>("/set_main_lights_state?value=position_lights")
         }
     }

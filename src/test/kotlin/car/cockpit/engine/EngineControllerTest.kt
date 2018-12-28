@@ -13,7 +13,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class EngineControllerTest(@Autowired val restTemplate: TestRestTemplate) {
+internal class EngineControllerTest(
+    @Autowired val restTemplate: TestRestTemplate,
+    @Autowired val engineComponent: Engine
+) {
 
     @Test
     fun `rc controller server should be empty`() {
@@ -42,14 +45,14 @@ internal class EngineControllerTest(@Autowired val restTemplate: TestRestTemplat
         restTemplate.getForEntity<String>("/start_engine")
         val entity = restTemplate.getForEntity<String>("/get_engine_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toBoolean()).isEqualTo(EngineImpl.engineState).isTrue()
+        assertThat(entity.body?.toBoolean()).isEqualTo(engineComponent.engineState).isTrue()
     }
     @Test
     fun `engine state should be off`() {
         restTemplate.getForEntity<String>("/stop_engine")
         val entity = restTemplate.getForEntity<String>("/get_engine_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(EngineImpl.engineState).isFalse()
+        assertThat(engineComponent.engineState).isFalse()
     }
 
     @Test

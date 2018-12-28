@@ -3,10 +3,15 @@ package car.cockpit.electrics
 import car.cockpit.engine.EngineController
 import car.cockpit.engine.UNKNOWN_STATE
 import car.showMessage
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
-@Service("Electrics")
+@Service("Electrics Service")
 class ElectricsService {
+
+    @Autowired
+    private lateinit var electricsComponent: Electrics
+
     fun setDirectionLights(direction: String): String {
 
         showMessage(title = "ELECTRIC SYSTEM",
@@ -15,16 +20,16 @@ class ElectricsService {
         synchronized(this){
             when (direction) {
                 TURN_LIGHTS_STRAIGHT -> {
-                    ElectricsImpl.leftTurnLightsState = false
-                    ElectricsImpl.rightTurnLightsState = false
+                    electricsComponent.leftTurnLightsState = false
+                    electricsComponent.rightTurnLightsState = false
                 }
                 TURN_LIGHTS_RIGHT -> {
-                    //ElectricsImpl.leftTurnLightsState = false
-                    ElectricsImpl.rightTurnLightsState = !ElectricsImpl.rightTurnLightsState
+                    //ElectricsComponent.leftTurnLightsState = false
+                    electricsComponent.rightTurnLightsState = !electricsComponent.rightTurnLightsState
                 }
                 TURN_LIGHTS_LEFT -> {
-                    ElectricsImpl.leftTurnLightsState = !ElectricsImpl.leftTurnLightsState
-                    //ElectricsImpl.rightTurnLightsState = false
+                    electricsComponent.leftTurnLightsState = !electricsComponent.leftTurnLightsState
+                    //ElectricsComponent.rightTurnLightsState = false
                 }
             }
         }
@@ -33,11 +38,11 @@ class ElectricsService {
     }
 
     fun getDirectionLights() =
-        if (!ElectricsImpl.leftTurnLightsState && !ElectricsImpl.rightTurnLightsState)
+        if (!electricsComponent.leftTurnLightsState && !electricsComponent.rightTurnLightsState)
             TURN_LIGHTS_STRAIGHT
-        else if (ElectricsImpl.leftTurnLightsState)
+        else if (electricsComponent.leftTurnLightsState)
             TURN_LIGHTS_LEFT
-        else if (ElectricsImpl.rightTurnLightsState)
+        else if (electricsComponent.rightTurnLightsState)
             TURN_LIGHTS_RIGHT
         else
             UNKNOWN_STATE
@@ -51,11 +56,11 @@ class ElectricsService {
         // I don't think I need synchronization
         //synchronized(this){
         when(value){
-            LIGHTS_OFF -> ElectricsImpl.positionLightsState = false
-            POSITION_LIGHTS -> ElectricsImpl.positionLightsState = true
-            DRIVING_LIGHTS -> ElectricsImpl.drivingLightsState = true
-            LONG_RANGE_LIGHTS -> ElectricsImpl.longRangeLightsState = true
-            LONG_RANGE_SIGNAL_LIGHTS -> ElectricsImpl.doHeadlightsSignal()
+            LIGHTS_OFF -> electricsComponent.positionLightsState = false
+            POSITION_LIGHTS -> electricsComponent.positionLightsState = true
+            DRIVING_LIGHTS -> electricsComponent.drivingLightsState = true
+            LONG_RANGE_LIGHTS -> electricsComponent.longRangeLightsState = true
+            LONG_RANGE_SIGNAL_LIGHTS -> electricsComponent.doHeadlightsSignal()
             else -> "${this::class.simpleName} ERROR: Entered in else condition"
         }
         //}
@@ -69,25 +74,25 @@ class ElectricsService {
                 if the user has the long range beam the if clause will enter at
                 position lights condition.
              */
-        if (ElectricsImpl.longRangeLightsState) LONG_RANGE_LIGHTS
-        else if (ElectricsImpl.drivingLightsState) DRIVING_LIGHTS
-        else if (ElectricsImpl.positionLightsState) POSITION_LIGHTS
-        else if (!ElectricsImpl.positionLightsState) LIGHTS_OFF
+        if (electricsComponent.longRangeLightsState) LONG_RANGE_LIGHTS
+        else if (electricsComponent.drivingLightsState) DRIVING_LIGHTS
+        else if (electricsComponent.positionLightsState) POSITION_LIGHTS
+        else if (!electricsComponent.positionLightsState) LIGHTS_OFF
         else UNKNOWN_STATE
 
     fun setReverseLightsState(state: Boolean): String {
-        ElectricsImpl.reverseLightsState = state
-        return ElectricsImpl.reverseLightsState.toString()
+        electricsComponent.reverseLightsState = state
+        return electricsComponent.reverseLightsState.toString()
     }
 
-    fun getReverseLightsState() = ElectricsImpl.reverseLightsState
+    fun getReverseLightsState() = electricsComponent.reverseLightsState
 
     fun setEmergencyLightsState(state: Boolean): String {
-        ElectricsImpl.emergencyLightsState = state
-        return ElectricsImpl.emergencyLightsState.toString()
+        electricsComponent.emergencyLightsState = state
+        return electricsComponent.emergencyLightsState.toString()
     }
 
-    fun getEmergencyLightsState() = ElectricsImpl.emergencyLightsState
+    fun getEmergencyLightsState() = electricsComponent.emergencyLightsState
 }
 
 const val TURN_LIGHTS_RIGHT = "turn_lights_right"

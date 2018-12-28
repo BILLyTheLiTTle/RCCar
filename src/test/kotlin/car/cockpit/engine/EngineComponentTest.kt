@@ -5,34 +5,35 @@ import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.extension.ExtendWith
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
-internal class EngineImplTest {
+internal class EngineComponentTest(@Autowired val engineComponent: Engine) {
 
     // start
     @Test
     fun `start the engine`() {
-        val ret = EngineImpl.start()
+        val ret = engineComponent.start()
         assertThat(ret).isEqualTo(SUCCESS)
-        assertThat(EngineImpl.engineState).isTrue()
+        assertThat(engineComponent.engineState).isTrue()
     }
     @Test
     fun `start the engine on PC`() {
-        EngineImpl.start()
+        engineComponent.start()
         assertThrows(UninitializedPropertyAccessException::class.java) {
-            EngineImpl.gpio
+            engineComponent.gpio
         }
-        assertThat(EngineImpl.RUN_ON_PI).isFalse()
+        assertThat(engineComponent.RunOnPi).isFalse()
     }
 
     // stop
     @Test
     fun `stop the engine`() {
-        val ret = EngineImpl.stop()
+        val ret = engineComponent.stop()
         assertThat(ret).isEqualTo(SUCCESS)
-        assertThat(EngineImpl.engineState).isFalse()
+        assertThat(engineComponent.engineState).isFalse()
     }
 }

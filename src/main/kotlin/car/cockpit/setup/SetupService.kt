@@ -2,45 +2,50 @@ package car.cockpit.setup
 
 import car.cockpit.engine.EMPTY_STRING
 import car.cockpit.engine.SUCCESS
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
-@Service("Setup")
+@Service("Setup Service")
 class SetupService {
+
+    @Autowired
+    private lateinit var setupComponent: Setup
+
     fun setHandlingAssistance(state: String): String {
         when (state) {
-            ASSISTANCE_NONE -> SetupImpl.handlingAssistanceState =
+            ASSISTANCE_NONE -> setupComponent.handlingAssistanceState =
                     ASSISTANCE_NONE
-            ASSISTANCE_WARNING -> SetupImpl.handlingAssistanceState =
+            ASSISTANCE_WARNING -> setupComponent.handlingAssistanceState =
                     ASSISTANCE_WARNING
-            ASSISTANCE_FULL -> SetupImpl.handlingAssistanceState =
+            ASSISTANCE_FULL -> setupComponent.handlingAssistanceState =
                     ASSISTANCE_FULL
-            else -> SetupImpl.handlingAssistanceState = ASSISTANCE_NULL
+            else -> setupComponent.handlingAssistanceState = ASSISTANCE_NULL
         }
         return SUCCESS
     }
 
-    fun getHandlingAssistanceState() = SetupImpl.handlingAssistanceState
+    fun getHandlingAssistanceState() = setupComponent.handlingAssistanceState
 
     fun setMotorSpeedLimiter(value: Double): String {
-        SetupImpl.motorSpeedLimiter = value
+        setupComponent.motorSpeedLimiter = value
         return SUCCESS
     }
 
-    fun getMotorSpeedLimiter() = SetupImpl.motorSpeedLimiter
+    fun getMotorSpeedLimiter() = setupComponent.motorSpeedLimiter
 
     fun setFrontDifferentialSlipperyLimiter(value: Int): String {
-        SetupImpl.frontDifferentialSlipperyLimiter = value
+        setupComponent.frontDifferentialSlipperyLimiter = value
         return SUCCESS
     }
 
-    fun getFrontDifferentialSlipperyLimiter() = SetupImpl.frontDifferentialSlipperyLimiter
+    fun getFrontDifferentialSlipperyLimiter() = setupComponent.frontDifferentialSlipperyLimiter
 
     fun setRearDifferentialSlipperyLimiter(value: Int): String {
-        SetupImpl.rearDifferentialSlipperyLimiter = value
+        setupComponent.rearDifferentialSlipperyLimiter = value
         return SUCCESS
     }
 
-    fun getRearDifferentialSlipperyLimiter() = SetupImpl.rearDifferentialSlipperyLimiter
+    fun getRearDifferentialSlipperyLimiter() = setupComponent.rearDifferentialSlipperyLimiter
 }
 
 const val ASSISTANCE_NULL = EMPTY_STRING

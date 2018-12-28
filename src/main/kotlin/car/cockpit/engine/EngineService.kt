@@ -6,7 +6,7 @@ import car.showMessage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
-@Service("Engine")
+@Service("Engine Service")
 class EngineService {
 
     @Autowired
@@ -14,6 +14,9 @@ class EngineService {
 
     @Autowired
     private lateinit var steeringService: SteeringService
+
+    @Autowired
+    private lateinit var engineComponent: Engine
 
     fun startEngine(clientIp: String, clientPort: Int): String {
 
@@ -29,17 +32,17 @@ class EngineService {
                     "Controller IP: $nanohttpClientIp\n" +
                     "Controller Port: $nanohttpClientPort")
 
-        return EngineImpl.start()
+        return engineComponent.start()
     }
 
-    fun getEngineState() = EngineImpl.engineState
+    fun getEngineState() = engineComponent.engineState
 
     fun stopEngine(): String {
         showMessage(title = "ENGINE SYSTEM",
             body = "Engine stopped\n" +
                     "Controller IP: $nanohttpClientIp\n" +
                     "Controller Port: $nanohttpClientPort")
-        return EngineImpl.stop()
+        return engineComponent.stop()
     }
 }
 

@@ -4,13 +4,20 @@ import car.cockpit.pedals.ACTION_MOVE_BACKWARD
 import car.cockpit.pedals.ACTION_MOVE_FORWARD
 import car.cockpit.pedals.ACTION_NEUTRAL
 import car.cockpit.setup.ASSISTANCE_FULL
-import car.ecu.sensors.distance.UltrasonicDistanceMeterImpl
-import car.cockpit.setup.SetupImpl
-import car.cockpit.setup.SetupController
+import car.cockpit.setup.Setup
+import car.ecu.sensors.distance.UltrasonicDistanceMeter
 import car.showMessage
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 
+@Component("Collision Detection Module Component")
+class CdmComponent: Cdm {
 
-object CdmImpl: Cdm {
+    @Autowired
+    private lateinit var setupComponent: Setup
+
+    @Autowired
+    private lateinit var udmComponent: UltrasonicDistanceMeter
 
     /* This function must be called in order to proceed with calculation.
         It is something like an initializer.
@@ -20,8 +27,8 @@ object CdmImpl: Cdm {
     override fun calculateThrottleValue(direction: String, rawThrottleValue: Int): Int {
         val distance: Double =
             when (direction) {
-                ACTION_MOVE_FORWARD -> UltrasonicDistanceMeterImpl.frontDistance
-                ACTION_MOVE_BACKWARD -> UltrasonicDistanceMeterImpl.rearDistance
+                ACTION_MOVE_FORWARD -> udmComponent.frontDistance
+                ACTION_MOVE_BACKWARD -> udmComponent.rearDistance
                 ACTION_NEUTRAL -> Cdm.STOP_THRESHOLD_DISTANCE
                 else -> Cdm.ERROR_DISTANCE
             }
@@ -63,7 +70,7 @@ object CdmImpl: Cdm {
             body = "Entered Throttle Value: $rawThrottleValue\n" +
                     "Calculated Throttle Value: $throttleValue\n" +
                     "Calculated Throttle Value Applied: " +
-                    "${SetupImpl.handlingAssistanceState == ASSISTANCE_FULL}\n" +
+                    "${setupComponent.handlingAssistanceState == ASSISTANCE_FULL}\n" +
                     "Obstacle's distance: $distance meters\n" +
                     "Vehicle's direction: $direction")
 

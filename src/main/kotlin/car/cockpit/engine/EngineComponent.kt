@@ -1,11 +1,11 @@
 package car.cockpit.engine
 
 import car.TYPE_WARNING
-import car.cockpit.electrics.ElectricsImpl
+import car.cockpit.electrics.Electrics
+import car.cockpit.pedals.ThrottleBrake
 import car.raspi.pins.BcmPins
-import car.cockpit.pedals.ThrottleBrakeImpl
-import car.cockpit.setup.SetupImpl
-import car.cockpit.steering.SteeringImpl
+import car.cockpit.setup.Setup
+import car.cockpit.steering.Steering
 import car.showMessage
 import com.pi4j.gpio.extension.mcp.MCP23S17GpioProvider
 import com.pi4j.gpio.extension.mcp.MCP23S17Pin
@@ -14,38 +14,55 @@ import com.pi4j.io.spi.SpiChannel
 import com.pi4j.system.SystemInfo
 import com.pi4j.util.CommandArgumentParser
 import com.pi4j.wiringpi.Gpio
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.stereotype.Component
 
-object EngineImpl: Engine {
+@Component("Engine Component")
+class EngineComponent: Engine {
+
+    @Autowired
+    @Qualifier("Throttle -n- Brake Component")
+    private lateinit var throttleBrake: ThrottleBrake
+
+    @Autowired
+    private lateinit var setupComponent: Setup
+
+    @Autowired
+    private lateinit var steeringComponent: Steering
+
+    @Autowired
+    private lateinit var electricsComponent: Electrics
 
     override var engineState = false
 
     //////
     // Pi related
-    val RUN_ON_PI: Boolean = try {
+    override val RunOnPi = try {
         SystemInfo.getBoardType().name.contains("raspberry", true)
     }
     catch (e: Exception) { false }
 
-    lateinit var gpio: GpioController
-    lateinit var motorsNledsPinsProvider: MCP23S17GpioProvider
-    lateinit var motorFrontRightPwmPin: GpioPinPwmOutput
-    lateinit var motorFrontRightDirPin: GpioPinDigitalOutput
-    lateinit var motorFrontLeftPwmPin: GpioPinPwmOutput
-    lateinit var motorFrontLeftDirPin: GpioPinDigitalOutput
-    lateinit var motorRearRightPwmPin: GpioPinPwmOutput
-    lateinit var motorRearRightDirPin: GpioPinDigitalOutput
-    lateinit var motorRearLeftPwmPin: GpioPinPwmOutput
-    lateinit var motorRearLeftDirPin: GpioPinDigitalOutput
+    override lateinit var gpio: GpioController
+    override lateinit var motorsNledsPinsProvider: MCP23S17GpioProvider
+    override lateinit var motorFrontRightPwmPin: GpioPinPwmOutput
+    override lateinit var motorFrontRightDirPin: GpioPinDigitalOutput
+    override lateinit var motorFrontLeftPwmPin: GpioPinPwmOutput
+    override lateinit var motorFrontLeftDirPin: GpioPinDigitalOutput
+    override lateinit var motorRearRightPwmPin: GpioPinPwmOutput
+    override lateinit var motorRearRightDirPin: GpioPinDigitalOutput
+    override lateinit var motorRearLeftPwmPin: GpioPinPwmOutput
+    override lateinit var motorRearLeftDirPin: GpioPinDigitalOutput
     //////
 
     override fun start(): String {
         showMessage(msgType = TYPE_WARNING,
             title = "ENGINE",
-            body = "Software IS ${if (RUN_ON_PI) "" else "NOT"} running on Pi.")
+            body = "Software IS ${if (RunOnPi) "" else "NOT"} running on Pi.")
 
         //////
         // Pi related
-        if(RUN_ON_PI) {
+        if(RunOnPi) {
             gpio = GpioFactory.getInstance()
             motorsNledsPinsProvider = MCP23S17GpioProvider(MCP23S17GpioProvider.ADDRESS_0, SpiChannel.CS0)
 
@@ -111,7 +128,7 @@ object EngineImpl: Engine {
     override fun stop(): String {
         ////// Shutdown & unprovision GPIOs, PWM, etc
         // Pi related
-        if(RUN_ON_PI) {
+        if(RunOnPi) {
             motorFrontRightPwmPin.pwm = 0
             motorFrontRightDirPin.low()
 
@@ -143,19 +160,19 @@ object EngineImpl: Engine {
 
         // reset every significant variable
         // Setup
-        SetupImpl.reset()
+        setupComponent.reset()
 
         // Temperatures
         //TemperaturesImpl.reset()
 
         // Electrics
-        ElectricsImpl.reset()
+        electricsComponent.reset()
 
         // Steering
-        SteeringImpl.reset()
+        steeringComponent.reset()
 
         // ThrottleBrake
-        ThrottleBrakeImpl.reset()
+        throttleBrake.reset()
 
         // Engine
         reset()

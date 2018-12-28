@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
@@ -15,7 +16,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class ThrottleBrakeControllerTest(@Autowired val restTemplate: TestRestTemplate) {
+internal class ThrottleBrakeControllerTest(
+    @Autowired val restTemplate: TestRestTemplate,
+    @Autowired
+    @Qualifier("Throttle -n- Brake Component")
+    val throttleBrake: ThrottleBrake
+) {
 
     @BeforeEach
     fun setup(){
@@ -120,21 +126,21 @@ internal class ThrottleBrakeControllerTest(@Autowired val restTemplate: TestRest
         restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=parking_brake&value=100")
         val entity = restTemplate.getForEntity<String>("/get_parking_brake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toBoolean()).isEqualTo(ThrottleBrakeImpl.parkingBrakeState).isTrue()
+        assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.parkingBrakeState).isTrue()
     }
     @Test
     fun `parking brake should be off`() {
         restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=parking_brake&value=0")
         val entity = restTemplate.getForEntity<String>("/get_parking_brake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toBoolean()).isEqualTo(ThrottleBrakeImpl.parkingBrakeState).isFalse()
+        assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.parkingBrakeState).isFalse()
     }
     @Test
     fun `no value means parking brake should be off`() {
         restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=parking_brake")
         val entity = restTemplate.getForEntity<String>("/get_parking_brake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toBoolean()).isEqualTo(ThrottleBrakeImpl.parkingBrakeState).isFalse()
+        assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.parkingBrakeState).isFalse()
     }
 
     // getHandbrakeState
@@ -143,21 +149,21 @@ internal class ThrottleBrakeControllerTest(@Autowired val restTemplate: TestRest
         restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=handbrake&value=100")
         val entity = restTemplate.getForEntity<String>("/get_handbrake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toBoolean()).isEqualTo(ThrottleBrakeImpl.handbrakeState).isTrue()
+        assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.handbrakeState).isTrue()
     }
     @Test
     fun `handbrake should be off`() {
         restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=handbrake&value=0")
         val entity = restTemplate.getForEntity<String>("/get_handbrake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toBoolean()).isEqualTo(ThrottleBrakeImpl.handbrakeState).isFalse()
+        assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.handbrakeState).isFalse()
     }
     @Test
     fun `no value means handbrake should be off`() {
         restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=handbrake")
         val entity = restTemplate.getForEntity<String>("/get_handbrake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toBoolean()).isEqualTo(ThrottleBrakeImpl.handbrakeState).isFalse()
+        assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.handbrakeState).isFalse()
     }
 
     // getMotionState

@@ -13,7 +13,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class SetupControllerTest(@Autowired val restTemplate: TestRestTemplate) {
+internal class SetupControllerTest(
+    @Autowired val restTemplate: TestRestTemplate,
+    @Autowired val setupComponent: Setup
+) {
 
     // setHandlingAssistance
     @Test
@@ -53,35 +56,35 @@ internal class SetupControllerTest(@Autowired val restTemplate: TestRestTemplate
         restTemplate.getForEntity<String>("/set_handling_assistance")
         val entity = restTemplate.getForEntity<String>("/get_handling_assistance_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(SetupImpl.handlingAssistanceState).isEqualTo(ASSISTANCE_NULL)
+        assertThat(entity.body).isEqualTo(setupComponent.handlingAssistanceState).isEqualTo(ASSISTANCE_NULL)
     }
     @Test
     fun `get handling assistance from null`() {
         restTemplate.getForEntity<String>("/set_handling_assistance?state=NULL")
         val entity = restTemplate.getForEntity<String>("/get_handling_assistance_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(SetupImpl.handlingAssistanceState).isEqualTo(ASSISTANCE_NULL)
+        assertThat(entity.body).isEqualTo(setupComponent.handlingAssistanceState).isEqualTo(ASSISTANCE_NULL)
     }
     @Test
     fun `get handling assistance from full`() {
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_full")
         val entity = restTemplate.getForEntity<String>("/get_handling_assistance_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(SetupImpl.handlingAssistanceState).isEqualTo(ASSISTANCE_FULL)
+        assertThat(entity.body).isEqualTo(setupComponent.handlingAssistanceState).isEqualTo(ASSISTANCE_FULL)
     }
     @Test
     fun `get handling assistance from warning`() {
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_warning")
         val entity = restTemplate.getForEntity<String>("/get_handling_assistance_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(SetupImpl.handlingAssistanceState).isEqualTo(ASSISTANCE_WARNING)
+        assertThat(entity.body).isEqualTo(setupComponent.handlingAssistanceState).isEqualTo(ASSISTANCE_WARNING)
     }
     @Test
     fun `get handling assistance from none`() {
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_none")
         val entity = restTemplate.getForEntity<String>("/get_handling_assistance_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(SetupImpl.handlingAssistanceState).isEqualTo(ASSISTANCE_NONE)
+        assertThat(entity.body).isEqualTo(setupComponent.handlingAssistanceState).isEqualTo(ASSISTANCE_NONE)
     }
 
     // setMotorSpeedLimiter
@@ -109,21 +112,21 @@ internal class SetupControllerTest(@Autowired val restTemplate: TestRestTemplate
         restTemplate.getForEntity<String>("/set_motor_speed_limiter?value=a")
         val entity = restTemplate.getForEntity<String>("/get_motor_speed_limiter")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toDouble()).isEqualTo(SetupImpl.motorSpeedLimiter)
+        assertThat(entity.body?.toDouble()).isEqualTo(setupComponent.motorSpeedLimiter)
     }
     @Test
     fun `get motor speed limiter from negative int`() {
         restTemplate.getForEntity<String>("/set_motor_speed_limiter?value=-16")
         val entity = restTemplate.getForEntity<String>("/get_motor_speed_limiter")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toDouble()).isEqualTo(SetupImpl.motorSpeedLimiter).isEqualTo((-16).toDouble())
+        assertThat(entity.body?.toDouble()).isEqualTo(setupComponent.motorSpeedLimiter).isEqualTo((-16).toDouble())
     }
     @Test
     fun `get motor speed limiter from double`() {
         restTemplate.getForEntity<String>("/set_motor_speed_limiter?value=16.9")
         val entity = restTemplate.getForEntity<String>("/get_motor_speed_limiter")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toDouble()).isEqualTo(SetupImpl.motorSpeedLimiter).isEqualTo(16.9)
+        assertThat(entity.body?.toDouble()).isEqualTo(setupComponent.motorSpeedLimiter).isEqualTo(16.9)
     }
 
     // setFrontDifferentialSlipperyLimiter
@@ -156,21 +159,21 @@ internal class SetupControllerTest(@Autowired val restTemplate: TestRestTemplate
         restTemplate.getForEntity<String>("/set_front_differential_slippery_limiter?value=a")
         val entity = restTemplate.getForEntity<String>("/get_front_differential_slippery_limiter")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toInt()).isEqualTo(SetupImpl.frontDifferentialSlipperyLimiter)
+        assertThat(entity.body?.toInt()).isEqualTo(setupComponent.frontDifferentialSlipperyLimiter)
     }
     @Test
     fun `get front differential slippery limiter from double`() {
         restTemplate.getForEntity<String>("/set_front_differential_slippery_limiter?value=16.9")
         val entity = restTemplate.getForEntity<String>("/get_front_differential_slippery_limiter")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toInt()).isEqualTo(SetupImpl.frontDifferentialSlipperyLimiter)
+        assertThat(entity.body?.toInt()).isEqualTo(setupComponent.frontDifferentialSlipperyLimiter)
     }
     @Test
     fun `get front differential slippery limiter from predefined int`() {
         restTemplate.getForEntity<String>("/set_front_differential_slippery_limiter?value=2")
         val entity = restTemplate.getForEntity<String>("/get_front_differential_slippery_limiter")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toInt()).isEqualTo(SetupImpl.frontDifferentialSlipperyLimiter)
+        assertThat(entity.body?.toInt()).isEqualTo(setupComponent.frontDifferentialSlipperyLimiter)
             .isEqualTo(DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1)
     }
     @Test
@@ -178,7 +181,7 @@ internal class SetupControllerTest(@Autowired val restTemplate: TestRestTemplate
         restTemplate.getForEntity<String>("/set_front_differential_slippery_limiter?value=5")
         val entity = restTemplate.getForEntity<String>("/get_front_differential_slippery_limiter")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toInt()).isEqualTo(SetupImpl.frontDifferentialSlipperyLimiter).isEqualTo(5)
+        assertThat(entity.body?.toInt()).isEqualTo(setupComponent.frontDifferentialSlipperyLimiter).isEqualTo(5)
     }
 
     // setRearDifferentialSlipperyLimiter
@@ -211,21 +214,21 @@ internal class SetupControllerTest(@Autowired val restTemplate: TestRestTemplate
         restTemplate.getForEntity<String>("/set_rear_differential_slippery_limiter?value=b")
         val entity = restTemplate.getForEntity<String>("/get_rear_differential_slippery_limiter")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toInt()).isEqualTo(SetupImpl.rearDifferentialSlipperyLimiter)
+        assertThat(entity.body?.toInt()).isEqualTo(setupComponent.rearDifferentialSlipperyLimiter)
     }
     @Test
     fun `get rear differential slippery limiter from double`() {
         restTemplate.getForEntity<String>("/set_rear_differential_slippery_limiter?value=14.8")
         val entity = restTemplate.getForEntity<String>("/get_rear_differential_slippery_limiter")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toInt()).isEqualTo(SetupImpl.rearDifferentialSlipperyLimiter)
+        assertThat(entity.body?.toInt()).isEqualTo(setupComponent.rearDifferentialSlipperyLimiter)
     }
     @Test
     fun `get rear differential slippery limiter from predefined int`() {
         restTemplate.getForEntity<String>("/set_rear_differential_slippery_limiter?value=3")
         val entity = restTemplate.getForEntity<String>("/get_rear_differential_slippery_limiter")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toInt()).isEqualTo(SetupImpl.rearDifferentialSlipperyLimiter)
+        assertThat(entity.body?.toInt()).isEqualTo(setupComponent.rearDifferentialSlipperyLimiter)
             .isEqualTo(DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2)
     }
     @Test
@@ -233,6 +236,6 @@ internal class SetupControllerTest(@Autowired val restTemplate: TestRestTemplate
         restTemplate.getForEntity<String>("/set_rear_differential_slippery_limiter?value=6")
         val entity = restTemplate.getForEntity<String>("/get_rear_differential_slippery_limiter")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body?.toInt()).isEqualTo(SetupImpl.rearDifferentialSlipperyLimiter).isEqualTo(6)
+        assertThat(entity.body?.toInt()).isEqualTo(setupComponent.rearDifferentialSlipperyLimiter).isEqualTo(6)
     }
 }

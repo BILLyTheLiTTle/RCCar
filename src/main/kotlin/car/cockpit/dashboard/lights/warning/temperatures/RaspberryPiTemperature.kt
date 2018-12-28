@@ -1,7 +1,7 @@
 package car.cockpit.dashboard.lights.warning.temperatures
 
 
-object RaspberryPiTemperatureImpl: HardwareItemTemperatureImpl() {
+object RaspberryPiTemperature: HardwareItemTemperature() {
     override val id = "raspberry_pi_temp"
     /* Declared temps:
         -40 < cpu temp < 85

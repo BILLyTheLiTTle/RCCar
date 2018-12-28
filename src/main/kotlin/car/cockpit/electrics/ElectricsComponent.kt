@@ -1,8 +1,10 @@
 package car.cockpit.electrics
 
 import car.showMessage
+import org.springframework.stereotype.Component
 
-object ElectricsImpl: Electrics {
+@Component("Electrics Component")
+class ElectricsComponent: Electrics {
     private val lights = mutableMapOf<String, Boolean>()
 
     override var positionLightsState = false

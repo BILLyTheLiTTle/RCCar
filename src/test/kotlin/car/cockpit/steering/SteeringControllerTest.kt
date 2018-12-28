@@ -14,7 +14,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class SteeringControllerTest(@Autowired val restTemplate: TestRestTemplate) {
+internal class SteeringControllerTest(
+    @Autowired val restTemplate: TestRestTemplate,
+    @Autowired val steeringComponent: Steering
+) {
 
     @BeforeEach
     fun setup(){
@@ -72,21 +75,21 @@ internal class SteeringControllerTest(@Autowired val restTemplate: TestRestTempl
         restTemplate.getForEntity<String>("/set_steering_system?id=$id")
         val entity = restTemplate.getForEntity<String>("/get_steering_direction")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(SteeringImpl.direction).isEqualTo(ACTION_STRAIGHT)
+        assertThat(entity.body).isEqualTo(steeringComponent.direction).isEqualTo(ACTION_STRAIGHT)
     }
     @Test
     fun `steering direction should be left`() {
         restTemplate.getForEntity<String>("/set_steering_system?id=$id&direction=left")
         val entity = restTemplate.getForEntity<String>("/get_steering_direction")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(SteeringImpl.direction).isEqualTo(ACTION_TURN_LEFT)
+        assertThat(entity.body).isEqualTo(steeringComponent.direction).isEqualTo(ACTION_TURN_LEFT)
     }
     @Test
     fun `steering direction should be right`() {
         restTemplate.getForEntity<String>("/set_steering_system?id=$id&direction=right")
         val entity = restTemplate.getForEntity<String>("/get_steering_direction")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(SteeringImpl.direction).isEqualTo(ACTION_TURN_RIGHT)
+        assertThat(entity.body).isEqualTo(steeringComponent.direction).isEqualTo(ACTION_TURN_RIGHT)
     }
 
 

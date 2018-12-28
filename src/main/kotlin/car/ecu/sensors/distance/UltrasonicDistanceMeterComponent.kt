@@ -1,9 +1,15 @@
 package car.ecu.sensors.distance
 
-import car.cockpit.engine.EngineImpl
+import car.cockpit.engine.Engine
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 import java.util.*
 
-object UltrasonicDistanceMeterImpl: UltrasonicDistanceMeter {
+@Component("Ultrasonic Distance Meter Sensor Component")
+class UltrasonicDistanceMeterComponent: UltrasonicDistanceMeter {
+
+    @Autowired
+    private lateinit var engineComponent: Engine
 
     private val DUMMY_DISTANCE_GENERATOR: Double
         get() =  ((Random().nextInt(10) + 1)).toDouble() / 10
@@ -16,7 +22,7 @@ object UltrasonicDistanceMeterImpl: UltrasonicDistanceMeter {
 
     @Synchronized
     private fun calculateFrontDistance(): Double {
-        return if(EngineImpl.RUN_ON_PI) {
+        return if(engineComponent.RunOnPi) {
             // TODO measure distance according to sensor
             DUMMY_DISTANCE_GENERATOR
         }
@@ -28,7 +34,7 @@ object UltrasonicDistanceMeterImpl: UltrasonicDistanceMeter {
 
     @Synchronized
     private fun calculateRearDistance(): Double {
-        return if(EngineImpl.RUN_ON_PI) {
+        return if(engineComponent.RunOnPi) {
             // TODO measure distance according to sensor
             DUMMY_DISTANCE_GENERATOR
         }
