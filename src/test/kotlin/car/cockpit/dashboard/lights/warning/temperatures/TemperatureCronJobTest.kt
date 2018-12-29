@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.SpyBean
 import org.springframework.test.context.junit.jupiter.SpringExtension
@@ -19,29 +20,59 @@ import kotlin.reflect.jvm.isAccessible
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class TemperatureCronJobTest(@Autowired private val engineComponent: Engine) {
+internal class TemperatureCronJobTest(
+    @Autowired
+    val engineComponent: Engine,
+    @Autowired
+    @Qualifier("Raspberry Pi Temperature Component")
+    val raspberryPiTempComponent: Temperature,
+    @Autowired
+    @Qualifier("Shift Registers Temperature Component")
+    val shiftRegistersTempComponent: Temperature,
+    @Autowired
+    @Qualifier("Motor Rear Right Temperature Component")
+    val motorRearRightTempComponent: Temperature,
+    @Autowired
+    @Qualifier("Motor Rear Left Temperature Component")
+    val motorRearLeftTempComponent: Temperature,
+    @Autowired
+    @Qualifier("Motor Front Right Temperature Component")
+    val motorFrontRightTempComponent: Temperature,
+    @Autowired
+    @Qualifier("Motor Front Left Temperature Component")
+    val motorFrontLeftTempComponent: Temperature,
+    @Autowired
+    @Qualifier("H-Bridge Rear Temperature Component")
+    val hBridgeRearTempComponent: Temperature,
+    @Autowired
+    @Qualifier("H-Bridge Front Temperature Component")
+    val hBridgeFrontTempComponent: Temperature,
+    @Autowired
+    @Qualifier("Batteries Temperature Component")
+    val batteriesTempComponent: Temperature
+) {
 
     @SpyBean
-    private val task: TemperaturesCronJob? = null
+    private val task: TemperaturesCron? = null
 
     @Mock
-    private var motorRearLeftTemp: MotorRearLeftTemperature? = null
+    private var motorRearLeftTemp: MotorRearLeftTemperatureComponent? = null
     @Mock
-    private var motorRearRightTemp: MotorRearRightTemperature? = null
+    private var motorRearRightTemp: MotorRearRightTemperatureComponent? = null
     @Mock
-    private var motorFrontLeftTemp: MotorFrontLeftTemperature? = null
+    private var motorFrontLeftTemp: MotorFrontLeftTemperatureComponent? = null
     @Mock
-    private var motorFrontRightTemp: MotorFrontRightTemperature? = null
+    private var motorFrontRightTemp: MotorFrontRightTemperatureComponent? = null
     @Mock
-    private var batteriesTemp: BatteriesTemperature? = null
+    private var batteriesTemp: BatteriesTemperatureComponent? = null
     @Mock
-    private var hBridgeRearTemp: HBridgeRearTemperature? = null
+    private var hBridgeRearTemp: HBridgeRearTemperatureComponent? = null
     @Mock
-    private var hBridgeFrontTemp: HBridgeFrontTemperature? = null
+    private var hBridgeFrontTemp: HBridgeFrontTemperatureComponent? = null
     @Mock
-    private var raspberryPiTemp: RaspberryPiTemperature? = null
+    private var raspberryPiTemp: RaspberryPiTemperatureComponent? = null
     @Mock
-    private var shiftRegistersTemp: ShiftRegistersTemperature? = null
+    private var shiftRegistersTemp: ShiftRegistersTemperatureComponent? = null
 
     @BeforeEach
     internal fun setUp() {
@@ -56,441 +87,441 @@ internal class TemperatureCronJobTest(@Autowired private val engineComponent: En
     // checkTemps
     @Test
     fun `report normal temperature for rear left motor`() {
-        val minMediumTemp = MotorRearLeftTemperature::class.memberProperties
+        val minMediumTemp = MotorRearLeftTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(MotorRearLeftTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(motorRearLeftTempComponent) as Int
 
         `when`(motorRearLeftTemp?.value).thenReturn(temp-5)
-        `when`(motorRearLeftTemp?.warning).thenReturn(Temperature.WARNING_TYPE_NORMAL)
+        `when`(motorRearLeftTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
 
         task?.hardwareItems = arrayOf(motorRearLeftTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_NORMAL)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
     fun `report medium temperature for rear left motor`() {
-        val minMediumTemp = MotorRearLeftTemperature::class.memberProperties
+        val minMediumTemp = MotorRearLeftTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(MotorRearLeftTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(motorRearLeftTempComponent) as Int
 
         `when`(motorRearLeftTemp?.value).thenReturn(temp + 5)
-        `when`(motorRearLeftTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(motorRearLeftTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(motorRearLeftTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
     fun `report high temperature for rear left motor`() {
-        val maxMediumTemp = MotorRearLeftTemperature::class.memberProperties
+        val maxMediumTemp = MotorRearLeftTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="maxMediumTemp" }
         maxMediumTemp?.isAccessible = true
-        val temp = maxMediumTemp?.getter?.call(MotorRearLeftTemperature) as Int
+        val temp = maxMediumTemp?.getter?.call(motorRearLeftTempComponent) as Int
 
         `when`(motorRearLeftTemp?.value).thenReturn(temp + 5)
-        `when`(motorRearLeftTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(motorRearLeftTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(motorRearLeftTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
     @Test
     fun `report normal temperature for rear right motor`() {
-        val minMediumTemp = MotorRearRightTemperature::class.memberProperties
+        val minMediumTemp = MotorRearRightTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(MotorRearRightTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(motorRearRightTempComponent) as Int
 
         `when`(motorRearRightTemp?.value).thenReturn(temp-5)
-        `when`(motorRearRightTemp?.warning).thenReturn(Temperature.WARNING_TYPE_NORMAL)
+        `when`(motorRearRightTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
 
         task?.hardwareItems = arrayOf(motorRearRightTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_NORMAL)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
     fun `report medium temperature for rear right motor`() {
-        val maxMediumTemp = MotorRearRightTemperature::class.memberProperties
+        val maxMediumTemp = MotorRearRightTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="maxMediumTemp" }
         maxMediumTemp?.isAccessible = true
-        val temp = maxMediumTemp?.getter?.call(MotorRearRightTemperature) as Int
+        val temp = maxMediumTemp?.getter?.call(motorRearRightTempComponent) as Int
 
         `when`(motorRearRightTemp?.value).thenReturn(temp + 5)
-        `when`(motorRearRightTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(motorRearRightTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(motorRearRightTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
     fun `report high temperature for rear right motor`() {
-        val maxMediumTemp = MotorRearRightTemperature::class.memberProperties
+        val maxMediumTemp = MotorRearRightTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="maxMediumTemp" }
         maxMediumTemp?.isAccessible = true
-        val temp = maxMediumTemp?.getter?.call(MotorRearRightTemperature) as Int
+        val temp = maxMediumTemp?.getter?.call(motorRearRightTempComponent) as Int
 
         `when`(motorRearRightTemp?.value).thenReturn(temp + 5)
-        `when`(motorRearRightTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(motorRearRightTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(motorRearRightTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
     fun `report normal temperature for front left motor`() {
-        val minMediumTemp = MotorFrontLeftTemperature::class.memberProperties
+        val minMediumTemp = MotorFrontLeftTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(MotorFrontLeftTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(motorFrontLeftTempComponent) as Int
 
         `when`(motorFrontLeftTemp?.value).thenReturn(temp-5)
-        `when`(motorFrontLeftTemp?.warning).thenReturn(Temperature.WARNING_TYPE_NORMAL)
+        `when`(motorFrontLeftTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
 
         task?.hardwareItems = arrayOf(motorFrontLeftTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_NORMAL)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
     fun `report medium temperature for front left motor`() {
-        val minMediumTemp = MotorFrontLeftTemperature::class.memberProperties
+        val minMediumTemp = MotorFrontLeftTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(MotorFrontLeftTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(motorFrontLeftTempComponent) as Int
 
         `when`(motorFrontLeftTemp?.value).thenReturn(temp + 5)
-        `when`(motorFrontLeftTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(motorFrontLeftTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(motorFrontLeftTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
     fun `report high temperature for front left motor`() {
-        val maxMediumTemp = MotorFrontLeftTemperature::class.memberProperties
+        val maxMediumTemp = MotorFrontLeftTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="maxMediumTemp" }
         maxMediumTemp?.isAccessible = true
-        val temp = maxMediumTemp?.getter?.call(MotorFrontLeftTemperature) as Int
+        val temp = maxMediumTemp?.getter?.call(motorFrontLeftTempComponent) as Int
 
         `when`(motorFrontLeftTemp?.value).thenReturn(temp + 5)
-        `when`(motorFrontLeftTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(motorFrontLeftTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(motorFrontLeftTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
     @Test
     fun `report normal temperature for front right motor`() {
-        val minMediumTemp = MotorFrontRightTemperature::class.memberProperties
+        val minMediumTemp = MotorFrontRightTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(MotorFrontRightTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(motorFrontRightTempComponent) as Int
 
         `when`(motorFrontRightTemp?.value).thenReturn(temp-5)
-        `when`(motorFrontRightTemp?.warning).thenReturn(Temperature.WARNING_TYPE_NORMAL)
+        `when`(motorFrontRightTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
 
         task?.hardwareItems = arrayOf(motorFrontRightTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_NORMAL)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
     fun `report medium temperature for front right motor`() {
-        val minMediumTemp = MotorFrontRightTemperature::class.memberProperties
+        val minMediumTemp = MotorFrontRightTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(MotorFrontRightTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(motorFrontRightTempComponent) as Int
 
         `when`(motorFrontRightTemp?.value).thenReturn(temp + 5)
-        `when`(motorFrontRightTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(motorFrontRightTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(motorFrontRightTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
     fun `report high temperature for front right motor`() {
-        val maxMediumTemp = MotorFrontRightTemperature::class.memberProperties
+        val maxMediumTemp = MotorFrontRightTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="maxMediumTemp" }
         maxMediumTemp?.isAccessible = true
-        val temp = maxMediumTemp?.getter?.call(MotorFrontRightTemperature) as Int
+        val temp = maxMediumTemp?.getter?.call(motorFrontRightTempComponent) as Int
 
         `when`(motorFrontRightTemp?.value).thenReturn(temp + 5)
-        `when`(motorFrontRightTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(motorFrontRightTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(motorFrontRightTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
     @Test
     fun `report normal temperature for rear h bridge`() {
-        val minMediumTemp = HBridgeRearTemperature::class.memberProperties
+        val minMediumTemp = HBridgeRearTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(HBridgeRearTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(hBridgeRearTempComponent) as Int
 
         `when`(hBridgeRearTemp?.value).thenReturn(temp-5)
-        `when`(hBridgeRearTemp?.warning).thenReturn(Temperature.WARNING_TYPE_NORMAL)
+        `when`(hBridgeRearTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
 
         task?.hardwareItems = arrayOf(hBridgeRearTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_NORMAL)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
     fun `report medium temperature for rear h bridge`() {
-        val minMediumTemp = HBridgeRearTemperature::class.memberProperties
+        val minMediumTemp = HBridgeRearTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(HBridgeRearTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(hBridgeRearTempComponent) as Int
 
         `when`(hBridgeRearTemp?.value).thenReturn(temp + 5)
-        `when`(hBridgeRearTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(hBridgeRearTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(hBridgeRearTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
     fun `report high temperature for rear h bridge`() {
-        val maxMediumTemp = HBridgeRearTemperature::class.memberProperties
+        val maxMediumTemp = HBridgeRearTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="maxMediumTemp" }
         maxMediumTemp?.isAccessible = true
-        val temp = maxMediumTemp?.getter?.call(HBridgeRearTemperature) as Int
+        val temp = maxMediumTemp?.getter?.call(hBridgeRearTempComponent) as Int
 
         `when`(hBridgeRearTemp?.value).thenReturn(temp + 5)
-        `when`(hBridgeRearTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(hBridgeRearTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(hBridgeRearTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
     @Test
     fun `report normal temperature for front h bridge`() {
-        val minMediumTemp = HBridgeFrontTemperature::class.memberProperties
+        val minMediumTemp = HBridgeFrontTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(HBridgeFrontTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(hBridgeFrontTempComponent) as Int
 
         `when`(hBridgeFrontTemp?.value).thenReturn(temp-5)
-        `when`(hBridgeFrontTemp?.warning).thenReturn(Temperature.WARNING_TYPE_NORMAL)
+        `when`(hBridgeFrontTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
 
         task?.hardwareItems = arrayOf(hBridgeFrontTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_NORMAL)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
     fun `report medium temperature for front h bridge`() {
-        val minMediumTemp = HBridgeFrontTemperature::class.memberProperties
+        val minMediumTemp = HBridgeFrontTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(HBridgeFrontTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(hBridgeFrontTempComponent) as Int
 
         `when`(hBridgeFrontTemp?.value).thenReturn(temp + 5)
-        `when`(hBridgeFrontTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(hBridgeFrontTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(hBridgeFrontTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
     fun `report high temperature for front h bridge`() {
-        val maxMediumTemp = HBridgeFrontTemperature::class.memberProperties
+        val maxMediumTemp = HBridgeFrontTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="maxMediumTemp" }
         maxMediumTemp?.isAccessible = true
-        val temp = maxMediumTemp?.getter?.call(HBridgeFrontTemperature) as Int
+        val temp = maxMediumTemp?.getter?.call(hBridgeFrontTempComponent) as Int
 
         `when`(hBridgeFrontTemp?.value).thenReturn(temp + 5)
-        `when`(hBridgeFrontTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(hBridgeFrontTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(hBridgeFrontTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
     @Test
     fun `report normal temperature for raspberry pi`() {
-        val minMediumTemp = RaspberryPiTemperature::class.memberProperties
+        val minMediumTemp = RaspberryPiTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(RaspberryPiTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(raspberryPiTempComponent) as Int
 
         `when`(raspberryPiTemp?.value).thenReturn(temp-5)
-        `when`(raspberryPiTemp?.warning).thenReturn(Temperature.WARNING_TYPE_NORMAL)
+        `when`(raspberryPiTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
 
         task?.hardwareItems = arrayOf(raspberryPiTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_NORMAL)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
     fun `report medium temperature for raspberry pi`() {
-        val minMediumTemp = RaspberryPiTemperature::class.memberProperties
+        val minMediumTemp = RaspberryPiTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(RaspberryPiTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(raspberryPiTempComponent) as Int
 
         `when`(raspberryPiTemp?.value).thenReturn(temp + 5)
-        `when`(raspberryPiTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(raspberryPiTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(raspberryPiTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
     fun `report high temperature for raspberry pi`() {
-        val maxMediumTemp = RaspberryPiTemperature::class.memberProperties
+        val maxMediumTemp = RaspberryPiTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="maxMediumTemp" }
         maxMediumTemp?.isAccessible = true
-        val temp = maxMediumTemp?.getter?.call(RaspberryPiTemperature) as Int
+        val temp = maxMediumTemp?.getter?.call(raspberryPiTempComponent) as Int
 
         `when`(raspberryPiTemp?.value).thenReturn(temp + 5)
-        `when`(raspberryPiTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(raspberryPiTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(raspberryPiTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
     @Test
     fun `report normal temperature for batteries`() {
-        val minMediumTemp = BatteriesTemperature::class.memberProperties
+        val minMediumTemp = BatteriesTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(BatteriesTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(batteriesTempComponent) as Int
 
         `when`(batteriesTemp?.value).thenReturn(temp-5)
-        `when`(batteriesTemp?.warning).thenReturn(Temperature.WARNING_TYPE_NORMAL)
+        `when`(batteriesTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
 
         task?.hardwareItems = arrayOf(batteriesTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_NORMAL)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
     fun `report medium temperature for batteries`() {
-        val minMediumTemp = BatteriesTemperature::class.memberProperties
+        val minMediumTemp = BatteriesTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(BatteriesTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(batteriesTempComponent) as Int
 
         `when`(batteriesTemp?.value).thenReturn(temp + 5)
-        `when`(batteriesTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(batteriesTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(batteriesTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
     fun `report high temperature for batteries`() {
-        val maxMediumTemp = BatteriesTemperature::class.memberProperties
+        val maxMediumTemp = BatteriesTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="maxMediumTemp" }
         maxMediumTemp?.isAccessible = true
-        val temp = maxMediumTemp?.getter?.call(BatteriesTemperature) as Int
+        val temp = maxMediumTemp?.getter?.call(batteriesTempComponent) as Int
 
         `when`(batteriesTemp?.value).thenReturn(temp + 5)
-        `when`(batteriesTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(batteriesTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(batteriesTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
     @Test
     fun `report normal temperature for shift registers`() {
-        val minMediumTemp = ShiftRegistersTemperature::class.memberProperties
+        val minMediumTemp = ShiftRegistersTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(ShiftRegistersTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(shiftRegistersTempComponent) as Int
 
         `when`(shiftRegistersTemp?.value).thenReturn(temp-5)
-        `when`(shiftRegistersTemp?.warning).thenReturn(Temperature.WARNING_TYPE_NORMAL)
+        `when`(shiftRegistersTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
 
         task?.hardwareItems = arrayOf(shiftRegistersTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_NORMAL)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
     fun `report medium temperature for shift registers`() {
-        val minMediumTemp = ShiftRegistersTemperature::class.memberProperties
+        val minMediumTemp = ShiftRegistersTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="minMediumTemp" }
         minMediumTemp?.isAccessible = true
-        val temp = minMediumTemp?.getter?.call(ShiftRegistersTemperature) as Int
+        val temp = minMediumTemp?.getter?.call(shiftRegistersTempComponent) as Int
 
         `when`(shiftRegistersTemp?.value).thenReturn(temp + 5)
-        `when`(shiftRegistersTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(shiftRegistersTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(shiftRegistersTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
     fun `report high temperature for shift registers`() {
-        val maxMediumTemp = ShiftRegistersTemperature::class.memberProperties
+        val maxMediumTemp = ShiftRegistersTemperatureComponent::class.memberProperties
             .firstOrNull { it.name =="maxMediumTemp" }
         maxMediumTemp?.isAccessible = true
-        val temp = maxMediumTemp?.getter?.call(ShiftRegistersTemperature) as Int
+        val temp = maxMediumTemp?.getter?.call(shiftRegistersTempComponent) as Int
 
         `when`(shiftRegistersTemp?.value).thenReturn(temp + 5)
-        `when`(shiftRegistersTemp?.warning).thenReturn(Temperature.WARNING_TYPE_MEDIUM)
+        `when`(shiftRegistersTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
         task?.hardwareItems = arrayOf(shiftRegistersTemp!!)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(Temperature.WARNING_TYPE_MEDIUM)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 }

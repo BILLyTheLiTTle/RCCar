@@ -19,9 +19,11 @@ class SteeringComponent: Steering {
     private val outerFrontDegreesPhi = doubleArrayOf(19.9, 37.9, 41.7, 49.2, 47.8)
 
     override var direction = ACTION_STRAIGHT
+        protected set
         /*private set -
             achieved by using val in the interface and use the interface instead of this class at the outside*/
     override var value = STEERING_VALUE_00
+            protected set
         /*private set -
             achieved by using val in the interface and use the interface instead of this class at the outside*/
 

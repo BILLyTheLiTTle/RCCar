@@ -35,6 +35,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
 
     private var action = ACTION_NEUTRAL
     override var value = 0
+        protected set
         /*private set -
             achieved by using val in the interface and use the interface instead of this class at the outside*/
 
