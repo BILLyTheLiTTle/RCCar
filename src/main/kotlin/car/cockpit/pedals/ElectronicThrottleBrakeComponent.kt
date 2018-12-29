@@ -7,6 +7,9 @@ import car.cockpit.engine.nanohttpClientPort
 import car.cockpit.setup.*
 import car.ecu.Ecu
 import car.doNonBlockingRequest
+import car.ecu.COLLISION_DETECTION_MODULE
+import car.ecu.MODULE_IDLE_STATE
+import car.ecu.MODULE_ON_STATE
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
@@ -19,7 +22,7 @@ class ElectronicThrottleBrakeComponent(@Autowired val throttleBrake: ThrottleBra
     @Autowired
     private lateinit var cdmComponent: Cdm
 
-    private var reportedCdmState = Ecu.MODULE_IDLE_STATE
+    private var reportedCdmState = MODULE_IDLE_STATE
 
     override fun throttle(direction: String, value: Int): String {
         // check the CDM
@@ -44,9 +47,9 @@ class ElectronicThrottleBrakeComponent(@Autowired val throttleBrake: ThrottleBra
         val throttle = cdmComponent.calculateThrottleValue(direction, value)
 
         val currentCdmState = if (throttle != value) {
-                Ecu.MODULE_ON_STATE
+                MODULE_ON_STATE
             } else {
-                Ecu.MODULE_IDLE_STATE
+                MODULE_IDLE_STATE
             }
 
         when (setupComponent.handlingAssistanceState) {
@@ -54,7 +57,8 @@ class ElectronicThrottleBrakeComponent(@Autowired val throttleBrake: ThrottleBra
             ASSISTANCE_WARNING -> {
                 if (reportedCdmState != currentCdmState) {
                     reportedCdmState = currentCdmState
-                    cdmClientNotifier(Ecu.COLLISION_DETECTION_MODULE,
+                    cdmClientNotifier(
+                        COLLISION_DETECTION_MODULE,
                         reportedCdmState
                     )
                 }
