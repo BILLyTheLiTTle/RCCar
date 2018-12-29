@@ -26,7 +26,7 @@ internal class EngineComponentTest(@Autowired val engineComponent: Engine) {
         assertThrows(UninitializedPropertyAccessException::class.java) {
             engineComponent.gpio
         }
-        assertThat(engineComponent.RunOnPi).isFalse()
+        assertThat(engineComponent.runOnPi).isFalse()
     }
 
     // stop

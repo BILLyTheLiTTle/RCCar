@@ -45,7 +45,7 @@ class RaspberryPiTemperatureComponent: Temperature {
     private fun readSensor(): Int {
         val gpuTemp: Int
         val cpuTemp: Int
-        if (engineComponent.RunOnPi) {
+        if (engineComponent.runOnPi) {
             cpuTemp = try {
                 SystemInfo.getCpuTemperature().toInt()
             } catch (e: Exception) {

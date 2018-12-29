@@ -7,7 +7,7 @@ import com.pi4j.io.gpio.GpioPinPwmOutput
 
 interface Engine {
 
-    val RunOnPi: Boolean
+    val runOnPi: Boolean
     var engineState: Boolean
     val gpio: GpioController
     val motorsNledsPinsProvider: MCP23S17GpioProvider

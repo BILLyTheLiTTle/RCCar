@@ -80,7 +80,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
 
         //////
         // Pi related
-        if (engineComponent.RunOnPi)
+        if (engineComponent.runOnPi)
             calculateDifferentialValues(value)
         else
             showDifferentialInfo(value)
@@ -89,7 +89,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
         if(direction == ACTION_MOVE_FORWARD){
             //////
             // Pi related
-            if (engineComponent.RunOnPi) {
+            if (engineComponent.runOnPi) {
                 applyPinValues(motorFrontRightDigital = true, motorFrontLeftDigital = true,
                     motorRearRightDigital = true, motorRearLeftDigital = true)
             }
@@ -97,7 +97,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
         else if (direction == ACTION_MOVE_BACKWARD){
             //////
             // Pi related
-            if (engineComponent.RunOnPi) {
+            if (engineComponent.runOnPi) {
                 applyPinValues(motorFrontRightDigital = false, motorFrontLeftDigital = false,
                     motorRearRightDigital = false, motorRearLeftDigital = false)
             }
@@ -115,7 +115,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
         launch { electricsComponent.brakingLightsState = true }
         //////
         // Pi related
-        if (engineComponent.RunOnPi) {
+        if (engineComponent.runOnPi) {
             applyPinValues(motorFrontRightPwm = 0 /*value*/, motorFrontRightDigital = false,
                 motorFrontLeftPwm = 0 /*value*/, motorFrontLeftDigital = false,
                 motorRearRightPwm = 0 /*value*/, motorRearRightDigital = false,
@@ -138,7 +138,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
             launch { electricsComponent.brakingLightsState = false }
         //////
         // Pi related
-        if (engineComponent.RunOnPi) {
+        if (engineComponent.runOnPi) {
             applyPinValues(motorFrontRightPwm = 0 /*value*/, motorFrontRightDigital = false,
                 motorFrontLeftPwm = 0 /*value*/, motorFrontLeftDigital = false,
                 motorRearRightPwm = 0 /*value*/, motorRearRightDigital = false,
@@ -169,7 +169,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
     override fun handbrake(value: Int): String {
         //////
         // Pi related
-        if (engineComponent.RunOnPi && value == 100) {
+        if (engineComponent.runOnPi && value == 100) {
             // Affects only the rear wheels
             applyPinValues(motorRearRightPwm = 0 /*value*/, motorRearRightDigital = false,
                 motorRearLeftPwm = 0 /*value*/, motorRearLeftDigital = false)
@@ -199,7 +199,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
         launch { electricsComponent.brakingLightsState = false }
         //////
         // Pi related
-        if (engineComponent.RunOnPi) {
+        if (engineComponent.runOnPi) {
             applyPinValues(motorFrontRightPwm = 0 /*value*/, motorFrontRightDigital = false,
                 motorFrontLeftPwm = 0 /*value*/, motorFrontLeftDigital = false,
                 motorRearRightPwm = 0 /*value*/, motorRearRightDigital = false,

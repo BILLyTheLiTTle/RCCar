@@ -38,7 +38,7 @@ class EngineComponent: Engine {
 
     //////
     // Pi related
-    override val RunOnPi = try {
+    override val runOnPi = try {
         SystemInfo.getBoardType().name.contains("raspberry", true)
     }
     catch (e: Exception) { false }
@@ -58,11 +58,11 @@ class EngineComponent: Engine {
     override fun start(): String {
         showMessage(msgType = TYPE_WARNING,
             title = "ENGINE",
-            body = "Software IS ${if (RunOnPi) "" else "NOT"} running on Pi.")
+            body = "Software IS ${if (runOnPi) "" else "NOT"} running on Pi.")
 
         //////
         // Pi related
-        if(RunOnPi) {
+        if(runOnPi) {
             gpio = GpioFactory.getInstance()
             motorsNledsPinsProvider = MCP23S17GpioProvider(MCP23S17GpioProvider.ADDRESS_0, SpiChannel.CS0)
 
@@ -128,7 +128,7 @@ class EngineComponent: Engine {
     override fun stop(): String {
         ////// Shutdown & unprovision GPIOs, PWM, etc
         // Pi related
-        if(RunOnPi) {
+        if(runOnPi) {
             motorFrontRightPwmPin.pwm = 0
             motorFrontRightDirPin.low()
 

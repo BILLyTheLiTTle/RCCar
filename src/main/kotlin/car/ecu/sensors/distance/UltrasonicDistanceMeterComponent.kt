@@ -22,7 +22,7 @@ class UltrasonicDistanceMeterComponent: UltrasonicDistanceMeter {
 
     @Synchronized
     private fun calculateFrontDistance(): Double {
-        return if(engineComponent.RunOnPi) {
+        return if(engineComponent.runOnPi) {
             // TODO measure distance according to sensor
             DUMMY_DISTANCE_GENERATOR
         }
@@ -34,7 +34,7 @@ class UltrasonicDistanceMeterComponent: UltrasonicDistanceMeter {
 
     @Synchronized
     private fun calculateRearDistance(): Double {
-        return if(engineComponent.RunOnPi) {
+        return if(engineComponent.runOnPi) {
             // TODO measure distance according to sensor
             DUMMY_DISTANCE_GENERATOR
         }
