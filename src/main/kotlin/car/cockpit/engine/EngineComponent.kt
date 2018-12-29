@@ -3,9 +3,12 @@ package car.cockpit.engine
 import car.TYPE_WARNING
 import car.cockpit.electrics.Electrics
 import car.cockpit.pedals.ThrottleBrake
-import car.raspi.pins.BcmPins
 import car.cockpit.setup.Setup
 import car.cockpit.steering.Steering
+import car.raspi.pins.BCM_12
+import car.raspi.pins.BCM_13
+import car.raspi.pins.BCM_18
+import car.raspi.pins.BCM_19
 import car.showMessage
 import com.pi4j.gpio.extension.mcp.MCP23S17GpioProvider
 import com.pi4j.gpio.extension.mcp.MCP23S17Pin
@@ -83,7 +86,7 @@ class EngineComponent: Engine {
         // Front Right Motor
         val motorFrontRightPin = CommandArgumentParser.getPin(
             RaspiPin::class.java, // pin provider class to obtain pin instance from
-            BcmPins.BCM_13, // default pin if no pin argument found
+            BCM_13, // default pin if no pin argument found
             null
         )
         motorFrontRightPwmPin = gpio.provisionPwmOutputPin(motorFrontRightPin)
@@ -94,7 +97,7 @@ class EngineComponent: Engine {
         // Front Left Motor
         val motorFrontLeftPin = CommandArgumentParser.getPin(
             RaspiPin::class.java, // pin provider class to obtain pin instance from
-            BcmPins.BCM_19, // default pin if no pin argument found
+            BCM_19, // default pin if no pin argument found
             null
         )
         motorFrontLeftPwmPin = gpio.provisionPwmOutputPin(motorFrontLeftPin)
@@ -105,7 +108,7 @@ class EngineComponent: Engine {
         // Rear Right Motor
         val motorRearRightPin = CommandArgumentParser.getPin(
             RaspiPin::class.java, // pin provider class to obtain pin instance from
-            BcmPins.BCM_12, // default pin if no pin argument found
+            BCM_12, // default pin if no pin argument found
             null
         )
         motorRearRightPwmPin = gpio.provisionPwmOutputPin(motorRearRightPin)
@@ -116,7 +119,7 @@ class EngineComponent: Engine {
         // Rear Left Motor
         val motorRearLeftPin = CommandArgumentParser.getPin(
             RaspiPin::class.java, // pin provider class to obtain pin instance from
-            BcmPins.BCM_18, // default pin if no pin argument found
+            BCM_18, // default pin if no pin argument found
             null
         )
         motorRearLeftPwmPin = gpio.provisionPwmOutputPin(motorRearLeftPin)

@@ -247,9 +247,6 @@ internal class ThrottleBrakeControllerTest(
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(ACTION_NEUTRAL).isEqualTo("neutral")
     }
-
-
-    companion object {
-        var id = -1
-    }
 }
+
+private var id = -1

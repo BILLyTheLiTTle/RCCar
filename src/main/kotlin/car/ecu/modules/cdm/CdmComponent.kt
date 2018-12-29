@@ -29,33 +29,33 @@ class CdmComponent: Cdm {
             when (direction) {
                 ACTION_MOVE_FORWARD -> udmComponent.frontDistance
                 ACTION_MOVE_BACKWARD -> udmComponent.rearDistance
-                ACTION_NEUTRAL -> Cdm.STOP_THRESHOLD_DISTANCE
-                else -> Cdm.ERROR_DISTANCE
+                ACTION_NEUTRAL -> STOP_THRESHOLD_DISTANCE
+                else -> ERROR_DISTANCE
             }
 
         val throttleValue = when  {
-            distance <= Cdm.STOP_THRESHOLD_DISTANCE -> {
+            distance <= STOP_THRESHOLD_DISTANCE -> {
                 0
             }
-            distance <= Cdm.LOW_SPEED_LIMITER_THRESHOLD_DISTANCE -> {
-                if (rawThrottleValue > Cdm.LOW_SPEED_LIMITER_THRESHOLD_SPEED) {
-                    Cdm.LOW_SPEED_LIMITER_THRESHOLD_SPEED
+            distance <= LOW_SPEED_LIMITER_THRESHOLD_DISTANCE -> {
+                if (rawThrottleValue > LOW_SPEED_LIMITER_THRESHOLD_SPEED) {
+                    LOW_SPEED_LIMITER_THRESHOLD_SPEED
                 }
                 else {
                     rawThrottleValue
                 }
             }
-            distance <= Cdm.MEDIUM_SPEED_LIMITER_THRESHOLD_DISTANCE -> {
-                if (rawThrottleValue > Cdm.MEDIUM_SPEED_LIMITER_THRESHOLD_SPEED) {
-                    Cdm.MEDIUM_SPEED_LIMITER_THRESHOLD_SPEED
+            distance <= MEDIUM_SPEED_LIMITER_THRESHOLD_DISTANCE -> {
+                if (rawThrottleValue > MEDIUM_SPEED_LIMITER_THRESHOLD_SPEED) {
+                    MEDIUM_SPEED_LIMITER_THRESHOLD_SPEED
                 }
                 else {
                     rawThrottleValue
                 }
             }
-            distance <= Cdm.HIGH_SPEED_LIMITER_THRESHOLD_DISTANCE -> {
-                if (rawThrottleValue > Cdm.HIGH_SPEED_LIMITER_THRESHOLD_SPEED) {
-                    Cdm.HIGH_SPEED_LIMITER_THRESHOLD_SPEED
+            distance <= HIGH_SPEED_LIMITER_THRESHOLD_DISTANCE -> {
+                if (rawThrottleValue > HIGH_SPEED_LIMITER_THRESHOLD_SPEED) {
+                    HIGH_SPEED_LIMITER_THRESHOLD_SPEED
                 }
                 else {
                     rawThrottleValue

@@ -91,9 +91,6 @@ internal class SteeringControllerTest(
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(steeringComponent.direction).isEqualTo(ACTION_TURN_RIGHT)
     }
-
-
-    companion object {
-        var id = -1
-    }
 }
+
+private var id = -1

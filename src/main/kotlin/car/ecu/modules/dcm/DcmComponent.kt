@@ -86,8 +86,6 @@ class DcmComponent: Dcm {
     override val rearAutoDiffValues
         get() = intArrayOf(valueOuterFront, valueOuterFront)
     ////////////////////
-
-    private companion object {
-        const val DIFFERENTIAL_STEPS = 4
-    }
 }
+
+private const val DIFFERENTIAL_STEPS = 4

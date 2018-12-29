@@ -22,8 +22,4 @@ class EngineController {
 
     @GetMapping("/stop_engine")
     fun stopEngine() = service.stopEngine()
-
-    companion object {
-
-    }
 }
