@@ -6,15 +6,12 @@ package car.ecu
 
 import car.cockpit.engine.EMPTY_STRING
 
-interface Ecu {
-}
-
+// Add these variables to appropriate class later
 const val TRACTION_CONTROL_MODULE = "TCM"
 const val ANTILOCK_BRAKING_MODULE = "ABM"
 const val ELECTRONIC_STABILITY_MODULE = "ESM"
 const val UNDERSTEER_DETECTION_MODULE = "UDM"
 const val OVERSTEER_DETECTION_MODULE = "ODM"
-const val COLLISION_DETECTION_MODULE = "CDM"
 
 const val ECU_URI = "/ecu"
 const val ECU_PARAM_KEY_ITEM = "item"

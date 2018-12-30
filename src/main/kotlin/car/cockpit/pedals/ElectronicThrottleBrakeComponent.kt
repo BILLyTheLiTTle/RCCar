@@ -2,14 +2,10 @@ package car.cockpit.pedals
 
 import car.cockpit.dashboard.lights.warning.handling.cdmClientNotifier
 import car.ecu.modules.cdm.Cdm
-import car.cockpit.engine.nanohttpClientIp
-import car.cockpit.engine.nanohttpClientPort
 import car.cockpit.setup.*
-import car.ecu.Ecu
-import car.doNonBlockingRequest
-import car.ecu.COLLISION_DETECTION_MODULE
 import car.ecu.MODULE_IDLE_STATE
 import car.ecu.MODULE_ON_STATE
+import car.ecu.modules.cdm.COLLISION_DETECTION_MODULE
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 

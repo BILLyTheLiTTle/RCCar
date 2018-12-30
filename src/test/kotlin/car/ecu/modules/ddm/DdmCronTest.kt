@@ -1,7 +1,6 @@
 package car.ecu.modules.ddm
 
 import car.cockpit.engine.Engine
-import car.cockpit.engine.EngineController
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

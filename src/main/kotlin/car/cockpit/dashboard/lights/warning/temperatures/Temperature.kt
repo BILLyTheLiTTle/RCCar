@@ -1,7 +1,6 @@
 package car.cockpit.dashboard.lights.warning.temperatures
 
 import car.cockpit.engine.EMPTY_STRING
-import car.cockpit.engine.EngineController
 import java.util.*
 
 interface Temperature {

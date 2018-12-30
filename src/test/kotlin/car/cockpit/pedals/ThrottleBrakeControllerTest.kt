@@ -1,6 +1,5 @@
 package car.cockpit.pedals
 
-import car.cockpit.engine.EngineController
 import car.cockpit.engine.SUCCESS
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach

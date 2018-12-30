@@ -37,21 +37,17 @@ class ElectricsController{
     fun getMainLightsState() = electricsService.getMainLightsState()
 
     @GetMapping("/set_reverse_lights_state")
-    fun setReverseLightsState(@RequestParam(value = "state", defaultValue = "false") state: Boolean): String {
-        electricsComponent.reverseLightsState = state
-        return electricsComponent.reverseLightsState.toString()
-    }
+    fun setReverseLightsState(@RequestParam(value = "state", defaultValue = "false") state: Boolean) =
+        electricsService.setReverseLightsState(state)
 
     @GetMapping("/get_reverse_lights_state")
-    fun getReverseLightsState() = electricsComponent.reverseLightsState
+    fun getReverseLightsState() = electricsService.getReverseLightsState()
 
     @GetMapping("/set_emergency_lights_state")
-    fun setEmergencyLightsState(@RequestParam(value = "state", defaultValue = "false") state: Boolean): String {
-        electricsComponent.emergencyLightsState = state
-        return electricsComponent.emergencyLightsState.toString()
-    }
+    fun setEmergencyLightsState(@RequestParam(value = "state", defaultValue = "false") state: Boolean) =
+        electricsService.setEmergencyLightsState(state)
 
     @GetMapping("/get_emergency_lights_state")
-    fun getEmergencyLightsState() = electricsComponent.emergencyLightsState
+    fun getEmergencyLightsState() = electricsService.getEmergencyLightsState()
 
 }

@@ -6,7 +6,7 @@ import java.util.*
 @Component("Speedometer Sensor Component")
 class SpeedometerComponent: Speedometer {
 
-    private val DUMMY_SPEED_GENERATOR
+    private val dummySpeedGenerator
         get() =  Random().nextInt(200)
 
     override val travelSpeed: Int
@@ -15,7 +15,7 @@ class SpeedometerComponent: Speedometer {
     private fun calculateSpeed(): Int {
         var totalSpeed = 0
         for (i in 0..3)
-            totalSpeed += DUMMY_SPEED_GENERATOR
+            totalSpeed += dummySpeedGenerator
         return totalSpeed/4
     }
 }

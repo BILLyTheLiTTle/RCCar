@@ -6,7 +6,6 @@ import car.doNonBlockingRequest
 import car.ecu.ECU_PARAM_KEY_ITEM
 import car.ecu.ECU_PARAM_KEY_VALUE
 import car.ecu.ECU_URI
-import car.ecu.Ecu
 
 fun cdmClientNotifier(hardwareID: String, value: String) {
     doNonBlockingRequest(

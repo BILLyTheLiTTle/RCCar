@@ -79,7 +79,7 @@ class TemperaturesCron {
 
     lateinit var hardwareItems: Array<Temperature>
     @PostConstruct
-    fun getHardwareItems(){
+    private fun getHardwareItems(){
         hardwareItems = arrayOf(motorRearLeftTempComponent,motorRearRightTempComponent,
             motorFrontLeftTempComponent, motorFrontRightTempComponent,
             hBridgeRearTempComponent, hBridgeFrontTempComponent,

@@ -1,6 +1,5 @@
 package car.cockpit.dashboard.lights.warning.temperatures
 
-import car.cockpit.engine.EMPTY_INT
 import car.cockpit.engine.EMPTY_STRING
 import car.cockpit.engine.Engine
 import com.pi4j.system.SystemInfo

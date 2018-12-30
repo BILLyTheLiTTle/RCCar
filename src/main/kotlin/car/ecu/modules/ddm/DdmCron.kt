@@ -99,5 +99,6 @@ class DdmCron {
         wasClientOnline = isClientOnline
         return engineOffState
     }
-
 }
+
+const val DRIVER_DETECTION_MODULE = "DDM"

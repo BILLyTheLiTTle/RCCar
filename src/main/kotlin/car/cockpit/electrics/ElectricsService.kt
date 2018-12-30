@@ -1,6 +1,5 @@
 package car.cockpit.electrics
 
-import car.cockpit.engine.EngineController
 import car.cockpit.engine.UNKNOWN_STATE
 import car.showMessage
 import org.springframework.beans.factory.annotation.Autowired
