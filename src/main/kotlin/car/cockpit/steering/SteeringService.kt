@@ -33,11 +33,11 @@ class SteeringService {
 
         lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
-        showMessage(title = "STEERING SYSTEM",
+        showMessage(klass = this::class,
             body = "Direction: $direction\n" +
                     "Value: $value\n" +
-                    "{ ${this::class.simpleName} } ID request: $id\n" +
-                    "{ ${this::class.simpleName} } ID last request: $lastRequestId")
+                    "ID request: $id\n" +
+                    "ID last request: $lastRequestId")
 
         //TODO add function for the pins
         var state = UNKNOWN_STATE

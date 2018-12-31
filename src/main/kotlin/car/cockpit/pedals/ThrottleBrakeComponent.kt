@@ -293,7 +293,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
                         applyPinValues(motorRearLeftPwm = 0, motorRearRightPwm = 0)
                     }
                 }
-                showMessage(title = "-- ECU -- THROTTLE -N- BRAKE SYSTEM",
+                showMessage(klass = this::class,
                 body = "User Throttle Value: $userThrottleValue\n" +
                         "User Steering Value: ${steeringComponent.value}\n" +
                         "Front Differential is: ${setupComponent.frontDifferentialSlipperyLimiter}\n" +
@@ -363,7 +363,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
                         applyPinValues(motorRearRightPwm = 0, motorRearLeftPwm = 0)
                     }
                 }
-                showMessage(title = "-- ECU -- THROTTLE -N- BRAKE SYSTEM",
+                showMessage(klass = this::class,
                     body = "User Throttle Value: $userThrottleValue\n" +
                             "User Steering Value: ${steeringComponent.value}\n" +
                             "Front Differential is: ${setupComponent.frontDifferentialSlipperyLimiter}\n" +
@@ -377,7 +377,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
             else -> {
                 applyPinValues(motorFrontRightPwm = userThrottleValue, motorFrontLeftPwm = userThrottleValue,
                     motorRearRightPwm = userThrottleValue, motorRearLeftPwm = userThrottleValue)
-                showMessage(title = "-- ECU -- THROTTLE -N- BRAKE SYSTEM",
+                showMessage(klass = this::class,
                     body = "User Throttle Value: $userThrottleValue\n" +
                             "User Steering Value: ${steeringComponent.value}\n" +
                             "Front Differential is: ${setupComponent.frontDifferentialSlipperyLimiter}\n" +
@@ -392,7 +392,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
     }
 
     private fun showDifferentialInfo(userThrottleValue: Int) {
-        showMessage(title = "-- ECU -- THROTTLE -N- BRAKE SYSTEM",
+        showMessage(klass = this::class,
             body = "User Throttle Value: $userThrottleValue\n" +
                 "User Steering Value: ${steeringComponent.value}\n" +
         when (steeringComponent.direction) {

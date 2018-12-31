@@ -27,7 +27,7 @@ class EngineService {
         nanohttpClientIp = if (clientIp == "0.0.0.0") "10.0.2.15" else clientIp
         nanohttpClientPort = clientPort
 
-        showMessage(title = "ENGINE SYSTEM",
+        showMessage(klass = this::class,
             body = "Engine started\n" +
                     "Controller IP: $nanohttpClientIp\n" +
                     "Controller Port: $nanohttpClientPort")
@@ -38,7 +38,7 @@ class EngineService {
     fun getEngineState() = engineComponent.engineState
 
     fun stopEngine(): String {
-        showMessage(title = "ENGINE SYSTEM",
+        showMessage(klass = this::class,
             body = "Engine stopped\n" +
                     "Controller IP: $nanohttpClientIp\n" +
                     "Controller Port: $nanohttpClientPort")

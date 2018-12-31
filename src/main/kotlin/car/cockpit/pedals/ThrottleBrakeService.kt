@@ -28,7 +28,7 @@ class ThrottleBrakeService {
 
         lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
-        showMessage(title = "THROTTLE -N- BRAKE SYSTEM",
+        showMessage(klass = this::class,
             body = "Action: $action\n" +
                     "Primitive User Value: $value\n" +
                     if (action == ACTION_MOVE_FORWARD || action == ACTION_MOVE_BACKWARD) {
@@ -39,8 +39,8 @@ class ThrottleBrakeService {
                         ""
                     }
                     +
-                    "{ ${this::class.simpleName} } ID request: $id\n" +
-                    "{ ${this::class.simpleName} } ID last request: $lastRequestId")
+                    "ID request: $id\n" +
+                    "ID last request: $lastRequestId")
 
         //TODO add function for the pins
         var state = UNKNOWN_STATE

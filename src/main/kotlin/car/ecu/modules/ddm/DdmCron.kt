@@ -48,7 +48,7 @@ class DdmCron {
 
         if (engineComponent.engineState) {
             isClientOnline = try {
-                InetAddress.getByName(nanohttpClientIp).isReachable(200)
+                InetAddress.getByName(nanohttpClientIp).isReachable(100)
             } catch (e: Exception) {
                 false
             }
@@ -57,7 +57,7 @@ class DdmCron {
                 if (wasClientOnline) {
                     if (counter == maxResetCounter) {
                         counter = 0
-                        showMessage(title = "CONNECTION CRON JOB",
+                        showMessage(klass = this::class,
                             body = "Client is still online\nIP: $nanohttpClientIp")
                     }
                     else {
@@ -68,7 +68,7 @@ class DdmCron {
                 else {
                     showMessage(
                         msgType = TYPE_WARNING,
-                        title = "CONNECTION CRON JOB",
+                        klass = this::class,
                         body = "Client came online\nIP: $nanohttpClientIp"
                     )
                     return clientCameOnline
@@ -77,7 +77,7 @@ class DdmCron {
                 if (wasClientOnline) {
                     throttleBrakeComponent.parkingBrake(100)
                     showMessage(msgType = TYPE_CRITICAL,
-                        title = "CONNECTION CRON JOB",
+                        klass = this::class,
                         body = "Client ($nanohttpClientIp) not found." +
                                 "Parking brake applied: ${throttleBrakeComponent.parkingBrakeState}")
                     return clientNotFound
@@ -85,7 +85,7 @@ class DdmCron {
                     if (counter == maxResetCounter) {
                         counter = 0
                         showMessage(msgType = TYPE_CRITICAL,
-                            title = "CONNECTION CRON JOB",
+                            klass = this::class,
                             body = "Client ($nanohttpClientIp) still not found." +
                                     "Parking brake was applied: ${throttleBrakeComponent.parkingBrakeState}")
                     } else

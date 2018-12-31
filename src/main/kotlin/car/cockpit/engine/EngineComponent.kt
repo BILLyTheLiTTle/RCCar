@@ -60,7 +60,7 @@ class EngineComponent: Engine {
 
     override fun start(): String {
         showMessage(msgType = TYPE_WARNING,
-            title = "ENGINE",
+            klass = this::class,
             body = "Software IS ${if (runOnPi) "" else "NOT"} running on Pi.")
 
         //////

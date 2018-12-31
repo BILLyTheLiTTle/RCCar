@@ -66,8 +66,9 @@ class CdmComponent: Cdm {
             }
         }
 
-        showMessage(title = "-- ECU / CDM Activated: ${throttleValue != rawThrottleValue} -- ",
-            body = "Entered Throttle Value: $rawThrottleValue\n" +
+        showMessage(klass = this::class,
+            body = "ECU / CDM Activated: ${throttleValue != rawThrottleValue}" +
+                    "Entered Throttle Value: $rawThrottleValue\n" +
                     "Calculated Throttle Value: $throttleValue\n" +
                     "Calculated Throttle Value Applied: " +
                     "${setupComponent.handlingAssistanceState == ASSISTANCE_FULL}\n" +

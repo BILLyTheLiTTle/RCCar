@@ -49,8 +49,8 @@ class ElectricsComponent: Electrics {
         set(value) {
             lights[BRAKING_LIGHTS] = value
 
-            showMessage(title = "LIGHTS",
-                body = "{ ${this::class.simpleName} } Brake Lights: $value")
+            showMessage(klass = this::class,
+                body = "Brake Lights: $value")
 
             // TODO call handleLeds(...)
 
@@ -61,8 +61,8 @@ class ElectricsComponent: Electrics {
         set(value) {
             lights[REVERSE_LIGHTS] = value
 
-            showMessage(title = "LIGHTS",
-                body = "{ ${this::class.simpleName} } Reverse Lights: $value")
+            showMessage(klass = this::class,
+                body = "Reverse Lights: $value")
 
             // TODO call handleLeds(...)
 
@@ -73,8 +73,8 @@ class ElectricsComponent: Electrics {
         set(value) {
             lights[TURN_LIGHTS_LEFT] = value
 
-            showMessage(title = "LIGHTS",
-                body = "{ ${this::class.simpleName} } Left Turn Lights: $value")
+            showMessage(klass = this::class,
+                body = "Left Turn Lights: $value")
 
             if(value)
                 //reset the right turn light
@@ -89,8 +89,8 @@ class ElectricsComponent: Electrics {
         set(value) {
             lights[TURN_LIGHTS_RIGHT] = value
 
-            showMessage(title = "LIGHTS",
-                body = "{ ${this::class.simpleName} } Right Turn Lights: $value")
+            showMessage(klass = this::class,
+                body = "Right Turn Lights: $value")
 
             if(value)
                 //reset the left turn light
@@ -105,8 +105,8 @@ class ElectricsComponent: Electrics {
         set(value) {
             lights[EMERGENCY_LIGHTS] = value
 
-            showMessage(title = "LIGHTS",
-                body = "{ ${this::class.simpleName} } Emergency Lights: $value")
+            showMessage(klass = this::class,
+                body = "Emergency Lights: $value")
 
             // TODO call handleLeds(...)
 

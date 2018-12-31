@@ -149,7 +149,7 @@ class TemperaturesCron {
 
     private fun printHighTempInfo(hardware: KClass<out Temperature>?, value: Int) {
         showMessage(msgType = TYPE_CRITICAL,
-            title = "TEMPERATURE CRON JOB",
+            klass = this::class,
             body = "{ ${hardware?.simpleName ?: "No Name Class"} } Temp Value: $value")
     }
 }

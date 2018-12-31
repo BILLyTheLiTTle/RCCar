@@ -13,8 +13,8 @@ class ElectricsService {
 
     fun setDirectionLights(direction: String): String {
 
-        showMessage(title = "ELECTRIC SYSTEM",
-            body = "{ ${this::class.simpleName} } Direction: $direction")
+        showMessage(klass = this::class,
+            body = "Direction: $direction")
 
         synchronized(this){
             when (direction) {
@@ -49,8 +49,8 @@ class ElectricsService {
 
     fun setMainLightsState(value: String): String {
 
-        showMessage(title = "ELECTRIC SYSTEM",
-            body = "{ ${this::class.simpleName} } Main Lights State Request: $value")
+        showMessage(klass = this::class,
+            body = "Main Lights State Request: $value")
 
         // I don't think I need synchronization
         //synchronized(this){
