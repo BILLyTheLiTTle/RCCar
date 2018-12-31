@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e38fa66-dbb5-4181-9628-5457650f884f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/Debugging.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/Debugging.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/dashboard/lights/warning/temperatures/TemperaturesCron.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/dashboard/lights/warning/temperatures/TemperaturesCron.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/electrics/ElectricsComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/electrics/ElectricsComponent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/electrics/ElectricsService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/electrics/ElectricsService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/engine/EngineComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/engine/EngineComponent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/engine/EngineService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/engine/EngineService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeComponent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/cdm/CdmComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/cdm/CdmComponent.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/ddm/DdmCron.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/ddm/DdmCron.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -122,7 +111,7 @@
     <session id="1417254279">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="21" />
+          <entry key="project.closed" value="22" />
           <entry key="project.open.time.103" value="1" />
           <entry key="project.open.time.106" value="1" />
           <entry key="project.open.time.109" value="1" />
@@ -154,7 +143,7 @@
           <entry key="MockMaker" value="1" />
           <entry key="gradle" value="8" />
           <entry key="java" value="53" />
-          <entry key="kt" value="439" />
+          <entry key="kt" value="440" />
           <entry key="properties" value="1" />
         </counts>
       </usages-collector>
@@ -162,7 +151,7 @@
         <counts>
           <entry key="Groovy" value="8" />
           <entry key="JAVA" value="53" />
-          <entry key="Kotlin" value="439" />
+          <entry key="Kotlin" value="440" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Properties" value="1" />
         </counts>
@@ -171,42 +160,20 @@
         <counts>
           <entry key="gradle" value="10" />
           <entry key="java" value="2885" />
-          <entry key="kt" value="15660" />
+          <entry key="kt" value="15683" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="10" />
           <entry key="JAVA" value="2885" />
-          <entry key="Kotlin" value="15660" />
+          <entry key="Kotlin" value="15683" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/Debugging.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
-              <folding>
-                <element signature="e#13#72#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/ddm/DdmCron.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="50" column="69" selection-start-line="50" selection-start-column="69" selection-end-line="50" selection-end-column="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -840,7 +807,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546261032097" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546262280318" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -887,7 +854,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.RcCarApplication">
+  <component name="RunManager" selected="JUnit.All in rc_car_test">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -1113,20 +1080,11 @@
       <workItem from="1546060476258" duration="7456000" />
       <workItem from="1546085287187" duration="7641000" />
       <workItem from="1546146651144" duration="2344000" />
-      <workItem from="1546259460433" duration="1539000" />
+      <workItem from="1546259460433" duration="2836000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_rc_car_test - 2018.12.29 at 16h 06m 26s.xml">
-      <configuration name="All in rc_car_test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_rc_car_test - 2018.12.29 at 16h 09m 55s.xml">
-      <configuration name="All in rc_car_test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_rc_car_test - 2018.12.29 at 16h 11m 17s.xml">
-      <configuration name="All in rc_car_test" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="All_in_rc_car_test - 2018.12.29 at 16h 14m 22s.xml">
       <configuration name="All in rc_car_test" configurationId="JUnit" />
     </history-entry>
@@ -1148,9 +1106,18 @@
     <history-entry file="All_in_rc_car_test - 2018.12.30 at 08h 33m 33s.xml">
       <configuration name="All in rc_car_test" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="All_in_rc_car_test - 2018.12.31 at 14h 55m 50s.xml">
+      <configuration name="All in rc_car_test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_rc_car_test - 2018.12.31 at 15h 11m 30s.xml">
+      <configuration name="All in rc_car_test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_rc_car_test - 2018.12.31 at 15h 18m 11s.xml">
+      <configuration name="All in rc_car_test" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="425076000" />
+    <option name="totallyTimeSpent" value="426373000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1163,7 +1130,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1279" y="-11" width="1922" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28441834" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1175,7 +1141,7 @@
       <window_info id="Designer" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32740587" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39958158" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50203663" side_tool="true" weight="0.31590414" />
@@ -1535,6 +1501,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/ecu/modules/ddm/DdmCronTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-72">
+          <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
+          <folding>
+            <element signature="e#29#661#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/Debugging.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1545,20 +1521,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/ecu/modules/ddm/DdmCronTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
-          <folding>
-            <element signature="e#29#661#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/ddm/DdmCron.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="50" column="69" selection-start-line="50" selection-start-column="69" selection-end-line="50" selection-end-column="69" />
+        <state relative-caret-position="1040">
+          <caret line="88" column="16" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="16" />
         </state>
       </provider>
     </entry>

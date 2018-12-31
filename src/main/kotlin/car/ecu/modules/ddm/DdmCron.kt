@@ -41,14 +41,14 @@ class DdmCron {
     private var wasClientOnline = false
 
     private var counter = 0
-    private val maxResetCounter = 50
+    private val maxResetCounter = 5
 
-    @Scheduled(initialDelay = 3000, fixedDelay = 400)  // 2 minutes
+    @Scheduled(initialDelay = 3000, fixedDelay = 450)  // 2 minutes
     fun checkClientStatus(): Int {
 
         if (engineComponent.engineState) {
             isClientOnline = try {
-                InetAddress.getByName(nanohttpClientIp).isReachable(100)
+                InetAddress.getByName(nanohttpClientIp).isReachable(200)
             } catch (e: Exception) {
                 false
             }
@@ -63,6 +63,7 @@ class DdmCron {
                     else {
                         counter++
                     }
+                    wasClientOnline = isClientOnline
                     return clientStillOnline
                 }
                 else {
@@ -71,32 +72,36 @@ class DdmCron {
                         klass = this::class,
                         body = "Client came online\nIP: $nanohttpClientIp"
                     )
+                    wasClientOnline = isClientOnline
                     return clientCameOnline
                 }
-            } else {
+            }
+            else {
                 if (wasClientOnline) {
                     throttleBrakeComponent.parkingBrake(100)
                     showMessage(msgType = TYPE_CRITICAL,
                         klass = this::class,
                         body = "Client ($nanohttpClientIp) not found." +
                                 "Parking brake applied: ${throttleBrakeComponent.parkingBrakeState}")
+                    wasClientOnline = isClientOnline
                     return clientNotFound
-                } else {
+                }
+                else {
                     if (counter == maxResetCounter) {
                         counter = 0
                         showMessage(msgType = TYPE_CRITICAL,
                             klass = this::class,
                             body = "Client ($nanohttpClientIp) still not found." +
                                     "Parking brake was applied: ${throttleBrakeComponent.parkingBrakeState}")
-                    } else
+                    }
+                    else {
                         counter++
+                    }
+                    wasClientOnline = isClientOnline
                     return clientStillNotFound
                 }
-
             }
-
         }
-        wasClientOnline = isClientOnline
         return engineOffState
     }
 }
