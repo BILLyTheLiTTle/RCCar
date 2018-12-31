@@ -41,7 +41,7 @@ class DdmCron {
     private var wasClientOnline = false
 
     private var counter = 0
-    private val maxResetCounter = 5
+    private val maxResetCounter = 50
 
     @Scheduled(initialDelay = 3000, fixedDelay = 450)  // 2 minutes
     fun checkClientStatus(): Int {

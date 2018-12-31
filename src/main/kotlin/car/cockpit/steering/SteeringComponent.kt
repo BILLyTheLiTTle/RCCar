@@ -29,7 +29,7 @@ class SteeringComponent: Steering {
 
     override fun turn(direction: String, value: Int): String {
 
-        // Inform TCM of the ECU
+        // Inform DCM of the ECU
         when (value) {
             STEERING_VALUE_20 -> {
                 dcmComponent.phi = outerFrontDegreesPhi[0]

@@ -75,7 +75,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
             launch { electricsComponent.brakingLightsState = false }
 
 
-        // inform TCM of the ECU for forward and backward movement
+        // inform DCM of the ECU for forward and backward movement
         dcmComponent.valueOuterFront = value
 
         //////
