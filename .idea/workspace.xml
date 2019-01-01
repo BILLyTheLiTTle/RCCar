@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e38fa66-dbb5-4181-9628-5457650f884f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeComponent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringComponent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/dcm/DcmComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/dcm/DcmComponent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/ddm/DdmCron.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/ddm/DdmCron.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -116,6 +113,7 @@
         <counts>
           <entry key="project.closed" value="23" />
           <entry key="project.open.time.103" value="1" />
+          <entry key="project.open.time.105" value="1" />
           <entry key="project.open.time.106" value="1" />
           <entry key="project.open.time.109" value="1" />
           <entry key="project.open.time.112" value="2" />
@@ -139,7 +137,7 @@
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.82" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="25" />
+          <entry key="project.opened" value="26" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -147,7 +145,7 @@
           <entry key="MockMaker" value="1" />
           <entry key="gradle" value="8" />
           <entry key="java" value="53" />
-          <entry key="kt" value="447" />
+          <entry key="kt" value="449" />
           <entry key="properties" value="1" />
         </counts>
       </usages-collector>
@@ -155,7 +153,7 @@
         <counts>
           <entry key="Groovy" value="8" />
           <entry key="JAVA" value="53" />
-          <entry key="Kotlin" value="447" />
+          <entry key="Kotlin" value="449" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Properties" value="1" />
         </counts>
@@ -164,20 +162,39 @@
         <counts>
           <entry key="gradle" value="10" />
           <entry key="java" value="2885" />
-          <entry key="kt" value="15777" />
+          <entry key="kt" value="15798" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="10" />
           <entry key="JAVA" value="2885" />
-          <entry key="Kotlin" value="15777" />
+          <entry key="Kotlin" value="15798" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeService.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="15" column="53" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -648,7 +665,6 @@
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/dashboard/lights/warning/temperatures/RaspberryPiTemperatureComponent.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/dashboard/lights/warning/temperatures/Temperature.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/electrics/ElectricsController.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupController.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/ecu/sensors/speed/SpeedometerComponent.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/pedals/ThrottleBrakeComponentTest.kt" />
@@ -668,6 +684,7 @@
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeComponent.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/ddm/DdmCron.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/dcm/DcmComponent.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt" />
       </list>
     </option>
   </component>
@@ -691,8 +708,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -734,6 +752,16 @@
               <item name="kotlin" type="462c0819:PsiDirectoryNode" />
               <item name="car" type="462c0819:PsiDirectoryNode" />
               <item name="cockpit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="rc_car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RCCar" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
+              <item name="car" type="462c0819:PsiDirectoryNode" />
+              <item name="cockpit" type="462c0819:PsiDirectoryNode" />
+              <item name="pedals" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="rc_car" type="b2602c69:ProjectViewProjectNode" />
@@ -810,7 +838,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1100,6 +1127,7 @@
       <workItem from="1546146651144" duration="2344000" />
       <workItem from="1546259460433" duration="2836000" />
       <workItem from="1546264077345" duration="751000" />
+      <workItem from="1546321738344" duration="183000" />
     </task>
     <servers />
   </component>
@@ -1136,7 +1164,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="427124000" />
+    <option name="totallyTimeSpent" value="427378000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1149,8 +1177,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1279" y="-11" width="1922" height="1092" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28762007" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29082176" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Capture Tool" order="3" />
@@ -1196,13 +1225,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupController.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupService.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1458,13 +1480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeService.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/cdm/CdmComponent.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
@@ -1532,6 +1547,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1494">
           <caret line="86" column="28" lean-forward="true" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeService.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="15" column="53" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
         </state>
       </provider>
     </entry>

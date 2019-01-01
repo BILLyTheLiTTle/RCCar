@@ -7,10 +7,15 @@ import car.ecu.MODULE_IDLE_STATE
 import car.ecu.MODULE_ON_STATE
 import car.ecu.modules.cdm.COLLISION_DETECTION_MODULE
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
 
 @Component("Electronic Throttle -n Brake Component")
-class ElectronicThrottleBrakeComponent(@Autowired val throttleBrake: ThrottleBrakeComponent): ThrottleBrake by throttleBrake {
+class ElectronicThrottleBrakeComponent(
+    @Autowired
+    @Qualifier("Throttle -n- Brake Component")
+    val throttleBrake: ThrottleBrake
+): ThrottleBrake by throttleBrake {
 
     @Autowired
     private lateinit var setupComponent: Setup
