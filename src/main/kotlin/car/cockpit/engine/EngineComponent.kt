@@ -1,6 +1,6 @@
 package car.cockpit.engine
 
-import car.TYPE_WARNING
+import car.LoggerTypes.*
 import car.cockpit.electrics.Electrics
 import car.cockpit.pedals.ThrottleBrake
 import car.cockpit.setup.Setup
@@ -59,7 +59,7 @@ class EngineComponent: Engine {
     //////
 
     override fun start(): String {
-        showMessage(msgType = TYPE_WARNING,
+        showMessage(msgType = WARNING,
             klass = this::class,
             body = "Software IS ${if (runOnPi) "" else "NOT"} running on Pi.")
 

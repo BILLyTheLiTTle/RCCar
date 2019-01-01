@@ -1,6 +1,6 @@
 package car.cockpit.dashboard.lights.warning.temperatures
 
-import car.TYPE_CRITICAL
+import car.LoggerTypes.*
 import car.cockpit.engine.*
 import car.doNonBlockingRequest
 import car.showMessage
@@ -148,7 +148,7 @@ class TemperaturesCron {
     }
 
     private fun printHighTempInfo(hardware: KClass<out Temperature>?, value: Int) {
-        showMessage(msgType = TYPE_CRITICAL,
+        showMessage(msgType = CRITICAL,
             klass = this::class,
             body = "{ ${hardware?.simpleName ?: "No Name Class"} } Temp Value: $value")
     }

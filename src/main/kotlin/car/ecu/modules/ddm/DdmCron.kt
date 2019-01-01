@@ -4,8 +4,7 @@ package car.ecu.modules.ddm
 
  */
 
-import car.TYPE_CRITICAL
-import car.TYPE_WARNING
+import car.LoggerTypes.*
 import car.cockpit.engine.Engine
 import car.cockpit.engine.nanohttpClientIp
 import car.cockpit.pedals.ThrottleBrake
@@ -68,7 +67,7 @@ class DdmCron {
                 }
                 else {
                     showMessage(
-                        msgType = TYPE_WARNING,
+                        msgType = WARNING,
                         klass = this::class,
                         body = "Client came online\nIP: $nanohttpClientIp"
                     )
@@ -79,7 +78,7 @@ class DdmCron {
             else {
                 if (wasClientOnline) {
                     throttleBrakeComponent.parkingBrake(100)
-                    showMessage(msgType = TYPE_CRITICAL,
+                    showMessage(msgType = CRITICAL,
                         klass = this::class,
                         body = "Client ($nanohttpClientIp) not found." +
                                 "Parking brake applied: ${throttleBrakeComponent.parkingBrakeState}")
@@ -89,7 +88,7 @@ class DdmCron {
                 else {
                     if (counter == maxResetCounter) {
                         counter = 0
-                        showMessage(msgType = TYPE_CRITICAL,
+                        showMessage(msgType = CRITICAL,
                             klass = this::class,
                             body = "Client ($nanohttpClientIp) still not found." +
                                     "Parking brake was applied: ${throttleBrakeComponent.parkingBrakeState}")
