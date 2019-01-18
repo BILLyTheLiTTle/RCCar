@@ -1,7 +1,8 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.2.71'
+		kotlinVersion = '1.3.11'
 		springBootVersion = '2.0.0.RELEASE'
+		coroutinesVersion = '1.0.0'
 	}
 	repositories {
 		mavenCentral()
@@ -62,7 +63,7 @@ dependencies {
 	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	compile("org.jetbrains.kotlin:kotlin-reflect")
-	compile("org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21")
+	compile("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
 	testCompile('org.springframework.boot:spring-boot-starter-test'){
 		exclude module: 'junit'
 	}

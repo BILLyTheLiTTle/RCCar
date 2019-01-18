@@ -10,8 +10,8 @@ import car.cockpit.steering.ACTION_TURN_RIGHT
 import car.cockpit.steering.Steering
 import car.ecu.modules.dcm.Dcm
 import car.showMessage
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
@@ -65,14 +65,14 @@ class ThrottleBrakeComponent: ThrottleBrake {
     override fun throttle(direction: String, value: Int): String {
         // turn on/off the braking lights
         if (this.value > value)
-            launch {
+            CoroutineScope(Dispatchers.Default).launch {
                 electricsComponent.brakingLightsState = true
                 // turn them off after a while
                 delay(500)
                 electricsComponent.brakingLightsState = false
             }
         else
-            launch { electricsComponent.brakingLightsState = false }
+            CoroutineScope(Dispatchers.Default).launch { electricsComponent.brakingLightsState = false }
 
 
         // inform DCM of the ECU for forward and backward movement
@@ -112,7 +112,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
         will not be used as pin values
      */
     override fun brake(value: Int): String {
-        launch { electricsComponent.brakingLightsState = true }
+        CoroutineScope(Dispatchers.Default).launch { electricsComponent.brakingLightsState = true }
         //////
         // Pi related
         if (engineComponent.runOnPi) {
@@ -133,9 +133,9 @@ class ThrottleBrakeComponent: ThrottleBrake {
      */
     override fun parkingBrake(value: Int): String {
         if (value == 100)
-            launch { electricsComponent.brakingLightsState = true }
+            CoroutineScope(Dispatchers.Default).launch { electricsComponent.brakingLightsState = true }
         else if (value == 0)
-            launch { electricsComponent.brakingLightsState = false }
+            CoroutineScope(Dispatchers.Default).launch { electricsComponent.brakingLightsState = false }
         //////
         // Pi related
         if (engineComponent.runOnPi) {
@@ -196,7 +196,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
         So, it works almost like the brake function.
     */
     override fun setNeutral(): String {
-        launch { electricsComponent.brakingLightsState = false }
+        CoroutineScope(Dispatchers.Default).launch { electricsComponent.brakingLightsState = false }
         //////
         // Pi related
         if (engineComponent.runOnPi) {

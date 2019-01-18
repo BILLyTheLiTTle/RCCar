@@ -1,7 +1,7 @@
 package car
 
 import car.cockpit.engine.EMPTY_STRING
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.*
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
@@ -9,7 +9,7 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
-fun doNonBlockingRequest(url:String) = launch { doRequest(url) }
+fun doNonBlockingRequest(url:String) = CoroutineScope(Dispatchers.IO).launch { doRequest(url) }
 
 private fun doRequest(url: String): String {
     val con: HttpURLConnection?
