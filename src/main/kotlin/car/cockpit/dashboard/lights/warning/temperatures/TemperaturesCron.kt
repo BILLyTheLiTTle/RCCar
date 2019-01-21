@@ -4,6 +4,7 @@ import car.LoggerTypes.*
 import car.cockpit.engine.*
 import car.doNonBlockingRequest
 import car.showMessage
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Configuration
@@ -57,6 +58,7 @@ class TemperaturesCron {
     @Qualifier("Batteries Temperature Component")
     private lateinit var batteriesTempComponent: Temperature
 
+    private val logger = LoggerFactory.getLogger(TemperaturesCron::class.java)
 
     private val tempUri = "/temp"
     private val paramKeyItem = "item"
@@ -149,7 +151,7 @@ class TemperaturesCron {
 
     private fun printHighTempInfo(hardware: KClass<out Temperature>?, value: Int) {
         showMessage(msgType = CRITICAL,
-            klass = this::class,
+            logger = logger,
             body = "{ ${hardware?.simpleName ?: "No Name Class"} } Temp Value: $value")
     }
 }

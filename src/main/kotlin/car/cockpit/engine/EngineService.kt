@@ -3,6 +3,7 @@ package car.cockpit.engine
 import car.cockpit.pedals.ThrottleBrakeService
 import car.cockpit.steering.SteeringService
 import car.showMessage
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -18,6 +19,8 @@ class EngineService {
     @Autowired
     private lateinit var engineComponent: Engine
 
+    private val logger = LoggerFactory.getLogger(EngineService::class.java)
+
     fun startEngine(clientIp: String, clientPort: Int): String {
 
         //reset and get ready for new requests
@@ -27,7 +30,7 @@ class EngineService {
         nanohttpClientIp = if (clientIp == "0.0.0.0") "10.0.2.15" else clientIp
         nanohttpClientPort = clientPort
 
-        showMessage(klass = this::class,
+        showMessage(logger = logger,
             body = "Engine started\n" +
                     "Controller IP: $nanohttpClientIp\n" +
                     "Controller Port: $nanohttpClientPort")
@@ -38,7 +41,7 @@ class EngineService {
     fun getEngineState() = engineComponent.engineState
 
     fun stopEngine(): String {
-        showMessage(klass = this::class,
+        showMessage(logger = logger,
             body = "Engine stopped\n" +
                     "Controller IP: $nanohttpClientIp\n" +
                     "Controller Port: $nanohttpClientPort")

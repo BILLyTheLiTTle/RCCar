@@ -2,6 +2,7 @@ package car.cockpit.electrics
 
 import car.cockpit.engine.UNKNOWN_STATE
 import car.showMessage
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -11,9 +12,11 @@ class ElectricsService {
     @Autowired
     private lateinit var electricsComponent: Electrics
 
+    private val logger = LoggerFactory.getLogger(ElectricsService::class.java)
+
     fun setDirectionLights(direction: String): String {
 
-        showMessage(klass = this::class,
+        showMessage(logger = logger,
             body = "Direction: $direction")
 
         synchronized(this){
@@ -49,7 +52,7 @@ class ElectricsService {
 
     fun setMainLightsState(value: String): String {
 
-        showMessage(klass = this::class,
+        showMessage(logger = logger,
             body = "Main Lights State Request: $value")
 
         // I don't think I need synchronization

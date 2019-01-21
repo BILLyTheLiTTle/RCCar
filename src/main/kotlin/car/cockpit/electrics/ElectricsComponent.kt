@@ -1,11 +1,14 @@
 package car.cockpit.electrics
 
 import car.showMessage
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
 @Component("Electrics Component")
 class ElectricsComponent: Electrics {
     private val lights = mutableMapOf<String, Boolean>()
+
+    private val logger = LoggerFactory.getLogger(ElectricsComponent::class.java)
 
     override var positionLightsState = false
         set(value) {
@@ -49,7 +52,7 @@ class ElectricsComponent: Electrics {
         set(value) {
             lights[BRAKING_LIGHTS] = value
 
-            showMessage(klass = this::class,
+            showMessage(logger = logger,
                 body = "Brake Lights: $value")
 
             // TODO call handleLeds(...)
@@ -61,7 +64,7 @@ class ElectricsComponent: Electrics {
         set(value) {
             lights[REVERSE_LIGHTS] = value
 
-            showMessage(klass = this::class,
+            showMessage(logger = logger,
                 body = "Reverse Lights: $value")
 
             // TODO call handleLeds(...)
@@ -73,7 +76,7 @@ class ElectricsComponent: Electrics {
         set(value) {
             lights[TURN_LIGHTS_LEFT] = value
 
-            showMessage(klass = this::class,
+            showMessage(logger = logger,
                 body = "Left Turn Lights: $value")
 
             if(value)
@@ -89,7 +92,7 @@ class ElectricsComponent: Electrics {
         set(value) {
             lights[TURN_LIGHTS_RIGHT] = value
 
-            showMessage(klass = this::class,
+            showMessage(logger = logger,
                 body = "Right Turn Lights: $value")
 
             if(value)
@@ -105,7 +108,7 @@ class ElectricsComponent: Electrics {
         set(value) {
             lights[EMERGENCY_LIGHTS] = value
 
-            showMessage(klass = this::class,
+            showMessage(logger = logger,
                 body = "Emergency Lights: $value")
 
             // TODO call handleLeds(...)

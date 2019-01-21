@@ -44,12 +44,6 @@ repositories {
 	jcenter()
 }
 
-kotlin {
-	experimental {
-		coroutines 'enable'
-	}
-}
-
 /* Needed the command "./gradlew wrapper --gradle-version 4.2.1"
     from here (https://docs.gradle.org/current/userguide/gradle_wrapper.html)
  */

@@ -17,6 +17,7 @@ import com.pi4j.io.spi.SpiChannel
 import com.pi4j.system.SystemInfo
 import com.pi4j.util.CommandArgumentParser
 import com.pi4j.wiringpi.Gpio
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
@@ -39,6 +40,8 @@ class EngineComponent: Engine {
 
     override var engineState = false
 
+    private val logger = LoggerFactory.getLogger(EngineComponent::class.java)
+
     //////
     // Pi related
     override val runOnPi = try {
@@ -60,7 +63,7 @@ class EngineComponent: Engine {
 
     override fun start(): String {
         showMessage(msgType = WARNING,
-            klass = this::class,
+            logger = logger,
             body = "Software IS ${if (runOnPi) "" else "NOT"} running on Pi.")
 
         //////

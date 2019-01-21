@@ -6,6 +6,7 @@ import car.cockpit.setup.ASSISTANCE_NONE
 import car.cockpit.setup.ASSISTANCE_NULL
 import car.cockpit.setup.Setup
 import car.showMessage
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
@@ -27,13 +28,15 @@ class SteeringService {
     @Autowired
     private lateinit var steeringComponent: Steering
 
+    private val logger = LoggerFactory.getLogger(SteeringService::class.java)
+
     var lastRequestId = -1L
 
     fun setSteeringAction(id: Long, direction: String, value: Int): String {
 
         lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
-        showMessage(klass = this::class,
+        showMessage(logger = logger,
             body = "Direction: $direction\n" +
                     "Value: $value\n" +
                     "ID request: $id\n" +

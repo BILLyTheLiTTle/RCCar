@@ -9,6 +9,7 @@ import car.cockpit.engine.Engine
 import car.cockpit.engine.nanohttpClientIp
 import car.cockpit.pedals.ThrottleBrake
 import car.showMessage
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Configuration
@@ -42,6 +43,8 @@ class DdmCron {
     private var counter = 0
     private val maxResetCounter = 50
 
+    private val logger = LoggerFactory.getLogger(DdmCron::class.java)
+
     @Scheduled(initialDelay = 3000, fixedDelay = 450)  // 2 minutes
     fun checkClientStatus(): Int {
 
@@ -56,7 +59,7 @@ class DdmCron {
                 if (wasClientOnline) {
                     if (counter == maxResetCounter) {
                         counter = 0
-                        showMessage(klass = this::class,
+                        showMessage(logger = logger,
                             body = "Client is still online\nIP: $nanohttpClientIp")
                     }
                     else {
@@ -68,7 +71,7 @@ class DdmCron {
                 else {
                     showMessage(
                         msgType = WARNING,
-                        klass = this::class,
+                        logger = logger,
                         body = "Client came online\nIP: $nanohttpClientIp"
                     )
                     wasClientOnline = isClientOnline
@@ -79,7 +82,7 @@ class DdmCron {
                 if (wasClientOnline) {
                     throttleBrakeComponent.parkingBrake(100)
                     showMessage(msgType = CRITICAL,
-                        klass = this::class,
+                        logger = logger,
                         body = "Client ($nanohttpClientIp) not found." +
                                 "Parking brake applied: ${throttleBrakeComponent.parkingBrakeState}")
                     wasClientOnline = isClientOnline
@@ -89,7 +92,7 @@ class DdmCron {
                     if (counter == maxResetCounter) {
                         counter = 0
                         showMessage(msgType = CRITICAL,
-                            klass = this::class,
+                            logger = logger,
                             body = "Client ($nanohttpClientIp) still not found." +
                                     "Parking brake was applied: ${throttleBrakeComponent.parkingBrakeState}")
                     }

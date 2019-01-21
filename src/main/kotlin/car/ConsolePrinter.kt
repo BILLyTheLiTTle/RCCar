@@ -1,8 +1,7 @@
 package car
 
-import org.slf4j.LoggerFactory
-import kotlin.reflect.KClass
 import car.LoggerTypes.*
+import org.slf4j.Logger
 
 /* Use enum class for logger types to specify the available values*/
 enum class LoggerTypes {
@@ -15,9 +14,7 @@ private const val ENABLE_INFO_MESSAGES = true
 private const val ENABLE_WARNING_MESSAGES = true
 private const val ENABLE_CRITICAL_MESSAGES = true
 
-fun showMessage(msgType: LoggerTypes = INFO, klass: KClass<*>, body: String) {
-
-    val logger = LoggerFactory.getLogger(klass.java)
+fun showMessage(msgType: LoggerTypes = INFO, logger: Logger, body: String) {
 
     if(msgType == INFO && ENABLE_INFO_MESSAGES)
         logger.info(body)

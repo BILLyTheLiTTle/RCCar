@@ -3,6 +3,7 @@ package car.cockpit.pedals
 import car.cockpit.engine.UNKNOWN_STATE
 import car.cockpit.setup.*
 import car.showMessage
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
@@ -22,13 +23,15 @@ class ThrottleBrakeService {
     @Autowired
     private lateinit var setupComponent: Setup
 
+    private val logger = LoggerFactory.getLogger(ThrottleBrakeService::class.java)
+
     var lastRequestId = -1L
 
     fun setThrottleBrakeAction(id: Long, action: String, value: Int): String {
 
         lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
-        showMessage(klass = this::class,
+        showMessage(logger = logger,
             body = "Action: $action\n" +
                     "Primitive User Value: $value\n" +
                     if (action == ACTION_MOVE_FORWARD || action == ACTION_MOVE_BACKWARD) {

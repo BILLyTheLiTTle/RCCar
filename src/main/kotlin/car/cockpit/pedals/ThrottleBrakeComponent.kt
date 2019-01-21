@@ -12,6 +12,7 @@ import car.ecu.modules.dcm.Dcm
 import car.showMessage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.*
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
@@ -32,6 +33,8 @@ class ThrottleBrakeComponent: ThrottleBrake {
 
     @Autowired
     private lateinit var electricsComponent: Electrics
+
+    private val logger = LoggerFactory.getLogger(ThrottleBrakeComponent::class.java)
 
     private var action = ACTION_NEUTRAL
     override var value = 0
@@ -293,7 +296,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
                         applyPinValues(motorRearLeftPwm = 0, motorRearRightPwm = 0)
                     }
                 }
-                showMessage(klass = this::class,
+                showMessage(logger = logger,
                 body = "User Throttle Value: $userThrottleValue\n" +
                         "User Steering Value: ${steeringComponent.value}\n" +
                         "Front Differential is: ${setupComponent.frontDifferentialSlipperyLimiter}\n" +
@@ -363,7 +366,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
                         applyPinValues(motorRearRightPwm = 0, motorRearLeftPwm = 0)
                     }
                 }
-                showMessage(klass = this::class,
+                showMessage(logger = logger,
                     body = "User Throttle Value: $userThrottleValue\n" +
                             "User Steering Value: ${steeringComponent.value}\n" +
                             "Front Differential is: ${setupComponent.frontDifferentialSlipperyLimiter}\n" +
@@ -377,7 +380,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
             else -> {
                 applyPinValues(motorFrontRightPwm = userThrottleValue, motorFrontLeftPwm = userThrottleValue,
                     motorRearRightPwm = userThrottleValue, motorRearLeftPwm = userThrottleValue)
-                showMessage(klass = this::class,
+                showMessage(logger = logger,
                     body = "User Throttle Value: $userThrottleValue\n" +
                             "User Steering Value: ${steeringComponent.value}\n" +
                             "Front Differential is: ${setupComponent.frontDifferentialSlipperyLimiter}\n" +
@@ -392,7 +395,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
     }
 
     private fun showDifferentialInfo(userThrottleValue: Int) {
-        showMessage(klass = this::class,
+        showMessage(logger = logger,
             body = "User Throttle Value: $userThrottleValue\n" +
                 "User Steering Value: ${steeringComponent.value}\n" +
         when (steeringComponent.direction) {

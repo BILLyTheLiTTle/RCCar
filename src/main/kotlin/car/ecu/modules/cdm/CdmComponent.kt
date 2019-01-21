@@ -7,6 +7,7 @@ import car.cockpit.setup.ASSISTANCE_FULL
 import car.cockpit.setup.Setup
 import car.ecu.sensors.distance.UltrasonicDistanceMeter
 import car.showMessage
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
@@ -18,6 +19,8 @@ class CdmComponent: Cdm {
 
     @Autowired
     private lateinit var udmComponent: UltrasonicDistanceMeter
+
+    private val logger = LoggerFactory.getLogger(CdmComponent::class.java)
 
     /* This function must be called in order to proceed with calculation.
         It is something like an initializer.
@@ -66,7 +69,7 @@ class CdmComponent: Cdm {
             }
         }
 
-        showMessage(klass = this::class,
+        showMessage(logger = logger,
             body = "ECU / CDM Activated: ${throttleValue != rawThrottleValue}" +
                     "Entered Throttle Value: $rawThrottleValue\n" +
                     "Calculated Throttle Value: $throttleValue\n" +
