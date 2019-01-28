@@ -2,7 +2,7 @@ package car.cockpit.dashboard.speedometer
 
 
 import car.cockpit.engine.*
-import car.doNonBlockingRequest
+import car.launchRequest
 import car.ecu.sensors.speed.Speedometer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
@@ -39,7 +39,7 @@ class SpeedometerCron {
     }
 
     private fun informClient(value: Int){
-        doNonBlockingRequest(
+        launchRequest(
             "http://" +
                     "$nanohttpClientIp:" +
                     "$nanohttpClientPort" +

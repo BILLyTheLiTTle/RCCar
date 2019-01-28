@@ -30,27 +30,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/rc_car$car_in_rc_car_test.ic" NAME="car in rc_car_test Coverage Results" MODIFIED="1533900734947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>car.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/rc_car$ThrottleBrakeSystemTest.ic" NAME="ThrottleBrakeSystemTest Coverage Results" MODIFIED="1533204918412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>car.server.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/rc_car$car_server_in_rc_car_test.ic" NAME="car.server in rc_car_test Coverage Results" MODIFIED="1533641670631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>car.server.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/rc_car$ConnectionCronJobTest.ic" NAME="ConnectionCronJobTest Coverage Results" MODIFIED="1533645728729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>car.server.cron.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/rc_car$All_in_rc_car_test.ic" NAME="All in rc_car_test Coverage Results" MODIFIED="1533194164176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/rc_car$SteeringSystemTest_steering_direction_should_be_unknown.ic" NAME="SteeringSystemTest.steering direction should be unknown Coverage Results" MODIFIED="1533193813153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/rc_car$ThrottleBrakeSystemTest.ic" NAME="ThrottleBrakeSystemTest Coverage Results" MODIFIED="1533204918412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>car.server.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/rc_car$All_in_rc_car_test.ic" NAME="All in rc_car_test Coverage Results" MODIFIED="1533194164176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/rc_car$SteeringSystemTest.ic" NAME="SteeringSystemTest Coverage Results" MODIFIED="1533194031624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>car.server.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/rc_car$SteeringSystemTest_steering_direction_should_be_unknown.ic" NAME="SteeringSystemTest.steering direction should be unknown Coverage Results" MODIFIED="1533193813153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>car.server.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/rc_car$EngineSystemTest.ic" NAME="EngineSystemTest Coverage Results" MODIFIED="1533194985210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>car.server.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/rc_car$car_in_rc_car_test.ic" NAME="car in rc_car_test Coverage Results" MODIFIED="1533900734947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>car.*</FILTER>
     </SUITE>
   </component>
   <component name="CoverageOptionsProvider">
@@ -935,7 +935,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.RcCarApplication">
-    <configuration default="true" type="Applet" factoryName="Applet">
+    <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -967,6 +967,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="car.cockpit.dashboard.lights.warning.temperatures" />
       <option name="MAIN_CLASS_NAME" value="car.cockpit.dashboard.lights.warning.temperatures.TemperatureCronJobTest" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
@@ -1013,6 +1014,7 @@
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
@@ -1026,7 +1028,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
+    <configuration default="true" type="TestNG">
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <properties />
@@ -1035,22 +1037,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
+      <predefined_log_file enabled="true" id="idea.log" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.RcCarApplication" />
       <item itemvalue="JUnit.TemperatureCronJobTest (1)" />
       <item itemvalue="JUnit.All in rc_car_test" />
       <item itemvalue="JUnit.[engine:junit-jupiter]/[class:car.cockpit.pedals.ThrottleBrakeControllerTest]" />
       <item itemvalue="JUnit.[engine:junit-jupiter]/[class:car.cockpit.dashboard.lights.warning.temperatures.TemperatureCronJobTest]" />
       <item itemvalue="JUnit.[engine:junit-jupiter]/[class:car.cockpit.dashboard.lights.warning.temperatures.TemperatureCronJobTest] (1)" />
+      <item itemvalue="Spring Boot.RcCarApplication" />
     </list>
     <recent_temporary>
       <list>

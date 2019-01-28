@@ -9,7 +9,7 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
-fun doNonBlockingRequest(url:String) = CoroutineScope(Dispatchers.IO).launch { doRequest(url) }
+fun launchRequest(url:String) = CoroutineScope(Dispatchers.IO).launch { doRequest(url) }
 
 private fun doRequest(url: String): String {
     val con: HttpURLConnection?

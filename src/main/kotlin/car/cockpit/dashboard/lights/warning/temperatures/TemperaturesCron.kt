@@ -2,7 +2,7 @@ package car.cockpit.dashboard.lights.warning.temperatures
 
 import car.LoggerTypes.*
 import car.cockpit.engine.*
-import car.doNonBlockingRequest
+import car.launchRequest
 import car.showMessage
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -116,7 +116,7 @@ class TemperaturesCron {
         /*if ((reportedMrltTempValue > primaryTemp + temperatureDiff)
             || reportedMrltTempValue < primaryTemp + temperatureDiff) {
             reportedMrltTempValue = primaryTemp
-            doNonBlockingRequest("http://" +
+            launchRequest("http://" +
                     "$nanohttpClientIp:" +
                     "$nanohttpClientPort" +
                     "/temp" +
@@ -127,7 +127,7 @@ class TemperaturesCron {
         }
         if (reportedMrltTempWarning != MotorRearLeftTemp.warning) {
             reportedMrltTempWarning = MotorRearLeftTemp.warning
-            doNonBlockingRequest("http://" +
+            launchRequest("http://" +
                     "$nanohttpClientIp:" +
                     "$nanohttpClientPort" +
                     "/temp" +
@@ -138,7 +138,7 @@ class TemperaturesCron {
     }
 
     private fun informClient(hardwareID: String, warning: String, value: Int){
-        doNonBlockingRequest(
+        launchRequest(
             "http://" +
                     "$nanohttpClientIp:" +
                     "$nanohttpClientPort" +
