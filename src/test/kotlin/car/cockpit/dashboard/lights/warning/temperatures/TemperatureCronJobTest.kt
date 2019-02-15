@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
 import org.mockito.Mockito.*
+import org.mockito.Spy
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.test.context.SpringBootTest
@@ -23,30 +24,39 @@ import kotlin.reflect.jvm.isAccessible
 internal class TemperatureCronJobTest(
     @Autowired
     val engineComponent: Engine,
+    @Spy
     @Autowired
     @Qualifier("Raspberry Pi Temperature Component")
     val raspberryPiTempComponent: Temperature,
+    @Spy
     @Autowired
     @Qualifier("Shift Registers Temperature Component")
     val shiftRegistersTempComponent: Temperature,
+    @Spy
     @Autowired
     @Qualifier("Motor Rear Right Temperature Component")
     val motorRearRightTempComponent: Temperature,
+    @Spy
     @Autowired
     @Qualifier("Motor Rear Left Temperature Component")
     val motorRearLeftTempComponent: Temperature,
+    @Spy
     @Autowired
     @Qualifier("Motor Front Right Temperature Component")
     val motorFrontRightTempComponent: Temperature,
+    @Spy
     @Autowired
     @Qualifier("Motor Front Left Temperature Component")
     val motorFrontLeftTempComponent: Temperature,
+    @Spy
     @Autowired
     @Qualifier("H-Bridge Rear Temperature Component")
     val hBridgeRearTempComponent: Temperature,
+    @Spy
     @Autowired
     @Qualifier("H-Bridge Front Temperature Component")
     val hBridgeFrontTempComponent: Temperature,
+    @Spy
     @Autowired
     @Qualifier("Batteries Temperature Component")
     val batteriesTempComponent: Temperature
@@ -55,25 +65,6 @@ internal class TemperatureCronJobTest(
     @SpyBean
     private val task: TemperaturesCron? = null
 
-    @Mock
-    private var motorRearLeftTemp: MotorRearLeftTemperatureComponent? = null
-    @Mock
-    private var motorRearRightTemp: MotorRearRightTemperatureComponent? = null
-    @Mock
-    private var motorFrontLeftTemp: MotorFrontLeftTemperatureComponent? = null
-    @Mock
-    private var motorFrontRightTemp: MotorFrontRightTemperatureComponent? = null
-    @Mock
-    private var batteriesTemp: BatteriesTemperatureComponent? = null
-    @Mock
-    private var hBridgeRearTemp: HBridgeRearTemperatureComponent? = null
-    @Mock
-    private var hBridgeFrontTemp: HBridgeFrontTemperatureComponent? = null
-    @Mock
-    private var raspberryPiTemp: RaspberryPiTemperatureComponent? = null
-    @Mock
-    private var shiftRegistersTemp: ShiftRegistersTemperatureComponent? = null
-
     @BeforeEach
     internal fun setUp() {
         engineComponent.engineState = true
@@ -81,15 +72,15 @@ internal class TemperatureCronJobTest(
 
     @Test
     fun testMocksCreation() {
-        assertNotNull(motorRearLeftTemp)
-        assertNotNull(motorRearRightTemp)
-        assertNotNull(motorFrontLeftTemp)
-        assertNotNull(motorFrontRightTemp)
-        assertNotNull(batteriesTemp)
-        assertNotNull(hBridgeRearTemp)
-        assertNotNull(hBridgeFrontTemp)
-        assertNotNull(raspberryPiTemp)
-        assertNotNull(shiftRegistersTemp)
+        assertNotNull(motorRearLeftTempComponent)
+        assertNotNull(motorRearRightTempComponent)
+        assertNotNull(motorFrontLeftTempComponent)
+        assertNotNull(motorFrontRightTempComponent)
+        assertNotNull(batteriesTempComponent)
+        assertNotNull(hBridgeRearTempComponent)
+        assertNotNull(hBridgeFrontTempComponent)
+        assertNotNull(raspberryPiTempComponent)
+        assertNotNull(shiftRegistersTempComponent)
     }
 
     // checkTemps
@@ -100,10 +91,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(motorRearLeftTempComponent) as Int
 
-        `when`(motorRearLeftTemp?.value).thenReturn(temp-5)
-        `when`(motorRearLeftTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
+        `when`(motorRearLeftTempComponent.value).thenReturn(temp-5)
+        `when`(motorRearLeftTempComponent.warning).thenReturn(WARNING_TYPE_NORMAL)
 
-        task?.hardwareItems = arrayOf(motorRearLeftTemp!!)
+        task?.hardwareItems = arrayOf(motorRearLeftTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
@@ -116,10 +107,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(motorRearLeftTempComponent) as Int
 
-        `when`(motorRearLeftTemp?.value).thenReturn(temp + 5)
-        `when`(motorRearLeftTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(motorRearLeftTempComponent.value).thenReturn(temp + 5)
+        `when`(motorRearLeftTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(motorRearLeftTemp!!)
+        task?.hardwareItems = arrayOf(motorRearLeftTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -132,10 +123,10 @@ internal class TemperatureCronJobTest(
         maxMediumTemp?.isAccessible = true
         val temp = maxMediumTemp?.getter?.call(motorRearLeftTempComponent) as Int
 
-        `when`(motorRearLeftTemp?.value).thenReturn(temp + 5)
-        `when`(motorRearLeftTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(motorRearLeftTempComponent.value).thenReturn(temp + 5)
+        `when`(motorRearLeftTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(motorRearLeftTemp!!)
+        task?.hardwareItems = arrayOf(motorRearLeftTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -149,10 +140,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(motorRearRightTempComponent) as Int
 
-        `when`(motorRearRightTemp?.value).thenReturn(temp-5)
-        `when`(motorRearRightTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
+        `when`(motorRearRightTempComponent.value).thenReturn(temp-5)
+        `when`(motorRearRightTempComponent.warning).thenReturn(WARNING_TYPE_NORMAL)
 
-        task?.hardwareItems = arrayOf(motorRearRightTemp!!)
+        task?.hardwareItems = arrayOf(motorRearRightTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
@@ -165,10 +156,10 @@ internal class TemperatureCronJobTest(
         maxMediumTemp?.isAccessible = true
         val temp = maxMediumTemp?.getter?.call(motorRearRightTempComponent) as Int
 
-        `when`(motorRearRightTemp?.value).thenReturn(temp + 5)
-        `when`(motorRearRightTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(motorRearRightTempComponent.value).thenReturn(temp + 5)
+        `when`(motorRearRightTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(motorRearRightTemp!!)
+        task?.hardwareItems = arrayOf(motorRearRightTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -181,10 +172,10 @@ internal class TemperatureCronJobTest(
         maxMediumTemp?.isAccessible = true
         val temp = maxMediumTemp?.getter?.call(motorRearRightTempComponent) as Int
 
-        `when`(motorRearRightTemp?.value).thenReturn(temp + 5)
-        `when`(motorRearRightTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(motorRearRightTempComponent.value).thenReturn(temp + 5)
+        `when`(motorRearRightTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(motorRearRightTemp!!)
+        task?.hardwareItems = arrayOf(motorRearRightTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -197,10 +188,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(motorFrontLeftTempComponent) as Int
 
-        `when`(motorFrontLeftTemp?.value).thenReturn(temp-5)
-        `when`(motorFrontLeftTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
+        `when`(motorFrontLeftTempComponent.value).thenReturn(temp-5)
+        `when`(motorFrontLeftTempComponent.warning).thenReturn(WARNING_TYPE_NORMAL)
 
-        task?.hardwareItems = arrayOf(motorFrontLeftTemp!!)
+        task?.hardwareItems = arrayOf(motorFrontLeftTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
@@ -213,10 +204,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(motorFrontLeftTempComponent) as Int
 
-        `when`(motorFrontLeftTemp?.value).thenReturn(temp + 5)
-        `when`(motorFrontLeftTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(motorFrontLeftTempComponent.value).thenReturn(temp + 5)
+        `when`(motorFrontLeftTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(motorFrontLeftTemp!!)
+        task?.hardwareItems = arrayOf(motorFrontLeftTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -229,10 +220,10 @@ internal class TemperatureCronJobTest(
         maxMediumTemp?.isAccessible = true
         val temp = maxMediumTemp?.getter?.call(motorFrontLeftTempComponent) as Int
 
-        `when`(motorFrontLeftTemp?.value).thenReturn(temp + 5)
-        `when`(motorFrontLeftTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(motorFrontLeftTempComponent.value).thenReturn(temp + 5)
+        `when`(motorFrontLeftTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(motorFrontLeftTemp!!)
+        task?.hardwareItems = arrayOf(motorFrontLeftTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -246,10 +237,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(motorFrontRightTempComponent) as Int
 
-        `when`(motorFrontRightTemp?.value).thenReturn(temp-5)
-        `when`(motorFrontRightTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
+        `when`(motorFrontRightTempComponent.value).thenReturn(temp-5)
+        `when`(motorFrontRightTempComponent.warning).thenReturn(WARNING_TYPE_NORMAL)
 
-        task?.hardwareItems = arrayOf(motorFrontRightTemp!!)
+        task?.hardwareItems = arrayOf(motorFrontRightTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
@@ -262,10 +253,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(motorFrontRightTempComponent) as Int
 
-        `when`(motorFrontRightTemp?.value).thenReturn(temp + 5)
-        `when`(motorFrontRightTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(motorFrontRightTempComponent.value).thenReturn(temp + 5)
+        `when`(motorFrontRightTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(motorFrontRightTemp!!)
+        task?.hardwareItems = arrayOf(motorFrontRightTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -278,10 +269,10 @@ internal class TemperatureCronJobTest(
         maxMediumTemp?.isAccessible = true
         val temp = maxMediumTemp?.getter?.call(motorFrontRightTempComponent) as Int
 
-        `when`(motorFrontRightTemp?.value).thenReturn(temp + 5)
-        `when`(motorFrontRightTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(motorFrontRightTempComponent.value).thenReturn(temp + 5)
+        `when`(motorFrontRightTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(motorFrontRightTemp!!)
+        task?.hardwareItems = arrayOf(motorFrontRightTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -295,10 +286,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(hBridgeRearTempComponent) as Int
 
-        `when`(hBridgeRearTemp?.value).thenReturn(temp-5)
-        `when`(hBridgeRearTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
+        `when`(hBridgeRearTempComponent.value).thenReturn(temp-5)
+        `when`(hBridgeRearTempComponent.warning).thenReturn(WARNING_TYPE_NORMAL)
 
-        task?.hardwareItems = arrayOf(hBridgeRearTemp!!)
+        task?.hardwareItems = arrayOf(hBridgeRearTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
@@ -311,10 +302,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(hBridgeRearTempComponent) as Int
 
-        `when`(hBridgeRearTemp?.value).thenReturn(temp + 5)
-        `when`(hBridgeRearTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(hBridgeRearTempComponent.value).thenReturn(temp + 5)
+        `when`(hBridgeRearTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(hBridgeRearTemp!!)
+        task?.hardwareItems = arrayOf(hBridgeRearTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -327,10 +318,10 @@ internal class TemperatureCronJobTest(
         maxMediumTemp?.isAccessible = true
         val temp = maxMediumTemp?.getter?.call(hBridgeRearTempComponent) as Int
 
-        `when`(hBridgeRearTemp?.value).thenReturn(temp + 5)
-        `when`(hBridgeRearTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(hBridgeRearTempComponent.value).thenReturn(temp + 5)
+        `when`(hBridgeRearTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(hBridgeRearTemp!!)
+        task?.hardwareItems = arrayOf(hBridgeRearTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -344,10 +335,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(hBridgeFrontTempComponent) as Int
 
-        `when`(hBridgeFrontTemp?.value).thenReturn(temp-5)
-        `when`(hBridgeFrontTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
+        `when`(hBridgeFrontTempComponent.value).thenReturn(temp-5)
+        `when`(hBridgeFrontTempComponent.warning).thenReturn(WARNING_TYPE_NORMAL)
 
-        task?.hardwareItems = arrayOf(hBridgeFrontTemp!!)
+        task?.hardwareItems = arrayOf(hBridgeFrontTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
@@ -360,10 +351,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(hBridgeFrontTempComponent) as Int
 
-        `when`(hBridgeFrontTemp?.value).thenReturn(temp + 5)
-        `when`(hBridgeFrontTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(hBridgeFrontTempComponent.value).thenReturn(temp + 5)
+        `when`(hBridgeFrontTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(hBridgeFrontTemp!!)
+        task?.hardwareItems = arrayOf(hBridgeFrontTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -376,10 +367,10 @@ internal class TemperatureCronJobTest(
         maxMediumTemp?.isAccessible = true
         val temp = maxMediumTemp?.getter?.call(hBridgeFrontTempComponent) as Int
 
-        `when`(hBridgeFrontTemp?.value).thenReturn(temp + 5)
-        `when`(hBridgeFrontTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(hBridgeFrontTempComponent.value).thenReturn(temp + 5)
+        `when`(hBridgeFrontTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(hBridgeFrontTemp!!)
+        task?.hardwareItems = arrayOf(hBridgeFrontTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -393,10 +384,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(raspberryPiTempComponent) as Int
 
-        `when`(raspberryPiTemp?.value).thenReturn(temp-5)
-        `when`(raspberryPiTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
+        `when`(raspberryPiTempComponent.value).thenReturn(temp-5)
+        `when`(raspberryPiTempComponent.warning).thenReturn(WARNING_TYPE_NORMAL)
 
-        task?.hardwareItems = arrayOf(raspberryPiTemp!!)
+        task?.hardwareItems = arrayOf(raspberryPiTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
@@ -409,10 +400,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(raspberryPiTempComponent) as Int
 
-        `when`(raspberryPiTemp?.value).thenReturn(temp + 5)
-        `when`(raspberryPiTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(raspberryPiTempComponent.value).thenReturn(temp + 5)
+        `when`(raspberryPiTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(raspberryPiTemp!!)
+        task?.hardwareItems = arrayOf(raspberryPiTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -425,10 +416,10 @@ internal class TemperatureCronJobTest(
         maxMediumTemp?.isAccessible = true
         val temp = maxMediumTemp?.getter?.call(raspberryPiTempComponent) as Int
 
-        `when`(raspberryPiTemp?.value).thenReturn(temp + 5)
-        `when`(raspberryPiTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(raspberryPiTempComponent.value).thenReturn(temp + 5)
+        `when`(raspberryPiTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(raspberryPiTemp!!)
+        task?.hardwareItems = arrayOf(raspberryPiTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -442,10 +433,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(batteriesTempComponent) as Int
 
-        `when`(batteriesTemp?.value).thenReturn(temp-5)
-        `when`(batteriesTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
+        `when`(batteriesTempComponent.value).thenReturn(temp-5)
+        `when`(batteriesTempComponent.warning).thenReturn(WARNING_TYPE_NORMAL)
 
-        task?.hardwareItems = arrayOf(batteriesTemp!!)
+        task?.hardwareItems = arrayOf(batteriesTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
@@ -458,10 +449,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(batteriesTempComponent) as Int
 
-        `when`(batteriesTemp?.value).thenReturn(temp + 5)
-        `when`(batteriesTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(batteriesTempComponent.value).thenReturn(temp + 5)
+        `when`(batteriesTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(batteriesTemp!!)
+        task?.hardwareItems = arrayOf(batteriesTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -474,10 +465,10 @@ internal class TemperatureCronJobTest(
         maxMediumTemp?.isAccessible = true
         val temp = maxMediumTemp?.getter?.call(batteriesTempComponent) as Int
 
-        `when`(batteriesTemp?.value).thenReturn(temp + 5)
-        `when`(batteriesTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(batteriesTempComponent.value).thenReturn(temp + 5)
+        `when`(batteriesTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(batteriesTemp!!)
+        task?.hardwareItems = arrayOf(batteriesTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -491,10 +482,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(shiftRegistersTempComponent) as Int
 
-        `when`(shiftRegistersTemp?.value).thenReturn(temp-5)
-        `when`(shiftRegistersTemp?.warning).thenReturn(WARNING_TYPE_NORMAL)
+        `when`(shiftRegistersTempComponent.value).thenReturn(temp-5)
+        `when`(shiftRegistersTempComponent.warning).thenReturn(WARNING_TYPE_NORMAL)
 
-        task?.hardwareItems = arrayOf(shiftRegistersTemp!!)
+        task?.hardwareItems = arrayOf(shiftRegistersTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_NORMAL)
@@ -507,10 +498,10 @@ internal class TemperatureCronJobTest(
         minMediumTemp?.isAccessible = true
         val temp = minMediumTemp?.getter?.call(shiftRegistersTempComponent) as Int
 
-        `when`(shiftRegistersTemp?.value).thenReturn(temp + 5)
-        `when`(shiftRegistersTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(shiftRegistersTempComponent.value).thenReturn(temp + 5)
+        `when`(shiftRegistersTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(shiftRegistersTemp!!)
+        task?.hardwareItems = arrayOf(shiftRegistersTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
@@ -523,10 +514,10 @@ internal class TemperatureCronJobTest(
         maxMediumTemp?.isAccessible = true
         val temp = maxMediumTemp?.getter?.call(shiftRegistersTempComponent) as Int
 
-        `when`(shiftRegistersTemp?.value).thenReturn(temp + 5)
-        `when`(shiftRegistersTemp?.warning).thenReturn(WARNING_TYPE_MEDIUM)
+        `when`(shiftRegistersTempComponent.value).thenReturn(temp + 5)
+        `when`(shiftRegistersTempComponent.warning).thenReturn(WARNING_TYPE_MEDIUM)
 
-        task?.hardwareItems = arrayOf(shiftRegistersTemp!!)
+        task?.hardwareItems = arrayOf(shiftRegistersTempComponent)
 
         task?.checkTemps()
         assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(WARNING_TYPE_MEDIUM)
