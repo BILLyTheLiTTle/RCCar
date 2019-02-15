@@ -82,6 +82,14 @@ internal class TemperatureCronJobTest(
     @Test
     fun testMocksCreation() {
         assertNotNull(motorRearLeftTemp)
+        assertNotNull(motorRearRightTemp)
+        assertNotNull(motorFrontLeftTemp)
+        assertNotNull(motorFrontRightTemp)
+        assertNotNull(batteriesTemp)
+        assertNotNull(hBridgeRearTemp)
+        assertNotNull(hBridgeFrontTemp)
+        assertNotNull(raspberryPiTemp)
+        assertNotNull(shiftRegistersTemp)
     }
 
     // checkTemps
