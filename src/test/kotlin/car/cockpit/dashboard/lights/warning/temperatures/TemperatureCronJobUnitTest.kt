@@ -19,7 +19,7 @@ import kotlin.reflect.jvm.isAccessible
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class TemperatureCronJobTest(
+internal class TemperatureCronJobUnitTest(
     @Autowired
     val engineComponent: Engine,
     @Spy
