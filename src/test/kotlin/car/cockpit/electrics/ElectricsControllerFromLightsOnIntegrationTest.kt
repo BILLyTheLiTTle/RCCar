@@ -1,5 +1,6 @@
 package car.cockpit.electrics
 
+import car.categories.IntegrationTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
@@ -11,10 +12,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class ElectricsControllerFromLightsOnTest(
+@IntegrationTest
+internal class ElectricsControllerFromLightsOnIntegrationTest(
     @Autowired override val restTemplate: TestRestTemplate,
     @Autowired override val electricsComponent: Electrics
-): ElectricsControllerTest(restTemplate, electricsComponent) {
+): ElectricsControllerIntegrationTest(restTemplate, electricsComponent) {
 
     override val initialLightsState = true
 

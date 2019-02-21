@@ -1,5 +1,6 @@
 package car.cockpit.pedals
 
+import car.categories.UnitTest
 import car.cockpit.engine.EMPTY_STRING
 import car.cockpit.engine.SUCCESS
 import org.assertj.core.api.Assertions.*
@@ -16,7 +17,8 @@ import kotlin.reflect.jvm.isAccessible
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
-internal class ThrottleBrakeComponentTest (
+@UnitTest
+internal class ThrottleBrakeComponentUnitTest (
     @Autowired
     @Qualifier("Throttle -n- Brake Component")
     val throttleBrake: ThrottleBrake

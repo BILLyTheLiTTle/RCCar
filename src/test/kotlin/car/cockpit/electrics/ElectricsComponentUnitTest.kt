@@ -9,7 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
-internal class ElectricsComponentTest(@Autowired val electricsComponent: Electrics) {
+internal class ElectricsComponentUnitTest(@Autowired val electricsComponent: Electrics) {
 
 val initialLightsState = true
 

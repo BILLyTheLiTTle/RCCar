@@ -1,5 +1,6 @@
 package car.cockpit.setup
 
+import car.categories.IntegrationTest
 import car.cockpit.engine.SUCCESS
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -13,7 +14,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class SetupControllerTest(
+@IntegrationTest
+internal class SetupControllerIntegrationTest(
     @Autowired val restTemplate: TestRestTemplate,
     @Autowired val setupComponent: Setup
 ) {

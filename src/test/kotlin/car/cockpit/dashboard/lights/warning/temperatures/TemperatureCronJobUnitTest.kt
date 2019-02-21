@@ -1,5 +1,6 @@
 package car.cockpit.dashboard.lights.warning.temperatures
 
+import car.categories.UnitTest
 import car.cockpit.engine.Engine
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -16,37 +17,46 @@ import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
 
 
-
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@UnitTest
 internal class TemperatureCronJobUnitTest(
     @Autowired
     val engineComponent: Engine,
     @Spy
+    @Autowired
     @Qualifier("Raspberry Pi Temperature Component")
     val raspberryPiTempComponent: Temperature,
     @Spy
+    @Autowired
     @Qualifier("Shift Registers Temperature Component")
     val shiftRegistersTempComponent: Temperature,
     @Spy
+    @Autowired
     @Qualifier("Motor Rear Right Temperature Component")
     val motorRearRightTempComponent: Temperature,
     @Spy
+    @Autowired
     @Qualifier("Motor Rear Left Temperature Component")
     val motorRearLeftTempComponent: Temperature,
     @Spy
+    @Autowired
     @Qualifier("Motor Front Right Temperature Component")
     val motorFrontRightTempComponent: Temperature,
     @Spy
+    @Autowired
     @Qualifier("Motor Front Left Temperature Component")
     val motorFrontLeftTempComponent: Temperature,
     @Spy
+    @Autowired
     @Qualifier("H-Bridge Rear Temperature Component")
     val hBridgeRearTempComponent: Temperature,
     @Spy
+    @Autowired
     @Qualifier("H-Bridge Front Temperature Component")
     val hBridgeFrontTempComponent: Temperature,
     @Spy
+    @Autowired
     @Qualifier("Batteries Temperature Component")
     val batteriesTempComponent: Temperature
 ) {

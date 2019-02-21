@@ -12,7 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class ElectricsControllerTest(
+internal class ElectricsControllerIntegrationTest(
     @Autowired val restTemplate: TestRestTemplate,
     @Autowired val electricsComponent: Electrics
 ) {

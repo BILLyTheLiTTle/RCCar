@@ -1,5 +1,6 @@
 package car.cockpit.electrics
 
+import car.categories.UnitTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
@@ -10,9 +11,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
-internal class ElectricsComponentFromLightsOnTest(
+@UnitTest
+internal class ElectricsComponentFromLightsOnUnitTest(
     @Autowired override val electricsComponent: Electrics
-): ElectricsComponentTest(electricsComponent) {
+): ElectricsComponentUnitTest(electricsComponent) {
 
     override val initialLightsState = true
 

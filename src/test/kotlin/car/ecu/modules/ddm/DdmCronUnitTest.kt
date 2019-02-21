@@ -1,5 +1,6 @@
 package car.ecu.modules.ddm
 
+import car.categories.UnitTest
 import car.cockpit.engine.Engine
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -18,7 +19,8 @@ import kotlin.reflect.jvm.isAccessible
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class DdmCronTest(@Autowired val engineComponent: Engine) {
+@UnitTest
+internal class DdmCronUnitTest(@Autowired val engineComponent: Engine) {
 
     @SpyBean
     private val task: DdmCron? = null

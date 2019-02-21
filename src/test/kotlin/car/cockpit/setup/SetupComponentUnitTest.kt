@@ -1,5 +1,6 @@
 package car.cockpit.setup
 
+import car.categories.UnitTest
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -9,7 +10,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
-internal class SetupComponentTest(@Autowired val setupComponent: Setup) {
+@UnitTest
+internal class SetupComponentUnitTest(@Autowired val setupComponent: Setup) {
 
 
     @Test

@@ -1,5 +1,6 @@
 package car.cockpit.engine
 
+import car.categories.UnitTest
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -11,7 +12,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
-internal class EngineComponentTest(@Autowired val engineComponent: Engine) {
+@UnitTest
+internal class EngineComponentUnitTest(@Autowired val engineComponent: Engine) {
 
     // start
     @Test

@@ -1,5 +1,6 @@
 package car.cockpit.steering
 
+import car.categories.UnitTest
 import car.cockpit.engine.SUCCESS
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -10,7 +11,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
-internal class SteeringComponentTest(
+@UnitTest
+internal class SteeringComponentUnitTest(
     @Autowired val steeringComponent: Steering
 ) {
 
