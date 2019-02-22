@@ -1,6 +1,8 @@
 package car.cockpit.electrics
 
+import car.PARENT_TEST
 import org.assertj.core.api.Assertions.*
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,6 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Tag(PARENT_TEST)
 internal class ElectricsControllerIntegrationTest(
     @Autowired val restTemplate: TestRestTemplate,
     @Autowired val electricsComponent: Electrics

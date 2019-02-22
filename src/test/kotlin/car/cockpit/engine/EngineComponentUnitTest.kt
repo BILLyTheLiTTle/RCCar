@@ -1,10 +1,10 @@
 package car.cockpit.engine
 
-import car.categories.UnitTest
+import car.UNIT_TEST
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
-
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -12,7 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
-@UnitTest
+@Tag(UNIT_TEST)
 internal class EngineComponentUnitTest(@Autowired val engineComponent: Engine) {
 
     // start

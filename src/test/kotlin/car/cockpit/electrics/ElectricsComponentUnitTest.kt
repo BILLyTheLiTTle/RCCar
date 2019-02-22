@@ -1,6 +1,8 @@
 package car.cockpit.electrics
 
+import car.PARENT_TEST
 import org.assertj.core.api.Assertions.*
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -9,6 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
+@Tag(PARENT_TEST)
 internal class ElectricsComponentUnitTest(@Autowired val electricsComponent: Electrics) {
 
 val initialLightsState = true

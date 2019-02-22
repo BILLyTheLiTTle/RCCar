@@ -1,9 +1,10 @@
 package car.ecu.modules.ddm
 
-import car.categories.UnitTest
+import car.UNIT_TEST
 import car.cockpit.engine.Engine
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,7 +20,7 @@ import kotlin.reflect.jvm.isAccessible
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@UnitTest
+@Tag(UNIT_TEST)
 internal class DdmCronUnitTest(@Autowired val engineComponent: Engine) {
 
     @SpyBean

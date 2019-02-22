@@ -1,8 +1,9 @@
 package car.cockpit.electrics
 
-import car.categories.UnitTest
+import car.UNIT_TEST
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -10,7 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
-@UnitTest
+@Tag(UNIT_TEST)
 internal class ElectricsComponentFromLightsOffUnitTest(
     @Autowired override val electricsComponent: Electrics
 ): ElectricsComponentUnitTest(electricsComponent) {

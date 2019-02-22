@@ -1,21 +1,23 @@
 package car.cockpit.steering
 
-import car.categories.IntegrationTest
+import car.INTEGRATION_TEST
 import car.cockpit.engine.SUCCESS
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
+import org.springframework.context.annotation.Profile
 import org.springframework.http.HttpStatus
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@IntegrationTest
+@Tag(INTEGRATION_TEST)
 internal class SteeringControllerTest(
     @Autowired val restTemplate: TestRestTemplate,
     @Autowired val steeringComponent: Steering

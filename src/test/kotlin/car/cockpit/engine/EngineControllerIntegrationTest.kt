@@ -1,7 +1,8 @@
 package car.cockpit.engine
 
-import car.categories.IntegrationTest
+import car.INTEGRATION_TEST
 import org.assertj.core.api.Assertions.*
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@IntegrationTest
+@Tag(INTEGRATION_TEST)
 internal class EngineControllerIntegrationTest(
     @Autowired val restTemplate: TestRestTemplate,
     @Autowired val engineComponent: Engine

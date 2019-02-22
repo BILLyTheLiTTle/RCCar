@@ -1,11 +1,12 @@
 package car.cockpit.pedals
 
-import car.categories.UnitTest
+import car.UNIT_TEST
 import car.cockpit.engine.EMPTY_STRING
 import car.cockpit.engine.SUCCESS
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
@@ -17,7 +18,7 @@ import kotlin.reflect.jvm.isAccessible
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
-@UnitTest
+@Tag(UNIT_TEST)
 internal class ThrottleBrakeComponentUnitTest (
     @Autowired
     @Qualifier("Throttle -n- Brake Component")
