@@ -21,15 +21,15 @@ class ElectricsService {
 
         synchronized(this){
             when (direction) {
-                TURN_LIGHTS_STRAIGHT -> {
+                DIRECTION_LIGHTS_STRAIGHT -> {
                     electricsComponent.leftTurnLightsState = false
                     electricsComponent.rightTurnLightsState = false
                 }
-                TURN_LIGHTS_RIGHT -> {
+                DIRECTION_LIGHTS_RIGHT -> {
                     //ElectricsComponent.leftTurnLightsState = false
                     electricsComponent.rightTurnLightsState = !electricsComponent.rightTurnLightsState
                 }
-                TURN_LIGHTS_LEFT -> {
+                DIRECTION_LIGHTS_LEFT -> {
                     electricsComponent.leftTurnLightsState = !electricsComponent.leftTurnLightsState
                     //ElectricsComponent.rightTurnLightsState = false
                 }
@@ -41,11 +41,11 @@ class ElectricsService {
 
     fun getDirectionLights() =
         if (!electricsComponent.leftTurnLightsState && !electricsComponent.rightTurnLightsState)
-            TURN_LIGHTS_STRAIGHT
+            DIRECTION_LIGHTS_STRAIGHT
         else if (electricsComponent.leftTurnLightsState)
-            TURN_LIGHTS_LEFT
+            DIRECTION_LIGHTS_LEFT
         else if (electricsComponent.rightTurnLightsState)
-            TURN_LIGHTS_RIGHT
+            DIRECTION_LIGHTS_RIGHT
         else
             UNKNOWN_STATE
 
@@ -97,9 +97,9 @@ class ElectricsService {
     fun getEmergencyLightsState() = electricsComponent.emergencyLightsState
 }
 
-const val TURN_LIGHTS_RIGHT = "turn_lights_right"
-const val TURN_LIGHTS_LEFT = "turn_lights_left"
-const val TURN_LIGHTS_STRAIGHT = "turn_lights_straight"
+const val DIRECTION_LIGHTS_RIGHT = "direction_lights_right"
+const val DIRECTION_LIGHTS_LEFT = "direction_lights_left"
+const val DIRECTION_LIGHTS_STRAIGHT = "direction_lights_straight"
 
 const val LIGHTS_OFF = "lights_off"
 const val POSITION_LIGHTS = "position_lights"

@@ -74,7 +74,7 @@ class ElectricsComponent: Electrics {
 
     override var leftTurnLightsState = false
         set(value) {
-            lights[TURN_LIGHTS_LEFT] = value
+            lights[DIRECTION_LIGHTS_LEFT] = value
 
             showMessage(logger = logger,
                 body = "Left Turn Lights: $value")
@@ -90,7 +90,7 @@ class ElectricsComponent: Electrics {
 
     override var rightTurnLightsState = false
         set(value) {
-            lights[TURN_LIGHTS_RIGHT] = value
+            lights[DIRECTION_LIGHTS_RIGHT] = value
 
             showMessage(logger = logger,
                 body = "Right Turn Lights: $value")
