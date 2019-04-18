@@ -1,6 +1,5 @@
 package car.cockpit.dashboard.lights.warning.temperatures
 
-import car.cockpit.engine.EMPTY_STRING
 import java.util.*
 
 interface Temperature {
@@ -25,8 +24,3 @@ interface Temperature {
 }
 
 val lock = Any()
-
-const val WARNING_TYPE_NOTHING = EMPTY_STRING
-const val WARNING_TYPE_NORMAL = "normal"
-const val WARNING_TYPE_MEDIUM = "medium"
-const val WARNING_TYPE_HIGH = "high"

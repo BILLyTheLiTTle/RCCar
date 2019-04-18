@@ -30,9 +30,9 @@ class RaspberryPiTemperatureComponent: Temperature {
             val temp = synchronized(lock) { readSensor() }
 
             warning = when {
-                temp < minMediumTemp -> WARNING_TYPE_NORMAL
-                temp > maxMediumTemp -> WARNING_TYPE_HIGH
-                else -> WARNING_TYPE_MEDIUM
+                temp < minMediumTemp -> TemperatureWarningType.NORMAL.name
+                temp > maxMediumTemp -> TemperatureWarningType.HIGH.name
+                else -> TemperatureWarningType.MEDIUM.name
             }
 
             return temp
