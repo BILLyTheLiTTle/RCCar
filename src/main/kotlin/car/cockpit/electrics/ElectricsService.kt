@@ -19,17 +19,19 @@ class ElectricsService {
         showMessage(logger = logger,
             body = "Direction: $direction")
 
+        val part = ElectricPart.DirectionLight.valueOf(direction)
+
         synchronized(this){
-            when (direction) {
-                DIRECTION_LIGHTS_STRAIGHT -> {
+            when (part) {
+                ElectricPart.DirectionLight.DIRECTION_LIGHTS_STRAIGHT -> {
                     electricsComponent.leftTurnLightsState = false
                     electricsComponent.rightTurnLightsState = false
                 }
-                DIRECTION_LIGHTS_RIGHT -> {
+                ElectricPart.DirectionLight.DIRECTION_LIGHTS_RIGHT -> {
                     //ElectricsComponent.leftTurnLightsState = false
                     electricsComponent.rightTurnLightsState = !electricsComponent.rightTurnLightsState
                 }
-                DIRECTION_LIGHTS_LEFT -> {
+                ElectricPart.DirectionLight.DIRECTION_LIGHTS_LEFT -> {
                     electricsComponent.leftTurnLightsState = !electricsComponent.leftTurnLightsState
                     //ElectricsComponent.rightTurnLightsState = false
                 }
@@ -41,11 +43,11 @@ class ElectricsService {
 
     fun getDirectionLights() =
         if (!electricsComponent.leftTurnLightsState && !electricsComponent.rightTurnLightsState)
-            DIRECTION_LIGHTS_STRAIGHT
+            ElectricPart.DirectionLight.DIRECTION_LIGHTS_STRAIGHT.name
         else if (electricsComponent.leftTurnLightsState)
-            DIRECTION_LIGHTS_LEFT
+            ElectricPart.DirectionLight.DIRECTION_LIGHTS_LEFT.name
         else if (electricsComponent.rightTurnLightsState)
-            DIRECTION_LIGHTS_RIGHT
+            ElectricPart.DirectionLight.DIRECTION_LIGHTS_RIGHT.name
         else
             UNKNOWN_STATE
 
@@ -55,15 +57,15 @@ class ElectricsService {
         showMessage(logger = logger,
             body = "Main Lights State Request: $value")
 
+        val part = ElectricPart.VisionLight.valueOf(value)
         // I don't think I need synchronization
         //synchronized(this){
-        when(value){
-            LIGHTS_OFF -> electricsComponent.positionLightsState = false
-            POSITION_LIGHTS -> electricsComponent.positionLightsState = true
-            DRIVING_LIGHTS -> electricsComponent.drivingLightsState = true
-            LONG_RANGE_LIGHTS -> electricsComponent.longRangeLightsState = true
-            LONG_RANGE_SIGNAL_LIGHTS -> electricsComponent.doHeadlightsSignal()
-            else -> "${this::class.simpleName} ERROR: Entered in else condition"
+        when(part){
+            ElectricPart.VisionLight.LIGHTS_OFF -> electricsComponent.positionLightsState = false
+            ElectricPart.VisionLight.POSITION_LIGHTS -> electricsComponent.positionLightsState = true
+            ElectricPart.VisionLight.DRIVING_LIGHTS -> electricsComponent.drivingLightsState = true
+            ElectricPart.VisionLight.LONG_RANGE_LIGHTS -> electricsComponent.longRangeLightsState = true
+            ElectricPart.VisionLight.LONG_RANGE_SIGNAL_LIGHTS -> electricsComponent.doHeadlightsSignal()
         }
         //}
 
@@ -71,15 +73,15 @@ class ElectricsService {
     }
 
     fun getMainLightsState() =
-            /* Condition should be executed this way cuz if I check
-                first for position lights, then driving lights, then long range lights
-                if the user has the long range beam the if clause will enter at
-                position lights condition.
-             */
-        if (electricsComponent.longRangeLightsState) LONG_RANGE_LIGHTS
-        else if (electricsComponent.drivingLightsState) DRIVING_LIGHTS
-        else if (electricsComponent.positionLightsState) POSITION_LIGHTS
-        else if (!electricsComponent.positionLightsState) LIGHTS_OFF
+        /* Condition should be executed this way cuz if I check
+            first for position lights, then driving lights, then long range lights
+            if the user has the long range beam the if clause will enter at
+            position lights condition.
+         */
+        if (electricsComponent.longRangeLightsState) ElectricPart.VisionLight.LONG_RANGE_LIGHTS.name
+        else if (electricsComponent.drivingLightsState) ElectricPart.VisionLight.DRIVING_LIGHTS.name
+        else if (electricsComponent.positionLightsState) ElectricPart.VisionLight.POSITION_LIGHTS.name
+        else if (!electricsComponent.positionLightsState) ElectricPart.VisionLight.LIGHTS_OFF.name
         else UNKNOWN_STATE
 
     fun setReverseLightsState(state: Boolean): String {
@@ -96,19 +98,3 @@ class ElectricsService {
 
     fun getEmergencyLightsState() = electricsComponent.emergencyLightsState
 }
-
-const val DIRECTION_LIGHTS_RIGHT = "direction_lights_right"
-const val DIRECTION_LIGHTS_LEFT = "direction_lights_left"
-const val DIRECTION_LIGHTS_STRAIGHT = "direction_lights_straight"
-
-const val LIGHTS_OFF = "lights_off"
-const val POSITION_LIGHTS = "position_lights"
-const val DRIVING_LIGHTS = "driving_lights"
-const val LONG_RANGE_LIGHTS = "long_range_lights"
-const val LONG_RANGE_SIGNAL_LIGHTS = "long_range_signal_lights"
-
-const val BRAKING_LIGHTS = "braking_lights"
-
-const val REVERSE_LIGHTS = "reverse_lights"
-
-const val EMERGENCY_LIGHTS = "emergency_lights"
