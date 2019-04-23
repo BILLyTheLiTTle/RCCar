@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 @Component("H-Bridge Front Temperature Component")
 class HBridgeFrontTemperatureComponent: Temperature {
 
-    override val id = "h_bridge_front_temp"
+    override val id = ThermometerDevice.H_BRIDGE_FRONT
     override val minMediumTemp = 30
     override val maxMediumTemp = 70
 

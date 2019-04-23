@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 @Component("Motor Rear Right Temperature Component")
 class MotorRearRightTemperatureComponent: Temperature {
 
-    override val id = "motor_rear_right_temp"
+    override val id = ThermometerDevice.MOTOR_REAR_RIGHT
     override val minMediumTemp = 30
     override val maxMediumTemp = 70
 

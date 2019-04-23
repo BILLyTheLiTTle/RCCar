@@ -7,7 +7,7 @@ import kotlin.math.max
 @Component("Batteries Temperature Component")
 class BatteriesTemperatureComponent: Temperature {
 
-    override val id = "batteries_temp"
+    override val id = ThermometerDevice.BATTERIES
     override val minMediumTemp = 30
     override val maxMediumTemp = 70
 

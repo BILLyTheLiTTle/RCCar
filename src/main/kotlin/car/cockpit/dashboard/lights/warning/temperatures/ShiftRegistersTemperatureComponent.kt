@@ -7,7 +7,7 @@ import kotlin.math.max
 @Component("Shift Registers Temperature Component")
 class ShiftRegistersTemperatureComponent: Temperature {
 
-    override val id = "shift_registers_temp"
+    override val id = ThermometerDevice.SHIFT_REGISTERS
     override val minMediumTemp = 30
     override val maxMediumTemp = 70
 

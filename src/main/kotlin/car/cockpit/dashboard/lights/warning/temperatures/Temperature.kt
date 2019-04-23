@@ -4,7 +4,7 @@ import java.util.*
 
 interface Temperature {
 
-    val id: String
+    val id: ThermometerDevice
     val value: Int
     val warning: String
 

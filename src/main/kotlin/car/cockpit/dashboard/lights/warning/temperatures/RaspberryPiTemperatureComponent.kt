@@ -15,7 +15,7 @@ class RaspberryPiTemperatureComponent: Temperature {
     @Autowired
     private lateinit var engineComponent: Engine
 
-    override val id = "raspberry_pi_temp"
+    override val id = ThermometerDevice.RASPBERRY_PI
     /* Declared temps:
         -40 < cpu temp < 85
         ? < gpu temp < ?

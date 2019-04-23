@@ -100,7 +100,7 @@ class TemperaturesCron {
                 if (reportedTempWarnings[i] != hardwareItems[i].warning) {
                     reportedTempWarnings[i] = hardwareItems[i].warning
 
-                    informClient(hardwareItems[i].id, reportedTempWarnings[i], primaryTempValues[i])
+                    informClient(hardwareItems[i].id.name, reportedTempWarnings[i], primaryTempValues[i])
 
                     //if (reportedTempWarnings[i] == Temperature.WARNING_TYPE_HIGH)
                     //    printHighTempInfo(hardwareItems[i]::class, primaryTemp)
