@@ -21,7 +21,7 @@ class ElectricsController{
 
 
     @GetMapping("/set_main_lights_state")
-    fun setMainLightsState(@RequestParam(value = "state", defaultValue = ElectricPart.VisionLight.DEFAULT) state: String) =
+    fun setMainLightsState(@RequestParam(value = "state", defaultValue = ElectricPart.MainLight.DEFAULT) state: String) =
         electricsService.setMainLightsState(state)
 
     @GetMapping("/get_main_lights_state")

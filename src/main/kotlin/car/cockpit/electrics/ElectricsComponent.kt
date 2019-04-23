@@ -12,7 +12,7 @@ class ElectricsComponent: Electrics {
 
     override var positionLightsState = false
         set(value) {
-            lights[ElectricPart.VisionLight.POSITION_LIGHTS.name] = value
+            lights[ElectricPart.MainLight.POSITION_LIGHTS.name] = value
 
             //println("${this::class.simpleName} Position Lights: $value\n")
 
@@ -26,7 +26,7 @@ class ElectricsComponent: Electrics {
     }
     override var drivingLightsState = false
         set(value) {
-            lights[ElectricPart.VisionLight.DRIVING_LIGHTS.name] = value
+            lights[ElectricPart.MainLight.DRIVING_LIGHTS.name] = value
 
             //println("${this::class.simpleName} Driving Lights: $value\n")
 
@@ -39,7 +39,7 @@ class ElectricsComponent: Electrics {
         }
     override var longRangeLightsState = false
         set(value) {
-            lights[ElectricPart.VisionLight.LONG_RANGE_LIGHTS.name] = value
+            lights[ElectricPart.MainLight.LONG_RANGE_LIGHTS.name] = value
 
             //println("${this::class.simpleName} Long Range Lights: $value\n")
 

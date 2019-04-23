@@ -3,7 +3,7 @@ package car.cockpit.electrics
 enum class ElectricPart {
     // Wow, what I had implemented here? Is it good, clever or awful?!
     ;
-    enum class VisionLight(val id:String){
+    enum class MainLight(val id:String){
         LIGHTS_OFF("lights_off"),
         POSITION_LIGHTS("lights_position"),
         DRIVING_LIGHTS("lights_driving"),
