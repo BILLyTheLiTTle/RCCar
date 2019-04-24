@@ -1,4 +1,4 @@
-package car.cockpit.dashboard.lights.warning.temperatures
+package car.cockpit.dashboard.indicators.temperatures
 
 import car.cockpit.engine.EMPTY_STRING
 import org.springframework.stereotype.Component

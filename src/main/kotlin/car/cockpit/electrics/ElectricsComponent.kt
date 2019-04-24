@@ -12,7 +12,7 @@ class ElectricsComponent: Electrics {
 
     override var positionLightsState = false
         set(value) {
-            lights[ElectricPart.MainLight.POSITION_LIGHTS.name] = value
+            lights[MainLight.POSITION_LIGHTS.name] = value
 
             //println("${this::class.simpleName} Position Lights: $value\n")
 
@@ -26,7 +26,7 @@ class ElectricsComponent: Electrics {
     }
     override var drivingLightsState = false
         set(value) {
-            lights[ElectricPart.MainLight.DRIVING_LIGHTS.name] = value
+            lights[MainLight.DRIVING_LIGHTS.name] = value
 
             //println("${this::class.simpleName} Driving Lights: $value\n")
 
@@ -39,7 +39,7 @@ class ElectricsComponent: Electrics {
         }
     override var longRangeLightsState = false
         set(value) {
-            lights[ElectricPart.MainLight.LONG_RANGE_LIGHTS.name] = value
+            lights[MainLight.LONG_RANGE_LIGHTS.name] = value
 
             //println("${this::class.simpleName} Long Range Lights: $value\n")
 
@@ -50,7 +50,7 @@ class ElectricsComponent: Electrics {
 
     override var brakingLightsState = false
         set(value) {
-            lights[ElectricPart.Other.BRAKING_LIGHTS.name] = value
+            lights[OtherLight.BRAKING_LIGHTS.name] = value
 
             showMessage(logger = logger,
                 body = "Brake Lights: $value")
@@ -62,7 +62,7 @@ class ElectricsComponent: Electrics {
 
     override var reverseLightsState = false
         set(value) {
-            lights[ElectricPart.Other.REVERSE_LIGHTS.name] = value
+            lights[OtherLight.REVERSE_LIGHTS.name] = value
 
             showMessage(logger = logger,
                 body = "Reverse Lights: $value")
@@ -74,7 +74,7 @@ class ElectricsComponent: Electrics {
 
     override var leftTurnLightsState = false
         set(value) {
-            lights[ElectricPart.DirectionLight.DIRECTION_LIGHTS_LEFT.name] = value
+            lights[DirectionLight.DIRECTION_LIGHTS_LEFT.name] = value
 
             showMessage(logger = logger,
                 body = "Left Turn Lights: $value")
@@ -90,7 +90,7 @@ class ElectricsComponent: Electrics {
 
     override var rightTurnLightsState = false
         set(value) {
-            lights[ElectricPart.DirectionLight.DIRECTION_LIGHTS_RIGHT.name] = value
+            lights[DirectionLight.DIRECTION_LIGHTS_RIGHT.name] = value
 
             showMessage(logger = logger,
                 body = "Right Turn Lights: $value")
@@ -106,7 +106,7 @@ class ElectricsComponent: Electrics {
 
     override var emergencyLightsState = false
         set(value) {
-            lights[ElectricPart.Other.EMERGENCY_LIGHTS.name] = value
+            lights[OtherLight.EMERGENCY_LIGHTS.name] = value
 
             showMessage(logger = logger,
                 body = "Emergency Lights: $value")

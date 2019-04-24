@@ -1,4 +1,4 @@
-package car.cockpit.dashboard.lights.warning.handling
+package car.cockpit.dashboard.indicators.handling
 
 import car.cockpit.engine.nanohttpClientIp
 import car.cockpit.engine.nanohttpClientPort

@@ -1,12 +1,13 @@
-package car.cockpit.dashboard.lights.warning.temperatures
+package car.cockpit.dashboard.indicators.temperatures
 
 import car.cockpit.engine.EMPTY_STRING
 import org.springframework.stereotype.Component
+import kotlin.math.max
 
-@Component("Motor Front Right Temperature Component")
-class MotorFrontRightTemperatureComponent: Temperature {
+@Component("Shift Registers Temperature Component")
+class ShiftRegistersTemperatureComponent: Temperature {
 
-    override val id = ThermometerDevice.MOTOR_FRONT_RIGHT
+    override val id = ThermometerDevice.SHIFT_REGISTERS
     override val minMediumTemp = 30
     override val maxMediumTemp = 70
 
@@ -29,6 +30,8 @@ class MotorFrontRightTemperatureComponent: Temperature {
         protected set
 
     private fun readSensor(): Int {
-        return errorTempGenerator
+        val mainLightsTemp = errorTempGenerator
+        val signalLightsTemp = errorTempGenerator
+        return max(mainLightsTemp, signalLightsTemp)
     }
 }

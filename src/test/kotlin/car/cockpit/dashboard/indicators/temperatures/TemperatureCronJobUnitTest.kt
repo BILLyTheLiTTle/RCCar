@@ -1,4 +1,4 @@
-package car.cockpit.dashboard.lights.warning.temperatures
+package car.cockpit.dashboard.indicators.temperatures
 
 import car.UNIT_TEST
 import car.cockpit.engine.Engine

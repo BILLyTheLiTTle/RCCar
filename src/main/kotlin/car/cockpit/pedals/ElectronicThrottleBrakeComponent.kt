@@ -1,6 +1,6 @@
 package car.cockpit.pedals
 
-import car.cockpit.dashboard.lights.warning.handling.cdmClientNotifier
+import car.cockpit.dashboard.indicators.handling.cdmClientNotifier
 import car.ecu.modules.cdm.Cdm
 import car.cockpit.setup.*
 import car.ecu.MODULE_IDLE_STATE

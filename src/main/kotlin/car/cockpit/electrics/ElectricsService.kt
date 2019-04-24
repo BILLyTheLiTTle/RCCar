@@ -19,19 +19,19 @@ class ElectricsService {
         showMessage(logger = logger,
             body = "Direction: $direction")
 
-        val part = ElectricPart.DirectionLight.valueOf(direction)
+        val part = DirectionLight.valueOf(direction)
 
         synchronized(this){
             when (part) {
-                ElectricPart.DirectionLight.DIRECTION_LIGHTS_STRAIGHT -> {
+                DirectionLight.DIRECTION_LIGHTS_STRAIGHT -> {
                     electricsComponent.leftTurnLightsState = false
                     electricsComponent.rightTurnLightsState = false
                 }
-                ElectricPart.DirectionLight.DIRECTION_LIGHTS_RIGHT -> {
+                DirectionLight.DIRECTION_LIGHTS_RIGHT -> {
                     //ElectricsComponent.leftTurnLightsState = false
                     electricsComponent.rightTurnLightsState = !electricsComponent.rightTurnLightsState
                 }
-                ElectricPart.DirectionLight.DIRECTION_LIGHTS_LEFT -> {
+                DirectionLight.DIRECTION_LIGHTS_LEFT -> {
                     electricsComponent.leftTurnLightsState = !electricsComponent.leftTurnLightsState
                     //ElectricsComponent.rightTurnLightsState = false
                 }
@@ -43,11 +43,11 @@ class ElectricsService {
 
     fun getDirectionLights() =
         if (!electricsComponent.leftTurnLightsState && !electricsComponent.rightTurnLightsState)
-            ElectricPart.DirectionLight.DIRECTION_LIGHTS_STRAIGHT.name
+            DirectionLight.DIRECTION_LIGHTS_STRAIGHT.name
         else if (electricsComponent.leftTurnLightsState)
-            ElectricPart.DirectionLight.DIRECTION_LIGHTS_LEFT.name
+            DirectionLight.DIRECTION_LIGHTS_LEFT.name
         else if (electricsComponent.rightTurnLightsState)
-            ElectricPart.DirectionLight.DIRECTION_LIGHTS_RIGHT.name
+            DirectionLight.DIRECTION_LIGHTS_RIGHT.name
         else
             UNKNOWN_STATE
 
@@ -57,15 +57,15 @@ class ElectricsService {
         showMessage(logger = logger,
             body = "Main Lights State Request: $value")
 
-        val part = ElectricPart.MainLight.valueOf(value)
+        val part = MainLight.valueOf(value)
         // I don't think I need synchronization
         //synchronized(this){
         when(part){
-            ElectricPart.MainLight.LIGHTS_OFF -> electricsComponent.positionLightsState = false
-            ElectricPart.MainLight.POSITION_LIGHTS -> electricsComponent.positionLightsState = true
-            ElectricPart.MainLight.DRIVING_LIGHTS -> electricsComponent.drivingLightsState = true
-            ElectricPart.MainLight.LONG_RANGE_LIGHTS -> electricsComponent.longRangeLightsState = true
-            ElectricPart.MainLight.LONG_RANGE_SIGNAL_LIGHTS -> electricsComponent.doHeadlightsSignal()
+            MainLight.LIGHTS_OFF -> electricsComponent.positionLightsState = false
+            MainLight.POSITION_LIGHTS -> electricsComponent.positionLightsState = true
+            MainLight.DRIVING_LIGHTS -> electricsComponent.drivingLightsState = true
+            MainLight.LONG_RANGE_LIGHTS -> electricsComponent.longRangeLightsState = true
+            MainLight.LONG_RANGE_SIGNAL_LIGHTS -> electricsComponent.doHeadlightsSignal()
         }
         //}
 
@@ -78,10 +78,10 @@ class ElectricsService {
             if the user has the long range beam the if clause will enter at
             position lights condition.
          */
-        if (electricsComponent.longRangeLightsState) ElectricPart.MainLight.LONG_RANGE_LIGHTS.name
-        else if (electricsComponent.drivingLightsState) ElectricPart.MainLight.DRIVING_LIGHTS.name
-        else if (electricsComponent.positionLightsState) ElectricPart.MainLight.POSITION_LIGHTS.name
-        else if (!electricsComponent.positionLightsState) ElectricPart.MainLight.LIGHTS_OFF.name
+        if (electricsComponent.longRangeLightsState) MainLight.LONG_RANGE_LIGHTS.name
+        else if (electricsComponent.drivingLightsState) MainLight.DRIVING_LIGHTS.name
+        else if (electricsComponent.positionLightsState) MainLight.POSITION_LIGHTS.name
+        else if (!electricsComponent.positionLightsState) MainLight.LIGHTS_OFF.name
         else UNKNOWN_STATE
 
     fun setReverseLightsState(state: Boolean): String {

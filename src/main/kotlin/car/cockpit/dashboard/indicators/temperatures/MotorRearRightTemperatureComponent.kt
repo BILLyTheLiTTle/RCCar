@@ -1,12 +1,12 @@
-package car.cockpit.dashboard.lights.warning.temperatures
+package car.cockpit.dashboard.indicators.temperatures
 
 import car.cockpit.engine.EMPTY_STRING
 import org.springframework.stereotype.Component
 
-@Component("Motor Rear Left Temperature Component")
-class MotorRearLeftTemperatureComponent: Temperature {
+@Component("Motor Rear Right Temperature Component")
+class MotorRearRightTemperatureComponent: Temperature {
 
-    override val id = ThermometerDevice.MOTOR_REAR_LEFT
+    override val id = ThermometerDevice.MOTOR_REAR_RIGHT
     override val minMediumTemp = 30
     override val maxMediumTemp = 70
 
