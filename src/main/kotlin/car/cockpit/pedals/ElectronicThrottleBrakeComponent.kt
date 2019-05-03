@@ -3,9 +3,8 @@ package car.cockpit.pedals
 import car.cockpit.dashboard.indicators.handling.cdmClientNotifier
 import car.ecu.modules.cdm.Cdm
 import car.cockpit.setup.*
-import car.ecu.MODULE_IDLE_STATE
-import car.ecu.MODULE_ON_STATE
-import car.ecu.modules.cdm.COLLISION_DETECTION_MODULE
+import car.ecu.Module
+import car.ecu.ModuleState
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
@@ -23,7 +22,7 @@ class ElectronicThrottleBrakeComponent(
     @Autowired
     private lateinit var cdmComponent: Cdm
 
-    private var reportedCdmState = MODULE_IDLE_STATE
+    private var reportedCdmState = ModuleState.IDLE
 
     override fun throttle(direction: String, value: Int): String {
         // check the CDM
@@ -48,9 +47,9 @@ class ElectronicThrottleBrakeComponent(
         val throttle = cdmComponent.calculateThrottleValue(direction, value)
 
         val currentCdmState = if (throttle != value) {
-                MODULE_ON_STATE
+                ModuleState.ON
             } else {
-                MODULE_IDLE_STATE
+                ModuleState.IDLE
             }
 
         when (setupComponent.handlingAssistanceState) {
@@ -59,8 +58,8 @@ class ElectronicThrottleBrakeComponent(
                 if (reportedCdmState != currentCdmState) {
                     reportedCdmState = currentCdmState
                     cdmClientNotifier(
-                        COLLISION_DETECTION_MODULE,
-                        reportedCdmState
+                        Module.COLLISION_DETECTION.name,
+                        reportedCdmState.name
                     )
                 }
             }

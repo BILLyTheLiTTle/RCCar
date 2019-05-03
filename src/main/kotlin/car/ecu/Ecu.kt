@@ -6,18 +6,23 @@ package car.ecu
 
 import car.cockpit.engine.EMPTY_STRING
 
-// Add these variables to appropriate class later
-const val TRACTION_CONTROL_MODULE = "TCM"
-const val ANTILOCK_BRAKING_MODULE = "ABM"
-const val ELECTRONIC_STABILITY_MODULE = "ESM"
-const val UNDERSTEER_DETECTION_MODULE = "UDM"
-const val OVERSTEER_DETECTION_MODULE = "ODM"
-
 const val ECU_URI = "/ecu"
 const val ECU_PARAM_KEY_ITEM = "item"
 const val ECU_PARAM_KEY_VALUE = "value"
-const val MODULE_NOTHING_STATE = EMPTY_STRING
-const val MODULE_OFF_STATE = "module_off_state"
-const val MODULE_ON_STATE = "module_on_state"
-const val MODULE_IDLE_STATE = "module_idle_state"
-const val MODULE_UNCHANGED_STATE = "module_unchanged_state"
+
+enum class ModuleState(val id: String) {
+    NOTHING(EMPTY_STRING),
+    OFF("module_off_state"),
+    ON("module_on_state"),
+    IDLE("module_idle_state"),
+    UNCHANGED("module_unchanged_state")
+}
+
+enum class Module(val id: String) {
+    TRACTION_CONTROL("TCM"),
+    ANTILOCK_BRAKING("ABM"),
+    ELECTRONIC_STABILITY("ESM"),
+    UNDERSTEER_DETECTION("UDM"),
+    OVERSTEER_DETECTION("ODM"),
+    COLLISION_DETECTION("CDM")
+}

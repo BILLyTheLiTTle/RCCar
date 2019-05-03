@@ -9,8 +9,6 @@ interface Cdm {
     fun calculateThrottleValue(direction: String, rawThrottleValue: Int): Int
 }
 
-const val COLLISION_DETECTION_MODULE = "CDM"
-
 // counted in meters
 const val HIGH_SPEED_LIMITER_THRESHOLD_DISTANCE = 0.8
 const val MEDIUM_SPEED_LIMITER_THRESHOLD_DISTANCE = 0.5

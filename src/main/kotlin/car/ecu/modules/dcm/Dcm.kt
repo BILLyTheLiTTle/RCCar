@@ -22,5 +22,3 @@ interface Dcm {
     val frontAutoDiffValues: IntArray
     val rearAutoDiffValues: IntArray
 }
-
-const val DIFFERENTIAL_CONTROL_MODULE = "DCM"
