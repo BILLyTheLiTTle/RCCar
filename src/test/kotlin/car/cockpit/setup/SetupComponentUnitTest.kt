@@ -19,8 +19,8 @@ internal class SetupComponentUnitTest(@Autowired val setupComponent: Setup) {
     fun reset() {
         setupComponent.reset()
         assertThat(setupComponent.handlingAssistanceState)
-            .isEqualTo(ASSISTANCE_NONE)
-            .isEqualTo("assistance_none")
+            .isEqualTo(ASSISTANCE_MANUAL)
+            .isEqualTo("assistance_manual")
         assertThat(setupComponent.motorSpeedLimiter)
             .isEqualTo(MOTOR_SPEED_LIMITER_FULL_SPEED)
             .isEqualTo(1.00)

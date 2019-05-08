@@ -84,10 +84,10 @@ internal class SetupControllerIntegrationTest(
     }
     @Test
     fun `get handling assistance from none`() {
-        restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_none")
+        restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_manual")
         val entity = restTemplate.getForEntity<String>("/get_handling_assistance_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(setupComponent.handlingAssistanceState).isEqualTo(ASSISTANCE_NONE)
+        assertThat(entity.body).isEqualTo(setupComponent.handlingAssistanceState).isEqualTo(ASSISTANCE_MANUAL)
     }
 
     // setMotorSpeedLimiter

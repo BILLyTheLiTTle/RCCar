@@ -171,7 +171,7 @@ internal class ThrottleBrakeControllerTest(
     // getMotionState
     @Test
     fun `should be moving forward`() {
-        restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_none")
+        restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_manual")
         restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=forward")
         val entity = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
@@ -193,7 +193,7 @@ internal class ThrottleBrakeControllerTest(
     }
     @Test
     fun `should be moving backward`() {
-        restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_none")
+        restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_manual")
         restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=backward")
         val entity = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
