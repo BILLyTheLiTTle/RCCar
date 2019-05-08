@@ -8,7 +8,7 @@ interface Setup {
     var rearDifferentialSlipperyLimiter: Int
 
     fun reset(){
-        handlingAssistanceState = ASSISTANCE_NONE
+        handlingAssistanceState = ASSISTANCE_MANUAL
         motorSpeedLimiter = MOTOR_SPEED_LIMITER_FULL_SPEED
         frontDifferentialSlipperyLimiter = DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED
         rearDifferentialSlipperyLimiter = DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED

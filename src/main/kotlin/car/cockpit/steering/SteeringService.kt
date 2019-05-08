@@ -2,7 +2,7 @@ package car.cockpit.steering
 
 import car.cockpit.engine.UNKNOWN_STATE
 import car.cockpit.pedals.ThrottleBrake
-import car.cockpit.setup.ASSISTANCE_NONE
+import car.cockpit.setup.ASSISTANCE_MANUAL
 import car.cockpit.setup.ASSISTANCE_NULL
 import car.cockpit.setup.Setup
 import car.showMessage
@@ -68,7 +68,7 @@ class SteeringService {
                 2). When the user turns to the opposite direction
              */
             when (setupComponent.handlingAssistanceState) {
-                ASSISTANCE_NONE ->
+                ASSISTANCE_MANUAL ->
                     throttleBrake.throttle(throttleBrake.motionState, throttleBrake.value)
                 ASSISTANCE_NULL ->
                     throttleBrake.parkingBrake(100)

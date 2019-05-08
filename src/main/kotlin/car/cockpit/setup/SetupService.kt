@@ -13,8 +13,8 @@ class SetupService {
 
     fun setHandlingAssistance(state: String): String {
         when (state) {
-            ASSISTANCE_NONE -> setupComponent.handlingAssistanceState =
-                    ASSISTANCE_NONE
+            ASSISTANCE_MANUAL -> setupComponent.handlingAssistanceState =
+                ASSISTANCE_MANUAL
             ASSISTANCE_WARNING -> setupComponent.handlingAssistanceState =
                     ASSISTANCE_WARNING
             ASSISTANCE_FULL -> setupComponent.handlingAssistanceState =
@@ -49,7 +49,7 @@ class SetupService {
 }
 
 const val ASSISTANCE_NULL = EMPTY_STRING
-const val ASSISTANCE_NONE = "assistance_none"
+const val ASSISTANCE_MANUAL = "assistance_manual"
 const val ASSISTANCE_WARNING = "assistance_warning"
 const val ASSISTANCE_FULL = "assistance_full"
 

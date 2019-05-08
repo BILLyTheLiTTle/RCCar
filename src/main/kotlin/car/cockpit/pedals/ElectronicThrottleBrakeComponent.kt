@@ -31,7 +31,7 @@ class ElectronicThrottleBrakeComponent(
         return when (setupComponent.handlingAssistanceState) {
             ASSISTANCE_FULL -> throttleBrake.throttle(direction, throttle)
             ASSISTANCE_WARNING,
-            ASSISTANCE_NONE -> throttleBrake.throttle(direction, value)
+            ASSISTANCE_MANUAL -> throttleBrake.throttle(direction, value)
             else -> throttleBrake.throttle(direction, value)
         }
     }
@@ -72,7 +72,7 @@ class ElectronicThrottleBrakeComponent(
             ASSISTANCE_WARNING -> {
                 value
             }
-            ASSISTANCE_NONE -> value
+            ASSISTANCE_MANUAL -> value
             else -> value
         }
 

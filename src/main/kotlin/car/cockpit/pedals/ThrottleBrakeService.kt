@@ -53,7 +53,7 @@ class ThrottleBrakeService {
             state = when (action) {
                 ACTION_MOVE_FORWARD, ACTION_MOVE_BACKWARD -> {
                     when (setupComponent.handlingAssistanceState) {
-                        ASSISTANCE_NONE ->
+                        ASSISTANCE_MANUAL ->
                             throttleBrake.throttle(action,
                                 (value * setupComponent.motorSpeedLimiter).roundToInt())
                         ASSISTANCE_NULL ->
@@ -71,7 +71,7 @@ class ThrottleBrakeService {
                     throttleBrake.brake(value)
                 ACTION_NEUTRAL -> {
                     when (setupComponent.handlingAssistanceState) {
-                        ASSISTANCE_NONE, ASSISTANCE_NULL ->
+                        ASSISTANCE_MANUAL, ASSISTANCE_NULL ->
                             throttleBrake.setNeutral()
                         else ->
                             electronicThrottleBrake.setNeutral()
