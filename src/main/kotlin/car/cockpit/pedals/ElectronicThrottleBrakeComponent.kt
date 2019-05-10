@@ -25,7 +25,7 @@ class ElectronicThrottleBrakeComponent(
     private var reportedCdmState = ModuleState.IDLE
 
     override fun throttle(direction: String, value: Int): String {
-        // check the CDM
+        // check the CDM here also because the car could be still and accidentally throttled
         val throttle = checkCdm(direction, value)
 
         return when (setupComponent.handlingAssistanceState) {
@@ -42,7 +42,7 @@ class ElectronicThrottleBrakeComponent(
     }
 
     private fun checkCdm(direction: String, value: Int): Int {
-        
+
         val throttle = cdmComponent.calculateThrottleValue(direction, value)
 
         val currentCdmState = if (throttle != value) {
