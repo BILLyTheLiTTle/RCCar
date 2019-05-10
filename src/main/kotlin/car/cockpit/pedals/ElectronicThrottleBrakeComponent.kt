@@ -42,8 +42,7 @@ class ElectronicThrottleBrakeComponent(
     }
 
     private fun checkCdm(direction: String, value: Int): Int {
-
-
+        
         val throttle = cdmComponent.calculateThrottleValue(direction, value)
 
         val currentCdmState = if (throttle != value) {
@@ -66,13 +65,9 @@ class ElectronicThrottleBrakeComponent(
         }
 
         return when (setupComponent.handlingAssistanceState) {
-            ASSISTANCE_FULL -> {
-                throttle
-            }
-            ASSISTANCE_WARNING -> {
-                value
-            }
-            ASSISTANCE_MANUAL -> value
+            ASSISTANCE_FULL -> throttle
+            //No actual need to check this condition but do it for completeness!
+            ASSISTANCE_WARNING, ASSISTANCE_MANUAL -> value
             else -> value
         }
 
