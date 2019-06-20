@@ -2,6 +2,7 @@ package car.cockpit.pedals
 
 import car.cockpit.engine.UNKNOWN_STATE
 import car.cockpit.setup.*
+import car.enumContains
 import car.showMessage
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -31,10 +32,12 @@ class ThrottleBrakeService {
 
         lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
+        val motion = if (enumContains<Motion>(action)) Motion.valueOf(action) else Motion.NOTHING
+
         showMessage(logger = logger,
-            body = "Action: $action\n" +
+            body = "Action: ${motion.name}\n" +
                     "Primitive User Value: $value\n" +
-                    if (action == ACTION_MOVE_FORWARD || action == ACTION_MOVE_BACKWARD) {
+                    if (motion == Motion.FORWARD || motion == Motion.BACKWARD) {
                         "Limited User Value: " +
                                 "${(value * setupComponent.motorSpeedLimiter).roundToInt()}\n"
                     }
@@ -50,26 +53,26 @@ class ThrottleBrakeService {
         // I don't think I need synchronization
         //synchronized(this){
         if(id == lastRequestId) {
-            state = when (action) {
-                ACTION_MOVE_FORWARD, ACTION_MOVE_BACKWARD -> {
+            state = when (motion) {
+                Motion.FORWARD, Motion.BACKWARD -> {
                     when (setupComponent.handlingAssistanceState) {
                         ASSISTANCE_MANUAL ->
-                            throttleBrake.throttle(action,
+                            throttleBrake.throttle(motion,
                                 (value * setupComponent.motorSpeedLimiter).roundToInt())
                         ASSISTANCE_NULL ->
                             throttleBrake.parkingBrake(100)
                         else ->
-                            electronicThrottleBrake.throttle(action,
+                            electronicThrottleBrake.throttle(motion,
                                 (value * setupComponent.motorSpeedLimiter).roundToInt())
                     }
                 }
-                ACTION_PARKING_BRAKE ->
+                Motion.PARKING_BRAKE ->
                     throttleBrake.parkingBrake(value)
-                ACTION_HANDBRAKE ->
+                Motion.HANDBRAKE ->
                     throttleBrake.handbrake(value)
-                ACTION_BRAKING_STILL ->
+                Motion.BRAKING_STILL ->
                     throttleBrake.brake(value)
-                ACTION_NEUTRAL -> {
+                Motion.NEUTRAL -> {
                     when (setupComponent.handlingAssistanceState) {
                         ASSISTANCE_MANUAL, ASSISTANCE_NULL ->
                             throttleBrake.setNeutral()
@@ -90,12 +93,6 @@ class ThrottleBrakeService {
 
     fun getHandbrakeState() = throttleBrake.handbrakeState
 
-    fun getMotionState() = throttleBrake.motionState
+    fun getMotionState() = throttleBrake.motionState.name
 }
 
-const val ACTION_MOVE_FORWARD = "forward"
-const val ACTION_MOVE_BACKWARD = "backward"
-const val ACTION_NEUTRAL = "neutral"
-const val ACTION_BRAKING_STILL = "braking_still"
-const val ACTION_PARKING_BRAKE = "parking_brake"
-const val ACTION_HANDBRAKE = "handbrake"

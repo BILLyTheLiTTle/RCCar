@@ -1,8 +1,6 @@
 package car.ecu.modules.cdm
 
-import car.cockpit.pedals.ACTION_MOVE_BACKWARD
-import car.cockpit.pedals.ACTION_MOVE_FORWARD
-import car.cockpit.pedals.ACTION_NEUTRAL
+import car.cockpit.pedals.Motion
 import car.cockpit.setup.ASSISTANCE_FULL
 import car.cockpit.setup.Setup
 import car.ecu.sensors.distance.UltrasonicDistanceMeter
@@ -27,12 +25,12 @@ class CdmComponent: Cdm {
         Without this function called at the beginning the calculation could
         be outdated.
      */
-    override fun calculateThrottleValue(direction: String, rawThrottleValue: Int): Int {
+    override fun calculateThrottleValue(direction: Motion, rawThrottleValue: Int): Int {
         val distance: Double =
             when (direction) {
-                ACTION_MOVE_FORWARD -> udmComponent.frontDistance
-                ACTION_MOVE_BACKWARD -> udmComponent.rearDistance
-                ACTION_NEUTRAL -> STOP_THRESHOLD_DISTANCE
+                Motion.FORWARD -> udmComponent.frontDistance
+                Motion.BACKWARD -> udmComponent.rearDistance
+                Motion.NEUTRAL -> STOP_THRESHOLD_DISTANCE
                 else -> ERROR_DISTANCE
             }
 

@@ -1,7 +1,6 @@
 package car.cockpit.pedals
 
 import car.UNIT_TEST
-import car.cockpit.engine.EMPTY_STRING
 import car.cockpit.engine.SUCCESS
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -43,19 +42,19 @@ internal class ThrottleBrakeComponentUnitTest (
     // getParkingBrakeState
     @Test
     fun `parking brake should be activated`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_PARKING_BRAKE)
+        actionMemProp?.setter?.call(throttleBrake, Motion.PARKING_BRAKE)
         valueMemProp?.setter?.call(throttleBrake, 100)
         assertThat(throttleBrake.parkingBrakeState).isTrue()
     }
     @Test
     fun `parking brake should be deactivated`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_BRAKING_STILL)
+        actionMemProp?.setter?.call(throttleBrake, Motion.BRAKING_STILL)
         valueMemProp?.setter?.call(throttleBrake, 100)
         assertThat(throttleBrake.parkingBrakeState).isFalse()
     }
     @Test
     fun `parking brake should be deactivated also`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_PARKING_BRAKE)
+        actionMemProp?.setter?.call(throttleBrake, Motion.PARKING_BRAKE)
         valueMemProp?.setter?.call(throttleBrake, 10)
         assertThat(throttleBrake.parkingBrakeState).isFalse()
     }
@@ -63,19 +62,19 @@ internal class ThrottleBrakeComponentUnitTest (
     // getHandbrakeState
     @Test
     fun `handbrake should be activated`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_HANDBRAKE)
+        actionMemProp?.setter?.call(throttleBrake, Motion.HANDBRAKE)
         valueMemProp?.setter?.call(throttleBrake, 100)
         assertThat(throttleBrake.handbrakeState).isTrue()
     }
     @Test
     fun `handbrake should be deactivated`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_BRAKING_STILL)
+        actionMemProp?.setter?.call(throttleBrake, Motion.BRAKING_STILL)
         valueMemProp?.setter?.call(throttleBrake, 100)
         assertThat(throttleBrake.handbrakeState).isFalse()
     }
     @Test
     fun `handbrake should be deactivated also`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_HANDBRAKE)
+        actionMemProp?.setter?.call(throttleBrake, Motion.HANDBRAKE)
         valueMemProp?.setter?.call(throttleBrake, 10)
         assertThat(throttleBrake.handbrakeState).isFalse()
     }
@@ -83,48 +82,48 @@ internal class ThrottleBrakeComponentUnitTest (
     // isMovingForward
     @Test
     fun `is moving forward`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_MOVE_FORWARD)
+        actionMemProp?.setter?.call(throttleBrake, Motion.FORWARD)
         assertThat(throttleBrake.isMovingForward).isTrue()
     }
     @Test
     fun `is not moving forward`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_MOVE_BACKWARD)
+        actionMemProp?.setter?.call(throttleBrake, Motion.BACKWARD)
         assertThat(throttleBrake.isMovingForward).isFalse()
     }
 
     // isMovingBackward
     @Test
     fun `is moving backward`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_MOVE_BACKWARD)
+        actionMemProp?.setter?.call(throttleBrake, Motion.BACKWARD)
         assertThat(throttleBrake.isMovingBackward).isTrue()
     }
     @Test
     fun `is not moving backward`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_MOVE_FORWARD)
+        actionMemProp?.setter?.call(throttleBrake, Motion.FORWARD)
         assertThat(throttleBrake.isMovingBackward).isFalse()
     }
 
     // isBrakingStill
     @Test
     fun `is braking still`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_BRAKING_STILL)
+        actionMemProp?.setter?.call(throttleBrake, Motion.BRAKING_STILL)
         assertThat(throttleBrake.isBrakingStill).isTrue()
     }
     @Test
     fun `is not braking still`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_MOVE_FORWARD)
+        actionMemProp?.setter?.call(throttleBrake, Motion.FORWARD)
         assertThat(throttleBrake.isBrakingStill).isFalse()
     }
 
     // isNeutral
     @Test
     fun `is neutral`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_NEUTRAL)
+        actionMemProp?.setter?.call(throttleBrake, Motion.NEUTRAL)
         assertThat(throttleBrake.isNeutral).isTrue()
     }
     @Test
     fun `is not neutral`() {
-        actionMemProp?.setter?.call(throttleBrake, ACTION_MOVE_FORWARD)
+        actionMemProp?.setter?.call(throttleBrake, Motion.FORWARD)
         assertThat(throttleBrake.isNeutral).isFalse()
     }
 
@@ -133,64 +132,56 @@ internal class ThrottleBrakeComponentUnitTest (
     fun `neutral motion state`() {
         `is neutral`()
         assertThat(throttleBrake.motionState)
-            .isEqualTo(ACTION_NEUTRAL)
-            .isEqualTo("neutral")
+            .isEqualTo(Motion.NEUTRAL)
     }
     @Test
     fun `braking still motion state`() {
         `is braking still`()
         assertThat(throttleBrake.motionState)
-            .isEqualTo(ACTION_BRAKING_STILL)
-            .isEqualTo("braking_still")
+            .isEqualTo(Motion.BRAKING_STILL)
     }
     @Test
     fun `parking brake motion state`() {
         `parking brake should be activated`()
         assertThat(throttleBrake.motionState)
-            .isEqualTo(ACTION_PARKING_BRAKE)
-            .isEqualTo("parking_brake")
+            .isEqualTo(Motion.PARKING_BRAKE)
     }
     @Test
     fun `forward motion state`() {
         `is moving forward`()
         assertThat(throttleBrake.motionState)
-            .isEqualTo(ACTION_MOVE_FORWARD)
-            .isEqualTo("forward")
+            .isEqualTo(Motion.FORWARD)
     }
     @Test
     fun `backward motion state`() {
         `is moving backward`()
         assertThat(throttleBrake.motionState)
-            .isEqualTo(ACTION_MOVE_BACKWARD)
-            .isEqualTo("backward")
+            .isEqualTo(Motion.BACKWARD)
     }
     @Test
     fun `unknown motion state`() {
         `parking brake should be deactivated also`()
         assertThat(throttleBrake.motionState)
-            .isEqualTo(EMPTY_STRING)
-            .isEqualTo("NULL")
+            .isEqualTo(Motion.NOTHING)
     }
 
     // throttle
     @Test
     fun `throttle forward`() {
-        val ret = throttleBrake.throttle(ACTION_MOVE_FORWARD, -30)
+        val ret = throttleBrake.throttle(Motion.FORWARD, -30)
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(throttleBrake.motionState)
             .isEqualTo(actionMemProp?.getter?.call(throttleBrake))
-            .isEqualTo(ACTION_MOVE_FORWARD)
-            .isEqualTo("forward")
+            .isEqualTo(Motion.FORWARD)
         assertThat(valueMemProp?.getter?.call(throttleBrake)).isEqualTo(-30)
     }
     @Test
     fun `throttle backward`() {
-        val ret = throttleBrake.throttle(ACTION_MOVE_BACKWARD, 300)
+        val ret = throttleBrake.throttle(Motion.BACKWARD, 300)
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(throttleBrake.motionState)
             .isEqualTo(actionMemProp?.getter?.call(throttleBrake))
-            .isEqualTo(ACTION_MOVE_BACKWARD)
-            .isEqualTo("backward")
+            .isEqualTo(Motion.BACKWARD)
         assertThat(valueMemProp?.getter?.call(throttleBrake)).isEqualTo(300)
     }
 
@@ -200,8 +191,7 @@ internal class ThrottleBrakeComponentUnitTest (
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(throttleBrake.motionState)
             .isEqualTo(actionMemProp?.getter?.call(throttleBrake))
-            .isEqualTo(ACTION_BRAKING_STILL)
-            .isEqualTo("braking_still")
+            .isEqualTo(Motion.BRAKING_STILL)
         assertThat(valueMemProp?.getter?.call(throttleBrake)).isEqualTo(10)
     }
 
@@ -212,8 +202,7 @@ internal class ThrottleBrakeComponentUnitTest (
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(throttleBrake.motionState)
             .isEqualTo(actionMemProp?.getter?.call(throttleBrake))
-            .isEqualTo(ACTION_PARKING_BRAKE)
-            .isEqualTo("parking_brake")
+            .isEqualTo(Motion.PARKING_BRAKE)
         assertThat(valueMemProp?.getter?.call(throttleBrake)).isEqualTo(100)
     }
     @Test
@@ -222,8 +211,7 @@ internal class ThrottleBrakeComponentUnitTest (
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(throttleBrake.motionState)
             .isEqualTo(actionMemProp?.getter?.call(throttleBrake))
-            .isEqualTo(ACTION_BRAKING_STILL)
-            .isEqualTo("braking_still")
+            .isEqualTo(Motion.BRAKING_STILL)
         assertThat(valueMemProp?.getter?.call(throttleBrake)).isEqualTo(0)
     }
 
@@ -234,8 +222,7 @@ internal class ThrottleBrakeComponentUnitTest (
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(throttleBrake.motionState)
             .isEqualTo(actionMemProp?.getter?.call(throttleBrake))
-            .isEqualTo(ACTION_HANDBRAKE)
-            .isEqualTo("handbrake")
+            .isEqualTo(Motion.HANDBRAKE)
         assertThat(valueMemProp?.getter?.call(throttleBrake)).isEqualTo(100)
     }
     @Test
@@ -244,8 +231,7 @@ internal class ThrottleBrakeComponentUnitTest (
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(throttleBrake.motionState)
             .isEqualTo(actionMemProp?.getter?.call(throttleBrake))
-            .isEqualTo(ACTION_NEUTRAL)
-            .isEqualTo("neutral")
+            .isEqualTo(Motion.NEUTRAL)
         assertThat(valueMemProp?.getter?.call(throttleBrake)).isEqualTo(0)
     }
 
@@ -255,8 +241,7 @@ internal class ThrottleBrakeComponentUnitTest (
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(throttleBrake.motionState)
             .isEqualTo(actionMemProp?.getter?.call(throttleBrake))
-            .isEqualTo(ACTION_NEUTRAL)
-            .isEqualTo("neutral")
+            .isEqualTo(Motion.NEUTRAL)
         assertThat(valueMemProp?.getter?.call(throttleBrake)).isEqualTo(0)
     }
 
@@ -265,8 +250,7 @@ internal class ThrottleBrakeComponentUnitTest (
         throttleBrake.reset()
         assertThat(throttleBrake.motionState)
             .isEqualTo(actionMemProp?.getter?.call(throttleBrake))
-            .isEqualTo(ACTION_NEUTRAL)
-            .isEqualTo("neutral")
+            .isEqualTo(Motion.NEUTRAL)
         assertThat(valueMemProp?.getter?.call(throttleBrake)).isEqualTo(0)
     }
 }

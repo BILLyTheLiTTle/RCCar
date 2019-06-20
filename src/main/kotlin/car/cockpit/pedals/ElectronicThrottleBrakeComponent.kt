@@ -24,7 +24,7 @@ class ElectronicThrottleBrakeComponent(
 
     private var reportedCdmState = ModuleState.IDLE
 
-    override fun throttle(direction: String, value: Int): String {
+    override fun throttle(direction: Motion, value: Int): String {
         // check the CDM here also because the car could be still and accidentally throttled
         val throttle = checkCdm(direction, value)
 
@@ -37,11 +37,11 @@ class ElectronicThrottleBrakeComponent(
     }
 
     override fun setNeutral(): String {
-        checkCdm(ACTION_NEUTRAL, 0)
+        checkCdm(Motion.NEUTRAL, 0)
         return throttleBrake.setNeutral()
     }
 
-    private fun checkCdm(direction: String, value: Int): Int {
+    private fun checkCdm(direction: Motion, value: Int): Int {
 
         val throttle = cdmComponent.calculateThrottleValue(direction, value)
 

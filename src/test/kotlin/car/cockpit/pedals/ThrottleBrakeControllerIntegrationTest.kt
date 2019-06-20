@@ -32,86 +32,86 @@ internal class ThrottleBrakeControllerTest(
     // setThrottleBrakeAction
     @Test
     fun `apply moving forward`() {
-        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=forward")
+        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=FORWARD")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(SUCCESS)
     }
     @Test
     fun `apply moving backward`() {
-        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=backward")
+        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=BACKWARD")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(SUCCESS)
     }
     @Test
     fun `apply parking brake`() {
-        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=parking_brake")
+        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=PARKING_BRAKE")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(SUCCESS)
     }
     @Test
     fun `apply handbrake`() {
-        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=handbrake")
+        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=HANDBRAKE")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(SUCCESS)
     }
     @Test
     fun `apply braking still`() {
-        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=braking_still")
+        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=BRAKING_STILL")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(SUCCESS)
     }
     @Test
     fun `apply neutral`() {
-        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=neutral")
+        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=NEUTRAL")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(SUCCESS)
     }
     @Test
     fun `apply throttle is successful no matter handling assistance`() {
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_none")
-        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=forward")
+        val entity = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=FORWARD")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(SUCCESS)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_warning")
-        val entity1 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=forward")
+        val entity1 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=FORWARD")
         assertThat(entity1.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity1.body).isEqualTo(SUCCESS)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_full")
-        val entity2 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=forward")
+        val entity2 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=FORWARD")
         assertThat(entity2.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity2.body).isEqualTo(SUCCESS)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=NULL")
-        val entity3 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=forward")
+        val entity3 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=FORWARD")
         assertThat(entity3.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity3.body).isEqualTo(SUCCESS)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_none")
-        val entity4 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=neutral")
+        val entity4 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=NEUTRAL")
         assertThat(entity4.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity4.body).isEqualTo(SUCCESS)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_warning")
-        val entity5 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=neutral")
+        val entity5 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=NEUTRAL")
         assertThat(entity5.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity5.body).isEqualTo(SUCCESS)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_full")
-        val entity6 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=neutral")
+        val entity6 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=NEUTRAL")
         assertThat(entity6.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity6.body).isEqualTo(SUCCESS)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=NULL")
-        val entity7 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=neutral")
+        val entity7 = restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=NEUTRAL")
         assertThat(entity7.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity7.body).isEqualTo(SUCCESS)
     }
@@ -125,21 +125,21 @@ internal class ThrottleBrakeControllerTest(
     // getParkingBrakeState
     @Test
     fun `parking brake should be on`() {
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=parking_brake&value=100")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=PARKING_BRAKE&value=100")
         val entity = restTemplate.getForEntity<String>("/get_parking_brake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.parkingBrakeState).isTrue()
     }
     @Test
     fun `parking brake should be off`() {
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=parking_brake&value=0")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=PARKING_BRAKE&value=0")
         val entity = restTemplate.getForEntity<String>("/get_parking_brake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.parkingBrakeState).isFalse()
     }
     @Test
     fun `no value means parking brake should be off`() {
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=parking_brake")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=PARKING_BRAKE")
         val entity = restTemplate.getForEntity<String>("/get_parking_brake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.parkingBrakeState).isFalse()
@@ -148,21 +148,21 @@ internal class ThrottleBrakeControllerTest(
     // getHandbrakeState
     @Test
     fun `handbrake should be on`() {
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=handbrake&value=100")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=HANDBRAKE&value=100")
         val entity = restTemplate.getForEntity<String>("/get_handbrake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.handbrakeState).isTrue()
     }
     @Test
     fun `handbrake should be off`() {
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=handbrake&value=0")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=HANDBRAKE&value=0")
         val entity = restTemplate.getForEntity<String>("/get_handbrake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.handbrakeState).isFalse()
     }
     @Test
     fun `no value means handbrake should be off`() {
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=handbrake")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=HANDBRAKE")
         val entity = restTemplate.getForEntity<String>("/get_handbrake_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body?.toBoolean()).isEqualTo(throttleBrake.handbrakeState).isFalse()
@@ -172,82 +172,82 @@ internal class ThrottleBrakeControllerTest(
     @Test
     fun `should be moving forward`() {
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_manual")
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=forward")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=FORWARD")
         val entity = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ACTION_MOVE_FORWARD).isEqualTo("forward")
+        assertThat(entity.body).isEqualTo(Motion.FORWARD.name)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_warning")
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=forward")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=FORWARD")
         val entity1 = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity1.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity1.body).isEqualTo(ACTION_MOVE_FORWARD).isEqualTo("forward")
+        assertThat(entity1.body).isEqualTo(Motion.FORWARD.name)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_full")
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=forward")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=FORWARD")
         val entity2 = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity2.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity2.body).isEqualTo(ACTION_MOVE_FORWARD).isEqualTo("forward")
+        assertThat(entity2.body).isEqualTo(Motion.FORWARD.name)
     }
     @Test
     fun `should be moving backward`() {
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_manual")
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=backward")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=BACKWARD")
         val entity = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ACTION_MOVE_BACKWARD).isEqualTo("backward")
+        assertThat(entity.body).isEqualTo(Motion.BACKWARD.name)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_warning")
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=backward")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=BACKWARD")
         val entity1 = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity1.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity1.body).isEqualTo(ACTION_MOVE_BACKWARD).isEqualTo("backward")
+        assertThat(entity1.body).isEqualTo(Motion.BACKWARD.name)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=assistance_full")
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=backward")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=BACKWARD")
         val entity2 = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity2.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity2.body).isEqualTo(ACTION_MOVE_BACKWARD).isEqualTo("backward")
+        assertThat(entity2.body).isEqualTo(Motion.BACKWARD.name)
     }
     @Test
     fun `should be parking brake with null handling assistance`(){
         restTemplate.getForEntity<String>("/set_handling_assistance?state=NULL")
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=forward")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=FORWARD")
         val entity = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ACTION_PARKING_BRAKE).isEqualTo("parking_brake")
+        assertThat(entity.body).isEqualTo(Motion.PARKING_BRAKE.name)
 
         id++
         restTemplate.getForEntity<String>("/set_handling_assistance?state=NULL")
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=backward")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=BACKWARD")
         val entity2 = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity2.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity2.body).isEqualTo(ACTION_PARKING_BRAKE).isEqualTo("parking_brake")
+        assertThat(entity2.body).isEqualTo(Motion.PARKING_BRAKE.name)
     }
     @Test
     fun `should be neutral`() {
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=neutral")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=NEUTRAL")
         val entity = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ACTION_NEUTRAL).isEqualTo("neutral")
+        assertThat(entity.body).isEqualTo(Motion.NEUTRAL.name)
     }
     @Test
     fun `should be braking still`() {
-        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=braking_still")
+        restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=BRAKING_STILL")
         val entity = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ACTION_BRAKING_STILL).isEqualTo("braking_still")
+        assertThat(entity.body).isEqualTo(Motion.BRAKING_STILL.name)
     }
     @Test
     fun `should be empty`() {
         restTemplate.getForEntity<String>("/set_throttle_brake_system?id=$id&action=oops")
         val entity = restTemplate.getForEntity<String>("/get_motion_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(ACTION_NEUTRAL).isEqualTo("neutral")
+        assertThat(entity.body).isEqualTo(Motion.NEUTRAL.name)
     }
 }
 

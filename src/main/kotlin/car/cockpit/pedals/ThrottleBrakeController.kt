@@ -13,7 +13,7 @@ class ThrottleBrakeController{
 
     @GetMapping("/set_throttle_brake_system")
     fun setThrottleBrakeAction(@RequestParam(value = "id", defaultValue = "-1") id: Long,
-                               @RequestParam(value = "action", defaultValue = ACTION_NEUTRAL)
+                               @RequestParam(value = "action", defaultValue = Motion.DEFAULT)
                                action: String,
                                @RequestParam(value = "value", defaultValue =  "0") value: Int): String =
         service.setThrottleBrakeAction(id, action, value)

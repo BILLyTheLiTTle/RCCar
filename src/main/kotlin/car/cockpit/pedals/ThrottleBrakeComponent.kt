@@ -1,7 +1,6 @@
 package car.cockpit.pedals
 
 import car.cockpit.electrics.Electrics
-import car.cockpit.engine.EMPTY_STRING
 import car.cockpit.engine.Engine
 import car.cockpit.engine.SUCCESS
 import car.cockpit.setup.*
@@ -36,36 +35,36 @@ class ThrottleBrakeComponent: ThrottleBrake {
 
     private val logger = LoggerFactory.getLogger(ThrottleBrakeComponent::class.java)
 
-    private var action = ACTION_NEUTRAL
+    private var action = Motion.NEUTRAL
     override var value = 0
         protected set
         /*private set -
             achieved by using val in the interface and use the interface instead of this class at the outside*/
 
     override val parkingBrakeState
-        get() = action == ACTION_PARKING_BRAKE && value == 100
+        get() = action == Motion.PARKING_BRAKE && value == 100
     override val handbrakeState
-        get() = action == ACTION_HANDBRAKE && value == 100
+        get() = action == Motion.HANDBRAKE && value == 100
     override val isMovingForward
-        get() = action == ACTION_MOVE_FORWARD
+        get() = action == Motion.FORWARD
     override val isMovingBackward
-        get() = action == ACTION_MOVE_BACKWARD
+        get() = action == Motion.BACKWARD
     override val isBrakingStill
-        get() = action == ACTION_BRAKING_STILL
+        get() = action == Motion.BRAKING_STILL
     override val isNeutral
-        get() = action == ACTION_NEUTRAL
-    override val motionState
+        get() = action == Motion.NEUTRAL
+    override val motionState:Motion
         get() = when {
-            isNeutral -> ACTION_NEUTRAL
-            isBrakingStill -> ACTION_BRAKING_STILL
-            isMovingForward -> ACTION_MOVE_FORWARD
-            isMovingBackward -> ACTION_MOVE_BACKWARD
-            handbrakeState -> ACTION_HANDBRAKE
-            parkingBrakeState -> ACTION_PARKING_BRAKE
-            else -> EMPTY_STRING
+            isNeutral -> Motion.NEUTRAL
+            isBrakingStill -> Motion.BRAKING_STILL
+            isMovingForward -> Motion.FORWARD
+            isMovingBackward -> Motion.BACKWARD
+            handbrakeState -> Motion.HANDBRAKE
+            parkingBrakeState -> Motion.PARKING_BRAKE
+            else -> Motion.NOTHING
         }
 
-    override fun throttle(direction: String, value: Int): String {
+    override fun throttle(direction: Motion, value: Int): String {
         // turn on/off the braking lights
         if (this.value > value)
             CoroutineScope(Dispatchers.Default).launch {
@@ -89,7 +88,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
             showDifferentialInfo(value)
         //////
 
-        if(direction == ACTION_MOVE_FORWARD){
+        if(direction == Motion.FORWARD){
             //////
             // Pi related
             if (engineComponent.runOnPi) {
@@ -97,7 +96,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
                     motorRearRightDigital = true, motorRearLeftDigital = true)
             }
         }
-        else if (direction == ACTION_MOVE_BACKWARD){
+        else if (direction == Motion.BACKWARD){
             //////
             // Pi related
             if (engineComponent.runOnPi) {
@@ -126,7 +125,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
         }
         //////
 
-        action = ACTION_BRAKING_STILL
+        action = Motion.BRAKING_STILL
         this.value = value
         return SUCCESS // or error message from pins
     }
@@ -154,12 +153,12 @@ class ThrottleBrakeComponent: ThrottleBrake {
             when the user deactivates parking brake from ImageView
          */
         action = if (value == 100) {
-            ACTION_PARKING_BRAKE
+            Motion.PARKING_BRAKE
         }
         else
         {
             brake(100)
-            ACTION_BRAKING_STILL
+            Motion.BRAKING_STILL
         }
         this.value = value
 
@@ -180,7 +179,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
         //////
 
         action = if (value == 100) {
-            ACTION_HANDBRAKE
+            Motion.HANDBRAKE
         }
         else {
             /* TODO or NOTTODO: Uncomment the below when neutral state will work as it should
@@ -188,7 +187,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
                 deactivated throttles according to the current throttle slider progress value.
              */
             // setNeutral()
-            ACTION_NEUTRAL
+            Motion.NEUTRAL
         }
         this.value = value
 
@@ -210,13 +209,13 @@ class ThrottleBrakeComponent: ThrottleBrake {
         }
         //////
 
-        action = ACTION_NEUTRAL
+        action = Motion.NEUTRAL
         value = 0
         return SUCCESS // or error message from pins
     }
 
     override fun reset() {
-        action = ACTION_NEUTRAL
+        action = Motion.NEUTRAL
         value = 0
     }
 
