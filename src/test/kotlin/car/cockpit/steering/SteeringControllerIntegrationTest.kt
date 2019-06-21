@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
-import org.springframework.context.annotation.Profile
 import org.springframework.http.HttpStatus
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
@@ -79,21 +78,21 @@ internal class SteeringControllerTest(
         restTemplate.getForEntity<String>("/set_steering_system?id=$id")
         val entity = restTemplate.getForEntity<String>("/get_steering_direction")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(steeringComponent.direction).isEqualTo(ACTION_STRAIGHT)
+        assertThat(entity.body).isEqualTo(steeringComponent.direction.name).isEqualTo(Turn.STRAIGHT.name)
     }
     @Test
     fun `steering direction should be left`() {
-        restTemplate.getForEntity<String>("/set_steering_system?id=$id&direction=left")
+        restTemplate.getForEntity<String>("/set_steering_system?id=$id&direction=LEFT")
         val entity = restTemplate.getForEntity<String>("/get_steering_direction")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(steeringComponent.direction).isEqualTo(ACTION_TURN_LEFT)
+        assertThat(entity.body).isEqualTo(steeringComponent.direction.name).isEqualTo(Turn.LEFT.name)
     }
     @Test
     fun `steering direction should be right`() {
-        restTemplate.getForEntity<String>("/set_steering_system?id=$id&direction=right")
+        restTemplate.getForEntity<String>("/set_steering_system?id=$id&direction=RIGHT")
         val entity = restTemplate.getForEntity<String>("/get_steering_direction")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(steeringComponent.direction).isEqualTo(ACTION_TURN_RIGHT)
+        assertThat(entity.body).isEqualTo(steeringComponent.direction.name).isEqualTo(Turn.RIGHT.name)
     }
 }
 

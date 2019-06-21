@@ -5,6 +5,7 @@ import car.cockpit.pedals.ThrottleBrake
 import car.cockpit.setup.ASSISTANCE_MANUAL
 import car.cockpit.setup.ASSISTANCE_NULL
 import car.cockpit.setup.Setup
+import car.enumContains
 import car.showMessage
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -36,8 +37,10 @@ class SteeringService {
 
         lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
+        val turn = if (enumContains<Turn>(direction)) Turn.valueOf(direction) else Turn.NOTHING
+
         showMessage(logger = logger,
-            body = "Direction: $direction\n" +
+            body = "Direction: $turn\n" +
                     "Value: $value\n" +
                     "ID request: $id\n" +
                     "ID last request: $lastRequestId")
@@ -47,16 +50,16 @@ class SteeringService {
         // I don't think I need synchronization
         //synchronized(this){
         if(id == lastRequestId) {
-            state = when (direction) {
-                ACTION_TURN_LEFT ->
+            state = when (turn) {
+                Turn.LEFT ->
                     //TODO turn left with value
-                    steeringComponent.turn(ACTION_TURN_LEFT, value)
-                ACTION_TURN_RIGHT ->
+                    steeringComponent.turn(Turn.LEFT, value)
+                Turn.RIGHT ->
                     //TODO turn right with value
-                    steeringComponent.turn(ACTION_TURN_RIGHT, value)
-                ACTION_STRAIGHT ->
+                    steeringComponent.turn(Turn.RIGHT, value)
+                Turn.STRAIGHT ->
                     //TODO go straight with no value
-                    steeringComponent.turn(ACTION_STRAIGHT)
+                    steeringComponent.turn(Turn.STRAIGHT)
                 else ->
                     "${this::class.simpleName} ERROR: Entered in else condition"
             }
@@ -81,12 +84,8 @@ class SteeringService {
         return state
     }
 
-    fun getSteeringDirection() = steeringComponent.direction
+    fun getSteeringDirection() = steeringComponent.direction.name
 }
-
-const val ACTION_TURN_RIGHT = "right"
-const val ACTION_TURN_LEFT = "left"
-const val ACTION_STRAIGHT = "straight"
 
 const val STEERING_VALUE_00 = 0
 const val STEERING_VALUE_20 = 20

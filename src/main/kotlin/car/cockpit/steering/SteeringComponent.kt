@@ -18,7 +18,7 @@ class SteeringComponent: Steering {
     private val innerFrontDegreesTheta = doubleArrayOf(22.0, 45.0, 52.0, 60.0, 66.0)
     private val outerFrontDegreesPhi = doubleArrayOf(19.9, 37.9, 41.7, 49.2, 47.8)
 
-    override var direction = ACTION_STRAIGHT
+    override var direction = Turn.STRAIGHT
         protected set
         /*private set -
             achieved by using val in the interface and use the interface instead of this class at the outside*/
@@ -27,7 +27,7 @@ class SteeringComponent: Steering {
         /*private set -
             achieved by using val in the interface and use the interface instead of this class at the outside*/
 
-    override fun turn(direction: String, value: Int): String {
+    override fun turn(direction: Turn, value: Int): String {
 
         // Inform DCM of the ECU
         when (value) {
@@ -58,24 +58,24 @@ class SteeringComponent: Steering {
         }
 
         this.direction = when (direction) {
-            ACTION_TURN_RIGHT ->
+            Turn.RIGHT ->
                 // TODO prepare pins for turning right
 
-                 ACTION_TURN_RIGHT
-            ACTION_TURN_LEFT ->
+                 Turn.RIGHT
+            Turn.LEFT ->
                 // TODO prepare pins for turning left
 
-                ACTION_TURN_LEFT
+                Turn.LEFT
             else  -> {
                 // TODO prepare pins for turning straight
 
                 // turn off the turn lights
-                if (this.direction != ACTION_STRAIGHT) {
+                if (this.direction != Turn.STRAIGHT) {
                     electricsComponent.rightTurnLightsState = false
                     electricsComponent.leftTurnLightsState = false
                 }
 
-                ACTION_STRAIGHT
+                Turn.STRAIGHT
             }
         }
 
@@ -86,7 +86,7 @@ class SteeringComponent: Steering {
     }
 
     override fun reset() {
-        direction = ACTION_STRAIGHT
+        direction = Turn.STRAIGHT
         value = STEERING_VALUE_00
     }
 }

@@ -21,13 +21,12 @@ internal class SteeringComponentUnitTest(
     @Test
     fun `turn right`() {
         val ret = steeringComponent.turn(
-            ACTION_TURN_RIGHT,
+            Turn.RIGHT,
             STEERING_VALUE_40)
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(steeringComponent.direction)
             .isEqualTo(steeringComponent::direction.get())
-            .isEqualTo(ACTION_TURN_RIGHT)
-            .isEqualTo("right")
+            .isEqualTo(Turn.RIGHT)
         assertThat(steeringComponent::value.get())
             .isEqualTo(STEERING_VALUE_40)
             .isEqualTo(40)
@@ -35,25 +34,23 @@ internal class SteeringComponentUnitTest(
     @Test
     fun `turn left`() {
         val ret = steeringComponent.turn(
-            ACTION_TURN_LEFT,
+            Turn.LEFT,
             STEERING_VALUE_60)
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(steeringComponent.direction)
             .isEqualTo(steeringComponent::direction.get())
-            .isEqualTo(ACTION_TURN_LEFT)
-            .isEqualTo("left")
+            .isEqualTo(Turn.LEFT)
         assertThat(steeringComponent::value.get())
             .isEqualTo(STEERING_VALUE_60)
             .isEqualTo(60)
     }
     @Test
     fun `turn straight`() {
-        val ret = steeringComponent.turn(ACTION_STRAIGHT)
+        val ret = steeringComponent.turn(Turn.STRAIGHT)
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(steeringComponent.direction)
             .isEqualTo(steeringComponent::direction.get())
-            .isEqualTo(ACTION_STRAIGHT)
-            .isEqualTo("straight")
+            .isEqualTo(Turn.STRAIGHT)
         assertThat(steeringComponent::value.get())
             .isEqualTo(STEERING_VALUE_00)
             .isEqualTo(0)
@@ -65,8 +62,7 @@ internal class SteeringComponentUnitTest(
         steeringComponent.reset()
         assertThat(steeringComponent.direction)
             .isEqualTo(steeringComponent::direction.get())
-            .isEqualTo(ACTION_STRAIGHT)
-            .isEqualTo("straight")
+            .isEqualTo(Turn.STRAIGHT)
         assertThat(steeringComponent::value.get())
             .isEqualTo(STEERING_VALUE_00)
             .isEqualTo(0)

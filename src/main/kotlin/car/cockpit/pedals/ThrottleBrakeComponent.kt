@@ -4,9 +4,8 @@ import car.cockpit.electrics.Electrics
 import car.cockpit.engine.Engine
 import car.cockpit.engine.SUCCESS
 import car.cockpit.setup.*
-import car.cockpit.steering.ACTION_TURN_LEFT
-import car.cockpit.steering.ACTION_TURN_RIGHT
 import car.cockpit.steering.Steering
+import car.cockpit.steering.Turn
 import car.ecu.modules.dcm.Dcm
 import car.showMessage
 import kotlinx.coroutines.CoroutineScope
@@ -236,7 +235,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
 
     private fun calculateDifferentialValues(userThrottleValue: Int) {
         when (steeringComponent.direction) {
-            ACTION_TURN_LEFT -> {
+            Turn.LEFT -> {
                 when (setupComponent.frontDifferentialSlipperyLimiter) {
                     DIFFERENTIAL_SLIPPERY_LIMITER_OPEN -> {
                         applyPinValues(motorFrontLeftPwm = dcmComponent.frontOpenDiffValues[0],
@@ -306,7 +305,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
                         "Outer (Right) Rear Wheel Speed: ${engineComponent.motorRearRightPwmPin}"
                 )
             }
-            ACTION_TURN_RIGHT -> {
+            Turn.RIGHT -> {
                 when (setupComponent.frontDifferentialSlipperyLimiter) {
                     DIFFERENTIAL_SLIPPERY_LIMITER_OPEN -> {
                         applyPinValues(motorFrontRightPwm = dcmComponent.frontOpenDiffValues[0],
@@ -398,118 +397,118 @@ class ThrottleBrakeComponent: ThrottleBrake {
             body = "User Throttle Value: $userThrottleValue\n" +
                 "User Steering Value: ${steeringComponent.value}\n" +
         when (steeringComponent.direction) {
-                ACTION_TURN_LEFT -> {
-                    when (setupComponent.frontDifferentialSlipperyLimiter) {
-                        DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
-                            "Front Differential is \"OPEN\"\n" +
-                                    "Inner (Left) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[0]}\n" +
-                                    "Outer (Right) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[1]}\n"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
-                            "Front Differential is \"MEDI 0\"\n" +
-                                    "Inner (Left) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[0]}\n" +
-                                    "Outer (Right) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[1]}\n"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
-                            "Front Differential is \"MEDI 1\"\n" +
-                                    "Inner (Left) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[0]}\n" +
-                                    "Outer (Right) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[1]}\n"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
-                            "Front Differential is \"MEDI 2\"\n" +
-                                    "Inner (Left) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[0]}\n" +
-                                    "Outer (Right) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[1]}\n"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
-                            "Front Differential is \"LOCKED\"\n" +
-                                    "Inner (Left) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[0]}\n" +
-                                    "Outer (Right) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[1]}\n"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
-                            "Front Differential is \"AUTO\"\n" +
-                                    "Inner (Left) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[0]}\n" +
-                                    "Outer (Right) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[1]}\n"
-                        else -> "ERROR in Front differential for Left turn\n"
-                    } +
-                    when (setupComponent.rearDifferentialSlipperyLimiter) {
-                        DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
-                            "Rear Differential is \"OPEN\"\n" +
-                                    "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[0]}\n" +
-                                    "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[1]}"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
-                            "Rear Differential is \"MEDI 0\"\n" +
-                                    "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[0]}\n" +
-                                    "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[1]}"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
-                            "Rear Differential is \"MEDI 1\"\n" +
-                                    "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[0]}\n" +
-                                    "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[1]}"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
-                            "Rear Differential is \"MEDI 2\"\n" +
-                                    "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[0]}\n" +
-                                    "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[1]}"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
-                            "Rear Differential is \"LOCKED\"\n" +
-                                    "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[0]}\n" +
-                                    "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[1]}"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
-                            "Rear Differential is \"AUTO\"\n" +
-                                    "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[0]}\n" +
-                                    "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[1]}"
-                        else -> "ERROR in Rear differential for Left turn"
-                    }
+            Turn.LEFT -> {
+                when (setupComponent.frontDifferentialSlipperyLimiter) {
+                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                        "Front Differential is \"OPEN\"\n" +
+                                "Inner (Left) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[0]}\n" +
+                                "Outer (Right) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[1]}\n"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                        "Front Differential is \"MEDI 0\"\n" +
+                                "Inner (Left) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[0]}\n" +
+                                "Outer (Right) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[1]}\n"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                        "Front Differential is \"MEDI 1\"\n" +
+                                "Inner (Left) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[0]}\n" +
+                                "Outer (Right) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[1]}\n"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                        "Front Differential is \"MEDI 2\"\n" +
+                                "Inner (Left) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[0]}\n" +
+                                "Outer (Right) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[1]}\n"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                        "Front Differential is \"LOCKED\"\n" +
+                                "Inner (Left) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[0]}\n" +
+                                "Outer (Right) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[1]}\n"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
+                        "Front Differential is \"AUTO\"\n" +
+                                "Inner (Left) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[0]}\n" +
+                                "Outer (Right) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[1]}\n"
+                    else -> "ERROR in Front differential for Left turn\n"
+                } +
+                when (setupComponent.rearDifferentialSlipperyLimiter) {
+                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                        "Rear Differential is \"OPEN\"\n" +
+                                "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[0]}\n" +
+                                "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[1]}"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                        "Rear Differential is \"MEDI 0\"\n" +
+                                "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[0]}\n" +
+                                "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[1]}"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                        "Rear Differential is \"MEDI 1\"\n" +
+                                "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[0]}\n" +
+                                "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[1]}"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                        "Rear Differential is \"MEDI 2\"\n" +
+                                "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[0]}\n" +
+                                "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[1]}"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                        "Rear Differential is \"LOCKED\"\n" +
+                                "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[0]}\n" +
+                                "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[1]}"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
+                        "Rear Differential is \"AUTO\"\n" +
+                                "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[0]}\n" +
+                                "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[1]}"
+                    else -> "ERROR in Rear differential for Left turn"
                 }
-                ACTION_TURN_RIGHT -> {
-                    when (setupComponent.frontDifferentialSlipperyLimiter) {
-                        DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
-                            "Front Differential is \"OPEN\"\n" +
-                                    "Inner (Right) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[0]}\n" +
-                                    "Outer (Left) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[1]}\n"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
-                            "Front Differential is \"MEDI 0\"\n" +
-                                    "Inner (Right) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[0]}\n" +
-                                    "Outer (Left) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[1]}\n"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
-                            "Front Differential is \"MEDI 1\"\n" +
-                                    "Inner (Right) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[0]}\n" +
-                                    "Outer (Left) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[1]}\n"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
-                            "Front Differential is \"MEDI 2\"\n" +
-                                    "Inner (Right) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[0]}\n" +
-                                    "Outer (Left) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[1]}\n"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
-                            "Front Differential is \"LOCKED\"\n" +
-                                    "Inner (Right) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[0]}\n" +
-                                    "Outer (Left) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[1]}\n"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
-                            "Front Differential is \"AUTO\"\n" +
-                                    "Inner (Right) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[0]}\n" +
-                                    "Outer (Left) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[1]}\n"
-                        else -> "ERROR in Front differential (${setupComponent.frontDifferentialSlipperyLimiter}) for Right turn\n"
-                    } +
-                    when (setupComponent.rearDifferentialSlipperyLimiter) {
-                        DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
-                            "Rear Differential is \"OPEN\"\n" +
-                                    "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[0]}\n" +
-                                    "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[1]}"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
-                            "Rear Differential is \"MEDI 0\"\n" +
-                                    "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[0]}\n" +
-                                    "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[1]}"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
-                            "Rear Differential is \"MEDI 1\"\n" +
-                                    "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[0]}\n" +
-                                    "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[1]}"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
-                            "Rear Differential is \"MEDI 2\"\n" +
-                                    "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[0]}\n" +
-                                    "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[1]}"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
-                            "Rear Differential is \"LOCKED\"\n" +
-                                    "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[0]}\n" +
-                                    "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[1]}"
-                        DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
-                            "Rear Differential is \"AUTO\"\n" +
-                                    "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[0]}\n" +
-                                    "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[1]}"
-                        else -> "ERROR in Rear differential (${setupComponent.rearDifferentialSlipperyLimiter}) for Right turn"
-                    }
+            }
+            Turn.RIGHT -> {
+                when (setupComponent.frontDifferentialSlipperyLimiter) {
+                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                        "Front Differential is \"OPEN\"\n" +
+                                "Inner (Right) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[0]}\n" +
+                                "Outer (Left) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[1]}\n"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                        "Front Differential is \"MEDI 0\"\n" +
+                                "Inner (Right) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[0]}\n" +
+                                "Outer (Left) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[1]}\n"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                        "Front Differential is \"MEDI 1\"\n" +
+                                "Inner (Right) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[0]}\n" +
+                                "Outer (Left) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[1]}\n"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                        "Front Differential is \"MEDI 2\"\n" +
+                                "Inner (Right) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[0]}\n" +
+                                "Outer (Left) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[1]}\n"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                        "Front Differential is \"LOCKED\"\n" +
+                                "Inner (Right) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[0]}\n" +
+                                "Outer (Left) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[1]}\n"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
+                        "Front Differential is \"AUTO\"\n" +
+                                "Inner (Right) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[0]}\n" +
+                                "Outer (Left) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[1]}\n"
+                    else -> "ERROR in Front differential (${setupComponent.frontDifferentialSlipperyLimiter}) for Right turn\n"
+                } +
+                when (setupComponent.rearDifferentialSlipperyLimiter) {
+                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                        "Rear Differential is \"OPEN\"\n" +
+                                "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[0]}\n" +
+                                "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[1]}"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                        "Rear Differential is \"MEDI 0\"\n" +
+                                "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[0]}\n" +
+                                "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[1]}"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                        "Rear Differential is \"MEDI 1\"\n" +
+                                "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[0]}\n" +
+                                "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[1]}"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                        "Rear Differential is \"MEDI 2\"\n" +
+                                "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[0]}\n" +
+                                "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[1]}"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                        "Rear Differential is \"LOCKED\"\n" +
+                                "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[0]}\n" +
+                                "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[1]}"
+                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
+                        "Rear Differential is \"AUTO\"\n" +
+                                "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[0]}\n" +
+                                "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[1]}"
+                    else -> "ERROR in Rear differential (${setupComponent.rearDifferentialSlipperyLimiter}) for Right turn"
                 }
+            }
             else -> "Steering value: ${steeringComponent.value}\n"
         })
     }
