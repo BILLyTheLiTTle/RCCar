@@ -15,47 +15,20 @@ class SteeringComponent: Steering {
     @Autowired
     private lateinit var electricsComponent: Electrics
 
-    private val innerFrontDegreesTheta = doubleArrayOf(22.0, 45.0, 52.0, 60.0, 66.0)
-    private val outerFrontDegreesPhi = doubleArrayOf(19.9, 37.9, 41.7, 49.2, 47.8)
-
     override var direction = Turn.STRAIGHT
         protected set
         /*private set -
             achieved by using val in the interface and use the interface instead of this class at the outside*/
-    override var value = STEERING_VALUE_00
+    override var value = SteeringValues.VALUE_00
             protected set
         /*private set -
             achieved by using val in the interface and use the interface instead of this class at the outside*/
 
-    override fun turn(direction: Turn, value: Int): String {
+    override fun turn(direction: Turn, value: SteeringValues): String {
 
         // Inform DCM of the ECU
-        when (value) {
-            STEERING_VALUE_20 -> {
-                dcmComponent.phi = outerFrontDegreesPhi[0]
-                dcmComponent.theta = innerFrontDegreesTheta[0]
-            }
-            STEERING_VALUE_40 -> {
-                dcmComponent.phi = outerFrontDegreesPhi[1]
-                dcmComponent.theta = innerFrontDegreesTheta[1]
-            }
-            STEERING_VALUE_60 -> {
-                dcmComponent.phi = outerFrontDegreesPhi[2]
-                dcmComponent.theta = innerFrontDegreesTheta[2]
-            }
-            STEERING_VALUE_80 -> {
-                dcmComponent.phi = outerFrontDegreesPhi[3]
-                dcmComponent.theta = innerFrontDegreesTheta[3]
-            }
-            STEERING_VALUE_100 -> {
-                dcmComponent.phi = outerFrontDegreesPhi[4]
-                dcmComponent.theta = innerFrontDegreesTheta[4]
-            }
-            else -> {
-                dcmComponent.phi = 0.00
-                dcmComponent.theta = 0.00
-            }
-        }
+        dcmComponent.phi = value.anglePhi
+        dcmComponent.theta = value.angleTheta
 
         this.direction = when (direction) {
             Turn.RIGHT ->
@@ -87,6 +60,6 @@ class SteeringComponent: Steering {
 
     override fun reset() {
         direction = Turn.STRAIGHT
-        value = STEERING_VALUE_00
+        value = SteeringValues.VALUE_00
     }
 }

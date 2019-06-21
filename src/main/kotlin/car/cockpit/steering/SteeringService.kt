@@ -33,15 +33,16 @@ class SteeringService {
 
     var lastRequestId = -1L
 
-    fun setSteeringAction(id: Long, direction: String, value: Int): String {
+    fun setSteeringAction(id: Long, direction: String, value: String): String {
 
         lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
         val turn = if (enumContains<Turn>(direction)) Turn.valueOf(direction) else Turn.NOTHING
+        val angle = if (enumContains<SteeringValues>(value)) SteeringValues.valueOf(value) else SteeringValues.NOTHING
 
         showMessage(logger = logger,
             body = "Direction: $turn\n" +
-                    "Value: $value\n" +
+                    "Value: $angle\n" +
                     "ID request: $id\n" +
                     "ID last request: $lastRequestId")
 
@@ -53,10 +54,10 @@ class SteeringService {
             state = when (turn) {
                 Turn.LEFT ->
                     //TODO turn left with value
-                    steeringComponent.turn(Turn.LEFT, value)
+                    steeringComponent.turn(Turn.LEFT, angle)
                 Turn.RIGHT ->
                     //TODO turn right with value
-                    steeringComponent.turn(Turn.RIGHT, value)
+                    steeringComponent.turn(Turn.RIGHT, angle)
                 Turn.STRAIGHT ->
                     //TODO go straight with no value
                     steeringComponent.turn(Turn.STRAIGHT)
@@ -87,9 +88,3 @@ class SteeringService {
     fun getSteeringDirection() = steeringComponent.direction.name
 }
 
-const val STEERING_VALUE_00 = 0
-const val STEERING_VALUE_20 = 20
-const val STEERING_VALUE_40 = 40
-const val STEERING_VALUE_60 = 60
-const val STEERING_VALUE_80 = 80
-const val STEERING_VALUE_100 = 100

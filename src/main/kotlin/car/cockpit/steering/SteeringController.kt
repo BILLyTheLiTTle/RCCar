@@ -15,7 +15,7 @@ class SteeringController{
     fun setSteeringAction(
         @RequestParam(value = "id", defaultValue = "-1") id: Long,
         @RequestParam(value = "direction", defaultValue = Turn.DEFAULT) direction: String,
-        @RequestParam(value = "value", defaultValue =  "$STEERING_VALUE_00") value: Int
+        @RequestParam(value = "value", defaultValue = SteeringValues.DEFAULT) value: String
     ) = service.setSteeringAction(id, direction, value)
 
     @GetMapping("/get_steering_direction")

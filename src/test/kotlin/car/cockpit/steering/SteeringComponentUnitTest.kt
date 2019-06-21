@@ -22,27 +22,25 @@ internal class SteeringComponentUnitTest(
     fun `turn right`() {
         val ret = steeringComponent.turn(
             Turn.RIGHT,
-            STEERING_VALUE_40)
+            SteeringValues.VALUE_40)
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(steeringComponent.direction)
             .isEqualTo(steeringComponent::direction.get())
             .isEqualTo(Turn.RIGHT)
         assertThat(steeringComponent::value.get())
-            .isEqualTo(STEERING_VALUE_40)
-            .isEqualTo(40)
+            .isEqualTo(SteeringValues.VALUE_40)
     }
     @Test
     fun `turn left`() {
         val ret = steeringComponent.turn(
             Turn.LEFT,
-            STEERING_VALUE_60)
+            SteeringValues.VALUE_60)
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(steeringComponent.direction)
             .isEqualTo(steeringComponent::direction.get())
             .isEqualTo(Turn.LEFT)
         assertThat(steeringComponent::value.get())
-            .isEqualTo(STEERING_VALUE_60)
-            .isEqualTo(60)
+            .isEqualTo(SteeringValues.VALUE_60)
     }
     @Test
     fun `turn straight`() {
@@ -52,8 +50,7 @@ internal class SteeringComponentUnitTest(
             .isEqualTo(steeringComponent::direction.get())
             .isEqualTo(Turn.STRAIGHT)
         assertThat(steeringComponent::value.get())
-            .isEqualTo(STEERING_VALUE_00)
-            .isEqualTo(0)
+            .isEqualTo(SteeringValues.VALUE_00)
     }
 
 
@@ -64,7 +61,6 @@ internal class SteeringComponentUnitTest(
             .isEqualTo(steeringComponent::direction.get())
             .isEqualTo(Turn.STRAIGHT)
         assertThat(steeringComponent::value.get())
-            .isEqualTo(STEERING_VALUE_00)
-            .isEqualTo(0)
+            .isEqualTo(SteeringValues.VALUE_00)
     }
 }
