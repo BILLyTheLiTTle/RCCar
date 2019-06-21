@@ -38,7 +38,7 @@ class SteeringService {
         lastRequestId = if(id > lastRequestId) id else return "Wrong Request ID: $id"
 
         val turn = if (enumContains<Turn>(direction)) Turn.valueOf(direction) else Turn.NOTHING
-        val angle = if (enumContains<SteeringValues>(value)) SteeringValues.valueOf(value) else SteeringValues.NOTHING
+        val angle = if (enumContains<SteeringValue>(value)) SteeringValue.valueOf(value) else SteeringValue.NOTHING
 
         showMessage(logger = logger,
             body = "Direction: $turn\n" +

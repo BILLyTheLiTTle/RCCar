@@ -19,12 +19,12 @@ class SteeringComponent: Steering {
         protected set
         /*private set -
             achieved by using val in the interface and use the interface instead of this class at the outside*/
-    override var value = SteeringValues.VALUE_00
+    override var value = SteeringValue.VALUE_00
             protected set
         /*private set -
             achieved by using val in the interface and use the interface instead of this class at the outside*/
 
-    override fun turn(direction: Turn, value: SteeringValues): String {
+    override fun turn(direction: Turn, value: SteeringValue): String {
 
         // Inform DCM of the ECU
         dcmComponent.phi = value.anglePhi
@@ -60,6 +60,6 @@ class SteeringComponent: Steering {
 
     override fun reset() {
         direction = Turn.STRAIGHT
-        value = SteeringValues.VALUE_00
+        value = SteeringValue.VALUE_00
     }
 }

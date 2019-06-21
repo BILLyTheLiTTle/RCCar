@@ -22,35 +22,38 @@ internal class SteeringComponentUnitTest(
     fun `turn right`() {
         val ret = steeringComponent.turn(
             Turn.RIGHT,
-            SteeringValues.VALUE_40)
+            SteeringValue.VALUE_40)
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(steeringComponent.direction)
-            .isEqualTo(steeringComponent::direction.get())
+            //.isEqualTo(steeringComponent::direction.get()) // why did I use this ?
             .isEqualTo(Turn.RIGHT)
-        assertThat(steeringComponent::value.get())
-            .isEqualTo(SteeringValues.VALUE_40)
+        assertThat(steeringComponent.value)
+            //.isEqualTo(steeringComponent::value.get()) // why did I use this ?
+            .isEqualTo(SteeringValue.VALUE_40)
     }
     @Test
     fun `turn left`() {
         val ret = steeringComponent.turn(
             Turn.LEFT,
-            SteeringValues.VALUE_60)
+            SteeringValue.VALUE_60)
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(steeringComponent.direction)
-            .isEqualTo(steeringComponent::direction.get())
+            //.isEqualTo(steeringComponent::direction.get()) // why did I use this ?
             .isEqualTo(Turn.LEFT)
-        assertThat(steeringComponent::value.get())
-            .isEqualTo(SteeringValues.VALUE_60)
+        assertThat(steeringComponent.value)
+            //.isEqualTo(steeringComponent::value.get()) // why did I use this ?
+            .isEqualTo(SteeringValue.VALUE_60)
     }
     @Test
     fun `turn straight`() {
         val ret = steeringComponent.turn(Turn.STRAIGHT)
         assertThat(ret).isEqualTo(SUCCESS)
         assertThat(steeringComponent.direction)
-            .isEqualTo(steeringComponent::direction.get())
+            //.isEqualTo(steeringComponent::direction.get()) // why did I use this ?
             .isEqualTo(Turn.STRAIGHT)
-        assertThat(steeringComponent::value.get())
-            .isEqualTo(SteeringValues.VALUE_00)
+        assertThat(steeringComponent.value)
+            //.isEqualTo(steeringComponent::value.get()) // why did I use this ?
+            .isEqualTo(SteeringValue.VALUE_00)
     }
 
 
@@ -58,9 +61,10 @@ internal class SteeringComponentUnitTest(
     fun reset() {
         steeringComponent.reset()
         assertThat(steeringComponent.direction)
-            .isEqualTo(steeringComponent::direction.get())
+            //.isEqualTo(steeringComponent::direction.get())
             .isEqualTo(Turn.STRAIGHT)
-        assertThat(steeringComponent::value.get())
-            .isEqualTo(SteeringValues.VALUE_00)
+        assertThat(steeringComponent.value)
+            //.isEqualTo(steeringComponent::value.get())
+            .isEqualTo(SteeringValue.VALUE_00)
     }
 }
