@@ -237,27 +237,27 @@ class ThrottleBrakeComponent: ThrottleBrake {
         when (steeringComponent.direction) {
             Turn.LEFT -> {
                 when (setupComponent.frontDifferentialSlipperyLimiter) {
-                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN -> {
+                    DifferentialSlipperyLimiter.OPEN -> {
                         applyPinValues(motorFrontLeftPwm = dcmComponent.frontOpenDiffValues[0],
                             motorFrontRightPwm = dcmComponent.frontOpenDiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 -> {
+                    DifferentialSlipperyLimiter.MEDI_0 -> {
                         applyPinValues(motorFrontLeftPwm = dcmComponent.frontMedi0DiffValues[0],
                             motorFrontRightPwm = dcmComponent.frontMedi0DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 -> {
+                    DifferentialSlipperyLimiter.MEDI_1 -> {
                         applyPinValues(motorFrontLeftPwm = dcmComponent.frontMedi1DiffValues[0],
                             motorFrontRightPwm = dcmComponent.frontMedi1DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 -> {
+                    DifferentialSlipperyLimiter.MEDI_2 -> {
                         applyPinValues(motorFrontLeftPwm = dcmComponent.frontMedi2DiffValues[0],
                             motorFrontRightPwm = dcmComponent.frontMedi2DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED -> {
+                    DifferentialSlipperyLimiter.LOCKED -> {
                         applyPinValues(motorFrontLeftPwm = dcmComponent.frontLockedDiffValues[0],
                             motorFrontRightPwm = dcmComponent.frontLockedDiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO -> {
+                    DifferentialSlipperyLimiter.AUTO -> {
                         applyPinValues(motorFrontLeftPwm = dcmComponent.frontAutoDiffValues[0],
                             motorFrontRightPwm = dcmComponent.frontAutoDiffValues[1])
                     }
@@ -266,27 +266,27 @@ class ThrottleBrakeComponent: ThrottleBrake {
                     }
                 }
                 when (setupComponent.rearDifferentialSlipperyLimiter) {
-                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN -> {
+                    DifferentialSlipperyLimiter.OPEN -> {
                         applyPinValues(motorRearLeftPwm = dcmComponent.rearOpenDiffValues[0],
                             motorRearRightPwm = dcmComponent.rearOpenDiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 -> {
+                    DifferentialSlipperyLimiter.MEDI_0 -> {
                         applyPinValues(motorRearLeftPwm = dcmComponent.rearMedi0DiffValues[0],
                             motorRearRightPwm = dcmComponent.rearMedi0DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 -> {
+                    DifferentialSlipperyLimiter.MEDI_1 -> {
                         applyPinValues(motorRearLeftPwm = dcmComponent.rearMedi1DiffValues[0],
                             motorRearRightPwm = dcmComponent.rearMedi1DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 -> {
+                    DifferentialSlipperyLimiter.MEDI_2 -> {
                         applyPinValues(motorRearLeftPwm = dcmComponent.rearMedi2DiffValues[0],
                             motorRearRightPwm = dcmComponent.rearMedi2DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED -> {
+                    DifferentialSlipperyLimiter.LOCKED -> {
                         applyPinValues(motorRearLeftPwm = dcmComponent.rearLockedDiffValues[0],
                             motorRearRightPwm = dcmComponent.rearLockedDiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO -> {
+                    DifferentialSlipperyLimiter.AUTO -> {
                         applyPinValues(motorRearLeftPwm = dcmComponent.rearAutoDiffValues[0],
                             motorRearRightPwm = dcmComponent.rearAutoDiffValues[1])
                     }
@@ -307,27 +307,27 @@ class ThrottleBrakeComponent: ThrottleBrake {
             }
             Turn.RIGHT -> {
                 when (setupComponent.frontDifferentialSlipperyLimiter) {
-                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN -> {
+                    DifferentialSlipperyLimiter.OPEN -> {
                         applyPinValues(motorFrontRightPwm = dcmComponent.frontOpenDiffValues[0],
                             motorFrontLeftPwm = dcmComponent.frontOpenDiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 -> {
+                    DifferentialSlipperyLimiter.MEDI_0 -> {
                         applyPinValues(motorFrontRightPwm = dcmComponent.frontMedi0DiffValues[0],
                             motorFrontLeftPwm = dcmComponent.frontMedi0DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 -> {
+                    DifferentialSlipperyLimiter.MEDI_1 -> {
                         applyPinValues(motorFrontRightPwm = dcmComponent.frontMedi1DiffValues[0],
                             motorFrontLeftPwm = dcmComponent.frontMedi1DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 -> {
+                    DifferentialSlipperyLimiter.MEDI_2 -> {
                         applyPinValues(motorFrontRightPwm = dcmComponent.frontMedi2DiffValues[0],
                             motorFrontLeftPwm = dcmComponent.frontMedi2DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED -> {
+                    DifferentialSlipperyLimiter.LOCKED -> {
                         applyPinValues(motorFrontRightPwm = dcmComponent.frontLockedDiffValues[0],
                             motorFrontLeftPwm = dcmComponent.frontLockedDiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO -> {
+                    DifferentialSlipperyLimiter.AUTO -> {
                         applyPinValues(motorFrontRightPwm = dcmComponent.frontAutoDiffValues[0],
                             motorFrontLeftPwm = dcmComponent.frontAutoDiffValues[1])
                     }
@@ -336,27 +336,27 @@ class ThrottleBrakeComponent: ThrottleBrake {
                     }
                 }
                 when (setupComponent.rearDifferentialSlipperyLimiter) {
-                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN -> {
+                    DifferentialSlipperyLimiter.OPEN -> {
                         applyPinValues(motorRearRightPwm = dcmComponent.rearOpenDiffValues[0],
                             motorRearLeftPwm = dcmComponent.rearOpenDiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 -> {
+                    DifferentialSlipperyLimiter.MEDI_0 -> {
                         applyPinValues(motorRearRightPwm = dcmComponent.rearMedi0DiffValues[0],
                             motorRearLeftPwm = dcmComponent.rearMedi0DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 -> {
+                    DifferentialSlipperyLimiter.MEDI_1 -> {
                         applyPinValues(motorRearRightPwm = dcmComponent.rearMedi1DiffValues[0],
                             motorRearLeftPwm = dcmComponent.rearMedi1DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 -> {
+                    DifferentialSlipperyLimiter.MEDI_2 -> {
                         applyPinValues(motorRearRightPwm = dcmComponent.rearMedi2DiffValues[0],
                             motorRearLeftPwm = dcmComponent.rearMedi2DiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED -> {
+                    DifferentialSlipperyLimiter.LOCKED -> {
                         applyPinValues(motorRearRightPwm = dcmComponent.rearLockedDiffValues[0],
                             motorRearLeftPwm = dcmComponent.rearLockedDiffValues[1])
                     }
-                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO -> {
+                    DifferentialSlipperyLimiter.AUTO -> {
                         applyPinValues(motorRearRightPwm = dcmComponent.rearAutoDiffValues[0],
                             motorRearLeftPwm = dcmComponent.rearAutoDiffValues[1])
                     }
@@ -399,54 +399,54 @@ class ThrottleBrakeComponent: ThrottleBrake {
         when (steeringComponent.direction) {
             Turn.LEFT -> {
                 when (setupComponent.frontDifferentialSlipperyLimiter) {
-                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                    DifferentialSlipperyLimiter.OPEN ->
                         "Front Differential is \"OPEN\"\n" +
                                 "Inner (Left) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[0]}\n" +
                                 "Outer (Right) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[1]}\n"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                    DifferentialSlipperyLimiter.MEDI_0 ->
                         "Front Differential is \"MEDI 0\"\n" +
                                 "Inner (Left) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[0]}\n" +
                                 "Outer (Right) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[1]}\n"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                    DifferentialSlipperyLimiter.MEDI_1 ->
                         "Front Differential is \"MEDI 1\"\n" +
                                 "Inner (Left) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[0]}\n" +
                                 "Outer (Right) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[1]}\n"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                    DifferentialSlipperyLimiter.MEDI_2 ->
                         "Front Differential is \"MEDI 2\"\n" +
                                 "Inner (Left) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[0]}\n" +
                                 "Outer (Right) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[1]}\n"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                    DifferentialSlipperyLimiter.LOCKED ->
                         "Front Differential is \"LOCKED\"\n" +
                                 "Inner (Left) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[0]}\n" +
                                 "Outer (Right) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[1]}\n"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
+                    DifferentialSlipperyLimiter.AUTO ->
                         "Front Differential is \"AUTO\"\n" +
                                 "Inner (Left) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[0]}\n" +
                                 "Outer (Right) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[1]}\n"
                     else -> "ERROR in Front differential for Left turn\n"
                 } +
                 when (setupComponent.rearDifferentialSlipperyLimiter) {
-                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                    DifferentialSlipperyLimiter.OPEN ->
                         "Rear Differential is \"OPEN\"\n" +
                                 "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[0]}\n" +
                                 "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[1]}"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                    DifferentialSlipperyLimiter.MEDI_0 ->
                         "Rear Differential is \"MEDI 0\"\n" +
                                 "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[0]}\n" +
                                 "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[1]}"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                    DifferentialSlipperyLimiter.MEDI_1 ->
                         "Rear Differential is \"MEDI 1\"\n" +
                                 "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[0]}\n" +
                                 "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[1]}"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                    DifferentialSlipperyLimiter.MEDI_2 ->
                         "Rear Differential is \"MEDI 2\"\n" +
                                 "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[0]}\n" +
                                 "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[1]}"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                    DifferentialSlipperyLimiter.LOCKED ->
                         "Rear Differential is \"LOCKED\"\n" +
                                 "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[0]}\n" +
                                 "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[1]}"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
+                    DifferentialSlipperyLimiter.AUTO ->
                         "Rear Differential is \"AUTO\"\n" +
                                 "Inner (Left) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[0]}\n" +
                                 "Outer (Right) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[1]}"
@@ -455,54 +455,54 @@ class ThrottleBrakeComponent: ThrottleBrake {
             }
             Turn.RIGHT -> {
                 when (setupComponent.frontDifferentialSlipperyLimiter) {
-                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                    DifferentialSlipperyLimiter.OPEN ->
                         "Front Differential is \"OPEN\"\n" +
                                 "Inner (Right) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[0]}\n" +
                                 "Outer (Left) Front Wheel Speed: ${dcmComponent.frontOpenDiffValues[1]}\n"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                    DifferentialSlipperyLimiter.MEDI_0 ->
                         "Front Differential is \"MEDI 0\"\n" +
                                 "Inner (Right) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[0]}\n" +
                                 "Outer (Left) Front Wheel Speed: ${dcmComponent.frontMedi0DiffValues[1]}\n"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                    DifferentialSlipperyLimiter.MEDI_1 ->
                         "Front Differential is \"MEDI 1\"\n" +
                                 "Inner (Right) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[0]}\n" +
                                 "Outer (Left) Front Wheel Speed: ${dcmComponent.frontMedi1DiffValues[1]}\n"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                    DifferentialSlipperyLimiter.MEDI_2 ->
                         "Front Differential is \"MEDI 2\"\n" +
                                 "Inner (Right) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[0]}\n" +
                                 "Outer (Left) Front Wheel Speed: ${dcmComponent.frontMedi2DiffValues[1]}\n"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                    DifferentialSlipperyLimiter.LOCKED ->
                         "Front Differential is \"LOCKED\"\n" +
                                 "Inner (Right) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[0]}\n" +
                                 "Outer (Left) Front Wheel Speed: ${dcmComponent.frontLockedDiffValues[1]}\n"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
+                    DifferentialSlipperyLimiter.AUTO ->
                         "Front Differential is \"AUTO\"\n" +
                                 "Inner (Right) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[0]}\n" +
                                 "Outer (Left) Front Wheel Speed: ${dcmComponent.frontAutoDiffValues[1]}\n"
                     else -> "ERROR in Front differential (${setupComponent.frontDifferentialSlipperyLimiter}) for Right turn\n"
                 } +
                 when (setupComponent.rearDifferentialSlipperyLimiter) {
-                    DIFFERENTIAL_SLIPPERY_LIMITER_OPEN ->
+                    DifferentialSlipperyLimiter.OPEN ->
                         "Rear Differential is \"OPEN\"\n" +
                                 "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[0]}\n" +
                                 "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearOpenDiffValues[1]}"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 ->
+                    DifferentialSlipperyLimiter.MEDI_0 ->
                         "Rear Differential is \"MEDI 0\"\n" +
                                 "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[0]}\n" +
                                 "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearMedi0DiffValues[1]}"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 ->
+                    DifferentialSlipperyLimiter.MEDI_1 ->
                         "Rear Differential is \"MEDI 1\"\n" +
                                 "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[0]}\n" +
                                 "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearMedi1DiffValues[1]}"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 ->
+                    DifferentialSlipperyLimiter.MEDI_2 ->
                         "Rear Differential is \"MEDI 2\"\n" +
                                 "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[0]}\n" +
                                 "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearMedi2DiffValues[1]}"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED ->
+                    DifferentialSlipperyLimiter.LOCKED ->
                         "Rear Differential is \"LOCKED\"\n" +
                                 "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[0]}\n" +
                                 "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearLockedDiffValues[1]}"
-                    DIFFERENTIAL_SLIPPERY_LIMITER_AUTO ->
+                    DifferentialSlipperyLimiter.AUTO ->
                         "Rear Differential is \"AUTO\"\n" +
                                 "Inner (Right) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[0]}\n" +
                                 "Outer (Left) Rear Wheel Speed: ${dcmComponent.rearAutoDiffValues[1]}"

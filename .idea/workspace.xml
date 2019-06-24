@@ -3,9 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="4e38fa66-dbb5-4181-9628-5457650f884f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/Dimensions.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/Dimensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/Specs.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/Steering.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/Steering.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeComponent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/Setup.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/Setup.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupComponent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/cdm/CdmComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/cdm/CdmComponent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/car/cockpit/pedals/ThrottleBrakeControllerIntegrationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/car/cockpit/pedals/ThrottleBrakeControllerIntegrationTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupComponentUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupComponentUnitTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupControllerIntegrationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupControllerIntegrationTest.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -76,7 +85,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/electrics/Electrics.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
+            <state>
               <caret line="50" column="55" selection-start-line="50" selection-start-column="55" selection-end-line="50" selection-end-column="55" />
             </state>
           </provider>
@@ -94,8 +103,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrake.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="81" selection-start-line="24" selection-start-column="81" selection-end-line="24" selection-end-column="81" />
+            <state relative-caret-position="510">
+              <caret line="30" column="1" lean-forward="true" selection-start-line="23" selection-end-line="30" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/Setup.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-85">
+              <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupComponent.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="79" selection-start-line="9" selection-start-column="79" selection-end-line="9" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -103,26 +130,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupService.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
+            <state relative-caret-position="17">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+              <folding>
+                <element signature="e#27#192#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/Specs.kt">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupController.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="75" selection-start-line="14" selection-start-column="75" selection-end-line="14" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/Steering.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="49" lean-forward="true" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+            <state relative-caret-position="629">
+              <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -163,7 +184,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/electrics/ElectricsComponentUnitTest.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupController.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/dashboard/lights/warning/temperatures/TemperatureCronJobUnitTest.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/dashboard/lights/warning/temperatures/HBridgeFrontTemperatureComponent.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/dashboard/lights/warning/temperatures/BatteriesTemperatureComponent.kt" />
@@ -189,30 +209,31 @@
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/dashboard/indicators/temperatures/TemperaturesCron.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/ecu/Ecu.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/dcm/Dcm.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupService.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/Setup.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupComponent.kt" />
-        <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupComponentUnitTest.kt" />
-        <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupControllerIntegrationTest.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThingsTODO.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeController.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/cdm/CdmComponent.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/pedals/ThrottleBrakeComponentUnitTest.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/RcCarApplication.kt" />
-        <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/pedals/ThrottleBrakeControllerIntegrationTest.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeService.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrake.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/cdm/Cdm.kt" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeComponent.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/steering/SteeringControllerIntegrationTest.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringComponent.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringController.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringService.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/steering/SteeringComponentUnitTest.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/Specs.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/Steering.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/Setup.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupComponent.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupController.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupService.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringService.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeComponent.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeService.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/cdm/CdmComponent.kt" />
+        <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/pedals/ThrottleBrakeControllerIntegrationTest.kt" />
+        <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupComponentUnitTest.kt" />
+        <option value="$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupControllerIntegrationTest.kt" />
       </list>
     </option>
   </component>
@@ -532,6 +553,16 @@
               <item name="cockpit" type="462c0819:PsiDirectoryNode" />
               <item name="pedals" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="rc_car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RCCar" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
+              <item name="car" type="462c0819:PsiDirectoryNode" />
+              <item name="cockpit" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -551,7 +582,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561354062073" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561358422164" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../KotlinExperiments" />
@@ -651,66 +682,73 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SteeringComponentUnitTest (1)" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration name="SetupControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rc_car_test" />
-      <option name="MAIN_CLASS_NAME" value="!&quot;pa" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="uniqueId" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="car.cockpit.setup.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="car.cockpit.setup" />
+      <option name="MAIN_CLASS_NAME" value="car.cockpit.setup.SetupControllerIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <uniqueIds>
-        <uniqueId value="[engine:junit-jupiter]/[class:car.cockpit.steering.SteeringComponentUnitTest]" />
-      </uniqueIds>
-      <tag value="!parent-test" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SteeringComponentUnitTest" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration name="SetupControllerIntegrationTest.get rear differential slippery limiter from char" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rc_car_test" />
-      <option name="MAIN_CLASS_NAME" value="!&quot;pa" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="uniqueId" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="car.cockpit.setup.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="car.cockpit.setup" />
+      <option name="MAIN_CLASS_NAME" value="car.cockpit.setup.SetupControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="get rear differential slippery limiter from char" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <uniqueIds>
-        <uniqueId value="[engine:junit-jupiter]/[class:car.cockpit.steering.SteeringComponentUnitTest]" />
-      </uniqueIds>
-      <tag value="!parent-test" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SteeringControllerTest" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration name="SetupControllerIntegrationTest.get rear differential slippery limiter from double" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rc_car_test" />
-      <option name="MAIN_CLASS_NAME" value="!&quot;pa" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="uniqueId" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="car.cockpit.setup.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="car.cockpit.setup" />
+      <option name="MAIN_CLASS_NAME" value="car.cockpit.setup.SetupControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="get rear differential slippery limiter from double" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <uniqueIds>
-        <uniqueId value="[engine:junit-jupiter]/[class:car.cockpit.steering.SteeringControllerTest]" />
-      </uniqueIds>
-      <tag value="!parent-test" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ThrottleBrakeControllerTest" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration name="SetupControllerIntegrationTest.get rear differential slippery limiter from predefined value" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rc_car_test" />
-      <option name="MAIN_CLASS_NAME" value="!&quot;pa" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="uniqueId" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="car.cockpit.setup.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="car.cockpit.setup" />
+      <option name="MAIN_CLASS_NAME" value="car.cockpit.setup.SetupControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="get rear differential slippery limiter from predefined value" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <uniqueIds>
-        <uniqueId value="[engine:junit-jupiter]/[class:car.cockpit.pedals.ThrottleBrakeControllerTest]" />
-      </uniqueIds>
-      <tag value="!parent-test" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -765,20 +803,20 @@
       <item itemvalue="JUnit.All Tests" />
       <item itemvalue="JUnit.Integration Tests" />
       <item itemvalue="JUnit.Unit Tests" />
-      <item itemvalue="JUnit.All in rc_car_test" />
-      <item itemvalue="JUnit.ThrottleBrakeControllerTest" />
-      <item itemvalue="JUnit.SteeringComponentUnitTest" />
-      <item itemvalue="JUnit.SteeringControllerTest" />
-      <item itemvalue="JUnit.SteeringComponentUnitTest (1)" />
       <item itemvalue="Spring Boot.RcCarApplication" />
+      <item itemvalue="JUnit.SetupControllerIntegrationTest.get rear differential slippery limiter from predefined value" />
+      <item itemvalue="JUnit.SetupControllerIntegrationTest.get rear differential slippery limiter from double" />
+      <item itemvalue="JUnit.SetupControllerIntegrationTest.get rear differential slippery limiter from char" />
+      <item itemvalue="JUnit.SetupControllerIntegrationTest" />
+      <item itemvalue="JUnit.All in rc_car_test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SteeringComponentUnitTest (1)" />
         <item itemvalue="JUnit.All in rc_car_test" />
-        <item itemvalue="JUnit.SteeringControllerTest" />
-        <item itemvalue="JUnit.SteeringComponentUnitTest" />
-        <item itemvalue="JUnit.ThrottleBrakeControllerTest" />
+        <item itemvalue="JUnit.SetupControllerIntegrationTest" />
+        <item itemvalue="JUnit.SetupControllerIntegrationTest.get rear differential slippery limiter from char" />
+        <item itemvalue="JUnit.SetupControllerIntegrationTest.get rear differential slippery limiter from double" />
+        <item itemvalue="JUnit.SetupControllerIntegrationTest.get rear differential slippery limiter from predefined value" />
       </list>
     </recent_temporary>
   </component>
@@ -915,44 +953,44 @@
       <workItem from="1561017843582" duration="7734000" />
       <workItem from="1561028083993" duration="478000" />
       <workItem from="1561095936944" duration="6904000" />
-      <workItem from="1561353531487" duration="523000" />
+      <workItem from="1561353531487" duration="4658000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SteeringControllerTest - 2019.06.21 at 09h 24m 07s.xml">
-      <configuration name="SteeringControllerTest" configurationId="JUnit" />
+    <history-entry file="SetupControllerIntegrationTest - 2019.06.24 at 09h 31m 14s.xml">
+      <configuration name="SetupControllerIntegrationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_rc_car_test - 2019.06.21 at 09h 24m 45s.xml">
-      <configuration name="All in rc_car_test" configurationId="JUnit" />
+    <history-entry file="SetupControllerIntegrationTest - 2019.06.24 at 09h 32m 20s.xml">
+      <configuration name="SetupControllerIntegrationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.21 at 09h 25m 13s.xml">
-      <configuration name="All Tests" configurationId="JUnit" />
+    <history-entry file="SetupControllerIntegrationTest - 2019.06.24 at 09h 32m 42s.xml">
+      <configuration name="SetupControllerIntegrationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.21 at 10h 01m 10s.xml">
-      <configuration name="All Tests" configurationId="JUnit" />
+    <history-entry file="SetupControllerIntegrationTest - 2019.06.24 at 09h 33m 14s.xml">
+      <configuration name="SetupControllerIntegrationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringComponentUnitTest_(1) - 2019.06.21 at 10h 01m 22s.xml">
-      <configuration name="SteeringComponentUnitTest (1)" configurationId="JUnit" />
+    <history-entry file="SetupControllerIntegrationTest - 2019.06.24 at 09h 33m 42s.xml">
+      <configuration name="SetupControllerIntegrationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringComponentUnitTest_(1) - 2019.06.21 at 10h 02m 35s.xml">
-      <configuration name="SteeringComponentUnitTest (1)" configurationId="JUnit" />
+    <history-entry file="SetupControllerIntegrationTest - 2019.06.24 at 09h 34m 08s.xml">
+      <configuration name="SetupControllerIntegrationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SteeringComponentUnitTest_(1) - 2019.06.21 at 10h 03m 25s.xml">
-      <configuration name="SteeringComponentUnitTest (1)" configurationId="JUnit" />
+    <history-entry file="SetupControllerIntegrationTest - 2019.06.24 at 09h 34m 51s.xml">
+      <configuration name="SetupControllerIntegrationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.21 at 10h 03m 53s.xml">
-      <configuration name="All Tests" configurationId="JUnit" />
+    <history-entry file="SetupControllerIntegrationTest - 2019.06.24 at 09h 35m 31s.xml">
+      <configuration name="SetupControllerIntegrationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.21 at 10h 32m 08s.xml">
-      <configuration name="All Tests" configurationId="JUnit" />
+    <history-entry file="SetupControllerIntegrationTest - 2019.06.24 at 09h 35m 54s.xml">
+      <configuration name="SetupControllerIntegrationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.21 at 10h 38m 55s.xml">
-      <configuration name="All Tests" configurationId="JUnit" />
+    <history-entry file="SetupControllerIntegrationTest - 2019.06.24 at 09h 36m 44s.xml">
+      <configuration name="SetupControllerIntegrationTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="529037000" />
+    <option name="totallyTimeSpent" value="533172000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -977,7 +1015,7 @@
       <window_info id="Designer" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32740587" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49840087" weight="0.24918744" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49840087" visible="true" weight="0.24918744" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39958158" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5021322" side_tool="true" weight="0.24918744" />
@@ -1030,20 +1068,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupControllerIntegrationTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="86" column="91" selection-start-line="86" selection-start-column="91" selection-end-line="86" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupComponentUnitTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1122,20 +1146,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupComponent.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="60" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupController.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="23" column="72" selection-start-line="23" selection-start-column="72" selection-end-line="23" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/dashboard/indicators/handling/HandlingLights.kt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1167,13 +1177,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
           <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/Setup.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -1211,16 +1214,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/TriggeredRequests.kt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/cdm/CdmComponent.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
-          <folding>
-            <element signature="e#29#353#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/cdm/Cdm.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1232,23 +1225,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeComponent.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1227">
-          <caret line="510" column="13" lean-forward="true" selection-start-line="510" selection-start-column="13" selection-end-line="510" selection-end-column="13" />
-          <folding>
-            <element signature="e#28#552#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/cockpit/pedals/ThrottleBrakeControllerIntegrationTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-514">
-          <caret line="191" column="63" selection-start-line="191" selection-start-column="63" selection-end-line="191" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -1266,16 +1242,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeService.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="8" />
-          <folding>
-            <element signature="e#28#372#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1300,13 +1266,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringComponent.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="445">
@@ -1321,13 +1280,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringService.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="40" column="107" lean-forward="true" selection-start-line="40" selection-start-column="107" selection-end-line="40" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/cockpit/steering/SteeringComponentUnitTest.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
@@ -1337,7 +1289,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/electrics/Electrics.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
+        <state>
           <caret line="50" column="55" selection-start-line="50" selection-start-column="55" selection-end-line="50" selection-end-column="55" />
         </state>
       </provider>
@@ -1349,17 +1301,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrake.kt">
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/Steering.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="81" selection-start-line="24" selection-start-column="81" selection-end-line="24" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupService.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
+        <state relative-caret-position="527">
+          <caret line="31" column="49" lean-forward="true" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -1370,10 +1315,103 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/Steering.kt">
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrake.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="49" lean-forward="true" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+        <state relative-caret-position="510">
+          <caret line="30" column="1" lean-forward="true" selection-start-line="23" selection-end-line="30" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupController.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupService.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="e#27#192#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/steering/SteeringService.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ElectronicThrottleBrakeComponent.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="53" column="8" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeComponent.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="504" column="48" selection-start-line="504" selection-start-column="48" selection-end-line="504" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/pedals/ThrottleBrakeService.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="65" column="79" selection-start-line="65" selection-start-column="79" selection-end-line="65" selection-end-column="79" />
+          <folding>
+            <element signature="e#28#372#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/ecu/modules/cdm/CdmComponent.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="74" column="88" selection-start-line="74" selection-start-column="88" selection-end-line="74" selection-end-column="88" />
+          <folding>
+            <element signature="e#29#353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/cockpit/pedals/ThrottleBrakeControllerIntegrationTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="199" selection-start-line="199" selection-end-line="199" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/Setup.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupComponentUnitTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="30" column="58" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/car/cockpit/setup/SetupControllerIntegrationTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="49" column="42" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/car/cockpit/setup/SetupComponent.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="79" selection-start-line="9" selection-start-column="79" selection-end-line="9" selection-end-column="79" />
         </state>
       </provider>
     </entry>

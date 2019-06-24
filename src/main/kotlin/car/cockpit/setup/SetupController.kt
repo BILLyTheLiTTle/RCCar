@@ -13,7 +13,7 @@ class SetupController{
 
     @GetMapping("/set_handling_assistance")
     fun setHandlingAssistance(
-        @RequestParam(value = "state", defaultValue = ASSISTANCE_NULL) state: String
+        @RequestParam(value = "state", defaultValue = HandlingAssistance.DEFAULT) state: String
     ) = service.setHandlingAssistance(state)
 
     @GetMapping("/get_handling_assistance_state")
@@ -21,7 +21,7 @@ class SetupController{
 
     @GetMapping("/set_motor_speed_limiter")
     fun setMotorSpeedLimiter(
-        @RequestParam(value = "value", defaultValue =  "$MOTOR_SPEED_LIMITER_NO_SPEED") value: Double
+        @RequestParam(value = "value", defaultValue =  MotorSpeedLimiter.DEFAULT) value: String
     ) = service.setMotorSpeedLimiter(value)
 
     @GetMapping("/get_motor_speed_limiter")
@@ -29,7 +29,7 @@ class SetupController{
 
     @GetMapping("/set_front_differential_slippery_limiter")
     fun setFrontDifferentialSlipperyLimiter(
-        @RequestParam(value = "value", defaultValue =  "$DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED") value: Int
+        @RequestParam(value = "value", defaultValue =  DifferentialSlipperyLimiter.DEFAULT) value: String
     ) = service.setFrontDifferentialSlipperyLimiter(value)
 
     @GetMapping("/get_front_differential_slippery_limiter")
@@ -37,7 +37,7 @@ class SetupController{
 
     @GetMapping("/set_rear_differential_slippery_limiter")
     fun setRearDifferentialSlipperyLimiter(
-        @RequestParam(value = "value", defaultValue =  "$DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED") value: Int
+        @RequestParam(value = "value", defaultValue =  DifferentialSlipperyLimiter.DEFAULT) value: String
     ) = service.setRearDifferentialSlipperyLimiter(value)
 
     @GetMapping("/get_rear_differential_slippery_limiter")

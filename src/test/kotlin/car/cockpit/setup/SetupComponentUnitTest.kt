@@ -19,18 +19,15 @@ internal class SetupComponentUnitTest(@Autowired val setupComponent: Setup) {
     fun reset() {
         setupComponent.reset()
         assertThat(setupComponent.handlingAssistanceState)
-            .isEqualTo(ASSISTANCE_MANUAL)
-            .isEqualTo("assistance_manual")
+            .isEqualTo(HandlingAssistance.MANUAL)
+
         assertThat(setupComponent.motorSpeedLimiter)
-            .isEqualTo(MOTOR_SPEED_LIMITER_FULL_SPEED)
-            .isEqualTo(1.00)
+            .isEqualTo(MotorSpeedLimiter.FULL_SPEED)
 
         assertThat(setupComponent.frontDifferentialSlipperyLimiter)
-            .isEqualTo(DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED)
-            .isEqualTo(4)
+            .isEqualTo(DifferentialSlipperyLimiter.LOCKED)
 
         assertThat(setupComponent.rearDifferentialSlipperyLimiter)
-            .isEqualTo(DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED)
-            .isEqualTo(4)
+            .isEqualTo(DifferentialSlipperyLimiter.LOCKED)
     }
 }

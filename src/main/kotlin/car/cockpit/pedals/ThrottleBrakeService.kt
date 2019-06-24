@@ -39,7 +39,7 @@ class ThrottleBrakeService {
                     "Primitive User Value: $value\n" +
                     if (motion == Motion.FORWARD || motion == Motion.BACKWARD) {
                         "Limited User Value: " +
-                                "${(value * setupComponent.motorSpeedLimiter).roundToInt()}\n"
+                                "${(value * setupComponent.motorSpeedLimiter.value).roundToInt()}\n"
                     }
                     else {
                         ""
@@ -56,14 +56,14 @@ class ThrottleBrakeService {
             state = when (motion) {
                 Motion.FORWARD, Motion.BACKWARD -> {
                     when (setupComponent.handlingAssistanceState) {
-                        ASSISTANCE_MANUAL ->
+                        HandlingAssistance.MANUAL ->
                             throttleBrake.throttle(motion,
-                                (value * setupComponent.motorSpeedLimiter).roundToInt())
-                        ASSISTANCE_NULL ->
+                                (value * setupComponent.motorSpeedLimiter.value).roundToInt())
+                        HandlingAssistance.NULL ->
                             throttleBrake.parkingBrake(100)
                         else ->
                             electronicThrottleBrake.throttle(motion,
-                                (value * setupComponent.motorSpeedLimiter).roundToInt())
+                                (value * setupComponent.motorSpeedLimiter.value).roundToInt())
                     }
                 }
                 Motion.PARKING_BRAKE ->
@@ -74,7 +74,7 @@ class ThrottleBrakeService {
                     throttleBrake.brake(value)
                 Motion.NEUTRAL -> {
                     when (setupComponent.handlingAssistanceState) {
-                        ASSISTANCE_MANUAL, ASSISTANCE_NULL ->
+                        HandlingAssistance.MANUAL, HandlingAssistance.NULL ->
                             throttleBrake.setNeutral()
                         else ->
                             electronicThrottleBrake.setNeutral()

@@ -29,9 +29,9 @@ class ElectronicThrottleBrakeComponent(
         val throttle = checkCdm(direction, value)
 
         return when (setupComponent.handlingAssistanceState) {
-            ASSISTANCE_FULL -> throttleBrake.throttle(direction, throttle)
-            ASSISTANCE_WARNING,
-            ASSISTANCE_MANUAL -> throttleBrake.throttle(direction, value)
+            HandlingAssistance.FULL -> throttleBrake.throttle(direction, throttle)
+            HandlingAssistance.WARNING,
+            HandlingAssistance.MANUAL -> throttleBrake.throttle(direction, value)
             else -> throttleBrake.throttle(direction, value)
         }
     }
@@ -52,8 +52,8 @@ class ElectronicThrottleBrakeComponent(
             }
 
         when (setupComponent.handlingAssistanceState) {
-            ASSISTANCE_FULL,
-            ASSISTANCE_WARNING -> {
+            HandlingAssistance.FULL,
+            HandlingAssistance.WARNING -> {
                 if (reportedCdmState != currentCdmState) {
                     reportedCdmState = currentCdmState
                     cdmClientNotifier(
@@ -65,9 +65,9 @@ class ElectronicThrottleBrakeComponent(
         }
 
         return when (setupComponent.handlingAssistanceState) {
-            ASSISTANCE_FULL -> throttle
+            HandlingAssistance.FULL -> throttle
             //No actual need to check this condition but do it for completeness!
-            ASSISTANCE_WARNING, ASSISTANCE_MANUAL -> value
+            HandlingAssistance.WARNING, HandlingAssistance.MANUAL -> value
             else -> value
         }
 

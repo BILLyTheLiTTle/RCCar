@@ -1,7 +1,7 @@
 package car.cockpit.setup
 
-import car.cockpit.engine.EMPTY_STRING
 import car.cockpit.engine.SUCCESS
+import car.enumContains
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -12,55 +12,44 @@ class SetupService {
     private lateinit var setupComponent: Setup
 
     fun setHandlingAssistance(state: String): String {
-        when (state) {
-            ASSISTANCE_MANUAL -> setupComponent.handlingAssistanceState =
-                ASSISTANCE_MANUAL
-            ASSISTANCE_WARNING -> setupComponent.handlingAssistanceState =
-                    ASSISTANCE_WARNING
-            ASSISTANCE_FULL -> setupComponent.handlingAssistanceState =
-                    ASSISTANCE_FULL
-            else -> setupComponent.handlingAssistanceState = ASSISTANCE_NULL
+
+        val assistance = if (enumContains<HandlingAssistance>(state)) HandlingAssistance.valueOf(state) else HandlingAssistance.NULL
+
+        when (assistance) {
+            HandlingAssistance.MANUAL -> setupComponent.handlingAssistanceState =
+                HandlingAssistance.MANUAL
+            HandlingAssistance.WARNING -> setupComponent.handlingAssistanceState =
+                HandlingAssistance.WARNING
+            HandlingAssistance.FULL -> setupComponent.handlingAssistanceState =
+                HandlingAssistance.FULL
+            else -> setupComponent.handlingAssistanceState = HandlingAssistance.NULL
         }
         return SUCCESS
     }
 
-    fun getHandlingAssistanceState() = setupComponent.handlingAssistanceState
+    fun getHandlingAssistanceState() = setupComponent.handlingAssistanceState.name
 
-    fun setMotorSpeedLimiter(value: Double): String {
-        setupComponent.motorSpeedLimiter = value
+    fun setMotorSpeedLimiter(value: String): String {
+        val limit = if (enumContains<MotorSpeedLimiter>(value)) MotorSpeedLimiter.valueOf(value) else MotorSpeedLimiter.ERROR_SPEED
+        setupComponent.motorSpeedLimiter = limit
         return SUCCESS
     }
 
-    fun getMotorSpeedLimiter() = setupComponent.motorSpeedLimiter
+    fun getMotorSpeedLimiter() = setupComponent.motorSpeedLimiter.name
 
-    fun setFrontDifferentialSlipperyLimiter(value: Int): String {
-        setupComponent.frontDifferentialSlipperyLimiter = value
+    fun setFrontDifferentialSlipperyLimiter(value: String): String {
+        val slip = if (enumContains<DifferentialSlipperyLimiter>(value)) DifferentialSlipperyLimiter.valueOf(value) else DifferentialSlipperyLimiter.ERROR
+        setupComponent.frontDifferentialSlipperyLimiter = slip
         return SUCCESS
     }
 
-    fun getFrontDifferentialSlipperyLimiter() = setupComponent.frontDifferentialSlipperyLimiter
+    fun getFrontDifferentialSlipperyLimiter() = setupComponent.frontDifferentialSlipperyLimiter.name
 
-    fun setRearDifferentialSlipperyLimiter(value: Int): String {
-        setupComponent.rearDifferentialSlipperyLimiter = value
+    fun setRearDifferentialSlipperyLimiter(value: String): String {
+        val slip = if (enumContains<DifferentialSlipperyLimiter>(value)) DifferentialSlipperyLimiter.valueOf(value) else DifferentialSlipperyLimiter.ERROR
+        setupComponent.rearDifferentialSlipperyLimiter = slip
         return SUCCESS
     }
 
-    fun getRearDifferentialSlipperyLimiter() = setupComponent.rearDifferentialSlipperyLimiter
+    fun getRearDifferentialSlipperyLimiter() = setupComponent.rearDifferentialSlipperyLimiter.name
 }
-
-const val ASSISTANCE_NULL = EMPTY_STRING
-const val ASSISTANCE_MANUAL = "assistance_manual"
-const val ASSISTANCE_WARNING = "assistance_warning"
-const val ASSISTANCE_FULL = "assistance_full"
-
-const val MOTOR_SPEED_LIMITER_ERROR_SPEED = -1.00
-const val MOTOR_SPEED_LIMITER_NO_SPEED = 0.00
-const val MOTOR_SPEED_LIMITER_FULL_SPEED = 1.00
-
-const val DIFFERENTIAL_SLIPPERY_LIMITER_ERROR = -1
-const val DIFFERENTIAL_SLIPPERY_LIMITER_OPEN = 0
-const val DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_0 = 1
-const val DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_1 = 2
-const val DIFFERENTIAL_SLIPPERY_LIMITER_MEDI_2 = 3
-const val DIFFERENTIAL_SLIPPERY_LIMITER_LOCKED = 4
-const val DIFFERENTIAL_SLIPPERY_LIMITER_AUTO = 10

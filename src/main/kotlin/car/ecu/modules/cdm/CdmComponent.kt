@@ -1,7 +1,7 @@
 package car.ecu.modules.cdm
 
 import car.cockpit.pedals.Motion
-import car.cockpit.setup.ASSISTANCE_FULL
+import car.cockpit.setup.HandlingAssistance
 import car.cockpit.setup.Setup
 import car.ecu.sensors.distance.UltrasonicDistanceMeter
 import car.showMessage
@@ -72,7 +72,7 @@ class CdmComponent: Cdm {
                     "Entered Throttle Value: $rawThrottleValue\n" +
                     "Calculated Throttle Value: $throttleValue\n" +
                     "Calculated Throttle Value Applied: " +
-                    "${setupComponent.handlingAssistanceState == ASSISTANCE_FULL}\n" +
+                    "${setupComponent.handlingAssistanceState == HandlingAssistance.FULL}\n" +
                     "Obstacle's distance: $distance meters\n" +
                     "Vehicle's direction: $direction")
 
