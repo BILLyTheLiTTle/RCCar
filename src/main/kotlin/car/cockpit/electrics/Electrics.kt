@@ -22,6 +22,7 @@ interface Electrics {
         Method handleLeds in class car/controllers/basic/Electrics has illegal modifiers: 0x421
 
         I don't understand why, but implement this function in the child class.
+        It seems a good implementation this way because functions designed for overriding should not be synchronized.
     */
     fun handleLeds()
 

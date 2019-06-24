@@ -18,3 +18,13 @@ const val PHI_ANGLE_40 = 37.9
 const val PHI_ANGLE_60 = 41.7
 const val PHI_ANGLE_80 = 49.2
 const val PHI_ANGLE_100 = 47.8
+
+// Speed limiter percentages
+const val NO_SPEED_PERCENTAGE = 0.00
+const val SLOW_SPEED_1_PERCENTAGE = 0.20
+const val SLOW_SPEED_2_PERCENTAGE = 0.40
+const val MEDIUM_SPEED_1_PERCENTAGE = 0.60
+const val MEDIUM_SPEED_2_PERCENTAGE = 0.70
+const val FAST_SPEED_1_PERCENTAGE = 0.80
+const val FAST_SPEED_2_PERCENTAGE = 0.90
+const val FULL_SPEED_PERCENTAGE = 1.00

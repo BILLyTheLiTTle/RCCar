@@ -1,5 +1,7 @@
 package car.cockpit.setup
 
+import car.*
+
 
 interface Setup {
     var handlingAssistanceState: HandlingAssistance
@@ -26,11 +28,11 @@ enum class HandlingAssistance {
 
 enum class MotorSpeedLimiter(val value: Double) {
     ERROR_SPEED(-1.00),
-    NO_SPEED(0.00),
-    SLOW_SPEED_1(0.20), SLOW_SPEED_2(0.40),
-    MEDIUM_SPEED_1(0.60), MEDIUM_SPEED_2(0.70),
-    FAST_SPEED_1(0.80), FAST_SPEED_2(0.90),
-    FULL_SPEED(1.00);
+    NO_SPEED(NO_SPEED_PERCENTAGE),
+    SLOW_SPEED_1(SLOW_SPEED_1_PERCENTAGE), SLOW_SPEED_2(SLOW_SPEED_2_PERCENTAGE),
+    MEDIUM_SPEED_1(MEDIUM_SPEED_1_PERCENTAGE), MEDIUM_SPEED_2(MEDIUM_SPEED_2_PERCENTAGE),
+    FAST_SPEED_1(FAST_SPEED_1_PERCENTAGE), FAST_SPEED_2(FAST_SPEED_2_PERCENTAGE),
+    FULL_SPEED(FULL_SPEED_PERCENTAGE);
 
     companion object {
         // Give the name of the enum which will be the default when needed
@@ -38,12 +40,8 @@ enum class MotorSpeedLimiter(val value: Double) {
     }
 }
 
-enum class DifferentialSlipperyLimiter(val value: Int) {
-    ERROR(-1),
-    OPEN(0),
-    MEDI_0(1), MEDI_1(2), MEDI_2(3),
-    LOCKED(4),
-    AUTO(10);
+enum class DifferentialSlipperyLimiter {
+    ERROR, OPEN, MEDI_0, MEDI_1, MEDI_2, LOCKED, AUTO;
 
     companion object {
         // Give the name of the enum which will be the default when needed
