@@ -1,5 +1,7 @@
 package car.cockpit.steering
 
+import car.*
+
 interface Steering {
 
     val value: SteeringValue
@@ -22,12 +24,12 @@ enum class Turn {
 // Theta angle is the inner front wheel angle in degrees
 // Phi angle is the outer front wheel angle in degrees
 enum class SteeringValue(val value: Int, val angleTheta: Double, val anglePhi: Double){
-    VALUE_00(0, 0.0, 0.0),
-    VALUE_20(0, 22.0, 19.9),
-    VALUE_40(20, 45.0, 37.9),
-    VALUE_60(40, 52.0, 41.7),
-    VALUE_80(60, 60.0, 49.2),
-    VALUE_100(100, 66.0, 47.8),
+    VALUE_00(0, THETA_ANGLE_00, PHI_ANGLE_00),
+    VALUE_20(20, THETA_ANGLE_20, PHI_ANGLE_20),
+    VALUE_40(40, THETA_ANGLE_40, PHI_ANGLE_40),
+    VALUE_60(60, THETA_ANGLE_60, PHI_ANGLE_60),
+    VALUE_80(80, THETA_ANGLE_80, PHI_ANGLE_80),
+    VALUE_100(100, THETA_ANGLE_100, PHI_ANGLE_100),
     NOTHING(-1, -1.0, -1.0);
 
     companion object {
