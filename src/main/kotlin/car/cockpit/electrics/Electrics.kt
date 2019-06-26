@@ -41,7 +41,7 @@ enum class MainLight {
     }
 }
 
-enum class CorneringLight{
+enum class CorneringLight {
     NOTHING,
     RIGHT_LIGHTS, LEFT_LIGHTS, STRAIGHT_LIGHTS;
 
@@ -51,7 +51,7 @@ enum class CorneringLight{
     }
 }
 
-enum class OtherLight{
+enum class OtherLight {
     BRAKING_LIGHTS,
     REVERSE_LIGHTS,
     EMERGENCY_LIGHTS

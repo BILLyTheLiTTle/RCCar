@@ -11,7 +11,7 @@ const val ECU_PARAM_KEY_ITEM = "item"
 const val ECU_PARAM_KEY_VALUE = "value"
 
 enum class ModuleState(val id: String) {
-    NOTHING(EMPTY_STRING), // NOTHING_STATE, etc for the others
+    NOTHING(EMPTY_STRING), // TODO NOTHING_STATE, etc for the others
     OFF("module_off_state"),
     ON("module_on_state"),
     IDLE("module_idle_state"),
