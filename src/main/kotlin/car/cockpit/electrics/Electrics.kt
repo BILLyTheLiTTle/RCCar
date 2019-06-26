@@ -29,12 +29,11 @@ interface Electrics {
     fun reset()
 }
 
-enum class MainLight(val id:String){
-    LIGHTS_OFF("lights_off"),
-    POSITION_LIGHTS("lights_position"),
-    DRIVING_LIGHTS("lights_driving"),
-    LONG_RANGE_LIGHTS("lights_long_range"),
-    LONG_RANGE_SIGNAL_LIGHTS("lights_long_range_signal");
+enum class MainLight {
+    NOTHING,
+    LIGHTS_OFF,
+    POSITION_LIGHTS, DRIVING_LIGHTS, LONG_RANGE_LIGHTS,
+    LONG_RANGE_SIGNAL_LIGHTS;
 
     companion object {
         // Give the name of the enum which will be the default when needed
@@ -42,19 +41,18 @@ enum class MainLight(val id:String){
     }
 }
 
-enum class DirectionLight(val id:String){
-    DIRECTION_LIGHTS_RIGHT("lights_direction_right"),
-    DIRECTION_LIGHTS_LEFT("lights_direction_left"),
-    DIRECTION_LIGHTS_STRAIGHT("lights_direction_straight");
+enum class CorneringLight{
+    NOTHING,
+    RIGHT_LIGHTS, LEFT_LIGHTS, STRAIGHT_LIGHTS;
 
     companion object {
         // Give the name of the enum which will be the default when needed
-        const val DEFAULT = "DIRECTION_LIGHTS_STRAIGHT"
+        const val DEFAULT = "STRAIGHT_LIGHT"
     }
 }
 
-enum class OtherLight(val id:String){
-    BRAKING_LIGHTS("lights_braking"),
-    REVERSE_LIGHTS("lights_reverse"),
-    EMERGENCY_LIGHTS("lights_emergency")
+enum class OtherLight{
+    BRAKING_LIGHTS,
+    REVERSE_LIGHTS,
+    EMERGENCY_LIGHTS
 }

@@ -26,66 +26,66 @@ internal class ElectricsControllerIntegrationTest(
     @Test
     fun `turn on left direction light`() {
         if (electricsComponent.leftTurnLightsState){
-            restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_left")
+            restTemplate.getForEntity<String>("/set_direction_lights?direction=LEFT_LIGHTS")
         }
-        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_left")
+        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=LEFT_LIGHTS")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(DirectionLight.DIRECTION_LIGHTS_LEFT.name)
+        assertThat(entity.body).isEqualTo(CorneringLight.LEFT_LIGHTS.name)
         assertThat(electricsComponent.leftTurnLightsState).isTrue()
         assertThat(electricsComponent.rightTurnLightsState).isFalse()
     }
     @Test
     fun `turn off left direction light`() {
         if (!electricsComponent.leftTurnLightsState) {
-            restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_left")
+            restTemplate.getForEntity<String>("/set_direction_lights?direction=LEFT_LIGHTS")
         }
-        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_left")
+        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=LEFT_LIGHTS")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(DirectionLight.DIRECTION_LIGHTS_STRAIGHT.name)
+        assertThat(entity.body).isEqualTo(CorneringLight.STRAIGHT_LIGHTS.name)
         assertThat(electricsComponent.leftTurnLightsState).isFalse()
         assertThat(electricsComponent.rightTurnLightsState).isFalse()
     }
     @Test
     fun `turn on right direction light`() {
         if (electricsComponent.rightTurnLightsState){
-            restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_right")
+            restTemplate.getForEntity<String>("/set_direction_lights?direction=RIGHT_LIGHTS")
         }
-        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_right")
+        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=RIGHT_LIGHTS")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(DirectionLight.DIRECTION_LIGHTS_RIGHT.name)
+        assertThat(entity.body).isEqualTo(CorneringLight.RIGHT_LIGHTS.name)
         assertThat(electricsComponent.rightTurnLightsState).isTrue()
         assertThat(electricsComponent.leftTurnLightsState).isFalse()
     }
     @Test
     fun `turn off right direction light`() {
         if (!electricsComponent.rightTurnLightsState) {
-            restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_right")
+            restTemplate.getForEntity<String>("/set_direction_lights?direction=RIGHT_LIGHTS")
         }
-        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_right")
+        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=RIGHT_LIGHTS")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(DirectionLight.DIRECTION_LIGHTS_STRAIGHT.name)
+        assertThat(entity.body).isEqualTo(CorneringLight.STRAIGHT_LIGHTS.name)
         assertThat(electricsComponent.rightTurnLightsState).isFalse()
         assertThat(electricsComponent.leftTurnLightsState).isFalse()
     }
     @Test
     fun `turn off both direction lights when straight from left on`() {
         if (!electricsComponent.leftTurnLightsState) {
-            restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_right")
+            restTemplate.getForEntity<String>("/set_direction_lights?direction=RIGHT_LIGHTS")
         }
-        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_straight")
+        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=STRAIGHT_LIGHTS")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(DirectionLight.DIRECTION_LIGHTS_STRAIGHT.name)
+        assertThat(entity.body).isEqualTo(CorneringLight.STRAIGHT_LIGHTS.name)
         assertThat(electricsComponent.rightTurnLightsState).isFalse()
         assertThat(electricsComponent.leftTurnLightsState).isFalse()
     }
     @Test
     fun `turn off both direction lights when straight from right on`() {
         if (!electricsComponent.rightTurnLightsState) {
-            restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_right")
+            restTemplate.getForEntity<String>("/set_direction_lights?direction=RIGHT_LIGHTS")
         }
-        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_straight")
+        val entity = restTemplate.getForEntity<String>("/set_direction_lights?direction=STRAIGHT_LIGHTS")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(DirectionLight.DIRECTION_LIGHTS_STRAIGHT.name)
+        assertThat(entity.body).isEqualTo(CorneringLight.STRAIGHT_LIGHTS.name)
         assertThat(electricsComponent.rightTurnLightsState).isFalse()
         assertThat(electricsComponent.leftTurnLightsState).isFalse()
     }
@@ -94,53 +94,53 @@ internal class ElectricsControllerIntegrationTest(
     @Test
     fun `get both turn lights when left turn is on`() {
         if (!electricsComponent.leftTurnLightsState) {
-            restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_left")
+            restTemplate.getForEntity<String>("/set_direction_lights?direction=LEFT_LIGHTS")
         }
         val entity = restTemplate.getForEntity<String>("/get_direction_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(DirectionLight.DIRECTION_LIGHTS_LEFT.name)
+        assertThat(entity.body).isEqualTo(CorneringLight.LEFT_LIGHTS.name)
         assertThat(electricsComponent.rightTurnLightsState).isFalse()
         assertThat(electricsComponent.leftTurnLightsState).isTrue()
     }
     @Test
     fun `get both turn lights when left turn is off`() {
         if (electricsComponent.leftTurnLightsState) {
-            restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_left")
+            restTemplate.getForEntity<String>("/set_direction_lights?direction=LEFT_LIGHTS")
         }
         val entity = restTemplate.getForEntity<String>("/get_direction_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(DirectionLight.DIRECTION_LIGHTS_STRAIGHT.name)
+        assertThat(entity.body).isEqualTo(CorneringLight.STRAIGHT_LIGHTS.name)
         assertThat(electricsComponent.rightTurnLightsState).isFalse()
         assertThat(electricsComponent.leftTurnLightsState).isFalse()
     }
     @Test
     fun `get both turn lights when right turn is on`() {
         if (!electricsComponent.rightTurnLightsState) {
-            restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_right")
+            restTemplate.getForEntity<String>("/set_direction_lights?direction=RIGHT_LIGHTS")
         }
         val entity = restTemplate.getForEntity<String>("/get_direction_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(DirectionLight.DIRECTION_LIGHTS_RIGHT.name)
+        assertThat(entity.body).isEqualTo(CorneringLight.RIGHT_LIGHTS.name)
         assertThat(electricsComponent.rightTurnLightsState).isTrue()
         assertThat(electricsComponent.leftTurnLightsState).isFalse()
     }
     @Test
     fun `get both turn lights when right turn is off`() {
         if (electricsComponent.rightTurnLightsState) {
-            restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_right")
+            restTemplate.getForEntity<String>("/set_direction_lights?direction=RIGHT_LIGHTS")
         }
         val entity = restTemplate.getForEntity<String>("/get_direction_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(DirectionLight.DIRECTION_LIGHTS_STRAIGHT.name)
+        assertThat(entity.body).isEqualTo(CorneringLight.STRAIGHT_LIGHTS.name)
         assertThat(electricsComponent.rightTurnLightsState).isFalse()
         assertThat(electricsComponent.leftTurnLightsState).isFalse()
     }
     @Test
     fun `get both turn lights when straight`() {
-        restTemplate.getForEntity<String>("/set_direction_lights?direction=direction_lights_straight")
+        restTemplate.getForEntity<String>("/set_direction_lights?direction=STRAIGHT_LIGHTS")
         val entity = restTemplate.getForEntity<String>("/get_direction_lights")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).isEqualTo(DirectionLight.DIRECTION_LIGHTS_STRAIGHT.name)
+        assertThat(entity.body).isEqualTo(CorneringLight.STRAIGHT_LIGHTS.name)
         assertThat(electricsComponent.rightTurnLightsState).isFalse()
         assertThat(electricsComponent.leftTurnLightsState).isFalse()
     }
@@ -148,7 +148,7 @@ internal class ElectricsControllerIntegrationTest(
     // setMainLightsState
     @Test
     fun `turn off main lights`() {
-        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?value=lights_off")
+        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?value=LIGHTS_OFF")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(MainLight.LIGHTS_OFF.name)
         assertThat(electricsComponent.positionLightsState).isFalse()
@@ -157,7 +157,7 @@ internal class ElectricsControllerIntegrationTest(
     }
     @Test
     fun `turn on position lights`() {
-        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?state=position_lights")
+        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?state=POSITION_LIGHTS")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(MainLight.POSITION_LIGHTS.name)
         assertThat(electricsComponent.positionLightsState).isTrue()
@@ -168,7 +168,7 @@ internal class ElectricsControllerIntegrationTest(
     fun `turn on driving lights`() {
         `turn on position lights`()
 
-        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?state=driving_lights")
+        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?state=DRIVING_LIGHTS")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(MainLight.DRIVING_LIGHTS.name)
         assertThat(electricsComponent.positionLightsState).isTrue()
@@ -179,7 +179,7 @@ internal class ElectricsControllerIntegrationTest(
     fun `turn on long range lights`() {
         `turn on driving lights`()
 
-        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?state=long_range_lights")
+        val entity = restTemplate.getForEntity<String>("/set_main_lights_state?state=LONG_RANGE_LIGHTS")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).isEqualTo(MainLight.LONG_RANGE_LIGHTS.name)
         assertThat(electricsComponent.positionLightsState).isTrue()
@@ -194,9 +194,9 @@ internal class ElectricsControllerIntegrationTest(
     // getMainLightsState
     @Test
     fun `get all lights state when till long range lights are on`() {
-        restTemplate.getForEntity<String>("/set_main_lights_state?state=position_lights")
-        restTemplate.getForEntity<String>("/set_main_lights_state?state=driving_lights")
-        restTemplate.getForEntity<String>("/set_main_lights_state?state=long_range_lights")
+        restTemplate.getForEntity<String>("/set_main_lights_state?state=POSITION_LIGHTS")
+        restTemplate.getForEntity<String>("/set_main_lights_state?state=DRIVING_LIGHTS")
+        restTemplate.getForEntity<String>("/set_main_lights_state?state=LONG_RANGE_LIGHTS")
 
         val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
@@ -207,8 +207,8 @@ internal class ElectricsControllerIntegrationTest(
     }
     @Test
     fun `get all lights state when till driving lights are on`() {
-        restTemplate.getForEntity<String>("/set_main_lights_state?state=position_lights")
-        restTemplate.getForEntity<String>("/set_main_lights_state?state=driving_lights")
+        restTemplate.getForEntity<String>("/set_main_lights_state?state=POSITION_LIGHTS")
+        restTemplate.getForEntity<String>("/set_main_lights_state?state=DRIVING_LIGHTS")
 
         val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
@@ -219,7 +219,7 @@ internal class ElectricsControllerIntegrationTest(
     }
     @Test
     fun `get all lights state when till position lights are on`() {
-        restTemplate.getForEntity<String>("/set_main_lights_state?state=position_lights")
+        restTemplate.getForEntity<String>("/set_main_lights_state?state=POSITION_LIGHTS")
 
         val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
@@ -230,7 +230,7 @@ internal class ElectricsControllerIntegrationTest(
     }
     @Test
     fun `get all lights state when main lights are off`() {
-        restTemplate.getForEntity<String>("/set_main_lights_state?value=lights_off")
+        restTemplate.getForEntity<String>("/set_main_lights_state?value=LIGHTS_OFF")
 
         val entity = restTemplate.getForEntity<String>("/get_main_lights_state")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)

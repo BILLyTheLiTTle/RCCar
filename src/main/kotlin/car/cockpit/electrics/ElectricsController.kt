@@ -13,7 +13,7 @@ class ElectricsController{
 
     @GetMapping("/set_direction_lights")
     fun setDirectionLights(
-        @RequestParam(value = "direction", defaultValue = DirectionLight.DEFAULT) direction: String
+        @RequestParam(value = "direction", defaultValue = CorneringLight.DEFAULT) direction: String
     ) = electricsService.setDirectionLights(direction)
 
     @GetMapping("/get_direction_lights")

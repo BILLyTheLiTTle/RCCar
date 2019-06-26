@@ -1,6 +1,7 @@
 package car.cockpit.electrics
 
 import car.cockpit.engine.UNKNOWN_STATE
+import car.enumContains
 import car.showMessage
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,19 +20,19 @@ class ElectricsService {
         showMessage(logger = logger,
             body = "Direction: $direction")
 
-        val part = DirectionLight.valueOf(direction)
+        val part = if (enumContains<CorneringLight>(direction)) CorneringLight.valueOf(direction) else CorneringLight.NOTHING
 
         synchronized(this){
             when (part) {
-                DirectionLight.DIRECTION_LIGHTS_STRAIGHT -> {
+                CorneringLight.STRAIGHT_LIGHTS -> {
                     electricsComponent.leftTurnLightsState = false
                     electricsComponent.rightTurnLightsState = false
                 }
-                DirectionLight.DIRECTION_LIGHTS_RIGHT -> {
+                CorneringLight.RIGHT_LIGHTS -> {
                     //ElectricsComponent.leftTurnLightsState = false
                     electricsComponent.rightTurnLightsState = !electricsComponent.rightTurnLightsState
                 }
-                DirectionLight.DIRECTION_LIGHTS_LEFT -> {
+                CorneringLight.LEFT_LIGHTS -> {
                     electricsComponent.leftTurnLightsState = !electricsComponent.leftTurnLightsState
                     //ElectricsComponent.rightTurnLightsState = false
                 }
@@ -43,11 +44,11 @@ class ElectricsService {
 
     fun getDirectionLights() =
         if (!electricsComponent.leftTurnLightsState && !electricsComponent.rightTurnLightsState)
-            DirectionLight.DIRECTION_LIGHTS_STRAIGHT.name
+            CorneringLight.STRAIGHT_LIGHTS.name
         else if (electricsComponent.leftTurnLightsState)
-            DirectionLight.DIRECTION_LIGHTS_LEFT.name
+            CorneringLight.LEFT_LIGHTS.name
         else if (electricsComponent.rightTurnLightsState)
-            DirectionLight.DIRECTION_LIGHTS_RIGHT.name
+            CorneringLight.RIGHT_LIGHTS.name
         else
             UNKNOWN_STATE
 
@@ -57,7 +58,7 @@ class ElectricsService {
         showMessage(logger = logger,
             body = "Main Lights State Request: $value")
 
-        val part = MainLight.valueOf(value)
+        val part = if (enumContains<MainLight>(value)) MainLight.valueOf(value) else MainLight.NOTHING
         // I don't think I need synchronization
         //synchronized(this){
         when(part){
