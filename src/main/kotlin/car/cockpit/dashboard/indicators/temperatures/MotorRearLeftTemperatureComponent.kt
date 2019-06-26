@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 @Component("Motor Rear Left Temperature Component")
 class MotorRearLeftTemperatureComponent: Temperature {
 
-    override val id = ThermometerDevice.MOTOR_REAR_LEFT
+    override val id = TemperatureDevice.MOTOR_REAR_LEFT_TEMP
     override val minMediumTemp = 30
     override val maxMediumTemp = 70
 
@@ -17,9 +17,9 @@ class MotorRearLeftTemperatureComponent: Temperature {
             val temp = synchronized(lock) { readSensor() }
 
             warning = when {
-                temp < minMediumTemp -> TemperatureWarningType.NORMAL.name
-                temp > maxMediumTemp -> TemperatureWarningType.HIGH.name
-                else -> TemperatureWarningType.MEDIUM.name
+                temp < minMediumTemp -> TemperatureWarning.NORMAL_TEMPERATURE.name
+                temp > maxMediumTemp -> TemperatureWarning.HIGH_TEMPERATURE.name
+                else -> TemperatureWarning.MEDIUM_TEMPERATURE.name
             }
 
             return temp

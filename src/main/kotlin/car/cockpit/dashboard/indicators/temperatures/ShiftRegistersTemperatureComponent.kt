@@ -7,7 +7,7 @@ import kotlin.math.max
 @Component("Shift Registers Temperature Component")
 class ShiftRegistersTemperatureComponent: Temperature {
 
-    override val id = ThermometerDevice.SHIFT_REGISTERS
+    override val id = TemperatureDevice.SHIFT_REGISTERS_TEMP
     override val minMediumTemp = 30
     override val maxMediumTemp = 70
 
@@ -18,9 +18,9 @@ class ShiftRegistersTemperatureComponent: Temperature {
             val temp = synchronized(lock) { readSensor() }
 
             warning = when {
-                temp < minMediumTemp -> TemperatureWarningType.NORMAL.name
-                temp > maxMediumTemp -> TemperatureWarningType.HIGH.name
-                else -> TemperatureWarningType.MEDIUM.name
+                temp < minMediumTemp -> TemperatureWarning.NORMAL_TEMPERATURE.name
+                temp > maxMediumTemp -> TemperatureWarning.HIGH_TEMPERATURE.name
+                else -> TemperatureWarning.MEDIUM_TEMPERATURE.name
             }
 
             return temp

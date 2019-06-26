@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 @Component("H-Bridge Front Temperature Component")
 class HBridgeFrontTemperatureComponent: Temperature {
 
-    override val id = ThermometerDevice.H_BRIDGE_FRONT
+    override val id = TemperatureDevice.H_BRIDGE_FRONT_TEMP
     override val minMediumTemp = 30
     override val maxMediumTemp = 70
 
@@ -17,9 +17,9 @@ class HBridgeFrontTemperatureComponent: Temperature {
             val temp = synchronized(lock) { readSensor() }
 
             warning = when {
-                temp < minMediumTemp -> TemperatureWarningType.NORMAL.name
-                temp > maxMediumTemp -> TemperatureWarningType.HIGH.name
-                else -> TemperatureWarningType.MEDIUM.name
+                temp < minMediumTemp -> TemperatureWarning.NORMAL_TEMPERATURE.name
+                temp > maxMediumTemp -> TemperatureWarning.HIGH_TEMPERATURE.name
+                else -> TemperatureWarning.MEDIUM_TEMPERATURE.name
             }
 
             return temp

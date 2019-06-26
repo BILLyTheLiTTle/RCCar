@@ -15,7 +15,7 @@ class RaspberryPiTemperatureComponent: Temperature {
     @Autowired
     private lateinit var engineComponent: Engine
 
-    override val id = ThermometerDevice.RASPBERRY_PI
+    override val id = TemperatureDevice.RASPBERRY_PI_TEMP
     /* Declared temps:
         -40 < cpu temp < 85
         ? < gpu temp < ?
@@ -30,9 +30,9 @@ class RaspberryPiTemperatureComponent: Temperature {
             val temp = synchronized(lock) { readSensor() }
 
             warning = when {
-                temp < minMediumTemp -> TemperatureWarningType.NORMAL.name
-                temp > maxMediumTemp -> TemperatureWarningType.HIGH.name
-                else -> TemperatureWarningType.MEDIUM.name
+                temp < minMediumTemp -> TemperatureWarning.NORMAL_TEMPERATURE.name
+                temp > maxMediumTemp -> TemperatureWarning.HIGH_TEMPERATURE.name
+                else -> TemperatureWarning.MEDIUM_TEMPERATURE.name
             }
 
             return temp

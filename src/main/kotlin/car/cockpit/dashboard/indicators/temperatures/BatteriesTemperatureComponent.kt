@@ -7,7 +7,7 @@ import kotlin.math.max
 @Component("Batteries Temperature Component")
 class BatteriesTemperatureComponent: Temperature {
 
-    override val id = ThermometerDevice.BATTERIES
+    override val id = TemperatureDevice.BATTERIES_TEMP
     override val minMediumTemp = 30
     override val maxMediumTemp = 70
 
@@ -18,9 +18,9 @@ class BatteriesTemperatureComponent: Temperature {
             val temp = synchronized(lock) { readSensor() }
 
             warning = when {
-                temp < minMediumTemp -> TemperatureWarningType.NORMAL.name
-                temp > maxMediumTemp -> TemperatureWarningType.HIGH.name
-                else -> TemperatureWarningType.MEDIUM.name
+                temp < minMediumTemp -> TemperatureWarning.NORMAL_TEMPERATURE.name
+                temp > maxMediumTemp -> TemperatureWarning.HIGH_TEMPERATURE.name
+                else -> TemperatureWarning.MEDIUM_TEMPERATURE.name
             }
 
             return temp

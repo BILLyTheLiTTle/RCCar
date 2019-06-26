@@ -81,12 +81,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorRearLeftTempComponent is MotorRearLeftTemperatureComponent).isTrue()
 
         `when`(motorRearLeftTempComponent.value).thenReturn(temp-5)
-        `when`(motorRearLeftTempComponent.warning).thenReturn(TemperatureWarningType.NORMAL.name)
+        `when`(motorRearLeftTempComponent.warning).thenReturn(TemperatureWarning.NORMAL_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorRearLeftTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.NORMAL.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.NORMAL_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
@@ -99,12 +99,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorRearLeftTempComponent is MotorRearLeftTemperatureComponent).isTrue()
 
         `when`(motorRearLeftTempComponent.value).thenReturn(temp + 5)
-        `when`(motorRearLeftTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(motorRearLeftTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorRearLeftTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
@@ -117,12 +117,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorRearLeftTempComponent is MotorRearLeftTemperatureComponent).isTrue()
 
         `when`(motorRearLeftTempComponent.value).thenReturn(temp + 5)
-        `when`(motorRearLeftTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(motorRearLeftTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorRearLeftTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
@@ -136,12 +136,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorRearRightTempComponent is MotorRearRightTemperatureComponent).isTrue()
 
         `when`(motorRearRightTempComponent.value).thenReturn(temp-5)
-        `when`(motorRearRightTempComponent.warning).thenReturn(TemperatureWarningType.NORMAL.name)
+        `when`(motorRearRightTempComponent.warning).thenReturn(TemperatureWarning.NORMAL_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorRearRightTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.NORMAL.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.NORMAL_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
@@ -154,12 +154,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorRearRightTempComponent is MotorRearRightTemperatureComponent).isTrue()
 
         `when`(motorRearRightTempComponent.value).thenReturn(temp + 5)
-        `when`(motorRearRightTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(motorRearRightTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorRearRightTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
@@ -172,12 +172,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorRearRightTempComponent is MotorRearRightTemperatureComponent).isTrue()
 
         `when`(motorRearRightTempComponent.value).thenReturn(temp + 5)
-        `when`(motorRearRightTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(motorRearRightTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorRearRightTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
@@ -190,12 +190,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorFrontLeftTempComponent is MotorFrontLeftTemperatureComponent).isTrue()
 
         `when`(motorFrontLeftTempComponent.value).thenReturn(temp-5)
-        `when`(motorFrontLeftTempComponent.warning).thenReturn(TemperatureWarningType.NORMAL.name)
+        `when`(motorFrontLeftTempComponent.warning).thenReturn(TemperatureWarning.NORMAL_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorFrontLeftTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.NORMAL.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.NORMAL_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
@@ -208,12 +208,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorFrontLeftTempComponent is MotorFrontLeftTemperatureComponent).isTrue()
 
         `when`(motorFrontLeftTempComponent.value).thenReturn(temp + 5)
-        `when`(motorFrontLeftTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(motorFrontLeftTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorFrontLeftTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
@@ -226,12 +226,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorFrontLeftTempComponent is MotorFrontLeftTemperatureComponent).isTrue()
 
         `when`(motorFrontLeftTempComponent.value).thenReturn(temp + 5)
-        `when`(motorFrontLeftTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(motorFrontLeftTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorFrontLeftTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
@@ -245,12 +245,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorFrontRightTempComponent is MotorFrontRightTemperatureComponent).isTrue()
 
         `when`(motorFrontRightTempComponent.value).thenReturn(temp-5)
-        `when`(motorFrontRightTempComponent.warning).thenReturn(TemperatureWarningType.NORMAL.name)
+        `when`(motorFrontRightTempComponent.warning).thenReturn(TemperatureWarning.NORMAL_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorFrontRightTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.NORMAL.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.NORMAL_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
@@ -263,12 +263,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorFrontRightTempComponent is MotorFrontRightTemperatureComponent).isTrue()
 
         `when`(motorFrontRightTempComponent.value).thenReturn(temp + 5)
-        `when`(motorFrontRightTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(motorFrontRightTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorFrontRightTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
@@ -281,12 +281,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(motorFrontRightTempComponent is MotorFrontRightTemperatureComponent).isTrue()
 
         `when`(motorFrontRightTempComponent.value).thenReturn(temp + 5)
-        `when`(motorFrontRightTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(motorFrontRightTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(motorFrontRightTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
@@ -300,12 +300,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(hBridgeRearTempComponent is HBridgeRearTemperatureComponent).isTrue()
 
         `when`(hBridgeRearTempComponent.value).thenReturn(temp-5)
-        `when`(hBridgeRearTempComponent.warning).thenReturn(TemperatureWarningType.NORMAL.name)
+        `when`(hBridgeRearTempComponent.warning).thenReturn(TemperatureWarning.NORMAL_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(hBridgeRearTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.NORMAL.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.NORMAL_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
@@ -318,12 +318,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(hBridgeRearTempComponent is HBridgeRearTemperatureComponent).isTrue()
 
         `when`(hBridgeRearTempComponent.value).thenReturn(temp + 5)
-        `when`(hBridgeRearTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(hBridgeRearTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(hBridgeRearTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
@@ -336,12 +336,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(hBridgeRearTempComponent is HBridgeRearTemperatureComponent).isTrue()
 
         `when`(hBridgeRearTempComponent.value).thenReturn(temp + 5)
-        `when`(hBridgeRearTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(hBridgeRearTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(hBridgeRearTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
@@ -355,12 +355,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(hBridgeFrontTempComponent is HBridgeFrontTemperatureComponent).isTrue()
 
         `when`(hBridgeFrontTempComponent.value).thenReturn(temp-5)
-        `when`(hBridgeFrontTempComponent.warning).thenReturn(TemperatureWarningType.NORMAL.name)
+        `when`(hBridgeFrontTempComponent.warning).thenReturn(TemperatureWarning.NORMAL_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(hBridgeFrontTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.NORMAL.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.NORMAL_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
@@ -373,12 +373,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(hBridgeFrontTempComponent is HBridgeFrontTemperatureComponent).isTrue()
 
         `when`(hBridgeFrontTempComponent.value).thenReturn(temp + 5)
-        `when`(hBridgeFrontTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(hBridgeFrontTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(hBridgeFrontTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
@@ -391,12 +391,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(hBridgeFrontTempComponent is HBridgeFrontTemperatureComponent).isTrue()
 
         `when`(hBridgeFrontTempComponent.value).thenReturn(temp + 5)
-        `when`(hBridgeFrontTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(hBridgeFrontTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(hBridgeFrontTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
@@ -410,12 +410,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(raspberryPiTempComponent is RaspberryPiTemperatureComponent).isTrue()
 
         `when`(raspberryPiTempComponent.value).thenReturn(temp-5)
-        `when`(raspberryPiTempComponent.warning).thenReturn(TemperatureWarningType.NORMAL.name)
+        `when`(raspberryPiTempComponent.warning).thenReturn(TemperatureWarning.NORMAL_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(raspberryPiTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.NORMAL.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.NORMAL_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
@@ -426,13 +426,13 @@ internal class TemperatureCronJobUnitTest(
         val temp = minMediumTemp?.getter?.call(raspberryPiTempComponent) as Int
 
         `when`(raspberryPiTempComponent.value).thenReturn(temp + 5)
-        `when`(raspberryPiTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(raspberryPiTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(raspberryPiTempComponent)
 
         task?.checkTemps()
         assertThat(raspberryPiTempComponent is RaspberryPiTemperatureComponent).isTrue()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
@@ -445,12 +445,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(raspberryPiTempComponent is RaspberryPiTemperatureComponent).isTrue()
 
         `when`(raspberryPiTempComponent.value).thenReturn(temp + 5)
-        `when`(raspberryPiTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(raspberryPiTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(raspberryPiTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
@@ -464,12 +464,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(batteriesTempComponent is BatteriesTemperatureComponent).isTrue()
 
         `when`(batteriesTempComponent.value).thenReturn(temp-5)
-        `when`(batteriesTempComponent.warning).thenReturn(TemperatureWarningType.NORMAL.name)
+        `when`(batteriesTempComponent.warning).thenReturn(TemperatureWarning.NORMAL_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(batteriesTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.NORMAL.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.NORMAL_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
@@ -482,12 +482,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(batteriesTempComponent is BatteriesTemperatureComponent).isTrue()
 
         `when`(batteriesTempComponent.value).thenReturn(temp + 5)
-        `when`(batteriesTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(batteriesTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(batteriesTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
@@ -500,12 +500,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(batteriesTempComponent is BatteriesTemperatureComponent).isTrue()
 
         `when`(batteriesTempComponent.value).thenReturn(temp + 5)
-        `when`(batteriesTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(batteriesTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(batteriesTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 
@@ -519,12 +519,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(shiftRegistersTempComponent is ShiftRegistersTemperatureComponent).isTrue()
 
         `when`(shiftRegistersTempComponent.value).thenReturn(temp-5)
-        `when`(shiftRegistersTempComponent.warning).thenReturn(TemperatureWarningType.NORMAL.name)
+        `when`(shiftRegistersTempComponent.warning).thenReturn(TemperatureWarning.NORMAL_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(shiftRegistersTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.NORMAL.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.NORMAL_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp-5)
     }
     @Test
@@ -537,12 +537,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(shiftRegistersTempComponent is ShiftRegistersTemperatureComponent).isTrue()
 
         `when`(shiftRegistersTempComponent.value).thenReturn(temp + 5)
-        `when`(shiftRegistersTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(shiftRegistersTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(shiftRegistersTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
     @Test
@@ -555,12 +555,12 @@ internal class TemperatureCronJobUnitTest(
         assertThat(shiftRegistersTempComponent is ShiftRegistersTemperatureComponent).isTrue()
 
         `when`(shiftRegistersTempComponent.value).thenReturn(temp + 5)
-        `when`(shiftRegistersTempComponent.warning).thenReturn(TemperatureWarningType.MEDIUM.name)
+        `when`(shiftRegistersTempComponent.warning).thenReturn(TemperatureWarning.MEDIUM_TEMPERATURE.name)
 
         task?.hardwareItems = arrayOf(shiftRegistersTempComponent)
 
         task?.checkTemps()
-        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarningType.MEDIUM.name)
+        assertThat(task?.reportedTempWarnings?.get(0)).isEqualTo(TemperatureWarning.MEDIUM_TEMPERATURE.name)
         assertThat(task?.primaryTempValues?.get(0)).isEqualTo(temp + 5)
     }
 }

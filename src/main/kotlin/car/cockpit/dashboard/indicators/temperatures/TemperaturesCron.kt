@@ -73,12 +73,12 @@ class TemperaturesCron {
         EMPTY_INT)
 
     var reportedTempWarnings = arrayOf(
-        TemperatureWarningType.NOTHING.name, TemperatureWarningType.NOTHING.name,
-        TemperatureWarningType.NOTHING.name, TemperatureWarningType.NOTHING.name,
-        TemperatureWarningType.NOTHING.name, TemperatureWarningType.NOTHING.name,
-        TemperatureWarningType.NOTHING.name,
-        TemperatureWarningType.NOTHING.name,
-        TemperatureWarningType.NOTHING.name)
+        TemperatureWarning.NOTHING_TEMPERATURE.name, TemperatureWarning.NOTHING_TEMPERATURE.name,
+        TemperatureWarning.NOTHING_TEMPERATURE.name, TemperatureWarning.NOTHING_TEMPERATURE.name,
+        TemperatureWarning.NOTHING_TEMPERATURE.name, TemperatureWarning.NOTHING_TEMPERATURE.name,
+        TemperatureWarning.NOTHING_TEMPERATURE.name,
+        TemperatureWarning.NOTHING_TEMPERATURE.name,
+        TemperatureWarning.NOTHING_TEMPERATURE.name)
 
     lateinit var hardwareItems: Array<Temperature>
     @PostConstruct

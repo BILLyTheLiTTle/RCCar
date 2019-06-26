@@ -1,11 +1,10 @@
 package car.cockpit.dashboard.indicators.temperatures
 
-import car.cockpit.engine.EMPTY_STRING
 import java.util.*
 
 interface Temperature {
 
-    val id: ThermometerDevice
+    val id: TemperatureDevice
     val value: Int
     val warning: String
 
@@ -26,24 +25,14 @@ interface Temperature {
 
 val lock = Any()
 
-// TODO TemperatureDevice
-enum class ThermometerDevice(val id: String) {
-    BATTERIES("batteries_temp"), // BATTERIES_TEMP, etc for the others
-    H_BRIDGE_FRONT("h_bridge_front_temp"),
-    H_BRIDGE_REAR("h_bridge_rear_temp"),
-    MOTOR_FRONT_LEFT("motor_front_left_temp"),
-    MOTOR_FRONT_RIGHT("motor_front_right_temp"),
-    MOTOR_REAR_LEFT("motor_rear_left_temp"),
-    MOTOR_REAR_RIGHT("motor_rear_right_temp"),
-    RASPBERRY_PI("raspberry_pi_temp"),
-    SHIFT_REGISTERS("shift_registers_temp")
+enum class TemperatureDevice {
+    BATTERIES_TEMP,
+    H_BRIDGE_FRONT_TEMP, H_BRIDGE_REAR_TEMP,
+    MOTOR_FRONT_LEFT_TEMP, MOTOR_FRONT_RIGHT_TEMP, MOTOR_REAR_LEFT_TEMP, MOTOR_REAR_RIGHT_TEMP,
+    RASPBERRY_PI_TEMP,
+    SHIFT_REGISTERS_TEMP
 }
 
-//TODO TemperatureWarning
-enum class TemperatureWarningType(val id: String) {
-    NOTHING(EMPTY_STRING), // NOTHING_TEMPERATURE, etc for the others
-    UNCHANGED("unchanged"),
-    NORMAL("normal"),
-    MEDIUM("medium"),
-    HIGH("high")
+enum class TemperatureWarning {
+    NOTHING_TEMPERATURE, UNCHANGED_TEMPERATURE, NORMAL_TEMPERATURE, MEDIUM_TEMPERATURE, HIGH_TEMPERATURE
 }
