@@ -4,25 +4,15 @@ package car.ecu
 
  */
 
-import car.cockpit.engine.EMPTY_STRING
-
 const val ECU_URI = "/ecu"
 const val ECU_PARAM_KEY_ITEM = "item"
 const val ECU_PARAM_KEY_VALUE = "value"
 
-enum class ModuleState(val id: String) {
-    NOTHING(EMPTY_STRING), // TODO NOTHING_STATE, etc for the others
-    OFF("module_off_state"),
-    ON("module_on_state"),
-    IDLE("module_idle_state"),
-    UNCHANGED("module_unchanged_state")
+enum class ModuleState {
+    NOTHING_STATE, OFF_STATE, ON_STATE, IDLE_STATE, UNCHANGED_STATE
 }
 
-enum class Module(val id: String) {
-    TRACTION_CONTROL("TCM"),
-    ANTILOCK_BRAKING("ABM"),
-    ELECTRONIC_STABILITY("ESM"),
-    UNDERSTEER_DETECTION("UDM"),
-    OVERSTEER_DETECTION("ODM"),
-    COLLISION_DETECTION("CDM")
+enum class Module {
+    TRACTION_CONTROL, ANTILOCK_BRAKING, ELECTRONIC_STABILITY, UNDERSTEER_DETECTION, OVERSTEER_DETECTION,
+    COLLISION_DETECTION
 }
