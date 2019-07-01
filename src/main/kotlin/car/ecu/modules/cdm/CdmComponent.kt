@@ -30,33 +30,33 @@ class CdmComponent: Cdm {
             when (direction) {
                 Motion.FORWARD -> udmComponent.frontDistance
                 Motion.BACKWARD -> udmComponent.rearDistance
-                Motion.NEUTRAL -> STOP_THRESHOLD_DISTANCE
-                else -> ERROR_DISTANCE
+                Motion.NEUTRAL -> CollisionThresholdValues.NO_SPEED.distance
+                else -> CollisionThresholdValues.ERROR_SPEED.distance
             }
 
         val throttleValue = when  {
-            distance <= STOP_THRESHOLD_DISTANCE -> {
+            distance <= CollisionThresholdValues.NO_SPEED.distance -> {
                 0
             }
-            distance <= LOW_SPEED_LIMITER_THRESHOLD_DISTANCE -> {
-                if (rawThrottleValue > LOW_SPEED_LIMITER_THRESHOLD_SPEED) {
-                    LOW_SPEED_LIMITER_THRESHOLD_SPEED
+            distance <= CollisionThresholdValues.LOW_SPEED.distance -> {
+                if (rawThrottleValue > CollisionThresholdValues.LOW_SPEED.speed) {
+                    CollisionThresholdValues.LOW_SPEED.speed
                 }
                 else {
                     rawThrottleValue
                 }
             }
-            distance <= MEDIUM_SPEED_LIMITER_THRESHOLD_DISTANCE -> {
-                if (rawThrottleValue > MEDIUM_SPEED_LIMITER_THRESHOLD_SPEED) {
-                    MEDIUM_SPEED_LIMITER_THRESHOLD_SPEED
+            distance <= CollisionThresholdValues.MEDIUM_SPEED.distance -> {
+                if (rawThrottleValue > CollisionThresholdValues.MEDIUM_SPEED.speed) {
+                    CollisionThresholdValues.MEDIUM_SPEED.speed
                 }
                 else {
                     rawThrottleValue
                 }
             }
-            distance <= HIGH_SPEED_LIMITER_THRESHOLD_DISTANCE -> {
-                if (rawThrottleValue > HIGH_SPEED_LIMITER_THRESHOLD_SPEED) {
-                    HIGH_SPEED_LIMITER_THRESHOLD_SPEED
+            distance <= CollisionThresholdValues.HIGH_SPEED.distance -> {
+                if (rawThrottleValue > CollisionThresholdValues.HIGH_SPEED.speed) {
+                    CollisionThresholdValues.HIGH_SPEED.speed
                 }
                 else {
                     rawThrottleValue
