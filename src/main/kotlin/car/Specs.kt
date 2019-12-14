@@ -6,6 +6,10 @@ const val FRONT_WHEELS_DISTANCE = 0.4 // "a" parameter at the differential formu
 const val FRONT_REAR_WHEELS_DISTANCE = 0.7 // "b" parameter at the differential formulas
 const val REAR_CHASSIS_WIDTH = 0.3 // "c" parameter at the differential formulas
 
+const val MAX_SERVO_HARDWARE_VALUE = 235 // actual max value is 250
+const val MID_SERVO_HARDWARE_VALUE = 150
+const val MIN_SERVO_HARDWARE_VALUE = 65 // actual min value is 50
+
 const val THETA_ANGLE_00 = 0.0    // "θ" angle at the differential formulas
 const val THETA_ANGLE_20 = 22.0
 const val THETA_ANGLE_40 = 45.0

@@ -1,6 +1,6 @@
 package car.cockpit.engine
 
-import car.LoggerTypes.*
+import car.LoggerTypes.WARNING
 import car.cockpit.electrics.Electrics
 import car.cockpit.pedals.ThrottleBrake
 import car.cockpit.setup.Setup
@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
+
 
 @Component("Engine Component")
 class EngineComponent: Engine {
@@ -68,6 +69,8 @@ class EngineComponent: Engine {
 
         //////
         // Pi related
+        steeringComponent.initialize()
+
         if(runOnPi) {
             gpio = GpioFactory.getInstance()
             motorsNledsPinsProvider = MCP23S17GpioProvider(MCP23S17GpioProvider.ADDRESS_0, SpiChannel.CS0)
@@ -86,6 +89,7 @@ class EngineComponent: Engine {
     }
 
     private fun initializeMotors(){
+
         // Front Right Motor
         val motorFrontRightPin = CommandArgumentParser.getPin(
             RaspiPin::class.java, // pin provider class to obtain pin instance from

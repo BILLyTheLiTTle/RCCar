@@ -9,6 +9,7 @@ interface Steering {
 
     fun turn(direction: Turn, value: SteeringValue = SteeringValue.VALUE_00): String
 
+    fun initialize()
     fun reset()
 }
 
