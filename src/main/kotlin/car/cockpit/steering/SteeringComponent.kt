@@ -74,10 +74,10 @@ class SteeringComponent: Steering {
             }
         }
 
-        //TODO set value to pins
+        //TODO set value to raspi
 
         this.value = value
-        return SUCCESS // or error message from pins
+        return SUCCESS // or error message from raspi
     }
 
     override fun initialize() {

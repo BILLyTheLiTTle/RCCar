@@ -1,4 +1,4 @@
-package car.raspi.pins
+package car.parts.raspi.pins
 
 import com.pi4j.io.gpio.Pin
 import com.pi4j.io.gpio.RaspiPin

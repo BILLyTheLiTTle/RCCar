@@ -48,7 +48,7 @@ class ThrottleBrakeService {
                     "ID request: $id\n" +
                     "ID last request: $lastRequestId")
 
-        //TODO add function for the pins
+        //TODO add function for the raspi
         var state = UNKNOWN_STATE
         // I don't think I need synchronization
         //synchronized(this){

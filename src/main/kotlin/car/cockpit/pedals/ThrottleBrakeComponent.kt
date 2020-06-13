@@ -106,7 +106,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
         action = direction
 
 	    this.value = value
-        return SUCCESS // or error message from pins
+        return SUCCESS // or error message from raspi
     }
 
     /* The value param will be used  for identification purposes only and
@@ -126,7 +126,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
 
         action = Motion.BRAKING_STILL
         this.value = value
-        return SUCCESS // or error message from pins
+        return SUCCESS // or error message from raspi
     }
 
     /* The value param will be used  for identification purposes only and
@@ -161,7 +161,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
         }
         this.value = value
 
-        return SUCCESS // or error message from pins
+        return SUCCESS // or error message from raspi
     }
 
     /* The value param will be used  for identification purposes only and
@@ -190,7 +190,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
         }
         this.value = value
 
-        return SUCCESS // or error message from pins
+        return SUCCESS // or error message from raspi
     }
 
     /* Neutral state is not achievable with H-bridge used.
@@ -210,7 +210,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
 
         action = Motion.NEUTRAL
         value = 0
-        return SUCCESS // or error message from pins
+        return SUCCESS // or error message from raspi
     }
 
     override fun reset() {

@@ -5,10 +5,10 @@ import car.cockpit.electrics.Electrics
 import car.cockpit.pedals.ThrottleBrake
 import car.cockpit.setup.Setup
 import car.cockpit.steering.Steering
-import car.raspi.pins.BCM_12
-import car.raspi.pins.BCM_13
-import car.raspi.pins.BCM_18
-import car.raspi.pins.BCM_19
+import car.parts.raspi.pins.BCM_12
+import car.parts.raspi.pins.BCM_13
+import car.parts.raspi.pins.BCM_18
+import car.parts.raspi.pins.BCM_19
 import car.showMessage
 import com.pi4j.gpio.extension.mcp.MCP23S17GpioProvider
 import com.pi4j.gpio.extension.mcp.MCP23S17Pin

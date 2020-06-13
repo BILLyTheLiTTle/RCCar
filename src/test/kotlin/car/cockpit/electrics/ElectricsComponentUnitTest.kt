@@ -161,7 +161,7 @@ val initialLightsState = true
     // handleLeds
     @Test
     fun `turn on or off the LEDs`() {
-        // TODO needs pins to test it, probably no need to test it and get assertions
+        // TODO needs raspi to test it, probably no need to test it and get assertions
     }
 
 

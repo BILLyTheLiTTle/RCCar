@@ -155,6 +155,6 @@ class ElectricsComponent: Electrics {
         /* No need to run handleLeds(...) cuz it should run
             when we set every value to false, above
         */
-        // TODO maybe reset the values of the pins (3 for Shift Registers and 2 for NPN BJTs)
+        // TODO maybe reset the values of the raspi (3 for Shift Registers and 2 for NPN BJTs)
     }
 }

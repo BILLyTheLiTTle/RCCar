@@ -8,7 +8,7 @@ Sensors are divided according to importance for a crash possibility.
 2. Manual throttle
 3a. Raw Throttle class with 4 values as inputs each value is the pwm value for each motor
 3b. In case I don't want the 3a solution the DCM module of the ECU could have as input the type of sensor importance
-(High, Medium, Low) and this component could modify the values of the pwm pins
+(High, Medium, Low) and this component could modify the values of the pwm raspi
 
 Sensors Importance (according to crash possibility):
 1. High
@@ -35,7 +35,7 @@ The antiblocking module is activated as the lowest effort by the system,
 then antiblocking module is deactivated (see Question 1) and the understeer detection module takes control,
 then understeer detection module is deactivated and the collision detection module takes control
 
-This means that if the high importance sensor/state is activated the function should control the pwm pins
+This means that if the high importance sensor/state is activated the function should control the pwm raspi
 without checking any lower importance sensors/states.
 
 2. Warning or Manual Assistance
