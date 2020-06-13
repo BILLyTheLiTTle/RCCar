@@ -10,15 +10,8 @@ interface Engine {
     val runOnPi: Boolean
     var engineState: Boolean
     val gpio: GpioController
-    val motorsNledsPinsProvider: MCP23S17GpioProvider
-    val motorFrontRightPwmPin: GpioPinPwmOutput
-    val motorFrontRightDirPin: GpioPinDigitalOutput
-    val motorFrontLeftPwmPin: GpioPinPwmOutput
-    val motorFrontLeftDirPin: GpioPinDigitalOutput
-    val motorRearRightPwmPin: GpioPinPwmOutput
-    val motorRearRightDirPin: GpioPinDigitalOutput
-    val motorRearLeftPwmPin: GpioPinPwmOutput
-    val motorRearLeftDirPin: GpioPinDigitalOutput
+    val motorsPinsProvider: MCP23S17GpioProvider
+
 
     fun start(): String
     fun stop(): String

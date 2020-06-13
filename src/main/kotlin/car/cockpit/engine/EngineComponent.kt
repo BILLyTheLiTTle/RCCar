@@ -51,15 +51,8 @@ class EngineComponent: Engine {
     catch (e: Exception) { false }
 
     override lateinit var gpio: GpioController
-    override lateinit var motorsNledsPinsProvider: MCP23S17GpioProvider
-    override lateinit var motorFrontRightPwmPin: GpioPinPwmOutput
-    override lateinit var motorFrontRightDirPin: GpioPinDigitalOutput
-    override lateinit var motorFrontLeftPwmPin: GpioPinPwmOutput
-    override lateinit var motorFrontLeftDirPin: GpioPinDigitalOutput
-    override lateinit var motorRearRightPwmPin: GpioPinPwmOutput
-    override lateinit var motorRearRightDirPin: GpioPinDigitalOutput
-    override lateinit var motorRearLeftPwmPin: GpioPinPwmOutput
-    override lateinit var motorRearLeftDirPin: GpioPinDigitalOutput
+    override lateinit var motorsPinsProvider: MCP23S17GpioProvider
+
     //////
 
     override fun start(): String {
@@ -71,15 +64,18 @@ class EngineComponent: Engine {
         // Pi related
         steeringComponent.initialize()
 
-        if(runOnPi) {
-            gpio = GpioFactory.getInstance()
-            motorsNledsPinsProvider = MCP23S17GpioProvider(MCP23S17GpioProvider.ADDRESS_0, SpiChannel.CS0)
 
+        if(runOnPi) {
+            // Initialize RasPi hardware
+            gpio = GpioFactory.getInstance()
             Gpio.pwmSetMode(Gpio.PWM_MODE_MS)
             Gpio.pwmSetRange(100)
             Gpio.pwmSetClock(500)
 
-            initializeMotors()
+            // Initialize extra hardware parts
+            motorsPinsProvider = MCP23S17GpioProvider(MCP23S17GpioProvider.ADDRESS_0, SpiChannel.CS0)
+
+            throttleBrake.initialize()
         }
         //////
 
@@ -88,87 +84,9 @@ class EngineComponent: Engine {
         return SUCCESS
     }
 
-    private fun initializeMotors(){
-
-        // Front Right Motor
-        val motorFrontRightPin = CommandArgumentParser.getPin(
-            RaspiPin::class.java, // pin provider class to obtain pin instance from
-            BCM_13, // default pin if no pin argument found
-            null
-        )
-        motorFrontRightPwmPin = gpio.provisionPwmOutputPin(motorFrontRightPin)
-        motorFrontRightDirPin = gpio.provisionDigitalOutputPin(
-            motorsNledsPinsProvider, MCP23S17Pin.GPIO_A1,
-            "Front Right Motor Dir Pin", PinState.LOW)
-
-        // Front Left Motor
-        val motorFrontLeftPin = CommandArgumentParser.getPin(
-            RaspiPin::class.java, // pin provider class to obtain pin instance from
-            BCM_19, // default pin if no pin argument found
-            null
-        )
-        motorFrontLeftPwmPin = gpio.provisionPwmOutputPin(motorFrontLeftPin)
-        motorFrontLeftDirPin = gpio.provisionDigitalOutputPin(
-            motorsNledsPinsProvider, MCP23S17Pin.GPIO_A0,
-            "Front Left Motor Dir Pin", PinState.LOW)
-
-        // Rear Right Motor
-        val motorRearRightPin = CommandArgumentParser.getPin(
-            RaspiPin::class.java, // pin provider class to obtain pin instance from
-            BCM_12, // default pin if no pin argument found
-            null
-        )
-        motorRearRightPwmPin = gpio.provisionPwmOutputPin(motorRearRightPin)
-        motorRearRightDirPin = gpio.provisionDigitalOutputPin(
-            motorsNledsPinsProvider, MCP23S17Pin.GPIO_A3,
-            "Rear Right Motor Dir Pin", PinState.LOW)
-
-        // Rear Left Motor
-        val motorRearLeftPin = CommandArgumentParser.getPin(
-            RaspiPin::class.java, // pin provider class to obtain pin instance from
-            BCM_18, // default pin if no pin argument found
-            null
-        )
-        motorRearLeftPwmPin = gpio.provisionPwmOutputPin(motorRearLeftPin)
-        motorRearLeftDirPin = gpio.provisionDigitalOutputPin(
-            motorsNledsPinsProvider, MCP23S17Pin.GPIO_A2,
-            "Rear Left Motor Dir Pin", PinState.LOW)
-    }
-
     override fun stop(): String {
-        ////// Shutdown & unprovision GPIOs, PWM, etc
-        // Pi related
-        if(runOnPi) {
-            motorFrontRightPwmPin.pwm = 0
-            motorFrontRightDirPin.low()
-
-            motorFrontLeftPwmPin.pwm = 0
-            motorFrontLeftDirPin.low()
-
-            motorRearRightPwmPin.pwm = 0
-            motorRearRightDirPin.low()
-
-            motorRearLeftPwmPin.pwm = 0
-            motorRearLeftDirPin.low()
-
-            gpio.apply {
-                shutdown()
-                unprovisionPin(motorFrontRightPwmPin)
-                unprovisionPin(motorFrontRightDirPin)
-
-                unprovisionPin(motorFrontLeftPwmPin)
-                unprovisionPin(motorFrontLeftDirPin)
-
-                unprovisionPin(motorRearRightPwmPin)
-                unprovisionPin(motorRearRightDirPin)
-
-                unprovisionPin(motorRearLeftPwmPin)
-                unprovisionPin(motorRearLeftDirPin)
-            }
-        }
-        //////
-
         // reset every significant variable
+
         // Setup
         setupComponent.reset()
 

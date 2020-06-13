@@ -7,7 +7,14 @@ import car.cockpit.setup.*
 import car.cockpit.steering.Steering
 import car.cockpit.steering.Turn
 import car.ecu.modules.dcm.Dcm
+import car.parts.raspi.*
 import car.showMessage
+import com.pi4j.gpio.extension.mcp.MCP23S17Pin
+import com.pi4j.io.gpio.GpioPinDigitalOutput
+import com.pi4j.io.gpio.GpioPinPwmOutput
+import com.pi4j.io.gpio.PinState
+import com.pi4j.io.gpio.RaspiPin
+import com.pi4j.util.CommandArgumentParser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.*
 import org.slf4j.LoggerFactory
@@ -62,6 +69,15 @@ class ThrottleBrakeComponent: ThrottleBrake {
             parkingBrakeState -> Motion.PARKING_BRAKE
             else -> Motion.NOTHING
         }
+
+    private lateinit var motorFrontRightPwmPin: GpioPinPwmOutput
+    private lateinit var motorFrontRightDirPin: GpioPinDigitalOutput
+    private lateinit var motorFrontLeftPwmPin: GpioPinPwmOutput
+    private lateinit var motorFrontLeftDirPin: GpioPinDigitalOutput
+    private lateinit var motorRearRightPwmPin: GpioPinPwmOutput
+    private lateinit var motorRearRightDirPin: GpioPinDigitalOutput
+    private lateinit var motorRearLeftPwmPin: GpioPinPwmOutput
+    private lateinit var motorRearLeftDirPin: GpioPinDigitalOutput
 
     override fun throttle(direction: Motion, value: Int): String {
         // turn on/off the braking lights
@@ -213,9 +229,88 @@ class ThrottleBrakeComponent: ThrottleBrake {
         return SUCCESS // or error message from raspi
     }
 
+    override fun initialize() {
+
+        // Front Right Motor
+        val motorFrontRightPin = CommandArgumentParser.getPin(
+            RaspiPin::class.java, // pin provider class to obtain pin instance from
+            MOTOR_FRONT_RIGHT_PWM_PIN, // default pin if no pin argument found
+            null
+        )
+        val motorFrontRightPwmPin = engineComponent.gpio.provisionPwmOutputPin(motorFrontRightPin)
+        val motorFrontRightDirPin = engineComponent.gpio.provisionDigitalOutputPin(
+            engineComponent.motorsPinsProvider, MCP23S17Pin.GPIO_A1,
+            "Front Right Motor Dir Pin", PinState.LOW)
+
+        // Front Left Motor
+        val motorFrontLeftPin = CommandArgumentParser.getPin(
+            RaspiPin::class.java, // pin provider class to obtain pin instance from
+            MOTOR_FRONT_LEFT_PWM_PIN, // default pin if no pin argument found
+            null
+        )
+        motorFrontLeftPwmPin = engineComponent.gpio.provisionPwmOutputPin(motorFrontLeftPin)
+        motorFrontLeftDirPin = engineComponent.gpio.provisionDigitalOutputPin(
+            engineComponent.motorsPinsProvider, MCP23S17Pin.GPIO_A0,
+            "Front Left Motor Dir Pin", PinState.LOW)
+
+        // Rear Right Motor
+        val motorRearRightPin = CommandArgumentParser.getPin(
+            RaspiPin::class.java, // pin provider class to obtain pin instance from
+            MOTOR_REAR_RIGHT_PWM_PIN, // default pin if no pin argument found
+            null
+        )
+        motorRearRightPwmPin = engineComponent.gpio.provisionPwmOutputPin(motorRearRightPin)
+        motorRearRightDirPin = engineComponent.gpio.provisionDigitalOutputPin(
+            engineComponent.motorsPinsProvider, MCP23S17Pin.GPIO_A3,
+            "Rear Right Motor Dir Pin", PinState.LOW)
+
+        // Rear Left Motor
+        val motorRearLeftPin = CommandArgumentParser.getPin(
+            RaspiPin::class.java, // pin provider class to obtain pin instance from
+            MOTOR_REAR_LEFT_PWM_PIN, // default pin if no pin argument found
+            null
+        )
+        motorRearLeftPwmPin = engineComponent.gpio.provisionPwmOutputPin(motorRearLeftPin)
+        motorRearLeftDirPin = engineComponent.gpio.provisionDigitalOutputPin(
+            engineComponent.motorsPinsProvider, MCP23S17Pin.GPIO_A2,
+            "Rear Left Motor Dir Pin", PinState.LOW)
+    }
+
     override fun reset() {
         action = Motion.NEUTRAL
         value = 0
+
+        ////// Shutdown & unprovision GPIOs, PWM, etc
+        // Pi related
+        if(engineComponent.runOnPi) {
+            motorFrontRightPwmPin.pwm = 0
+            motorFrontRightDirPin.low()
+
+            motorFrontLeftPwmPin.pwm = 0
+            motorFrontLeftDirPin.low()
+
+            motorRearRightPwmPin.pwm = 0
+            motorRearRightDirPin.low()
+
+            motorRearLeftPwmPin.pwm = 0
+            motorRearLeftDirPin.low()
+
+            engineComponent.gpio.apply {
+                shutdown()
+                unprovisionPin(motorFrontRightPwmPin)
+                unprovisionPin(motorFrontRightDirPin)
+
+                unprovisionPin(motorFrontLeftPwmPin)
+                unprovisionPin(motorFrontLeftDirPin)
+
+                unprovisionPin(motorRearRightPwmPin)
+                unprovisionPin(motorRearRightDirPin)
+
+                unprovisionPin(motorRearLeftPwmPin)
+                unprovisionPin(motorRearLeftDirPin)
+            }
+        }
+        //////
     }
 
     private fun applyPinValues(motorFrontRightPwm: Int? = null, motorFrontRightDigital: Boolean? = null,
@@ -223,14 +318,14 @@ class ThrottleBrakeComponent: ThrottleBrake {
                        motorRearRightPwm: Int? = null, motorRearRightDigital: Boolean? = null,
                        motorRearLeftPwm: Int? = null, motorRearLeftDigital: Boolean? = null){
 
-        motorFrontRightPwm?.let { engineComponent.motorFrontRightPwmPin.pwm = it }
-        motorFrontRightDigital?.let { engineComponent.motorFrontRightDirPin.setState(it) }
-        motorFrontLeftPwm?.let { engineComponent.motorFrontLeftPwmPin.pwm = it }
-        motorFrontLeftDigital?.let { engineComponent.motorFrontLeftDirPin.setState(it) }
-        motorRearRightPwm?.let { engineComponent.motorRearRightPwmPin.pwm = it }
-        motorRearRightDigital?.let { engineComponent.motorRearRightDirPin.setState(it) }
-        motorRearLeftPwm?.let { engineComponent.motorRearLeftPwmPin.pwm = it }
-        motorRearLeftDigital?.let { engineComponent.motorRearLeftDirPin.setState(it) }
+        motorFrontRightPwm?.let { motorFrontRightPwmPin.pwm = it }
+        motorFrontRightDigital?.let { motorFrontRightDirPin.setState(it) }
+        motorFrontLeftPwm?.let { motorFrontLeftPwmPin.pwm = it }
+        motorFrontLeftDigital?.let { motorFrontLeftDirPin.setState(it) }
+        motorRearRightPwm?.let { motorRearRightPwmPin.pwm = it }
+        motorRearRightDigital?.let { motorRearRightDirPin.setState(it) }
+        motorRearLeftPwm?.let { motorRearLeftPwmPin.pwm = it }
+        motorRearLeftDigital?.let { motorRearLeftDirPin.setState(it) }
     }
 
     private fun calculateDifferentialValues(userThrottleValue: Int) {
@@ -298,11 +393,11 @@ class ThrottleBrakeComponent: ThrottleBrake {
                 body = "User Throttle Value: $userThrottleValue\n" +
                         "User Steering Value: ${steeringComponent.value}\n" +
                         "Front Differential is: ${setupComponent.frontDifferentialSlipperyLimiter}\n" +
-                        "Inner (Left) Front Wheel Speed: ${engineComponent.motorFrontLeftPwmPin}\n" +
-                        "Outer (Right) Front Wheel Speed: ${engineComponent.motorFrontRightPwmPin}\n" +
+                        "Inner (Left) Front Wheel Speed: ${motorFrontLeftPwmPin}\n" +
+                        "Outer (Right) Front Wheel Speed: ${motorFrontRightPwmPin}\n" +
                         "Rear Differential is: ${setupComponent.rearDifferentialSlipperyLimiter}\n" +
-                        "Inner (Left) Rear Wheel Speed: ${engineComponent.motorRearLeftPwmPin}\n" +
-                        "Outer (Right) Rear Wheel Speed: ${engineComponent.motorRearRightPwmPin}"
+                        "Inner (Left) Rear Wheel Speed: ${motorRearLeftPwmPin}\n" +
+                        "Outer (Right) Rear Wheel Speed: ${motorRearRightPwmPin}"
                 )
             }
             Turn.RIGHT -> {
@@ -368,11 +463,11 @@ class ThrottleBrakeComponent: ThrottleBrake {
                     body = "User Throttle Value: $userThrottleValue\n" +
                             "User Steering Value: ${steeringComponent.value}\n" +
                             "Front Differential is: ${setupComponent.frontDifferentialSlipperyLimiter}\n" +
-                            "Inner (Right) Front Wheel Speed: ${engineComponent.motorFrontRightPwmPin}\n" +
-                            "Outer (Left) Front Wheel Speed: ${engineComponent.motorFrontLeftPwmPin}\n" +
+                            "Inner (Right) Front Wheel Speed: ${motorFrontRightPwmPin}\n" +
+                            "Outer (Left) Front Wheel Speed: ${motorFrontLeftPwmPin}\n" +
                             "Rear Differential is: ${setupComponent.rearDifferentialSlipperyLimiter}\n" +
-                            "Inner (Right) Rear Wheel Speed: ${engineComponent.motorRearRightPwmPin}\n" +
-                            "Outer (Left) Rear Wheel Speed: ${engineComponent.motorRearLeftPwmPin}"
+                            "Inner (Right) Rear Wheel Speed: ${motorRearRightPwmPin}\n" +
+                            "Outer (Left) Rear Wheel Speed: ${motorRearLeftPwmPin}"
                 )
             }
             else -> {
@@ -382,11 +477,11 @@ class ThrottleBrakeComponent: ThrottleBrake {
                     body = "User Throttle Value: $userThrottleValue\n" +
                             "User Steering Value: ${steeringComponent.value}\n" +
                             "Front Differential is: ${setupComponent.frontDifferentialSlipperyLimiter}\n" +
-                            "Right Front Wheel Speed: ${engineComponent.motorFrontRightPwmPin}\n" +
-                            "Left Front Wheel Speed: ${engineComponent.motorFrontLeftPwmPin}\n" +
+                            "Right Front Wheel Speed: ${motorFrontRightPwmPin}\n" +
+                            "Left Front Wheel Speed: ${motorFrontLeftPwmPin}\n" +
                             "Rear Differential is: ${setupComponent.rearDifferentialSlipperyLimiter}\n" +
-                            "Right Rear Wheel Speed: ${engineComponent.motorRearRightPwmPin}\n" +
-                            "Left Rear Wheel Speed: ${engineComponent.motorRearLeftPwmPin}"
+                            "Right Rear Wheel Speed: ${motorRearRightPwmPin}\n" +
+                            "Left Rear Wheel Speed: ${motorRearLeftPwmPin}"
                 )
             }
         }

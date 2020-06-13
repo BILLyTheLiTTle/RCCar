@@ -18,6 +18,7 @@ interface ThrottleBrake {
     fun handbrake(value: Int): String
     fun setNeutral(): String
 
+    fun initialize()
     fun reset()
 }
 
