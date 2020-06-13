@@ -303,7 +303,7 @@ class ThrottleBrakeComponent: ThrottleBrake {
             engineComponent.motorsPinsProvider, REAR_MULTIPLEXER_SELECTOR_1,
             "Rear Left Motor Dir Pin", PinState.LOW)
 
-        motorRearRightEnablerPin = engineComponent.gpio.provisionDigitalOutputPin(
+        motorRearLeftEnablerPin = engineComponent.gpio.provisionDigitalOutputPin(
             engineComponent.motorsPinsProvider, REAR_LEFT_BRIDGE_ENABLER_PIN,
             "Rear Left Motor En Pin", PinState.HIGH)
     }
