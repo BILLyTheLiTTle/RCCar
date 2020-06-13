@@ -7,9 +7,9 @@ import car.cockpit.setup.*
 import car.cockpit.steering.Steering
 import car.cockpit.steering.Turn
 import car.ecu.modules.dcm.Dcm
+import car.parts.*
 import car.parts.raspi.*
 import car.showMessage
-import com.pi4j.gpio.extension.mcp.MCP23S17Pin
 import com.pi4j.io.gpio.GpioPinDigitalOutput
 import com.pi4j.io.gpio.GpioPinPwmOutput
 import com.pi4j.io.gpio.PinState
@@ -78,6 +78,10 @@ class ThrottleBrakeComponent: ThrottleBrake {
     private lateinit var motorRearRightDirPin: GpioPinDigitalOutput
     private lateinit var motorRearLeftPwmPin: GpioPinPwmOutput
     private lateinit var motorRearLeftDirPin: GpioPinDigitalOutput
+    private lateinit var motorFrontRightEnablerPin: GpioPinDigitalOutput
+    private lateinit var motorFrontLeftEnablerPin: GpioPinDigitalOutput
+    private lateinit var motorRearRightEnablerPin: GpioPinDigitalOutput
+    private lateinit var motorRearLeftEnablerPin: GpioPinDigitalOutput
 
     override fun throttle(direction: Motion, value: Int): String {
         // turn on/off the braking lights
@@ -107,16 +111,20 @@ class ThrottleBrakeComponent: ThrottleBrake {
             //////
             // Pi related
             if (engineComponent.runOnPi) {
-                applyPinValues(motorFrontRightDigital = true, motorFrontLeftDigital = true,
-                    motorRearRightDigital = true, motorRearLeftDigital = true)
+                applyPinValues(motorFrontRightMovingForward = true, motorFrontRightEnable = true,
+                    motorFrontLeftMovingForward = true, motorFrontLeftEnable = true,
+                    motorRearRightMovingForward = true, motorRearRightEnable = true,
+                    motorRearLeftMovingForward = true, motorRearLeftEnable = true)
             }
         }
         else if (direction == Motion.BACKWARD){
             //////
             // Pi related
             if (engineComponent.runOnPi) {
-                applyPinValues(motorFrontRightDigital = false, motorFrontLeftDigital = false,
-                    motorRearRightDigital = false, motorRearLeftDigital = false)
+                applyPinValues(motorFrontRightMovingForward = false, motorFrontRightEnable = true,
+                    motorFrontLeftMovingForward = false, motorFrontLeftEnable = true,
+                    motorRearRightMovingForward = false, motorRearRightEnable = true,
+                    motorRearLeftMovingForward = false, motorRearLeftEnable = true)
             }
         }
         action = direction
@@ -133,10 +141,11 @@ class ThrottleBrakeComponent: ThrottleBrake {
         //////
         // Pi related
         if (engineComponent.runOnPi) {
-            applyPinValues(motorFrontRightPwm = 0 /*value*/, motorFrontRightDigital = false,
-                motorFrontLeftPwm = 0 /*value*/, motorFrontLeftDigital = false,
-                motorRearRightPwm = 0 /*value*/, motorRearRightDigital = false,
-                motorRearLeftPwm = 0 /*value*/, motorRearLeftDigital = false)
+            applyPinValues(
+                motorFrontRightPwm = 0 /*value*/, motorFrontRightMovingForward = false, motorFrontRightEnable = true,
+                motorFrontLeftPwm = 0 /*value*/, motorFrontLeftMovingForward = false, motorFrontLeftEnable = true,
+                motorRearRightPwm = 0 /*value*/, motorRearRightMovingForward = false, motorRearRightEnable = true,
+                motorRearLeftPwm = 0 /*value*/, motorRearLeftMovingForward = false, motorRearLeftEnable = true)
         }
         //////
 
@@ -156,10 +165,11 @@ class ThrottleBrakeComponent: ThrottleBrake {
         //////
         // Pi related
         if (engineComponent.runOnPi) {
-            applyPinValues(motorFrontRightPwm = 0 /*value*/, motorFrontRightDigital = false,
-                motorFrontLeftPwm = 0 /*value*/, motorFrontLeftDigital = false,
-                motorRearRightPwm = 0 /*value*/, motorRearRightDigital = false,
-                motorRearLeftPwm = 0 /*value*/, motorRearLeftDigital = false)
+            applyPinValues(
+                motorFrontRightPwm = 0 /*value*/, motorFrontRightMovingForward = false, motorFrontRightEnable = true,
+                motorFrontLeftPwm = 0 /*value*/, motorFrontLeftMovingForward = false, motorFrontLeftEnable = true,
+                motorRearRightPwm = 0 /*value*/, motorRearRightMovingForward = false, motorRearRightEnable = true,
+                motorRearLeftPwm = 0 /*value*/, motorRearLeftMovingForward = false, motorRearLeftEnable = true)
         }
         //////
 
@@ -188,8 +198,9 @@ class ThrottleBrakeComponent: ThrottleBrake {
         // Pi related
         if (engineComponent.runOnPi && value == 100) {
             // Affects only the rear wheels
-            applyPinValues(motorRearRightPwm = 0 /*value*/, motorRearRightDigital = false,
-                motorRearLeftPwm = 0 /*value*/, motorRearLeftDigital = false)
+            applyPinValues(
+                motorRearRightPwm = 0 /*value*/, motorRearRightMovingForward = false, motorRearRightEnable = true,
+                motorRearLeftPwm = 0 /*value*/, motorRearLeftMovingForward = false, motorRearLeftEnable = true)
         }
         //////
 
@@ -217,10 +228,11 @@ class ThrottleBrakeComponent: ThrottleBrake {
         //////
         // Pi related
         if (engineComponent.runOnPi) {
-            applyPinValues(motorFrontRightPwm = 0 /*value*/, motorFrontRightDigital = false,
-                motorFrontLeftPwm = 0 /*value*/, motorFrontLeftDigital = false,
-                motorRearRightPwm = 0 /*value*/, motorRearRightDigital = false,
-                motorRearLeftPwm = 0 /*value*/, motorRearLeftDigital = false)
+            applyPinValues(
+                motorFrontRightPwm = 0 /*value*/, motorFrontRightMovingForward = false, motorFrontRightEnable = false,
+                motorFrontLeftPwm = 0 /*value*/, motorFrontLeftMovingForward = false, motorFrontLeftEnable = false,
+                motorRearRightPwm = 0 /*value*/, motorRearRightMovingForward = false, motorRearRightEnable = false,
+                motorRearLeftPwm = 0 /*value*/, motorRearLeftMovingForward = false, motorRearLeftEnable = false)
         }
         //////
 
@@ -231,49 +243,69 @@ class ThrottleBrakeComponent: ThrottleBrake {
 
     override fun initialize() {
 
-        // Front Right Motor
+        /* == Front Right Motor == */
         val motorFrontRightPin = CommandArgumentParser.getPin(
             RaspiPin::class.java, // pin provider class to obtain pin instance from
             MOTOR_FRONT_RIGHT_PWM_PIN, // default pin if no pin argument found
             null
         )
-        val motorFrontRightPwmPin = engineComponent.gpio.provisionPwmOutputPin(motorFrontRightPin)
-        val motorFrontRightDirPin = engineComponent.gpio.provisionDigitalOutputPin(
-            engineComponent.motorsPinsProvider, MCP23S17Pin.GPIO_A1,
+        motorFrontRightPwmPin = engineComponent.gpio.provisionPwmOutputPin(motorFrontRightPin)
+
+        motorFrontRightDirPin = engineComponent.gpio.provisionDigitalOutputPin(
+            engineComponent.motorsPinsProvider, FRONT_MULTIPLEXER_SELECTOR_2,
             "Front Right Motor Dir Pin", PinState.LOW)
 
-        // Front Left Motor
+        motorFrontRightEnablerPin = engineComponent.gpio.provisionDigitalOutputPin(
+            engineComponent.motorsPinsProvider, FRONT_RIGHT_BRIDGE_ENABLER_PIN,
+            "Front Right Motor En Pin", PinState.HIGH)
+
+        /* == Front Left Motor == */
         val motorFrontLeftPin = CommandArgumentParser.getPin(
             RaspiPin::class.java, // pin provider class to obtain pin instance from
             MOTOR_FRONT_LEFT_PWM_PIN, // default pin if no pin argument found
             null
         )
         motorFrontLeftPwmPin = engineComponent.gpio.provisionPwmOutputPin(motorFrontLeftPin)
+
         motorFrontLeftDirPin = engineComponent.gpio.provisionDigitalOutputPin(
-            engineComponent.motorsPinsProvider, MCP23S17Pin.GPIO_A0,
+            engineComponent.motorsPinsProvider, FRONT_MULTIPLEXER_SELECTOR_1,
             "Front Left Motor Dir Pin", PinState.LOW)
 
-        // Rear Right Motor
+        motorFrontLeftEnablerPin = engineComponent.gpio.provisionDigitalOutputPin(
+            engineComponent.motorsPinsProvider, FRONT_LEFT_BRIDGE_ENABLER_PIN,
+            "Front Right Motor En Pin", PinState.HIGH)
+
+        /* == Rear Right Motor == */
         val motorRearRightPin = CommandArgumentParser.getPin(
             RaspiPin::class.java, // pin provider class to obtain pin instance from
             MOTOR_REAR_RIGHT_PWM_PIN, // default pin if no pin argument found
             null
         )
         motorRearRightPwmPin = engineComponent.gpio.provisionPwmOutputPin(motorRearRightPin)
+
         motorRearRightDirPin = engineComponent.gpio.provisionDigitalOutputPin(
-            engineComponent.motorsPinsProvider, MCP23S17Pin.GPIO_A3,
+            engineComponent.motorsPinsProvider, REAR_MULTIPLEXER_SELECTOR_2,
             "Rear Right Motor Dir Pin", PinState.LOW)
 
-        // Rear Left Motor
+        motorRearRightEnablerPin = engineComponent.gpio.provisionDigitalOutputPin(
+            engineComponent.motorsPinsProvider, REAR_RIGHT_BRIDGE_ENABLER_PIN,
+            "Rear Right Motor En Pin", PinState.HIGH)
+
+        /* == Rear Left Motor == */
         val motorRearLeftPin = CommandArgumentParser.getPin(
             RaspiPin::class.java, // pin provider class to obtain pin instance from
             MOTOR_REAR_LEFT_PWM_PIN, // default pin if no pin argument found
             null
         )
         motorRearLeftPwmPin = engineComponent.gpio.provisionPwmOutputPin(motorRearLeftPin)
+
         motorRearLeftDirPin = engineComponent.gpio.provisionDigitalOutputPin(
-            engineComponent.motorsPinsProvider, MCP23S17Pin.GPIO_A2,
+            engineComponent.motorsPinsProvider, REAR_MULTIPLEXER_SELECTOR_1,
             "Rear Left Motor Dir Pin", PinState.LOW)
+
+        motorRearRightEnablerPin = engineComponent.gpio.provisionDigitalOutputPin(
+            engineComponent.motorsPinsProvider, REAR_LEFT_BRIDGE_ENABLER_PIN,
+            "Rear Left Motor En Pin", PinState.HIGH)
     }
 
     override fun reset() {
@@ -283,49 +315,51 @@ class ThrottleBrakeComponent: ThrottleBrake {
         ////// Shutdown & unprovision GPIOs, PWM, etc
         // Pi related
         if(engineComponent.runOnPi) {
-            motorFrontRightPwmPin.pwm = 0
-            motorFrontRightDirPin.low()
-
-            motorFrontLeftPwmPin.pwm = 0
-            motorFrontLeftDirPin.low()
-
-            motorRearRightPwmPin.pwm = 0
-            motorRearRightDirPin.low()
-
-            motorRearLeftPwmPin.pwm = 0
-            motorRearLeftDirPin.low()
+            applyPinValues(0, false, false,
+                0, false, false,
+                0, false, false,
+                0, false, false)
 
             engineComponent.gpio.apply {
                 shutdown()
                 unprovisionPin(motorFrontRightPwmPin)
                 unprovisionPin(motorFrontRightDirPin)
+                unprovisionPin(motorFrontRightEnablerPin)
 
                 unprovisionPin(motorFrontLeftPwmPin)
                 unprovisionPin(motorFrontLeftDirPin)
+                unprovisionPin(motorFrontLeftEnablerPin)
 
                 unprovisionPin(motorRearRightPwmPin)
                 unprovisionPin(motorRearRightDirPin)
+                unprovisionPin(motorRearRightEnablerPin)
 
                 unprovisionPin(motorRearLeftPwmPin)
                 unprovisionPin(motorRearLeftDirPin)
+                unprovisionPin(motorRearLeftEnablerPin)
             }
         }
         //////
     }
 
-    private fun applyPinValues(motorFrontRightPwm: Int? = null, motorFrontRightDigital: Boolean? = null,
-                       motorFrontLeftPwm: Int? = null, motorFrontLeftDigital: Boolean? = null,
-                       motorRearRightPwm: Int? = null, motorRearRightDigital: Boolean? = null,
-                       motorRearLeftPwm: Int? = null, motorRearLeftDigital: Boolean? = null){
+    private fun applyPinValues(
+        motorFrontRightPwm: Int? = null, motorFrontRightMovingForward: Boolean? = null, motorFrontRightEnable: Boolean? = null,
+        motorFrontLeftPwm: Int? = null, motorFrontLeftMovingForward: Boolean? = null, motorFrontLeftEnable: Boolean? = null,
+        motorRearRightPwm: Int? = null, motorRearRightMovingForward: Boolean? = null, motorRearRightEnable: Boolean? = null,
+        motorRearLeftPwm: Int? = null, motorRearLeftMovingForward: Boolean? = null, motorRearLeftEnable: Boolean? = null){
 
         motorFrontRightPwm?.let { motorFrontRightPwmPin.pwm = it }
-        motorFrontRightDigital?.let { motorFrontRightDirPin.setState(it) }
+        motorFrontRightMovingForward?.let { motorFrontRightDirPin.setState(it) }
+        motorFrontRightEnable?.let { motorFrontRightEnablerPin.setState(it) }
         motorFrontLeftPwm?.let { motorFrontLeftPwmPin.pwm = it }
-        motorFrontLeftDigital?.let { motorFrontLeftDirPin.setState(it) }
+        motorFrontLeftMovingForward?.let { motorFrontLeftDirPin.setState(it) }
+        motorFrontLeftEnable?.let { motorFrontLeftEnablerPin.setState(it) }
         motorRearRightPwm?.let { motorRearRightPwmPin.pwm = it }
-        motorRearRightDigital?.let { motorRearRightDirPin.setState(it) }
+        motorRearRightMovingForward?.let { motorRearRightDirPin.setState(it) }
+        motorRearRightEnable?.let { motorRearRightEnablerPin.setState(it) }
         motorRearLeftPwm?.let { motorRearLeftPwmPin.pwm = it }
-        motorRearLeftDigital?.let { motorRearLeftDirPin.setState(it) }
+        motorRearLeftMovingForward?.let { motorRearLeftDirPin.setState(it) }
+        motorRearLeftEnable?.let { motorRearLeftEnablerPin.setState(it) }
     }
 
     private fun calculateDifferentialValues(userThrottleValue: Int) {
